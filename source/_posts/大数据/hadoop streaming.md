@@ -110,7 +110,8 @@ for line in sys.stdin:
 
 `cat t1.txt | python mapper/mapper1.py` ，这样 mapper 运行的结果就会打印在屏幕上了，若想要输出到文件中，可以使用 `>` ，即 `cat t1.txt | python mapper/mapper1.py > out1.txt`
 
-<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828222203501.png" alt="image-20200828222203501" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/blob/blog/source/imgs/hadoop%20streaming.assets/image-20200828222203501.png?raw=true" alt="image-20200828222203501" style="zoom:80%;" />
+
 
 &emsp;&emsp;若想要读取一个文件夹下的所有文件的话，则改为：`cat data/*.txt | python mapper/mapper1.py` 
 
@@ -159,23 +160,22 @@ hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.7.jar \
 
 1. 先输入 `chmod +x run.sh` 赋予可执行权限，然后在命令行中输入 `./run.sh` 即可运行
 
-   <img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828224508743.png" alt="image-20200828224508743" style="zoom:80%;" />
+   <img src="https://github.com/yleave/yleave.github.io/blob/blog/source/imgs/hadoop%20streaming.assets/image-20200828224508743.png?raw=true" alt="image-20200828224508743" style="zoom:80%;" />
 
 2. 使用 `sh run.sh` 运行
 
 3. 使用 `source run.sh` 运行
 
 
-
 &emsp;&emsp;脚本若正确执行完毕，拉取 HDFS 上的结果：`hadoop fs -get /pj/output`
 
-<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828224740795.png" alt="image-20200828224740795" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/blob/blog/source/imgs/hadoop%20streaming.assets/image-20200828224740795.png?raw=true" alt="image-20200828224740795" style="zoom:80%;" />
 
 
 
 &emsp;&emsp;顺便一提，若不是使用编写 `shell` 脚本的方式运行，则上面的 hadoop streaming 运行方式为：
 
-<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828225015917.png" alt="image-20200828225015917" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/blob/blog/source/imgs/hadoop%20streaming.assets/image-20200828225015917.png?raw=true" alt="image-20200828225015917" style="zoom:80%;" />
 
 &emsp;&emsp;即将脚本里的内容全写在命令行中。
 

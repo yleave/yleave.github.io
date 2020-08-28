@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Hadoop Streaming - Ylea</title>
+  <title>使用 Python 编写 MapReduce -- Hadoop Streaming - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -211,10 +211,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Hadoop Streaming</h1>
+            <h1 style="display: none">使用 Python 编写 MapReduce -- Hadoop Streaming</h1>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="hadoop-streaming-简介"><a href="#hadoop-streaming-简介" class="headerlink" title="hadoop streaming 简介"></a>hadoop streaming 简介</h2><p>&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。</p>
+              <p>要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming</p>
+<h2 id="hadoop-streaming-简介"><a href="#hadoop-streaming-简介" class="headerlink" title="hadoop streaming 简介"></a>hadoop streaming 简介</h2><p>&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。</p>
 <p>&emsp;&emsp;也就是 hadoop streaming 可以帮助我们使用其他语言（非 java) 来编写 mapper 和 reducer。</p>
 <p><strong>下面使用 python 来编写 MR 脚本</strong></p>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>&emsp;&emsp;在 hadoop streaming 中，mapper 和 reducer 都是可执行文件，它们从标准输入流读取数据，使用标准输出流输出数据。</p>
@@ -277,7 +278,7 @@ wordCount = <span class="hljs-number">0</span>
 <h2 id="执行-MR-脚本"><a href="#执行-MR-脚本" class="headerlink" title="执行 MR 脚本"></a>执行 MR 脚本</h2><p>&emsp;&emsp;通常执行 MR 脚本需要在 hadoop 系统上工作，但是为了防止出错， <code>mapper</code> 脚本可以在本地测试，而 <code>reducer</code> 脚本通常涉及排序，在本地测试可能会得到错误结果。</p>
 <h3 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h3><p>&emsp;&emsp;在当前路径下有 <code>t1.txt</code> 存放数据，<code>mapper/mapper1.py</code> 为 mapper 脚本，在 <code>shell</code> 上运行命令：</p>
 <p><code>cat t1.txt | python mapper/mapper1.py</code> ，这样 mapper 运行的结果就会打印在屏幕上了，若想要输出到文件中，可以使用 <code>&gt;</code> ，即 <code>cat t1.txt | python mapper/mapper1.py &gt; out1.txt</code></p>
-<img src="hadoop streaming.assets/image-20200828222203501.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828222203501.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" />
 
 <p>&emsp;&emsp;若想要读取一个文件夹下的所有文件的话，则改为：<code>cat data/*.txt | python mapper/mapper1.py</code> </p>
 <h3 id="分布式系统上执行"><a href="#分布式系统上执行" class="headerlink" title="分布式系统上执行"></a>分布式系统上执行</h3><p>&emsp;&emsp;首先，将数据上传到 HDFS 的 <code>/pj</code> 目录下：<code>hadoop fs -put t1.txt /pj</code></p>
@@ -306,7 +307,7 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 <p>&emsp;&emsp;<code>shell</code> 脚本有三种运行方式：</p>
 <ol>
 <li><p>先输入 <code>chmod +x run.sh</code> 赋予可执行权限，然后在命令行中输入 <code>./run.sh</code> 即可运行</p>
-<img src="hadoop streaming.assets/image-20200828224508743.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828224508743.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" />
 </li>
 <li><p>使用 <code>sh run.sh</code> 运行</p>
 </li>
@@ -314,12 +315,12 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 </li>
 </ol>
 <p>&emsp;&emsp;脚本若正确执行完毕，拉取 HDFS 上的结果：<code>hadoop fs -get /pj/output</code></p>
-<img src="hadoop streaming.assets/image-20200828224740795.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828224740795.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" />
 
 
 
 <p>&emsp;&emsp;顺便一提，若不是使用编写 <code>shell</code> 脚本的方式运行，则上面的 hadoop streaming 运行方式为：</p>
-<img src="hadoop streaming.assets/image-20200828225015917.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" />
+<img src="https://github.com/yleave/yleave.github.io/tree/blog/source/imgs/hadoop%20streaming.assets/image-20200828225015917.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" />
 
 <p>&emsp;&emsp;即将脚本里的内容全写在命令行中。</p>
 <h2 id="关于-hadoop-streaming-配置的一些参考学习文章"><a href="#关于-hadoop-streaming-配置的一些参考学习文章" class="headerlink" title="关于 hadoop streaming 配置的一些参考学习文章"></a>关于 hadoop streaming 配置的一些参考学习文章</h2><p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/r1.0.4/cn/streaming.html">Hadoop Streaming</a></p>
@@ -352,6 +353,8 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
                       <a class="hover-with-bg" href="/tags/big-data/">big data</a>
                     
                       <a class="hover-with-bg" href="/tags/hadoop-streaming/">hadoop streaming</a>
+                    
+                      <a class="hover-with-bg" href="/tags/MapReduce/">MapReduce</a>
                     
                   </div>
                 
@@ -484,13 +487,6 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-
     <p id="hitokoto">:D 获取中...</p>
     <script>
       fetch('https://v1.hitokoto.cn', {'c': 'd'})
@@ -501,6 +497,13 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
           })
           .catch(console.error)
     </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
 
     <div>
       <span id="timeDate">载入天数...</span>
@@ -598,7 +601,7 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hadoop Streaming&nbsp;",
+        "使用 Python 编写 MapReduce -- Hadoop Streaming&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -194,7 +194,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-28 15:13" pubdate>
+            <time datetime="2020-08-28 15:28" pubdate>
               2020-08-28
             </time>
           </div>
@@ -210,7 +210,7 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">Hadoop Streaming</a>
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">使用 Python 编写 MapReduce -- Hadoop Streaming</a>
       </h1>
 
       <p class="index-excerpt">
@@ -219,8 +219,9 @@
           
             
           
-          hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。
-&emsp;&emsp;也就是 hadoop streaming 可以帮助我们使用其他语言（非 java
+          要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming
+hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。
+&emsp;&emsp
         </a>
       </p>
 
@@ -250,6 +251,8 @@
               <a href="/tags/big-data/">big data</a>
             
               <a href="/tags/hadoop-streaming/">hadoop streaming</a>
+            
+              <a href="/tags/MapReduce/">MapReduce</a>
             
           </div>
         
@@ -328,13 +331,6 @@
 
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-
     <p id="hitokoto">:D 获取中...</p>
     <script>
       fetch('https://v1.hitokoto.cn', {'c': 'd'})
@@ -345,6 +341,13 @@
           })
           .catch(console.error)
     </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
 
     <div>
       <span id="timeDate">载入天数...</span>

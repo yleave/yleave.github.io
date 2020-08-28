@@ -1,0 +1,744 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo1.png">
+  <link rel="icon" type="image/png" href="/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Hadoop Streaming - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-18 21:17" pubdate>
+      2020年8月18日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Hadoop Streaming</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="hadoop-streaming-简介"><a href="#hadoop-streaming-简介" class="headerlink" title="hadoop streaming 简介"></a>hadoop streaming 简介</h2><p>&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。</p>
+<p>&emsp;&emsp;也就是 hadoop streaming 可以帮助我们使用其他语言（非 java) 来编写 mapper 和 reducer。</p>
+<p><strong>下面使用 python 来编写 MR 脚本</strong></p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>&emsp;&emsp;在 hadoop streaming 中，mapper 和 reducer 都是可执行文件，它们从标准输入流读取数据，使用标准输出流输出数据。</p>
+<p>&emsp;&emsp;在 python 中就是：<code>sys.stdin</code> 和 <code>print</code></p>
+<p>&emsp;&emsp;mapper 和 reducer 会一行一行的读取数据，根据分隔符（默认为 <code>tab</code>）将读入的数据切分为 <code>key</code> 和 <code>value</code>，同时，输出的数据也需要是一个 <code>key,value</code> 对，在第一个 <code>tab</code> 分隔符前的会被认为是 <code>key</code>，后面的都作为 <code>value</code>。</p>
+<p>&emsp;&emsp;如，输出时 <code>print(&quot;%s\t%s&quot;, %(key, value))</code></p>
+<h2 id="MR-编写示例"><a href="#MR-编写示例" class="headerlink" title="MR 编写示例"></a>MR 编写示例</h2><p>&emsp;&emsp;假设有数据如下，下面编写 MR 实现 “倒排”。</p>
+<pre><code class="hljs scheme"><span class="hljs-number">1</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;fruit</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">2</span>	<span class="hljs-symbol">&#x27;noodle</span>&#x27; <span class="hljs-symbol">&#x27;beef</span>&#x27; <span class="hljs-symbol">&#x27;pork</span>&#x27; <span class="hljs-symbol">&#x27;water</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;
+<span class="hljs-number">3</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">4</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">5</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">6</span>	<span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
+
+<p>&emsp;&emsp;所谓 “倒排” 就是将数据中的每一个字符 <code>word</code> 与其前面的编号 <code>num</code> 对应起来，如 <code>bread</code>，它在编号 <code>1</code>、<code>4</code>、<code>6</code> 中都有出现，因此 倒排 的结果就是：<code>bread 1 4 6</code>。</p>
+<p>&emsp;&emsp;首先，编写一个 <code>mapper</code> 来将数据拆分为一个个的 <code>word, num</code> 对：</p>
+<pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span>
+<span class="hljs-comment"># coding=utf-8</span>
+
+<span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:
+    line = line.strip()
+    words = line.split()
+    num = words[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(words)):
+        word = words[i]
+        print(<span class="hljs-string">&#x27;%s\t%s&#x27;</span> % (word, num))
+</code></pre>
+
+<p>&emsp;&emsp;接着，编写 <code>reducer </code>，将同一个 <code>word</code> 的所属编号收集到一起：</p>
+<pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python</span>
+<span class="hljs-comment">#coding:utf-8</span>
+
+
+<span class="hljs-keyword">import</span> sys
+
+output = &#123;&#125;
+curWord = <span class="hljs-string">&#x27;&#x27;</span>
+wordCount = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:
+    line = line.strip()
+    word,tid = line.split()
+
+    <span class="hljs-keyword">if</span> output.get(word) <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        output[word] = []
+    output[word].append(tid)
+
+    <span class="hljs-keyword">if</span> curWord == <span class="hljs-string">&#x27;&#x27;</span>:
+        curWord = word
+    <span class="hljs-keyword">if</span> curWord == word:
+        wordCount += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> wordCount &gt;= <span class="hljs-number">3</span>: <span class="hljs-comment"># 若一个单词对应的编号数量不少于 3，则输出</span>
+            print(<span class="hljs-string">&#x27;%s\t%r&#x27;</span> % (curWord, output[curWord]))
+        wordCount = <span class="hljs-number">1</span>
+        curWord = word</code></pre>
+
+<h2 id="执行-MR-脚本"><a href="#执行-MR-脚本" class="headerlink" title="执行 MR 脚本"></a>执行 MR 脚本</h2><p>&emsp;&emsp;通常执行 MR 脚本需要在 hadoop 系统上工作，但是为了防止出错， <code>mapper</code> 脚本可以在本地测试，而 <code>reducer</code> 脚本通常涉及排序，在本地测试可能会得到错误结果。</p>
+<h3 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h3><p>&emsp;&emsp;在当前路径下有 <code>t1.txt</code> 存放数据，<code>mapper/mapper1.py</code> 为 mapper 脚本，在 <code>shell</code> 上运行命令：</p>
+<p><code>cat t1.txt | python mapper/mapper1.py</code> ，这样 mapper 运行的结果就会打印在屏幕上了，若想要输出到文件中，可以使用 <code>&gt;</code> ，即 <code>cat t1.txt | python mapper/mapper1.py &gt; out1.txt</code></p>
+<img src="hadoop streaming.assets/image-20200828222203501.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" />
+
+<p>&emsp;&emsp;若想要读取一个文件夹下的所有文件的话，则改为：<code>cat data/*.txt | python mapper/mapper1.py</code> </p>
+<h3 id="分布式系统上执行"><a href="#分布式系统上执行" class="headerlink" title="分布式系统上执行"></a>分布式系统上执行</h3><p>&emsp;&emsp;首先，将数据上传到 HDFS 的 <code>/pj</code> 目录下：<code>hadoop fs -put t1.txt /pj</code></p>
+<p>&emsp;&emsp;然后使用 hadoop streaming 执行 MapReduce，hadoop streaming 需要提供一些设置参数，可以在命令行中直接输入，也可以编写 <code>shell</code> 脚本来执行（推荐）</p>
+<p>&emsp;&emsp;来看 <code>shell</code> 脚本的编写，文件命名后缀是 <code>.sh</code></p>
+<pre><code class="hljs sh"><span class="hljs-meta">#!/bin/bash</span>
+hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.7.jar \
+-jobconf mapreduce.reduce.shuffle.memory.limit.percent=0.1 \
+-jobconf mapreduce.reduce.shuffle.input.buffer.percent=0.3 \
+-jobconf mapreduce.map.memory.mb=512 \
+-jobconf mapreduce.reduce.memory.mb=512 \
+-jobconf mapred.map.capacity=100 \
+-jobconf mapred.reduce.capacity=100 \
+-jobconf mapred.job.name=reverse_sort \
+-file mapper/mapper1.py -mapper mapper/mapper1.py  \
+-file reducer/reducer1.py -reducer reducer/reducer1.py  \
+-input /pj/t1.txt -output /pj/output/</code></pre>
+
+<p>&emsp;&emsp;简单说明一下这个 <code>shell</code> 脚本：</p>
+<p>&emsp;&emsp;第一行 <code>#!/bin/bash</code> 说明这个是一个 <code>shell</code> 脚本</p>
+<p>&emsp;&emsp;第二行中的 <code>hadoop-streaming-2.7.7.jar</code> jar 包路径是在自己安装 hadoop 的路径下，应该都会有的</p>
+<p>&emsp;&emsp;再下面，<code>-jobconfig</code> 的那些参数根据自己的需要来设置，具体可以参照<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">官网</a> 和这篇<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">博客</a>的介绍</p>
+<p>&emsp;&emsp;而 <code>file</code>、<code>mapper</code>、<code>reducer</code>、<code>input</code> 和 <code>output</code> 是必须的。</p>
+<p>&emsp;&emsp;其中 <code>file</code> 选项是让f ramework 把可执行文件作为作业的一部分，一起打包提交。</p>
+<p>&emsp;&emsp;接下来，运行这个 <code>shell </code> 脚本，假设这个 <code>shell</code> 脚本的文件名是 <code>run.sh</code>。</p>
+<p>&emsp;&emsp;<code>shell</code> 脚本有三种运行方式：</p>
+<ol>
+<li><p>先输入 <code>chmod +x run.sh</code> 赋予可执行权限，然后在命令行中输入 <code>./run.sh</code> 即可运行</p>
+<img src="hadoop streaming.assets/image-20200828224508743.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" />
+</li>
+<li><p>使用 <code>sh run.sh</code> 运行</p>
+</li>
+<li><p>使用 <code>source run.sh</code> 运行</p>
+</li>
+</ol>
+<p>&emsp;&emsp;脚本若正确执行完毕，拉取 HDFS 上的结果：<code>hadoop fs -get /pj/output</code></p>
+<img src="hadoop streaming.assets/image-20200828224740795.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" />
+
+
+
+<p>&emsp;&emsp;顺便一提，若不是使用编写 <code>shell</code> 脚本的方式运行，则上面的 hadoop streaming 运行方式为：</p>
+<img src="hadoop streaming.assets/image-20200828225015917.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" />
+
+<p>&emsp;&emsp;即将脚本里的内容全写在命令行中。</p>
+<h2 id="关于-hadoop-streaming-配置的一些参考学习文章"><a href="#关于-hadoop-streaming-配置的一些参考学习文章" class="headerlink" title="关于 hadoop streaming 配置的一些参考学习文章"></a>关于 hadoop streaming 配置的一些参考学习文章</h2><p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/r1.0.4/cn/streaming.html">Hadoop Streaming</a></p>
+<p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/44024.html?spm=a2c4g.11186623.6.914.162d19d6A0ZelV">阿里云Hadoop Streaming</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shay-zhangjin/p/7714868.html">Hadoop Streaming详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Alanyungz/article/details/106767668">Hadoop Streaming介绍与实战</a></p>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">JobConfFile</a> </p>
+<p><a target="_blank" rel="noopener" href="http://www.uml.org.cn/zjjs/201205303.asp">hadoop作业调优参数整理及原理</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/loveblair1990/article/details/53608293">hadoop streaming参数配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">Hadoop-Streaming参考一</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/">hadoop</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/big-data/">big data</a>
+                    
+                      <a class="hover-with-bg" href="/tags/hadoop-streaming/">hadoop streaming</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/28/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">写在前面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"/songs/Yiruma - River Flows in You.mp3","cover":"/img/song_covers/River Flows in You.jpg"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"/songs/タニザワトモフミ - もしもの日.mp3","cover":"/img/song_covers/もしもの日.jpg"},{"name":"アイロニ","artist":"4円","url":"/songs/4円 - アイロニ.mp3","cover":"/img/song_covers/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"/songs/清水準一 - Adagio for Summer Wind.mp3","cover":"/img/song_covers/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"/songs/朴树 - 平凡之路.mp3","cover":"/img/song_covers/平凡之路.jpg"},{"name":"君は口内炎","artist":"ef","url":"/songs/ef - 君は口内炎.mp3","cover":"/img/song_covers/君は口内炎.jpg"},{"name":"Mr. Feather","artist":"ELLEGARDEN","url":"/songs/ELLEGARDEN - Mr. Feather.mp3","cover":"/img/song_covers/Mr. Feather.mp3.jpg"},{"name":"三つ叶のクローバー","artist":"DEKOUS＊UK","url":"/songs/DEKOUS＊UK - 三つ叶のクローバー.mp3","cover":"/img/song_covers/三つ叶のクローバー.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Hadoop Streaming&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?bdeafa90a283d49cca2b1c20cc0e2541";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

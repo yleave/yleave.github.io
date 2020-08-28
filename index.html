@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo1.png">
+  <link rel="icon" type="image/png" href="/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -39,7 +39,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -47,7 +47,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -137,7 +137,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/4.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -176,17 +176,17 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/18/hello-world/">Hello World !!!</a>
+        <a href="/2020/08/28/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">写在前面</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/18/hello-world/">
+        <a href="/2020/08/28/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">
           
           
             
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+          &emsp;&emsp;2019 年 3 月，我开始了我的第一篇博客，说是写作，但更多的是 「做笔记」「转载」 等没有深度的文章。
+&emsp;&emsp;开始是在 CSDN 上写博客，一些不想让别人看的笔记就使用网易云笔记写。慢慢的，看着一些大牛的博客，有深度、有干货，也有自己的理解，再看看我的 “博客”，通篇弥漫着一股 蒟蒻 的味道…写博客的激情也就逐渐淡下来了。最终，零零散散的发了快一年的博
         </a>
       </p>
 
@@ -194,12 +194,64 @@ Quick
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-18 09:29" pubdate>
+            <time datetime="2020-08-28 15:13" pubdate>
+              2020-08-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">Hadoop Streaming</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">
+          
+          
+            
+          
+          hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。
+&emsp;&emsp;也就是 hadoop streaming 可以帮助我们使用其他语言（非 java
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-18 21:17" pubdate>
               2020-08-18
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/">hadoop</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/big-data/">big data</a>
+            
+              <a href="/tags/hadoop-streaming/">hadoop streaming</a>
+            
+          </div>
         
       </div>
     </article>
@@ -248,6 +300,29 @@ Quick
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"/songs/Yiruma - River Flows in You.mp3","cover":"/img/song_covers/River Flows in You.jpg"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"/songs/タニザワトモフミ - もしもの日.mp3","cover":"/img/song_covers/もしもの日.jpg"},{"name":"アイロニ","artist":"4円","url":"/songs/4円 - アイロニ.mp3","cover":"/img/song_covers/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"/songs/清水準一 - Adagio for Summer Wind.mp3","cover":"/img/song_covers/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"/songs/朴树 - 平凡之路.mp3","cover":"/img/song_covers/平凡之路.jpg"},{"name":"君は口内炎","artist":"ef","url":"/songs/ef - 君は口内炎.mp3","cover":"/img/song_covers/君は口内炎.jpg"},{"name":"Mr. Feather","artist":"ELLEGARDEN","url":"/songs/ELLEGARDEN - Mr. Feather.mp3","cover":"/img/song_covers/Mr. Feather.mp3.jpg"},{"name":"三つ叶のクローバー","artist":"DEKOUS＊UK","url":"/songs/DEKOUS＊UK - 三つ叶のクローバー.mp3","cover":"/img/song_covers/三つ叶のクローバー.jpg"}]
+    });
+  }
+</script>
+
+  
 
   
 
@@ -259,6 +334,50 @@ Quick
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
         <span>Fluid</span></a>
     </div>
+
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
     
 
     
@@ -298,7 +417,7 @@ Quick
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "人生苦短，至少该让咖啡甜点~☕&nbsp;",
+        "一直在路上...&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -341,6 +460,32 @@ Quick
 
 
 
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?bdeafa90a283d49cca2b1c20cc0e2541";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 

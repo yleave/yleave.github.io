@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Ylea</title>
+  <title>写在前面 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -137,7 +147,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/4.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -147,12 +157,42 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-17 21:17" pubdate>
+      2020年8月17日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      796 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -161,114 +201,105 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">使用 Python 编写 MapReduce -- Hadoop Streaming</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">
-          
-          
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">写在前面</h1>
             
-          
-          要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming
-hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。
-&emsp;&emsp
-        </a>
-      </p>
+            <div class="markdown-body" id="post-body">
+              <p>&emsp;&emsp;2019 年 3 月，我开始了我的第一篇博客，说是写作，但更多的是 「做笔记」「转载」 等没有深度的文章。</p>
+<p>&emsp;&emsp;开始是在 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38701868">CSDN</a> 上写博客，一些不想让别人看的笔记就使用网易云笔记写。慢慢的，看着一些大牛的博客，有深度、有干货，也有自己的理解，再看看我的 “博客”，通篇弥漫着一股 蒟蒻 的味道…写博客的激情也就逐渐淡下来了。最终，零零散散的发了快一年的博客后，我停止了 CSDN 上的 “写作”。</p>
+<p>&emsp;&emsp;但是，做笔记、总结对程序员来说是非常重要的，在 CSDN 上写作后期，我主要在网易云笔记里写笔记，不过，用的时间久了，网易云笔记的一些缺点就发现的越多，于是乎，在网上一顿乱搜，找到了现在的写作软件 <code>Typora</code>，蛮合我胃口的，轻量级，页面简洁，对 <code>MarkDown</code> 的支持也很强大…不过有一个缺点就是在一篇笔记里的内容很多的时候，页面就会有些卡顿，但是还行，还能接受~</p>
+<p>&emsp;&emsp;后来，面向浏览器编程的我，看了许多大佬的博客和他们炫酷的博客网站后，萌生了搭网站写博客的想法，也想着能在搭博客的过程中学习一些前端的知识，不过由于对自己的信心不足，写的博客也没深度，没干货，这个想法也因此搁置了很久，直到一次逛B站时看到了 <strong>Up 主 CodeSheep</strong>  的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Px411d74c">为什么程序员必须写技术博客?…</a> 这个视频后才坚定了我搭建自己的博客网站并再次开始写博客的想法。</p>
+<p>&emsp;&emsp;视频中分享了自己写博客的感想，以及写博客的重要性和必要性，但对我说服力最大的还是视频中提到的<strong>写博客误区</strong> </p>
+<blockquote>
+<p>&emsp;&emsp;<strong>误区一</strong>：初学者写博客没技术含量怎么办（感同身受</p>
+<p>&emsp;&emsp;<strong>误区二</strong>：初学者写博客会不会被喷   </p>
+<p>​&emsp;&emsp;对于误区二，虽然只是不到一年的写博客经历，但基本上没遇到喷我博客的人（可能是我博客的流量太小hh），并且偶尔遇到一些感谢的留言和点赞还是会有点小成就感的~</p>
+</blockquote>
+<p>&emsp;&emsp;诚然，写博客能够在以后找工作，面试时加分，但我觉得更重要的是在写作过程中锻炼自己的表达、总结能力。知识需要沉淀，每学的一些知识，每做的一件事，都需要总结、输出，能够用自己的话说出来，能够有自己的理解，才能说你学过了这个知识。即使是一个小的技术点、一个小的 idea，甚至一些简单的笔记，都可以写到博客中，我相信积累的力量。</p>
+<p>就这样，我再次开始了我的写博客之旅，或许博客内容会有些青涩，有些错误，请见谅~</p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-18 21:17" pubdate>
-              2020-08-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/">hadoop</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/big-data/">big data</a>
-            
-              <a href="/tags/hadoop-streaming/">hadoop streaming</a>
-            
-              <a href="/tags/MapReduce/">MapReduce</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/17/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">写在前面</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/17/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">
-          
-          
-            
-          
-          &emsp;&emsp;2019 年 3 月，我开始了我的第一篇博客，说是写作，但更多的是 「做笔记」「转载」 等没有深度的文章。
-&emsp;&emsp;开始是在 CSDN 上写博客，一些不想让别人看的笔记就使用网易云笔记写。慢慢的，看着一些大牛的博客，有深度、有干货，也有自己的理解，再看看我的 “博客”，通篇弥漫着一股 蒟蒻 的味道…写博客的激情也就逐渐淡下来了。最终，零零散散的发了快一年的博
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-17 21:17" pubdate>
-              2020-08-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 Python 编写 MapReduce -- Hadoop Streaming</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -413,6 +444,31 @@ hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具，
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -420,7 +476,7 @@ hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具，
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "一直在路上...&nbsp;",
+        "写在前面&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -434,6 +490,21 @@ hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具，
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
@@ -449,9 +520,62 @@ hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具，
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

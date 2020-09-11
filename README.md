@@ -1,2 +1,2 @@
 # yleave.github.io
-my first blog
+deploy in GithubPages

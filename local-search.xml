@@ -4,13 +4,27 @@
   
   
   <entry>
-    <title>t1</title>
-    <link href="/2020/09/12/t1/"/>
-    <url>/2020/09/12/t1/</url>
+    <title>使用Netlify部署博客</title>
+    <link href="/2020/09/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2020/09/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>&emsp;&emsp;原先博客是部署在 githubPages 上的，稍微设置一下就能实现自动化部署和启用 https，还是蛮方便的，但是使用国内网络访问 githubPages 上部署的网站速度太慢了，体验很差，因此，搜了下解决方案，发现了 <code>Netlify </code> 这个一站式自动化部署网站的平台，部署网站的过程很简单， githubPages 上的支持和不支持的功能 Netlify 上都有，最重要的是听说使用 Netlify 部署的网站，国内访问深度会比 githubPages 快多了。因此也捣鼓了一番，使用 Netlify 重新部署了网站。</p><p>&emsp;&emsp;但是。。。部署完后使用国内网络访问网站，感觉访问速度没什么变化。。。去站长之家测试了下速度，唉</p><p><strong>我理想中的变化：</strong></p><img src="https://i.loli.net/2020/09/12/QFlGUA7px2aDmMN.png" alt="image-20200912114349985" style="zoom:80%;" /><p><strong>残酷的现实：</strong></p><p><img src="https://i.loli.net/2020/09/12/cUhBsSGPVHZkApW.png" alt="image-20200912114441879" style="zoom:40%;" /> <img src="https://i.loli.net/2020/09/12/aWpBJ7IDlcXvFCx.png" alt="image-20200912114518298" style="zoom:40%;" /></p><p>&emsp;&emsp;总之记录一下部署的过程，不过可能还是会选用 githubPages 了，关于网站加速，后面再看了。</p><h2 id="github-项目部署"><a href="#github-项目部署" class="headerlink" title="github 项目部署"></a>github 项目部署</h2><p>&emsp;&emsp;首先，进入 <a href="https://app.netlify.com/teams/yleave/sites">Netlify</a> 官网，选择 github 账号登陆。</p><p>&emsp;&emsp;然后点击创建新网站：</p><img src="https://i.loli.net/2020/09/12/UNgWzbrBpMFin7E.png" alt="image-20200912024233068" style="zoom:80%;" /><p>&emsp;&emsp;选择 github </p><img src="https://i.loli.net/2020/09/12/KgbkJuPSoFNQaB8.png" alt="image-20200912024310535" style="zoom:80%;" /><p>&emsp;&emsp;然后进入第二步，选择网站的项目仓库：</p><img src="https://i.loli.net/2020/09/12/PGQSKXUyLz2clhF.png" alt="image-20200912024635089" style="zoom:80%;" /><p>&emsp;&emsp;然后选择部署的分支及打包命令与发布目录，我是使用了 hexo ，因此打包命令是 <code>hexo generate</code>：</p><img src="https://i.loli.net/2020/09/12/dvts5UECVeaTRgQ.png" alt="image-20200912024803284" style="zoom: 67%;" /><p>&emsp;&emsp;点击 <code>Deploy</code> 按钮后，会自动进行部署，部署完成后，就能通过它给你的域名访问你的网站了：</p><img src="https://i.loli.net/2020/09/12/oQVNMXCEUmgnSey.png" alt="image-20200912025256424" style="zoom: 67%;" /><p>&emsp;&emsp;网站名称默认会是一连串字符，可以在 <code>Site Setting</code> 里更改：</p><img src="https://i.loli.net/2020/09/12/gLuZcst8EAmrB5D.png" alt="image-20200912025420094" style="zoom:67%;" /><h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>&emsp;&emsp;Netify 的初始域名会是 <code>xxx.netify.app</code></p><p>&emsp;&emsp;需要更改域名的话需要去申请域名，解析 DNS，有了之前的<a href="https://yleave.netlify.app/2020/09/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0ssl/">经验</a> ，这步就很快了：</p><p>&emsp;&emsp;首先使用 <a href="http://tool.chinaz.com/dns">dns查询工具</a> 查询网站的 ip：</p><img src="https://i.loli.net/2020/09/12/cD7wf495nxWISud.png" alt="image-20200912025833859" style="zoom:67%;" /><p>&emsp;&emsp;然后去阿里云的 dns 解析平台解析这几条IP，并添加 <code>CNAME</code> 记录：</p><img src="https://i.loli.net/2020/09/12/9mdcMTJOi61vRGK.png" alt="image-20200912030148298" style="zoom:80%;" /><p>&emsp;&emsp;操作完成后，回到 Neltify，点击 <code>Add custom domain</code> 添加你的域名：</p><img src="https://i.loli.net/2020/09/12/ftZqQe9b6z5Juxm.png" alt="image-20200912030601733" style="zoom:80%;" /><p>&emsp;&emsp;然后是为网站添加 SSL，我<a href="https://www.yleave.top/2020/09/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0ssl/#%E7%BB%99%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%B7%BB%E5%8A%A0-SSL">之前</a>已经申请过 SSL 证书了，因此点击添加证书按钮，将证书的内容上传：</p><img src="https://i.loli.net/2020/09/12/q1xW8fHOP6VXr2t.png" alt="image-20200912030811357" style="zoom:67%;" /><img src="https://i.loli.net/2020/09/12/5sAOkrjQXTwGNPZ.png" alt="image-20200912030928206" style="zoom: 67%;" /><p>&emsp;&emsp;若没有申请过证书的话，Netlify 也提供了免费证书的发放服务：</p><p>&emsp;&emsp;点击 <code>Let&#39;s Encrypt</code>，完成后如下：</p><img src="https://i.loli.net/2020/09/12/di6oRcH5FhTbsEQ.png" alt="image-20200912031035996" style="zoom: 67%;" /><p>&emsp;&emsp;至此，使用 Netlify 自动部署博客步骤就全部完成了，之后添加新内容提交后， Netlify 会自动打包发布，非常方便:</p><img src="https://i.loli.net/2020/09/12/aVEbmrYw2MJtFQR.png" alt="image-20200912032343535" style="zoom: 80%;" /><hr><p><strong>Ref:</strong></p><p><a href="https://www.cnblogs.com/37Y37/p/12551839.html">https://www.cnblogs.com/37Y37/p/12551839.html</a></p><p><a href="https://zhuanlan.zhihu.com/p/77651304">https://zhuanlan.zhihu.com/p/77651304</a></p>]]></content>
     
     
+    <categories>
+      
+      <category>博客搭建</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Netlify</tag>
+      
+      <tag>自动化部署</tag>
+      
+    </tags>
     
   </entry>
   

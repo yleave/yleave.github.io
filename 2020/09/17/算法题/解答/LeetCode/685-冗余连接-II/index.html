@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>写在前面 - Ylea</title>
+  <title>685. 冗余连接 II - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -164,8 +164,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-17 21:17" pubdate>
-      2020年8月17日 晚上
+    <time datetime="2020-09-17 17:52" pubdate>
+      2020年9月17日 下午
     </time>
   </div>
 
@@ -175,7 +175,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      796 字
+      1.5k 字
     </span>
   
 
@@ -185,7 +185,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      19
        分钟
     </span>
   
@@ -215,27 +215,211 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">写在前面</h1>
+            <h1 style="display: none">685. 冗余连接 II</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>&emsp;&emsp;2019 年 3 月，我开始了我的第一篇博客，说是写作，但更多的是 「做笔记」「转载」 等没有深度的文章。</p>
-<p>&emsp;&emsp;开始是在 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38701868">CSDN</a> 上写博客，一些不想让别人看的笔记就使用网易云笔记写。慢慢的，看着一些大牛的博客，有深度、有干货，也有自己的理解，再看看我的 “博客”，通篇弥漫着一股 蒟蒻 的味道…写博客的激情也就逐渐淡下来了。最终，零零散散的发了快一年的博客后，我停止了 CSDN 上的 “写作”。</p>
-<p>&emsp;&emsp;但是，做笔记、总结对程序员来说是非常重要的，在 CSDN 上写作后期，我主要在网易云笔记里写笔记，不过，用的时间久了，网易云笔记的一些缺点就发现的越多，于是乎，在网上一顿乱搜，找到了现在的写作软件 <code>Typora</code>，蛮合我胃口的，轻量级，页面简洁，对 <code>MarkDown</code> 的支持也很强大…不过有一个缺点就是在一篇笔记里的内容很多的时候，页面就会有些卡顿，但是还行，还能接受~</p>
-<p>&emsp;&emsp;后来，面向浏览器编程的我，看了许多大佬的博客和他们炫酷的博客网站后，萌生了搭网站写博客的想法，也想着能在搭博客的过程中学习一些前端的知识，不过由于对自己的信心不足，写的博客也没深度，没干货，这个想法也因此搁置了很久，直到一次逛B站时看到了 <strong>Up 主 CodeSheep</strong>  的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Px411d74c">为什么程序员必须写技术博客?…</a> 这个视频后才坚定了我搭建自己的博客网站并再次开始写博客的想法。</p>
-<p>&emsp;&emsp;视频中分享了自己写博客的感想，以及写博客的重要性和必要性，但对我说服力最大的还是视频中提到的<strong>写博客误区</strong> </p>
-<blockquote>
-<p>&emsp;&emsp;<strong>误区一</strong>：初学者写博客没技术含量怎么办（感同身受</p>
-<p>&emsp;&emsp;<strong>误区二</strong>：初学者写博客会不会被喷   </p>
-<p>​&emsp;&emsp;对于误区二，虽然只是不到一年的写博客经历，但基本上没遇到喷我博客的人（可能是我博客的流量太小hh），并且偶尔遇到一些感谢的留言和点赞还是会有点小成就感的~</p>
-</blockquote>
-<p>&emsp;&emsp;诚然，写博客能够在以后找工作，面试时加分，但我觉得更重要的是在写作过程中锻炼自己的表达、总结能力。知识需要沉淀，每学的一些知识，每做的一件事，都需要总结、输出，能够用自己的话说出来，能够有自己的理解，才能说你学过了这个知识。即使是一个小的技术点、一个小的 idea，甚至一些简单的笔记，都可以写到博客中，我相信积累的力量。</p>
-<p>就这样，我再次开始了我的写博客之旅，或许博客内容会有些青涩，有些错误，请见谅~</p>
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/">https://leetcode-cn.com/problems/redundant-connection-ii/</a></p>
+<p>难度：困难</p>
+<hr>
+<p>&emsp;&emsp;在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。</p>
+<p>&emsp;&emsp;输入一个有向图，该图由一个有着<code>N</code>个节点 (节点值不重复1, 2, …, N) 的树及一条附加的边构成。附加的边的两个顶点包含在<code>1</code>到<code>N</code>中间，这条附加的边不属于树中已存在的边。</p>
+<p>&emsp;&emsp;结果图是一个以边组成的二维数组。 每一个边 的元素是一对 <code>[u, v]</code>，用以表示有向图中连接顶点 <code>u</code> 和顶点 <code>v</code> 的边，其中 <code>u</code> 是 <code>v</code> 的一个父节点。</p>
+<p>&emsp;&emsp;返回一条能删除的边，使得剩下的图是有<code>N</code>个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
+<p><strong>简化题目：</strong> 根据给定的边集，求出一条多余的边，使得删除这条边后，图会变成一棵树，对于一些情况，这样的边会有多条，删除边集中出现的最后一条满足条件的边。</p>
+<p><strong>示例 1:</strong></p>
+<p>输入: <code>[[1,2], [1,3], [2,3]]</code></p>
+<p>输出: <code>[2,3]</code></p>
+<p>解释: 给定的有向图如下:</p>
+<pre><code class="hljs angelscript">  <span class="hljs-number">1</span>
+ / \
+v   v
+<span class="hljs-number">2</span>--&gt;<span class="hljs-number">3</span></code></pre>
+
+<p><strong>示例 2:</strong></p>
+<p>输入: <code>[[1,2], [2,3], [3,4], [4,1], [1,5]]</code></p>
+<p>输出: <code>[4,1]</code></p>
+<p>解释: 给定的有向图如下:</p>
+<pre><code class="hljs angelscript"><span class="hljs-number">5</span> &lt;- <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span>
+     ^    |
+     |    v
+     <span class="hljs-number">4</span> &lt;- <span class="hljs-number">3</span></code></pre>
+
+<p><strong>注意:</strong></p>
+<ul>
+<li>二维数组大小的在<code>3</code>到<code>1000</code>范围内。</li>
+<li>二维数组中的每个整数在<code>1</code>到<code>N</code>之间，其中 <code>N</code> 是二维数组的大小。</li>
+</ul>
+<h2 id="解法1：并查集"><a href="#解法1：并查集" class="headerlink" title="解法1：并查集"></a>解法1：并查集</h2><p>思路来源：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/comments/70573">Nu11Pointer</a></p>
+<p>&emsp;&emsp;对于一条能使一棵树变成图的边，它有以下几种情况：</p>
+<ol>
+<li><img src="https://i.loli.net/2020/09/17/OJIs4VDuBwAyxSd.png" srcset="/img/loading.gif" alt="image-20200917170455420" style="zoom:80%;" />  
+
+<p>这条边从任意节点出发，指向了根结点，此时树形成了环，树也就没有根结点了（表现就是所有结点的入度都为 1），而这种情况下，处于这个环中的所有边都能被删除，因为删除任意一条边都能变成一棵正常的树，这也就是题目中提到的“多条边”的情况，但根据题目，需要删除边集中最后一条在环中的边。</p>
+</li>
+<li><img src="https://i.loli.net/2020/09/17/Cazh1PI3D4YecFn.png" srcset="/img/loading.gif" alt="image-20200917170905916" style="zoom:80%;" />  
+
+<p>这条边从任意节点出发，指向了其祖先节点，树中形成了环，但仍有根结点，不过造成的后果就是有一个节点的入度变成 2了。这种情况下，只能删除环中的且造成 2 个入度的边，即图中橙色的边。</p>
+</li>
+<li><img src="https://i.loli.net/2020/09/17/qnpHve92sCIwOPW.png" srcset="/img/loading.gif" alt="image-20200917171311259" style="zoom:80%;" /> 
+
+<p> 这条边从任意节点出发，指向了一个非祖先节点。这种情况下，有一个节点的入度会为 2，这两条造成入度为 2 的边都能删除，但根据题目，需要删除后出现的那条。</p>
+</li>
+</ol>
+<p>&emsp;&emsp;</p>
+<p>&emsp;&emsp;好了，既然清楚可能的几种情况，就需要想办法找到这些满足条件的边了。</p>
+<p>&emsp;&emsp;对于这种需要判断环的问题，可以考虑使用<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E8%A7%A3%E9%A2%98%E6%8A%80%E5%B7%A7/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>来做。在创建并查集的过程中，合并两个节点 <code>a</code> 和 <code>b</code> 时，若这两个节点有着公共的根结点，那么将它们合并的话就会出现环了。</p>
+<p>&emsp;&emsp;好的，首先，我们可以判断图中是否存在入度为 2 的节点，<strong>若存在</strong>，那么就是第 2 和第 3 种情况，将造成入度为 2 的这两条边（<code>edge1，edge2</code>）都先记录下来。</p>
+<p>&emsp;&emsp;然后创建并查集，我们跳过 <code>edge2</code> （<strong>后出现的边</strong>）这条边，若创建并查集的过程一路畅通（即未出现环），那么答案就是 <code>edge2</code>，也就是 <code>2.</code> 中删了正确的边（橙色的边）和 <code>3.</code> 中的情况 。</p>
+<p>&emsp;&emsp;而若创建并查集的过程中出现了环，那么对应的就是 <code>2.</code> 中删除了错误的边，那么答案就是 <code>edge1</code>。</p>
+<p>&emsp;&emsp;<strong>若不存在入度为 2 的节点</strong> ，那么就是 <code>1.</code> 中的情况了。此时，在创建并查集的过程中，记录那条造成环出现的边，这条边会是环中的边（废话），且会是边集中最后出现的满足条件的边，将其记录下来，作为答案返回。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> findRedundantDirectedConnection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">edges</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> inDegrees = [];
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> meetCircle;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> edge <span class="hljs-keyword">of</span> edges) &#123;
+        <span class="hljs-keyword">let</span> node = edge[<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">if</span> (!inDegrees[node]) &#123;
+            inDegrees[node] = edge;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            res.push(inDegrees[node]);
+            res.push(edge); <span class="hljs-comment">// 若找到入度为 2 的节点，将其中一条边记录下来</span>
+            <span class="hljs-keyword">break</span>;
+        &#125;
+    &#125;
+
+    <span class="hljs-keyword">let</span> father = [];
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= edges.length; i++) &#123;
+        father[i] = i;
+    &#125;
+
+    <span class="hljs-keyword">const</span> findFather = <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> tmp = x;
+        <span class="hljs-keyword">while</span> (x !== father[x]) &#123;
+            x = father[x];
+        &#125;
+
+        <span class="hljs-keyword">let</span> a = tmp;
+        tmp = father[tmp];
+        father[a] = x;
+
+        <span class="hljs-keyword">return</span> x;
+    &#125;;
+
+    <span class="hljs-keyword">const</span> union = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> fa = findFather(a);
+        <span class="hljs-keyword">let</span> fb = findFather(b);
+        <span class="hljs-keyword">if</span> (fa !== fb) &#123;
+            father[fb] = fa;
+        &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 遇到了环</span>
+            meetCircle = [a, b];
+        &#125;
+    &#125;;
+
+    <span class="hljs-comment">// 建立并查集，若存在入度为 2 的节点，跳过后出现的边</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> edge <span class="hljs-keyword">of</span> edges) &#123;
+        <span class="hljs-keyword">if</span> (res.length &amp;&amp; res[<span class="hljs-number">1</span>] === edge) &#123;
+            <span class="hljs-keyword">continue</span>;
+        &#125;
+        union(edge[<span class="hljs-number">0</span>], edge[<span class="hljs-number">1</span>]);
+    &#125;
+
+    <span class="hljs-comment">// 若没有入度为 2 的点，则说明冗余的边指向了根结点</span>
+    <span class="hljs-keyword">if</span> (res.length === <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">return</span> meetCircle;
+    &#125;
+
+    <span class="hljs-keyword">return</span> meetCircle ? res[<span class="hljs-number">0</span>] : res[<span class="hljs-number">1</span>];
+&#125;;</code></pre>
+
+
+
+<p>&emsp;&emsp;优化后的代码：只遍历了一次边集</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> findRedundantDirectedConnection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">edges</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> res = [], father = [];
+    <span class="hljs-keyword">let</span> indegrees = [];
+    <span class="hljs-keyword">let</span> meetCircle;
+
+    <span class="hljs-keyword">const</span> findFather = <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> tmp = x;
+        <span class="hljs-keyword">while</span> (x !== father[x]) &#123;
+            x = father[x];
+        &#125;
+
+        <span class="hljs-keyword">let</span> a = tmp;
+        tmp = father[tmp];
+        father[a] = x;
+
+        <span class="hljs-keyword">return</span> x;
+    &#125;;
+
+    <span class="hljs-comment">// 创建并查集</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> edge <span class="hljs-keyword">of</span> edges) &#123;
+        <span class="hljs-keyword">let</span> node1 = edge[<span class="hljs-number">0</span>], node2 = edge[<span class="hljs-number">1</span>];
+
+        <span class="hljs-comment">// 初始化</span>
+        <span class="hljs-keyword">if</span> (!father[node1]) &#123;
+            father[node1] = node1;
+        &#125;
+        <span class="hljs-keyword">if</span> (!father[node2]) &#123;
+            father[node2] = node2;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (indegrees[node2]) &#123; <span class="hljs-comment">// 若其入度已经为 1 了，则加上当前边入度就是 2了</span>
+            res.push([indegrees[node2], node2]);
+            res.push(edge);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            indegrees[node2] = node1;
+            <span class="hljs-keyword">let</span> f1 = findFather(node1);
+            <span class="hljs-keyword">let</span> f2 = findFather(node2);
+            <span class="hljs-keyword">if</span> (f1 !== f2) &#123;
+                father[f2] = f1;
+            &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 遇到了环</span>
+                meetCircle = edge;
+            &#125;
+        &#125;
+    &#125;
+    
+    <span class="hljs-comment">// 若没有入度为 2 的点，则说明冗余的边指向了根结点</span>
+    <span class="hljs-keyword">if</span> (res.length === <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">return</span> meetCircle;
+    &#125;
+
+    <span class="hljs-comment">// 否则，根据是否产生环输出答案</span>
+    <span class="hljs-keyword">return</span> meetCircle ? res[<span class="hljs-number">0</span>] : res[<span class="hljs-number">1</span>];
+&#125;;</code></pre>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE/">图</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A0%91/">树</a>
+                    
+                  </div>
                 
               </div>
               
@@ -246,15 +430,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">
+                      <a href="/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E9%A2%98%E6%8A%80%E5%B7%A7/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">使用 Python 编写 MapReduce -- Hadoop Streaming</span>
+                        <span class="hidden-mobile">并查集</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2020/09/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/%E4%BD%BF%E7%94%A8Netlify%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/">
+                        <span class="hidden-mobile">使用Netlify部署博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -480,7 +670,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "写在前面&nbsp;",
+        "685. 冗余连接 II&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

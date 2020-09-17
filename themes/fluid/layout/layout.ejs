@@ -11,6 +11,8 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
 
 <%- partial('_partial/head') %>
 
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
 <body>
   <header style="height: <%- banner_img_height %>vh;">
     <%- partial('_partial/nav') %>
@@ -40,7 +42,6 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
       </div>
     </div>
   </header>
-
   <main>
     <% if(is_post() || page.layout === '404') { %>
       <%- body %>

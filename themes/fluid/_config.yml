@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: /img/logo1.png # 网站标签页的 icon
+favicon: http://qgt3t1irs.hd-bkt.clouddn.com/logo1.png # 网站标签页的 icon
 
-apple_touch_icon: /img/logo1.png # 用于苹果设备的 icon
+apple_touch_icon: http://qgt3t1irs.hd-bkt.clouddn.com/logo1.png # 用于苹果设备的 icon
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -38,7 +38,7 @@ fun_features: # 一些好玩的功能
     visible: hover # 默认悬浮显示，可选：hover（鼠标在元素上悬浮时显示） | always（一直显示） | touch（移动端触摸显示）
     icon: "" # 可选：§ | # | ❡ 等，留空则为默认效果
   mouse_click:  # 鼠标点击动效
-    enable: false
+    enable: true
     style: values # 目前设置两个值：values（价值观词汇） | love（爱心）
 
 dark_mode:   # 主题暗色模式，开启后菜单中会出现切换按钮，用户浏览器会存储切换选项，并且会遵循 prefers-color-scheme 自动切换
@@ -80,7 +80,7 @@ custom_html: ''  # 自定义底部 HTML 内容（位于 footer 上方），也�
 
 web_analytics:  # 网页访问统计
   enable: true
-  baidu: bdeafa90a283d49cca2b1c20cc0e2541 # 百度统计的 Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
+  baidu: a36acf7cd4515f99cd4742abbfcf11c3 # 百度统计的 Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
   google:  # Google 统计的 Tracking ID，参见 https://analytics.google.com/analytics/web/
   gtag:  # Google gtag.js 的媒体资源 ID，参见 https://analytics.google.com/analytics/web/ 中的 管理 -> 媒体资源设置 -> 跟踪 ID
   tencent:  # 腾讯统计的 H5 App id，参见 https://mta.qq.com/h5/manage/ctr_app_manage (开启高级功能才有cid)
@@ -109,14 +109,14 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   order: 'list'  # 播放顺序，可选值: 'list', 'random'
   theme: '#b7daff'  # 主题色
   songs:  # 歌曲列表，必须传入下列各参数，其中 url 与 cover 在本地需存于 source 目录，更多参数见文档：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
-    - { name: 'River Flows in You', artist: 'Yiruma', url: '/songs/Yiruma - River Flows in You.mp3', cover: '/img/song_covers/River Flows in You.jpg' }
-    - { name: 'もしもの日', artist: 'タニザワトモフミ', url: '/songs/タニザワトモフミ - もしもの日.mp3', cover: '/img/song_covers/もしもの日.jpg' }
-    - { name: 'アイロニ', artist: '4円', url: '/songs/4円 - アイロニ.mp3', cover: '/img/song_covers/アイロニ.jpg' }
-    - { name: 'Adagio for Summer Wind', artist: '清水準一', url: '/songs/清水準一 - Adagio for Summer Wind.mp3', cover: '/img/song_covers/Adagio for Summer Wind.jpg' }
-    - { name: '平凡之路', artist: '朴树', url: '/songs/朴树 - 平凡之路.mp3', cover: '/img/song_covers/平凡之路.jpg' }
-    - { name: '君は口内炎', artist: 'ef', url: '/songs/ef - 君は口内炎.mp3', cover: '/img/song_covers/君は口内炎.jpg' }
-    - { name: 'Mr. Feather', artist: 'ELLEGARDEN', url: '/songs/ELLEGARDEN - Mr. Feather.mp3', cover: '/img/song_covers/Mr. Feather.mp3.jpg' }
-    - { name: '三つ叶のクローバー', artist: 'DEKOUS＊UK', url: '/songs/DEKOUS＊UK - 三つ叶のクローバー.mp3', cover: '/img/song_covers/三つ叶のクローバー.jpg' }
+    - { name: 'River Flows in You', artist: 'Yiruma', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/Yiruma - River Flows in You.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/River Flows in You.jpg' }
+    - { name: 'もしもの日', artist: 'タニザワトモフミ', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/タニザワトモフミ - もしもの日.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/もしもの日.jpg' }
+    - { name: 'アイロニ', artist: '4円', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/4円 - アイロニ.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/アイロニ.jpg' }
+    - { name: 'Adagio for Summer Wind', artist: '清水準一', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/清水準一 - Adagio for Summer Wind.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/Adagio for Summer Wind.jpg' }
+    - { name: '平凡之路', artist: '朴树', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/朴树 - 平凡之路.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/平凡之路.jpg' }
+    - { name: '君は口内炎', artist: 'ef', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/ef - 君は口内炎.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/君は口内炎.jpg' }
+    - { name: 'Mr. Feather', artist: 'ELLEGARDEN', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/ELLEGARDEN - Mr. Feather.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/Mr. Feather.mp3.jpg' }
+    - { name: '三つ叶のクローバー', artist: 'DEKOUS＊UK', url: 'http://qgt3t1irs.hd-bkt.clouddn.com/DEKOUS＊UK - 三つ叶のクローバー.mp3', cover: 'http://qgt3t1irs.hd-bkt.clouddn.com/三つ叶のクローバー.jpg' }
 
 version:  # 主题版本相关
   check: false  # 每次生成页面后，检测主题是否为最新版本
@@ -160,7 +160,7 @@ banner_parallax: true  # 头图滚动视差
 #---------------------------
 footer:
   statistics:  # 展示网站的 PV、UV 统计数
-    enable: false
+    enable: true
     source: "busuanzi"  # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
     pv_format: "总访问量 {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
     uv_format: "总访客数 {} 人"
@@ -180,7 +180,7 @@ scroll_top_arrow:  # 向顶部滚动的箭头
 # Index Page
 #---------------------------
 index:
-  banner_img: /img/4.jpg  # 首页 Banner 头图，以下相同
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/首页.jpg  # 首页 Banner 头图，以下相同
   banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
   banner_mask_alpha: 0.3  # 头图黑色蒙版的透明度，available: 0 - 1.0， 0 是完全透明（无蒙版），1 是完全不透明
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
@@ -198,7 +198,7 @@ index:
 # 通过 hexo new page 命令创建的页面
 # Custom Page
 page:
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/default.png
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
 
@@ -207,7 +207,7 @@ page:
 # Post Page
 #---------------------------
 post:  # 部分配置同时控制自定义页面，注意备注
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/default.png
   banner_img_height: 70  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   meta:  # 文章标题下方的信息
@@ -222,13 +222,13 @@ post:  # 部分配置同时控制自定义页面，注意备注
       format: "{} 分钟"
       words: 100  # 每分钟阅读多少字，如果是技术文章，建议降低
     views:  # 阅读次数
-      enable: false
+      enable: true
       source: "busuanzi"  # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
       format: "{} 次"
   updated:  # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
-    enable: false
+    enable: true
     content: 本文最后更新于：  # 描述文字
-    relative: false  # 是否使用相对时间表示，比如："3 天前"
+    relative: true  # 是否使用相对时间表示，比如："3 天前"
   toc:  # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6
@@ -334,7 +334,7 @@ livere:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/归档.png
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
@@ -344,9 +344,9 @@ archive:
 # Categories Page
 #---------------------------
 category:
-  banner_img: /img/default.png
-  banner_img_height: 60  # available: 0 - 100
-  banner_mask_alpha: 0.3  # available: 0 - 1.0
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/分类.png
+  banner_img_height: 80  # available: 0 - 100
+  banner_mask_alpha: 0.2  # available: 0 - 1.0
   subtitle:  # 打字机内容
   post_limit: 10  # 单个分类中折叠展示文章数的最大值，超过限制会显示 More
   order_by: '-length'  # 排序字段，前面带减号是倒序，不带减号是正序，可选项：name | length
@@ -356,9 +356,9 @@ category:
 # Tags Page
 #---------------------------
 tag:
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/标签.png
   banner_img_height: 80  # available: 0 - 100
-  banner_mask_alpha: 0.3  # available: 0 - 1.0
+  banner_mask_alpha: 0.2  # available: 0 - 1.0
   subtitle:  # 打字机内容
   tagcloud: # 标签云
     min_font: 15
@@ -373,17 +373,17 @@ tag:
 # About Page
 #---------------------------
 about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.com/docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/关于.png
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
-  avatar: /img/avatar.png # 头像
+  avatar: http://qgt3t1irs.hd-bkt.clouddn.com/avatar.png # 头像
   name: Ylea
   introduce: '人生苦短，至少该让咖啡甜点~☕' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/yleave', tip: 'GitHub' }
     - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '豆瓣' }
-    - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
+    - { class: 'iconfont icon-wechat-fill', qrcode: 'http://qgt3t1irs.hd-bkt.clouddn.com/default.png/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
 
 
 #---------------------------
@@ -391,10 +391,10 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
 # 404 Page
 #---------------------------
 page404:
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/404.png
   banner_img_height: 85  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
-  subtitle: 'Page not found'  # 打字机内容
+  subtitle: '好像有点不妙...'  # 打字机内容
 
 
 #---------------------------
@@ -402,7 +402,7 @@ page404:
 # Links Page
 #---------------------------
 links:
-  banner_img: /img/default.png
+  banner_img: http://qgt3t1irs.hd-bkt.clouddn.com/default.png/default.png
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
@@ -411,17 +411,17 @@ links:
       title: 'Fluid Docs',
       intro: '主题使用指南',
       link: 'https://hexo.fluid-dev.com/docs/',
-      image: '/img/favicon.png'
+      image: 'http://qgt3t1irs.hd-bkt.clouddn.com/default.png/favicon.png'
     }
     - {
       title: 'Fluid Repo',
       intro: '主题 GitHub 仓库',
       link: 'https://github.com/fluid-dev/hexo-theme-fluid',
-      image: '/img/favicon.png'
+      image: 'http://qgt3t1irs.hd-bkt.clouddn.com/default.png/favicon.png'
     }
     - {
       title: 'Fluid Example',
       intro: '主题操作示例',
       link: 'https://hexo.fluid-dev.com/docs/example/',
-      image: '/img/favicon.png'
+      image: 'http://qgt3t1irs.hd-bkt.clouddn.com/default.png/favicon.png'
     }

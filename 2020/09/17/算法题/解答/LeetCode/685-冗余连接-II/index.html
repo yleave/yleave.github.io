@@ -267,7 +267,7 @@ v   v
 </ol>
 <p>&emsp;&emsp;</p>
 <p>&emsp;&emsp;好了，既然清楚可能的几种情况，就需要想办法找到这些满足条件的边了。</p>
-<p>&emsp;&emsp;对于这种需要判断环的问题，可以考虑使用<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E8%A7%A3%E9%A2%98%E6%8A%80%E5%B7%A7/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>来做。在创建并查集的过程中，合并两个节点 <code>a</code> 和 <code>b</code> 时，若这两个节点有着公共的根结点，那么将它们合并的话就会出现环了。</p>
+<p>&emsp;&emsp;对于这种需要判断环的问题，可以考虑使用<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E9%A2%98%E6%8A%80%E5%B7%A7/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>来做。在创建并查集的过程中，合并两个节点 <code>a</code> 和 <code>b</code> 时，若这两个节点有着公共的根结点，那么将它们合并的话就会出现环了。</p>
 <p>&emsp;&emsp;好的，首先，我们可以判断图中是否存在入度为 2 的节点，<strong>若存在</strong>，那么就是第 2 和第 3 种情况，将造成入度为 2 的这两条边（<code>edge1，edge2</code>）都先记录下来。</p>
 <p>&emsp;&emsp;然后创建并查集，我们跳过 <code>edge2</code> （<strong>后出现的边</strong>）这条边，若创建并查集的过程一路畅通（即未出现环），那么答案就是 <code>edge2</code>，也就是 <code>2.</code> 中删了正确的边（橙色的边）和 <code>3.</code> 中的情况 。</p>
 <p>&emsp;&emsp;而若创建并查集的过程中出现了环，那么对应的就是 <code>2.</code> 中删除了错误的边，那么答案就是 <code>edge1</code>。</p>

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="http://qgt3t1irs.hd-bkt.clouddn.com/logo1.png">
-  <link rel="icon" type="image/png" href="http://qgt3t1irs.hd-bkt.clouddn.com/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.0.2"></head>
 
 
 <script type="text/javascript" src="/js/FunnyTitle.js"></script>
@@ -153,7 +153,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://qgt3t1irs.hd-bkt.clouddn.com/default.png') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/img/hadoop1.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -242,12 +242,12 @@
 <p>&emsp;&emsp;mapper 和 reducer 会一行一行的读取数据，根据分隔符（默认为 <code>tab</code>）将读入的数据切分为 <code>key</code> 和 <code>value</code>，同时，输出的数据也需要是一个 <code>key,value</code> 对，在第一个 <code>tab</code> 分隔符前的会被认为是 <code>key</code>，后面的都作为 <code>value</code>。</p>
 <p>&emsp;&emsp;如，输出时 <code>print(&quot;%s\t%s&quot;, %(key, value))</code></p>
 <h2 id="MR-编写示例"><a href="#MR-编写示例" class="headerlink" title="MR 编写示例"></a>MR 编写示例</h2><p>&emsp;&emsp;假设有数据如下，下面编写 MR 实现 “倒排”。</p>
-<pre><code class="hljs scheme"><span class="hljs-number">1</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;fruit</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
-<span class="hljs-number">2</span>	<span class="hljs-symbol">&#x27;noodle</span>&#x27; <span class="hljs-symbol">&#x27;beef</span>&#x27; <span class="hljs-symbol">&#x27;pork</span>&#x27; <span class="hljs-symbol">&#x27;water</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;
-<span class="hljs-number">3</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
-<span class="hljs-number">4</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
-<span class="hljs-number">5</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
-<span class="hljs-number">6</span>	<span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
+<pre><code class="hljs scheme"><span class="hljs-number">1</span>    <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;fruit</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">2</span>    <span class="hljs-symbol">&#x27;noodle</span>&#x27; <span class="hljs-symbol">&#x27;beef</span>&#x27; <span class="hljs-symbol">&#x27;pork</span>&#x27; <span class="hljs-symbol">&#x27;water</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;
+<span class="hljs-number">3</span>    <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">4</span>    <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">5</span>    <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">6</span>    <span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
 
 <p>&emsp;&emsp;所谓 “倒排” 就是将数据中的每一个字符 <code>word</code> 与其前面的编号 <code>num</code> 对应起来，如 <code>bread</code>，它在编号 <code>1</code>、<code>4</code>、<code>6</code> 中都有出现，因此 倒排 的结果就是：<code>bread 1 4 6</code>。</p>
 <p>&emsp;&emsp;首先，编写一个 <code>mapper</code> 来将数据拆分为一个个的 <code>word, num</code> 对：</p>
@@ -500,7 +500,7 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"http://qgt3t1irs.hd-bkt.clouddn.com/Yiruma - River Flows in You.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/River Flows in You.jpg"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"http://qgt3t1irs.hd-bkt.clouddn.com/タニザワトモフミ - もしもの日.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/もしもの日.jpg"},{"name":"アイロニ","artist":"4円","url":"http://qgt3t1irs.hd-bkt.clouddn.com/4円 - アイロニ.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"http://qgt3t1irs.hd-bkt.clouddn.com/清水準一 - Adagio for Summer Wind.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"http://qgt3t1irs.hd-bkt.clouddn.com/朴树 - 平凡之路.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/平凡之路.jpg"},{"name":"君は口内炎","artist":"ef","url":"http://qgt3t1irs.hd-bkt.clouddn.com/ef - 君は口内炎.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/君は口内炎.jpg"},{"name":"Mr. Feather","artist":"ELLEGARDEN","url":"http://qgt3t1irs.hd-bkt.clouddn.com/ELLEGARDEN - Mr. Feather.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/Mr. Feather.mp3.jpg"},{"name":"三つ叶のクローバー","artist":"DEKOUS＊UK","url":"http://qgt3t1irs.hd-bkt.clouddn.com/DEKOUS＊UK - 三つ叶のクローバー.mp3","cover":"http://qgt3t1irs.hd-bkt.clouddn.com/三つ叶のクローバー.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
     });
   }
 </script>

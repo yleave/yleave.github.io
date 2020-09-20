@@ -28,8 +28,7 @@ image.src = canvas.toDataURL("image/png");
 &emsp;&emsp;若想将获取的图像下载下来：
 
 ```js
-var image = new Image();
-image.src = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 window.location.href= imgUri; // 下载图片
 ```
 

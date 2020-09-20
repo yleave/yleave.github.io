@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      804 字
+      800 字
     </span>
   
 
@@ -240,8 +240,7 @@ image.src = canvas.toDataURL(<span class="hljs-string">&quot;image/png&quot;</sp
 <p>&emsp;&emsp;<code>toDataURL</code> 的第一个参数是图像类型，默认是 <code>image/png</code>，也可设置为 <code>image/jpeg</code> 。</p>
 <p>&emsp;&emsp;详细可看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL">MDN</a> 的介绍。</p>
 <p>&emsp;&emsp;若想将获取的图像下载下来：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> image = <span class="hljs-keyword">new</span> Image();
-image.src = canvas.toDataURL(<span class="hljs-string">&quot;image/png&quot;</span>).replace(<span class="hljs-string">&quot;image/png&quot;</span>, <span class="hljs-string">&quot;image/octet-stream&quot;</span>);
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> imgUri = canvas.toDataURL(<span class="hljs-string">&quot;image/png&quot;</span>).replace(<span class="hljs-string">&quot;image/png&quot;</span>, <span class="hljs-string">&quot;image/octet-stream&quot;</span>);
 <span class="hljs-built_in">window</span>.location.href= imgUri; <span class="hljs-comment">// 下载图片</span></code></pre>
 
 <h1 id="canvas-载入图像"><a href="#canvas-载入图像" class="headerlink" title="canvas 载入图像"></a>canvas 载入图像</h1><p>&emsp;&emsp;<code>canvas</code> 载入图像有两种方式。一种是使用 <code>drawImage</code> 方法载入任何 <code>canvas</code> 支持的图像类型，另一种是使用 <code>putImageData</code> 方法或是通过循环遍历的方式根据像素值加载图像。</p>

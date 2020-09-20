@@ -45,7 +45,6 @@ image.src = canvas.toDataURL("image/png");
 ```js
 const canvas = renderer.domElement;
 
-renderer.clear();
 renderer.render(scene, camera);
 
 const image = new Image();
@@ -62,7 +61,7 @@ image.onload = () => {
 };
 ```
 
-&emsp;&emsp;使用 `canvas` 载入图像使用了 `drawImage` 方法，它的第二第三个参数的意识是从源图像的哪个位置开始载入，要载入整张图像，填入 `0` 即可。
+&emsp;&emsp;使用 `canvas` 载入图像使用了 `drawImage` 方法，它的第二第三个参数的意思是从源图像的哪个位置开始载入，要载入整张图像，填入 `0` 即可。
 
 &emsp;&emsp;`drawImage` 详细一些的介绍可看：[drawImage](https://yleave.top/2020/09/20/HTML/canvas操作图像/)
 

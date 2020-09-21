@@ -31,7 +31,8 @@ tags:
 
 ## 七牛云图床吐槽
 
-&emsp;&emsp;==不过！！！==
+
+&emsp;&emsp;<font color="skyblye" style="font-size:150%;font-weight:bold"> 不过!!! </font>
 
 &emsp;&emsp;虽然七牛云有提供免费的 10G 空间，但是如果想要真正使用七牛云图床的完整服务的话，你的网站**需要备案**，也就是说需要自己租一个服务器，在上面部署网站（掏了下口袋，空空的，想想还是算了吧）。
 

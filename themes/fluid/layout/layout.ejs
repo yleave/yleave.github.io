@@ -28,7 +28,7 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
               <% } %>
             </span>
 
-            <% if(is_post()) { %>
+            <% if(is_post() && page.meta !== false) { %>
               <%- partial('_partial/post-meta') %>
             <% } %>
           </div>
@@ -42,6 +42,7 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
       </div>
     </div>
   </header>
+
   <main>
     <% if(is_post() || page.layout === '404') { %>
       <%- body %>

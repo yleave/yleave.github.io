@@ -2,7 +2,7 @@
 title: 自定义域名并添加SSL
 date: 2020-09-11 17:33:34
 index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/域名.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/HTTPS.jpg
+banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/11.jpg
 categories: 
     - 博客搭建
 tags:

@@ -1,7 +1,7 @@
 ---
 title: github+picGo+jsDelivr构建图床
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/jsDelivr.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/jsDelivr1.jpg'
+index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/jsDelivr.jpg
+banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/11.png
 date: 2020-09-19 01:12:35
 categories:
     - 博客搭建

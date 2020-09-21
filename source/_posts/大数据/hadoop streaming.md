@@ -1,8 +1,8 @@
 ---
 title: 使用 Python 编写 MapReduce -- Hadoop Streaming
 date: 2020/8/18 21:17
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/hadoop.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/hadoop1.jpg'
+index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/hadoop.jpg
+banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/10.jpg
 layout: post
 categories:
     - 大数据

@@ -27,7 +27,10 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
   
 
   
@@ -35,11 +38,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -163,14 +166,17 @@
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-09-12 11:54" pubdate>
-      2020年9月12日 中午
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-12 11:54" pubdate>
+        2020年9月12日 中午
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -212,6 +218,7 @@
       </div>
     </div>
   </header>
+
   <main>
     
       
@@ -225,12 +232,6 @@
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
             <h1 style="display: none">使用Netlify部署博客</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：几秒前
-                
-              </p>
             
             <div class="markdown-body" id="post-body">
               <p>&emsp;&emsp;原先博客是部署在 githubPages 上的，稍微设置一下就能实现自动化部署和启用 https，还是蛮方便的，但是使用国内网络访问 githubPages 上部署的网站速度太慢了，体验很差，因此，搜了下解决方案，发现了 <code>Netlify </code> 这个一站式自动化部署网站的平台，部署网站的过程很简单， githubPages 上的支持和不支持的功能 Netlify 上都有，最重要的是听说使用 Netlify 部署的网站，国内访问深度会比 githubPages 快多了。因此也捣鼓了一番，使用 Netlify 重新部署了网站。</p>
@@ -355,6 +356,16 @@
                 
   <script type="text/javascript">
     function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
       var s = document.createElement('script');
       s.setAttribute('src', 'https://utteranc.es/client.js');
       s.setAttribute('repo', 'yleave/yleave.github.io');
@@ -362,7 +373,7 @@
       
       s.setAttribute('label', 'utterances');
       
-      s.setAttribute('theme', 'github-light');
+      s.setAttribute('theme', schema);
       s.setAttribute('crossorigin', 'anonymous');
       document.getElementById('comments').appendChild(s);
     }
@@ -546,6 +557,10 @@
 
   
     <script  src="/js/lazyload.js" ></script>
+  
+
+
+
   
 
 
@@ -767,8 +782,6 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-  
-
   
 
   

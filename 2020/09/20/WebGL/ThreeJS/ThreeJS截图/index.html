@@ -27,7 +27,10 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
   
 
   
@@ -35,11 +38,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -163,21 +166,24 @@
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-09-20 12:13" pubdate>
-      2020年9月20日 中午
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-20 12:13" pubdate>
+        2020年9月20日 中午
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      491 字
+      489 字
     </span>
   
 
@@ -212,6 +218,7 @@
       </div>
     </div>
   </header>
+
   <main>
     
       
@@ -225,12 +232,6 @@
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
             <h1 style="display: none">ThreeJS快照</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：几秒前
-                
-              </p>
             
             <div class="markdown-body" id="post-body">
               <p>&emsp;&emsp;假设有一个需求，需要获取 Three 场景的一张快照，然后再将其显示在屏幕上。</p>
@@ -252,7 +253,6 @@ image.src = canvas.toDataURL(<span class="hljs-string">&quot;image/png&quot;</sp
 <h1 id="2-在屏幕上显示出来"><a href="#2-在屏幕上显示出来" class="headerlink" title="2.在屏幕上显示出来"></a>2.在屏幕上显示出来</h1><p>&emsp;&emsp;既然我们已经能够获取到正确的快照了，那么要将其显示在屏幕上，我们可以再创建一个新的 <code>canvas</code>，然后将获取的快照使用这个新的 <code>canvas</code> 加载出来就行了，代码如下：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> canvas = renderer.domElement;
 
-renderer.clear();
 renderer.render(scene, camera);
 
 <span class="hljs-keyword">const</span> image = <span class="hljs-keyword">new</span> Image();
@@ -268,7 +268,7 @@ image.onload = <span class="hljs-function">() =&gt;</span> &#123;
     ctx.drawImage(image, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 &#125;;</code></pre>
 
-<p>&emsp;&emsp;使用 <code>canvas</code> 载入图像使用了 <code>drawImage</code> 方法，它的第二第三个参数的意识是从源图像的哪个位置开始载入，要载入整张图像，填入 <code>0</code> 即可。</p>
+<p>&emsp;&emsp;使用 <code>canvas</code> 载入图像使用了 <code>drawImage</code> 方法，它的第二第三个参数的意思是从源图像的哪个位置开始载入，要载入整张图像，填入 <code>0</code> 即可。</p>
 <p>&emsp;&emsp;<code>drawImage</code> 详细一些的介绍可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/20/HTML/canvas%E6%93%8D%E4%BD%9C%E5%9B%BE%E5%83%8F/">drawImage</a></p>
 
             </div>
@@ -328,6 +328,16 @@ image.onload = <span class="hljs-function">() =&gt;</span> &#123;
                 
   <script type="text/javascript">
     function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
       var s = document.createElement('script');
       s.setAttribute('src', 'https://utteranc.es/client.js');
       s.setAttribute('repo', 'yleave/yleave.github.io');
@@ -335,7 +345,7 @@ image.onload = <span class="hljs-function">() =&gt;</span> &#123;
       
       s.setAttribute('label', 'utterances');
       
-      s.setAttribute('theme', 'github-light');
+      s.setAttribute('theme', schema);
       s.setAttribute('crossorigin', 'anonymous');
       document.getElementById('comments').appendChild(s);
     }
@@ -519,6 +529,10 @@ image.onload = <span class="hljs-function">() =&gt;</span> &#123;
 
   
     <script  src="/js/lazyload.js" ></script>
+  
+
+
+
   
 
 
@@ -740,8 +754,6 @@ image.onload = <span class="hljs-function">() =&gt;</span> &#123;
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-  
-
   
 
   

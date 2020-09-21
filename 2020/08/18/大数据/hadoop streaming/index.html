@@ -27,7 +27,10 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
   
 
   
@@ -35,11 +38,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -163,14 +166,17 @@
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-18 21:17" pubdate>
-      2020年8月18日 晚上
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-08-18 21:17" pubdate>
+        2020年8月18日 晚上
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -212,6 +218,7 @@
       </div>
     </div>
   </header>
+
   <main>
     
       
@@ -225,12 +232,6 @@
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
             <h1 style="display: none">使用 Python 编写 MapReduce -- Hadoop Streaming</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：几秒前
-                
-              </p>
             
             <div class="markdown-body" id="post-body">
               <p>要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming</p>
@@ -413,6 +414,16 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
                 
   <script type="text/javascript">
     function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
       var s = document.createElement('script');
       s.setAttribute('src', 'https://utteranc.es/client.js');
       s.setAttribute('repo', 'yleave/yleave.github.io');
@@ -420,7 +431,7 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
       
       s.setAttribute('label', 'utterances');
       
-      s.setAttribute('theme', 'github-light');
+      s.setAttribute('theme', schema);
       s.setAttribute('crossorigin', 'anonymous');
       document.getElementById('comments').appendChild(s);
     }
@@ -604,6 +615,10 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 
   
     <script  src="/js/lazyload.js" ></script>
+  
+
+
+
   
 
 
@@ -825,8 +840,6 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-  
-
   
 
   

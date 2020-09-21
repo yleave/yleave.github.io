@@ -27,7 +27,10 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
   
 
   
@@ -35,11 +38,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -163,14 +166,17 @@
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-09-19 01:12" pubdate>
-      2020年9月19日 凌晨
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 01:12" pubdate>
+        2020年9月19日 凌晨
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -212,6 +218,7 @@
       </div>
     </div>
   </header>
+
   <main>
     
       
@@ -225,12 +232,6 @@
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
             <h1 style="display: none">github+picGo+jsDelivr构建图床</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：几秒前
-                
-              </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;&emsp;不论是写博客还是记笔记，图床的选择很重要。且对于一个博客平台来说，网站中的图片、视频以及音频等资源的下载速度直接影响到了整个博客网站的加载和体验，这点我深有体会。</p>
@@ -370,6 +371,16 @@
                 
   <script type="text/javascript">
     function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
       var s = document.createElement('script');
       s.setAttribute('src', 'https://utteranc.es/client.js');
       s.setAttribute('repo', 'yleave/yleave.github.io');
@@ -377,7 +388,7 @@
       
       s.setAttribute('label', 'utterances');
       
-      s.setAttribute('theme', 'github-light');
+      s.setAttribute('theme', schema);
       s.setAttribute('crossorigin', 'anonymous');
       document.getElementById('comments').appendChild(s);
     }
@@ -561,6 +572,10 @@
 
   
     <script  src="/js/lazyload.js" ></script>
+  
+
+
+
   
 
 
@@ -782,8 +797,6 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
-  
-
   
 
   

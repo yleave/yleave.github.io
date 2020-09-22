@@ -1,6 +1,6 @@
 ---
 title: LeetCode 968.监控二叉树
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Leetcode.jpg'
+index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/img/LeetCode.jpg'
 banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg'
 date: 2020-09-23 00:04:54
 categories:

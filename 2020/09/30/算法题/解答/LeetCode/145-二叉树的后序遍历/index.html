@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode 501. 二叉搜索树中的众数 - Ylea</title>
+  <title>LeetCode 145. 二叉树的后序遍历 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -156,7 +156,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/5.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -171,8 +171,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-24 14:55" pubdate>
-        2020年9月24日 下午
+      <time datetime="2020-09-30 23:16" pubdate>
+        2020年9月30日 晚上
       </time>
     </span>
   
@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      858 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      11
        分钟
     </span>
   
@@ -231,137 +231,54 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 501. 二叉搜索树中的众数</h1>
+            <h1 style="display: none">LeetCode 145. 二叉树的后序遍历</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/</a></p>
-<p>难度：简单</p>
-<hr>
-<p>&emsp;&emsp;给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。</p>
-<p>假定 BST 有如下定义：</p>
-<ul>
-<li><p>结点左子树中所含结点的值小于等于当前结点的值</p>
-</li>
-<li><p>结点右子树中所含结点的值大于等于当前结点的值</p>
-</li>
-<li><p>左子树和右子树都是二叉搜索树</p>
-</li>
-</ul>
-<p><strong>例如：</strong></p>
-<p>&emsp;&emsp;给定 BST <code>[1,null,2,2]</code>,</p>
+              <p>&emsp;&emsp;给定一个二叉树，返回它的 <strong>后序</strong> 遍历。</p>
+<p><strong>示例:</strong></p>
+<p>输入: <code>[1,null,2,3]  </code></p>
 <pre><code class="hljs angelscript"><span class="hljs-number">1</span>
  \
   <span class="hljs-number">2</span>
  /
-<span class="hljs-number">2</span></code></pre>
+<span class="hljs-number">3</span></code></pre>
 
-<p>&emsp;&emsp;返回 <code>[2]</code></p>
-<p><strong>提示</strong>：如果众数超过1个，不需考虑输出顺序</p>
-<p><strong>进阶：</strong> 你可以不使用额外的空间吗？（假设由递归产生的隐式调用栈的开销不被计算在内）</p>
-<hr>
-<h2 id="解法1：中序遍历"><a href="#解法1：中序遍历" class="headerlink" title="解法1：中序遍历"></a>解法1：中序遍历</h2><p>&emsp;&emsp;对于一棵二叉搜索树，若对其进行中序遍历并在遍历过程中顺序记录节点值，那么记录的值会是一个单调递增序列（在本题中是单调不减序列）。</p>
-<p>&emsp;&emsp;这样的话，若要求众数，我们可以先对其进行中序遍历，众数在序列中的位置一定是连续的，如 <code>[1, 2, 2, 2, 3]</code>。这样，我们对这个序列进行遍历并计数，就能够得到它的众数。</p>
-<p>&emsp;&emsp;不过，为了避免使用额外空间，我们可以在遍历过程中就求出众数，具体做法是维护一个 <code>max</code> ，表示当前所遇到的最多的连续数字的个数，然后在遍历过程中累计每个数字出现的次数，若比 <code>max</code> 大，则使用当前数字覆盖结果数组，并更新 <code>max</code> 值。</p>
-<p>&emsp;&emsp;在中序遍历完成之后，我们还需要最后进行一次众数判断，因为最后的连续数字不会在遍历过程中判断是否是众数。</p>
-<p><strong>JS 代码：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> findMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> res = [];
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> res;
-    &#125;
-    <span class="hljs-keyword">let</span> n;
-    <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">let</span> max = <span class="hljs-number">-1</span>;
-
-    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (!node) &#123;
-            <span class="hljs-keyword">return</span>;
-        &#125;
-
-        dfs(node.left);
-
-        <span class="hljs-keyword">if</span> (n === <span class="hljs-literal">undefined</span>) &#123;
-            n = node.val;
-            count = <span class="hljs-number">1</span>;
-        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === node.val) &#123;
-            count++;
-        &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 遇到新的数字</span>
-            <span class="hljs-keyword">if</span> (count &gt; max) &#123;
-                max = count;
-                res = [n];
-            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (count === max) &#123;
-                res.push(n);
-            &#125;
-            n = node.val;
-            count = <span class="hljs-number">1</span>;
-        &#125;    
-        dfs(node.right);
-    &#125;;
-
-    dfs(root);
-
-    <span class="hljs-keyword">if</span> (count &gt; max) &#123;
-        max = count;
-        res = [n];
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (count === max) &#123;
-        res.push(n);
-    &#125;
-
-    <span class="hljs-keyword">return</span> res;
-&#125;;</code></pre>
-
-<p>C 版本：</p>
-<pre><code class="hljs c"><span class="hljs-keyword">int</span> max;
-<span class="hljs-keyword">int</span> count;
-<span class="hljs-keyword">int</span> cur;
-
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* res, <span class="hljs-keyword">int</span>* returnSize)</span> </span>&#123;
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span>;
-    &#125;
-
-    dfs(root-&gt;left, res, returnSize);
-
-    <span class="hljs-keyword">if</span> (count == <span class="hljs-number">-1</span>) &#123;
-        cur = root-&gt;val;
-        count = <span class="hljs-number">1</span>;
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cur == root-&gt;val) &#123;
-        count++;
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-keyword">if</span> (max &lt; count) &#123;
-            max = count;
-            *returnSize = <span class="hljs-number">0</span>;
-            res[(*returnSize)++] = cur;
-        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (max == count) &#123;
-            res[(*returnSize)++] = cur;
-        &#125;
-
-        cur = root-&gt;val;
-        count = <span class="hljs-number">1</span>;
-    &#125;
-
-    dfs(root-&gt;right, res, returnSize);
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">findMode</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
+<p>输出: <code>[3,2,1]</code></p>
+<p><strong>进阶</strong>: 递归算法很简单，你可以通过迭代算法完成吗？</p>
+<h2 id="解法1：借助栈进行后序非递归遍历"><a href="#解法1：借助栈进行后序非递归遍历" class="headerlink" title="解法1：借助栈进行后序非递归遍历"></a>解法1：借助栈进行后序非递归遍历</h2><p>&emsp;&emsp;后序非递归遍历的<strong>关键点</strong>在于判断遍历过程中什么时候该往右走，什么时候该访问节点内容。</p>
+<p>&emsp;&emsp;我们使用一个栈来保存遍历路径上的节点，步骤如下：</p>
+<ol>
+<li>一直往左孩子遍历，遍历过程中保存遍历的节点</li>
+<li>当左孩子为空时，我们访问右孩子</li>
+<li>当左右孩子都为空时，我们访问这个节点内容，并返回到父节点</li>
+<li>每当从孩子节点返回父节点时，需要判断是从左孩子返回的还是从右孩子返回的，若是从左孩子返回的，我们需要继续访问右孩子，而若是从右孩子返回的，我们则访问当前节点，并返回到其父节点。</li>
+</ol>
+<p>&emsp;&emsp;判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
+<p><strong>C 代码：</strong></p>
+<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
+    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>** <span class="hljs-title">stack</span> = <span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">TreeNode</span>*) * 2001);</span>
+    <span class="hljs-keyword">int</span> size = <span class="hljs-number">0</span>;
     *returnSize = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">int</span> *res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">4001</span>);
-
-    count = <span class="hljs-number">-1</span>;
-    max = <span class="hljs-number">-1</span>;
-
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> res;
-    &#125;
-
-    dfs(root, res, returnSize);
-
-    <span class="hljs-keyword">if</span> (max &lt; count) &#123;
-        max = count;
-        *returnSize = <span class="hljs-number">0</span>;
-        res[(*returnSize)++] = cur;
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (max == count) &#123;
-        res[(*returnSize)++] = cur;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">r</span>;</span> <span class="hljs-comment">// r 为辅助节点，用于判断当节点返回时，是从哪个方向返回到父节点的。</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">p</span> = <span class="hljs-title">root</span>;</span>
+    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> || size &gt; <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-comment">// 先从左走到底</span>
+        <span class="hljs-keyword">if</span> (p) &#123;
+            <span class="hljs-built_in">stack</span>[size++] = p;
+            p = p-&gt;left;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            p = <span class="hljs-built_in">stack</span>[size<span class="hljs-number">-1</span>];
+            <span class="hljs-comment">// 若右孩子还未遍历，遍历右孩子</span>
+            <span class="hljs-keyword">if</span> (p-&gt;right &amp;&amp; p-&gt;right != r) &#123;
+                p = p-&gt;right;
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                p = <span class="hljs-built_in">stack</span>[--size];
+                res[(*returnSize)++] = p-&gt;val;
+                r = p;
+                p = <span class="hljs-literal">NULL</span>;
+            &#125;
+        &#125;
     &#125;
 
     <span class="hljs-keyword">return</span> res;
@@ -369,71 +286,53 @@
 
 
 
-<h2 id="解法2：Morris-算法"><a href="#解法2：Morris-算法" class="headerlink" title="解法2：Morris 算法"></a>解法2：Morris 算法</h2><p>&emsp;&emsp;所有能使用中序遍历解决的问题都能使用 Morris 算法来优化其空间复杂度。</p>
-<p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法详情可看</a></p>
-<p>&emsp;&emsp;在使用 Morris 算法时最重要的是要把握好节点遍历的时机。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> findMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+<h2 id="解法2：morris-算法"><a href="#解法2：morris-算法" class="headerlink" title="解法2：morris 算法"></a>解法2：morris 算法</h2><p>&emsp;&emsp;Morris 算法一般是用于解决中序遍历的问题，不过若只是需要进行普通的后续遍历， morris 算法也能做到。</p>
+<p>&emsp;&emsp;Morris 算法的步骤可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a></p>
+<p>&emsp;&emsp;根据 Morris 算法的思想，<strong>对于每个节点，当它是借助左子树的最右下结点的空指针返回的时候，我们就倒序输出从当前节点到其左子树最右下节点的路径</strong>，就能得到后续遍历的结果了（想不通的一定要手动模拟一下 morris 算法），最后，在 morris 算法结束后，需要加上从根结点到其右子树最右节点的逆序路径，因为 morris 算法在遍历完成后不会再回到根结点。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">if</span> (!root) &#123;
         <span class="hljs-keyword">return</span> res;
     &#125;
-    <span class="hljs-keyword">let</span> n;
-    <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">let</span> max = <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">let</span> pre, tmp = root;
 
-    <span class="hljs-keyword">let</span> pre;
-
-    <span class="hljs-keyword">const</span> check = <span class="hljs-function">() =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (max &lt; count) &#123;
-            max = count;
-            res = [n];
-        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (max === count) &#123;
-            res.push(n);
+    <span class="hljs-comment">// 对每个新添加的路径逆序排列</span>
+    <span class="hljs-keyword">const</span> addPath = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(root) &#123;
+            res[len++] = root.val;
+            root = root.right;
+            count++;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = len-count, j = len<span class="hljs-number">-1</span>; i &lt; j; i++, j--) &#123;
+            <span class="hljs-keyword">let</span> tmp = res[i];
+            res[i] = res[j];
+            res[j] = tmp;
         &#125;
     &#125;;
 
-    <span class="hljs-keyword">while</span> (root) &#123;
+    <span class="hljs-keyword">while</span>(root) &#123;
         <span class="hljs-keyword">if</span> (root.left) &#123;
             pre = root.left;
-            <span class="hljs-keyword">while</span> (pre.right &amp;&amp; pre.right !== root) &#123;
+            <span class="hljs-keyword">while</span>(pre.right &amp;&amp; pre.right !== root) &#123;
                 pre = pre.right;
             &#125;
-
             <span class="hljs-keyword">if</span> (!pre.right) &#123;
                 pre.right = root;
                 root = root.left;
-            &#125; <span class="hljs-keyword">else</span> &#123; 
-                <span class="hljs-comment">// 此时是刚从左孩子节点返回之后，往右孩子遍历</span>
-                <span class="hljs-keyword">if</span> (n === <span class="hljs-literal">undefined</span>) &#123;
-                    n = root.val;
-                    count = <span class="hljs-number">1</span>;
-                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === root.val) &#123;
-                    count++;
-                &#125; <span class="hljs-keyword">else</span> &#123;
-                    check();
-                    n = root.val;
-                    count = <span class="hljs-number">1</span>;
-                &#125;
+            &#125; <span class="hljs-keyword">else</span> &#123;
                 pre.right = <span class="hljs-literal">null</span>;
+                addPath(root.left);
                 root = root.right;
             &#125;
         &#125; <span class="hljs-keyword">else</span> &#123;
-               <span class="hljs-comment">// 节点此时可能是借助前面设置的空闲指针返回父节点，也可能是从父节点到右节点遍历的过程</span>
-            <span class="hljs-keyword">if</span> (n === <span class="hljs-literal">undefined</span>) &#123;
-                n = root.val;
-                count = <span class="hljs-number">1</span>;
-            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === root.val) &#123;
-                count++;
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                check();
-                n = root.val;
-                count = <span class="hljs-number">1</span>;
-            &#125;
             root = root.right;
         &#125;
     &#125;
 
-    check();
+    addPath(tmp);
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
@@ -443,28 +342,6 @@
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">中序遍历</a>
-                    
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>
-                    
-                  </div>
                 
               </div>
               
@@ -475,18 +352,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">后序非递归遍历</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">
-                        <span class="hidden-mobile">Morris算法</span>
+                      <a href="/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/">
+                        <span class="hidden-mobile">后序非递归遍历</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -755,7 +626,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode 501. 二叉搜索树中的众数&nbsp;",
+        "LeetCode 145. 二叉树的后序遍历&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode 145. 二叉树的后序遍历 - Ylea</title>
+  <title>LeetCode 406. 根据身高重建队列 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -171,8 +171,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-30 23:16" pubdate>
-        2020年9月30日 晚上
+      <time datetime="2020-10-04 21:34" pubdate>
+        2020年10月4日 晚上
       </time>
     </span>
   
@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      858 字
+      1.1k 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      14
        分钟
     </span>
   
@@ -231,111 +231,134 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 145. 二叉树的后序遍历</h1>
+            <h1 style="display: none">LeetCode 406. 根据身高重建队列</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>&emsp;&emsp;给定一个二叉树，返回它的 <strong>后序</strong> 遍历。</p>
-<p><strong>示例:</strong></p>
-<p>输入: <code>[1,null,2,3]  </code></p>
-<pre><code class="hljs angelscript"><span class="hljs-number">1</span>
- \
-  <span class="hljs-number">2</span>
- /
-<span class="hljs-number">3</span></code></pre>
-
-<p>输出: <code>[3,2,1]</code></p>
-<p><strong>进阶</strong>: 递归算法很简单，你可以通过迭代算法完成吗？</p>
-<h2 id="解法1：借助栈进行后序非递归遍历"><a href="#解法1：借助栈进行后序非递归遍历" class="headerlink" title="解法1：借助栈进行后序非递归遍历"></a>解法1：借助栈进行后序非递归遍历</h2><p>&emsp;&emsp;后序非递归遍历的<strong>关键点</strong>在于判断遍历过程中什么时候该往右走，什么时候该访问节点内容。</p>
-<p>&emsp;&emsp;我们使用一个栈来保存遍历路径上的节点，步骤如下：</p>
-<ol>
-<li>一直往左孩子遍历，遍历过程中保存遍历的节点</li>
-<li>当左孩子为空时，我们访问右孩子</li>
-<li>当左右孩子都为空时，我们访问这个节点内容，并返回到父节点</li>
-<li>每当从孩子节点返回父节点时，需要判断是从左孩子返回的还是从右孩子返回的，若是从左孩子返回的，我们需要继续访问右孩子，而若是从右孩子返回的，我们则访问当前节点，并返回到其父节点。</li>
-</ol>
-<p>&emsp;&emsp;判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
-<p><strong>C 代码：</strong></p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
-    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>** <span class="hljs-title">stack</span> = <span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">TreeNode</span>*) * 2001);</span>
-    <span class="hljs-keyword">int</span> size = <span class="hljs-number">0</span>;
-    *returnSize = <span class="hljs-number">0</span>;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">r</span>;</span> <span class="hljs-comment">// r 为辅助节点，用于判断当节点返回时，是从哪个方向返回到父节点的。</span>
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">p</span> = <span class="hljs-title">root</span>;</span>
-    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> || size &gt; <span class="hljs-number">0</span>) &#123;
-        <span class="hljs-comment">// 先从左走到底</span>
-        <span class="hljs-keyword">if</span> (p) &#123;
-            <span class="hljs-built_in">stack</span>[size++] = p;
-            p = p-&gt;left;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            p = <span class="hljs-built_in">stack</span>[size<span class="hljs-number">-1</span>];
-            <span class="hljs-comment">// 若右孩子还未遍历，遍历右孩子</span>
-            <span class="hljs-keyword">if</span> (p-&gt;right &amp;&amp; p-&gt;right != r) &#123;
-                p = p-&gt;right;
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                p = <span class="hljs-built_in">stack</span>[--size];
-                res[(*returnSize)++] = p-&gt;val;
-                r = p;
-                p = <span class="hljs-literal">NULL</span>;
-            &#125;
-        &#125;
-    &#125;
-
-    <span class="hljs-keyword">return</span> res;
-&#125;</code></pre>
-
-
-
-<h2 id="解法2：morris-算法"><a href="#解法2：morris-算法" class="headerlink" title="解法2：morris 算法"></a>解法2：morris 算法</h2><p>&emsp;&emsp;Morris 算法一般是用于解决中序遍历的问题，不过若只是需要进行普通的后续遍历， morris 算法也能做到。</p>
-<p>&emsp;&emsp;Morris 算法的步骤可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a></p>
-<p>&emsp;&emsp;根据 Morris 算法的思想，<strong>对于每个节点，当它是借助左子树的最右下结点的空指针返回的时候，我们就倒序输出从当前节点到其左子树最右下节点的路径</strong>，就能得到后续遍历的结果了（想不通的一定要手动模拟一下 morris 算法），最后，在 morris 算法结束后，需要加上从根结点到其右子树最右节点的逆序路径，因为 morris 算法在遍历完成后不会再回到根结点。</p>
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/queue-reconstruction-by-height/">https://leetcode-cn.com/problems/queue-reconstruction-by-height/</a></p>
+<p>难度：中等</p>
+<hr>
+<p>&emsp;&emsp;假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对<code>(h, k)</code>表示，其中h是这个人的身高，<code>k</code>是排在这个人前面且身高大于或等于<code>h</code>的人数。 编写一个算法来重建这个队列。</p>
+<p><strong>注意：</strong></p>
+<p>&emsp;&emsp;总人数少于<code>1100</code>人。</p>
+<p><strong>示例</strong></p>
+<p>输入: <code>[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</code></p>
+<p>输出: <code>[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]</code></p>
+<hr>
+<h2 id="解法1：排序-调整"><a href="#解法1：排序-调整" class="headerlink" title="解法1：排序+调整"></a>解法1：排序+调整</h2><p>&emsp;&emsp;通过观察，我们可以知道，对于一组数据，如示例中的 <code>(7,0)</code> 和 <code>(7,1)</code>，无论它们所处的位置在哪，在最终结果中，它们的相对位置是不会发生变化的：<code>(7,1)</code> 一定会在 <code>(7,0)</code> 的后面，可能中间隔了一个、可能隔了 <code>n</code> 个。</p>
+<p>&emsp;&emsp;因此，我们可以先对这组数据排序，先保证它们的相对位置，具体做法是根据 <code>(h, k)</code> 来排序：我们先按 <code>h</code> 从大到小进行排序，这样保证了对于每一个数 <code>i</code>，它前面的数字都不会小于自身，然后对于 <code>h</code> 相同的数字，按 <code>k</code> 从小到大排序，这样，对于 <code>h</code> 相同的数据，它们的相对位置开始就是正确的。</p>
+<p>&emsp;&emsp;之后，遍历这组排序过的数据，我们使用 <code>tuple</code> 来表示一个 <code>(h, k)</code> 对，遍历过程中，数组索引 <code>i</code> 能够表示不小于当前 <code>tuple</code> 的所有 <code>tuple</code> 的个数（因为我们提前按 <code>h</code> 进行排序了），这样，我们只要根据每个 <code>tuple</code> 的 <code>k</code> 来进行调整即可。</p>
+<p>&emsp;&emsp;具体调整方法是：对于当前的 <code>tuple</code> ，若 <code>k &lt; i</code> ，说明在当前 <code>tuple</code> 前面的位置，比它高的 <code>tuple</code> 个数太多了，需要将这个 <code>tuple</code> 向前调整 <code>i-k</code> 个位置，让其前面的 <code>tuple</code> 个数刚好等于 <code>k</code>，也就是移动到第 <code>k</code> 个位置。且这样调整并不会影响到已调整的序列，因为那些数据的相对位置并不会发生改变。</p>
 <p><strong>JS 代码：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">people</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[][]&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">var</span> reconstructQueue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">people</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (people.length &lt; <span class="hljs-number">2</span>) &#123;
+        <span class="hljs-keyword">return</span> people;
+    &#125;
+
     <span class="hljs-keyword">let</span> res = [];
-    <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> res;
-    &#125;
-    <span class="hljs-keyword">let</span> pre, tmp = root;
 
-    <span class="hljs-comment">// 对每个新添加的路径逆序排列</span>
-    <span class="hljs-keyword">const</span> addPath = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
-        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">while</span>(root) &#123;
-            res[len++] = root.val;
-            root = root.right;
-            count++;
+    <span class="hljs-comment">// 先根据 h 和 k 排序，主 h 副 k , h 从大到小排序，k 从小到大排序</span>
+    people.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] === b[<span class="hljs-number">0</span>]) &#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] - b[<span class="hljs-number">1</span>];
         &#125;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = len-count, j = len<span class="hljs-number">-1</span>; i &lt; j; i++, j--) &#123;
-            <span class="hljs-keyword">let</span> tmp = res[i];
-            res[i] = res[j];
-            res[j] = tmp;
-        &#125;
-    &#125;;
+        <span class="hljs-keyword">return</span> b[<span class="hljs-number">0</span>] - a[<span class="hljs-number">0</span>];
+    &#125;);
 
-    <span class="hljs-keyword">while</span>(root) &#123;
-        <span class="hljs-keyword">if</span> (root.left) &#123;
-            pre = root.left;
-            <span class="hljs-keyword">while</span>(pre.right &amp;&amp; pre.right !== root) &#123;
-                pre = pre.right;
-            &#125;
-            <span class="hljs-keyword">if</span> (!pre.right) &#123;
-                pre.right = root;
-                root = root.left;
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                pre.right = <span class="hljs-literal">null</span>;
-                addPath(root.left);
-                root = root.right;
-            &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; people.length; i++) &#123;
+        <span class="hljs-keyword">let</span> k = people[i][<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">if</span> (k &lt; i) &#123;
+            res.splice(k, <span class="hljs-number">0</span>, people[i]);
         &#125; <span class="hljs-keyword">else</span> &#123;
-            root = root.right;
+            res[i] = people[i];
         &#125;
     &#125;
-
-    addPath(tmp);
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
+
+
+
+<h2 id="解法2：逐个插入、调整"><a href="#解法2：逐个插入、调整" class="headerlink" title="解法2：逐个插入、调整"></a>解法2：逐个插入、调整</h2><p><strong>（第 27/37 个 case 会超时）</strong></p>
+<p>&emsp;&emsp;主要思路是先找到序列的第一个 <code>tuple</code> ，然后根据每个 <code>tuple</code> 的 <code>h</code> 和 <code>k</code> 找到插入的位置，所有数据都插入完成之后，有些 <code>tuple</code> 会因为插入操作而导致站位错误，因此需要逐个检查判断是否站错，若站错，则将这个 <code>tuple</code> 重新插入，反复执行此操作，直到所有数据都满足站位要求：</p>
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">people</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[][]&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">var</span> reconstructQueue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">people</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (people.length &lt; <span class="hljs-number">2</span>) &#123;
+        <span class="hljs-keyword">return</span> people;
+    &#125;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> n = people.length;
+    <span class="hljs-keyword">let</span> first;
+    <span class="hljs-keyword">let</span> tuple, k, height, insertIndex;
+
+    <span class="hljs-comment">// 先进行第一次排序</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+        tuple = people[i];
+        k = tuple[<span class="hljs-number">1</span>];
+        height = tuple[<span class="hljs-number">0</span>];
+        insertIndex = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (k === <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">while</span>(insertIndex &lt; res.length &amp;&amp; res[insertIndex][<span class="hljs-number">0</span>] &lt; height) &#123;
+                insertIndex++;
+            &#125;
+            res.splice(insertIndex, <span class="hljs-number">0</span>, tuple);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">while</span>(insertIndex &lt; res.length &amp;&amp; k &gt; <span class="hljs-number">0</span>) &#123;
+                <span class="hljs-keyword">if</span> (res[insertIndex++][<span class="hljs-number">0</span>] &gt;= height) &#123;
+                    k--;
+                &#125;
+            &#125;
+            res.splice(insertIndex, <span class="hljs-number">0</span>, tuple);
+        &#125;
+    &#125;
+
+    <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">while</span>(flag) &#123;
+        flag = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+            tuple = res[i];
+            k = tuple[<span class="hljs-number">1</span>];
+            height = tuple[<span class="hljs-number">0</span>];
+            <span class="hljs-keyword">if</span> (k !== <span class="hljs-number">0</span>) &#123;
+                <span class="hljs-comment">// 遍历当前 tuple 前面的人，看是否满足 k 的要求</span>
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;
+                    <span class="hljs-keyword">let</span> tuple1 = res[j];
+                    <span class="hljs-keyword">if</span> (tuple1[<span class="hljs-number">0</span>] &gt;= height) &#123;
+                        k--;
+                    &#125;
+                &#125;
+                <span class="hljs-keyword">if</span> (k !== <span class="hljs-number">0</span>) &#123;
+                    k = tuple[<span class="hljs-number">1</span>]; <span class="hljs-comment">// k 要重新赋值，用于下面的重新插入</span>
+                    res.splice(i, <span class="hljs-number">1</span>); <span class="hljs-comment">// 将错误的 tuple 从结果中移除</span>
+                    flag = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 需要再次判断</span>
+                    <span class="hljs-keyword">break</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-comment">// 若存在错误的站位，则重新插入，且 k 、height 和 tuple 可以就使用之前的</span>
+        <span class="hljs-keyword">if</span> (flag) &#123;
+            insertIndex = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">while</span>(insertIndex &lt; n<span class="hljs-number">-1</span> &amp;&amp; k &gt; <span class="hljs-number">0</span>) &#123;
+                <span class="hljs-keyword">if</span> (res[insertIndex++][<span class="hljs-number">0</span>] &gt;= height) &#123;
+                    k--;
+                &#125;
+            &#125;
+            res.splice(insertIndex, <span class="hljs-number">0</span>, tuple);
+        &#125;
+    &#125;
+
+    <span class="hljs-keyword">return</span> res;
+&#125;;</code></pre>
+
+
+
+
 
             </div>
             <hr>
@@ -359,10 +382,6 @@
                     
                       <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">后序遍历</a>
-                    
-                      <a class="hover-with-bg" href="/tags/morris/">morris</a>
-                    
                   </div>
                 
               </div>
@@ -374,18 +393,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/406-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode 406. 根据身高重建队列</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/">
-                        <span class="hidden-mobile">后序非递归遍历</span>
+                      <a href="/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">
+                        <span class="hidden-mobile">LeetCode 145. 二叉树的后序遍历</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -654,7 +667,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode 145. 二叉树的后序遍历&nbsp;",
+        "LeetCode 406. 根据身高重建队列&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -4,6 +4,64 @@
   
   
   <entry>
+    <title>116. 填充每个节点的下一个右侧节点指针</title>
+    <link href="/2020/10/15/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/116-%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88/"/>
+    <url>/2020/10/15/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/116-%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/">https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/</a></p><p>难度：中等</p><hr><p>&emsp;&emsp;给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span>  <span class="hljs-keyword">int</span> val;  Node *left;  Node *right;  Node *next;&#125;</code></pre><p>&emsp;&emsp;填充它的每个 <code>next </code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next </code>指针设置为 <code>NULL</code>。</p><p>&emsp;&emsp;初始状态下，所有 <code>next </code>指针都被设置为 <code>NULL</code>。</p><p><strong>示例：</strong></p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" alt="image-20201015114937533" style="zoom:80%;" /><hr><p>&emsp;&emsp;首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p><h2 id="解法1：层次优先遍历"><a href="#解法1：层次优先遍历" class="headerlink" title="解法1：层次优先遍历"></a>解法1：层次优先遍历</h2><p>&emsp;&emsp;由于每个节点的 <code>next</code> 指针都是指向当前层次的右边节点，因此很容易想到使用层次优先遍历，且由于是完美二叉树，每层的节点个数也很容易计算出来（即都是 <code>2</code> 的倍数）。</p><p>&emsp;&emsp;具体做法是使用一个队列，从右到左往队列中添加节点，这样，除了最右侧节点，其他节点在出队时将其 <code>next</code> 指向上一个出队节点即可。</p><p><strong>JS 代码如下：</strong></p><pre><code class="hljs js"><span class="hljs-comment">/**</span><span class="hljs-comment"> * // Definition for a Node.</span><span class="hljs-comment"> * function Node(val, left, right, next) &#123;</span><span class="hljs-comment"> *    this.val = val === undefined ? null : val;</span><span class="hljs-comment"> *    this.left = left === undefined ? null : left;</span><span class="hljs-comment"> *    this.right = right === undefined ? null : right;</span><span class="hljs-comment"> *    this.next = next === undefined ? null : next;</span><span class="hljs-comment"> * &#125;;</span><span class="hljs-comment"> */</span><span class="hljs-comment">/**</span><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Node&#125;</span> <span class="hljs-variable">root</span></span></span><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Node&#125;</span></span></span><span class="hljs-comment"> */</span><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;    <span class="hljs-keyword">if</span> (!root) &#123;        <span class="hljs-keyword">return</span> root;    &#125;    <span class="hljs-keyword">let</span> queue = [];    <span class="hljs-keyword">let</span> last, cur;    <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>, nums = <span class="hljs-number">1</span>;    queue.push(root);    <span class="hljs-keyword">while</span> (queue.length) &#123;        cur = queue.shift();        n++;        <span class="hljs-keyword">if</span> (last) &#123;            cur.next = last;        &#125;        <span class="hljs-keyword">if</span> (cur.right) &#123;            queue.push(cur.right);        &#125;        <span class="hljs-keyword">if</span> (cur.left) &#123;            queue.push(cur.left);        &#125;        last = cur;        <span class="hljs-keyword">if</span> (n === nums) &#123;            nums *= <span class="hljs-number">2</span>;            n = <span class="hljs-number">0</span>;            last = <span class="hljs-literal">null</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> root;&#125;;</code></pre><h2 id="解法2：使用父节点-next-指针"><a href="#解法2：使用父节点-next-指针" class="headerlink" title="解法2：使用父节点 next 指针"></a>解法2：使用父节点 next 指针</h2><p>&emsp;&emsp;首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" alt="image-20201015122151393" style="zoom: 67%;" /><p>&emsp;&emsp;而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" alt="image-20201015122450657" style="zoom: 67%;" /><p>&emsp;&emsp;根据这种思路，我们能够写出递归版本和迭代版本的代码：</p><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>&emsp;&emsp;递归版本很直观，就是按照上面的两种情况来的：</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;    <span class="hljs-keyword">if</span> (!root) &#123;        <span class="hljs-keyword">return</span> root;    &#125;    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;        <span class="hljs-keyword">if</span> (!root) &#123;            <span class="hljs-keyword">return</span>;        &#125;        <span class="hljs-keyword">if</span> (root.left) &#123;            root.left.next = root.right;            <span class="hljs-comment">// 若当前节点不是最右侧节点，那么可以通过 next 指针找到其右侧节点</span>            <span class="hljs-keyword">if</span> (root.next) &#123;                root.right.next = root.next.left;            &#125;        &#125;        dfs(root.left);        dfs(root.right);    &#125;;    dfs(root);    <span class="hljs-keyword">return</span> root;&#125;;</code></pre><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>&emsp;&emsp;对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" alt="image-20201015143519577" style="zoom: 67%;" /><pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;    <span class="hljs-keyword">if</span> (!root) &#123;        <span class="hljs-keyword">return</span> root;    &#125;    <span class="hljs-keyword">let</span> leftSide = root;    <span class="hljs-keyword">while</span> (leftSide.left) &#123;        <span class="hljs-keyword">let</span> node = leftSide;        <span class="hljs-keyword">while</span> (node) &#123;            node.left.next = node.right;            <span class="hljs-keyword">if</span> (node.next) &#123;                node.right.next = node.next.left;            &#125;            node = node.next;        &#125;        leftSide = leftSide.left;    &#125;    <span class="hljs-keyword">return</span> root;&#125;;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>解答</category>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>二叉树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2.URL与资源</title>
+    <link href="/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/"/>
+    <url>/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/</url>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;<br><strong>统一资源定位符</strong>（URL）描述了一台特定服务器上某资源的特定位置。</p><h1 id="1-URL-语法"><a href="#1-URL-语法" class="headerlink" title="1. URL 语法"></a>1. URL 语法</h1><p>&emsp;&emsp;大多数 URL 方案的 URL 语法都建立在这个由 9 个部分构成的通用格式上：</p><p><code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</code></p><p>&emsp;&emsp;URL 最重要的三个部分是：<strong>方案（scheme）</strong>、<strong>主机（host）</strong>和<strong>路径（path）</strong>。下表对这些组件进行了总结：</p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200923105305698.png" alt="image-20200923105305698" style="zoom:80%;" /><p>&emsp;&emsp;如一个 URL ：<code>http://www.joes-hardware.com:80/index.html</code>，其方案是 <code>http</code>，主机为 <code>www.joes-hardware.com</code>，端口是 <code>80</code>，路径为 <code>/index.html</code>。</p><h2 id="1-1-方案"><a href="#1-1-方案" class="headerlink" title="1.1 方案"></a>1.1 方案</h2><p>&emsp;&emsp;方案是规定如何访问指定资源的主要标识符，它告诉负责解析 URL 的应用程序应该使用什么协议。</p><p><strong>方案是大小写无关的</strong></p><h2 id="1-2-参数"><a href="#1-2-参数" class="headerlink" title="1.2 参数"></a>1.2 参数</h2><p>&emsp;&emsp;HTTP URL 的路径组件可以分为若干路径段，<strong>每段路径都可以有自己的参数</strong>，比如：</p><p><code>http://www.joes-hardware.com/hammers;sale=false/index.html/graphics=true</code></p><p>&emsp;&emsp;这个例子就有两个路径段，且它们都有各自的参数。</p><h2 id="1-3-查询字符串"><a href="#1-3-查询字符串" class="headerlink" title="1.3 查询字符串"></a>1.3 查询字符串</h2><p>&emsp;&emsp;查询字符串是用来缩小所请求资源类型范围的。</p><p>&emsp;&emsp;查询字符串会以一系列 <code>key/value</code> 对的形式出现，中间使用  <code>&amp;</code> 字符分隔。</p><p>&emsp;&emsp;如：<code>http://www.xxx.com/inventory-check?item=12731&amp;color=blue</code></p><p>&emsp;&emsp;这个例子中，查询组件有两个键值对：<code>item=12731</code> 和 <code>color=blue</code>，查询目的是为了查找清单中是否有颜色为 <code>blue</code> 的条目 <code>12731</code>。</p><h2 id="1-4-片段"><a href="#1-4-片段" class="headerlink" title="1.4  片段"></a>1.4  片段</h2><p>&emsp;&emsp;片段主要用于对一个资源内部做进一步的划分。</p><p>&emsp;&emsp;如，一个 URL 可以加上片段来指向一个文档中一个特定的章节或图片。</p><p>&emsp;&emsp;片段挂载 URL 的右边，前面有一个 <code>#</code> 分隔，如：<code>http://www.xxx.com/tools.html#drills</code></p><p>&emsp;&emsp;这个例子中 <code>drills</code> 是 <code>tools.index</code> 这个页面中的一个标题，输入这个 URL 就会自动定位到这个标题开始的位置。</p><p>&emsp;&emsp;HTTP 处理的是整个对象（如 <code>tools.html</code>），而这个对象的片段（<code>#drills</code>）是交给浏览器来处理的。</p><h1 id="2-方案"><a href="#2-方案" class="headerlink" title="2. 方案"></a>2. 方案</h1><p>&emsp;&emsp;下表总结了一些常用的方案：</p><p>&emsp;&emsp;<code>http</code> 默认端口为 <code>80</code> ，<code>https </code> 默认端口为 <code>443</code> </p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005153537876.png" alt="image-20201005153537876" style="zoom:80%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005153643487.png" alt="image-20201005153643487" style="zoom:80%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005153709444.png" alt="image-20201005153709444" style="zoom:80%;" />]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机基础</category>
+      
+      <category>HTTP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>URL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>计算机中的浮点数表示</title>
     <link href="/2020/10/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA/"/>
     <url>/2020/10/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA/</url>

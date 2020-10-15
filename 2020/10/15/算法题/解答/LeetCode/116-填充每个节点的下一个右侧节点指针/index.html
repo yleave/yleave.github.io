@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>计算机中的浮点数表示 - Ylea</title>
+  <title>116. 填充每个节点的下一个右侧节点指针 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -156,7 +156,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/62.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -171,8 +171,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-05 23:34" pubdate>
-        2020年10月5日 晚上
+      <time datetime="2020-10-15 14:43" pubdate>
+        2020年10月15日 下午
       </time>
     </span>
   
@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      805 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      11
        分钟
     </span>
   
@@ -231,75 +231,148 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">计算机中的浮点数表示</h1>
+            <h1 style="display: none">116. 填充每个节点的下一个右侧节点指针</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="IEEE-754-标准"><a href="#IEEE-754-标准" class="headerlink" title="IEEE 754 标准"></a>IEEE 754 标准</h1><p>&emsp;&emsp;在这个标准中，任意一个二进制浮点数 <code>V</code> 可以表示成下面这样的形式：</p>
-<p>&emsp;&emsp;1. <code>(-1)^s</code> 表示符号位，当 <code>s = 0</code> 时， <code>V</code> 为正， <code>s = 1</code> 时，<code>V</code> 为负<br>&emsp;&emsp;2. <code>M</code> 表示有效数字，<code>1 &lt;= M &lt; 2</code><br>&emsp;&emsp;3. <code>E</code> 表示指数，如 <code>2^E</code></p>
-<p>&emsp;&emsp;举个例子，对于十进制的 <code>5.0</code>，写成<strong>二进制</strong>就是 <code>101.0</code>，相当于 <code>1.01 x 2^2</code>。</p>
-<p>&emsp;&emsp;按照上面的标准，可以得出： <code>s = 0</code>，<code>M = 1.01</code> ， <code>E = 2</code></p>
-<p>&emsp;&emsp;IEEE 754 规定，对于 <strong>32 位</strong>的浮点数，最高的 <code>1</code> 位是符号位 <code>s</code>，接着的 <code>8</code> 位是指数 <code>E</code>，剩下的 <code>23</code> 位为有效数字 <code>M</code>:</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060601.png" srcset="/img/loading.gif" alt="img"  />
-
-<p>&emsp;&emsp;对于 <strong>64位</strong> 的浮点数，最高的 <code>1</code>位是符号位 <code>S</code> ，接着的 <code>11</code> 位是指数 <code>E</code>，剩下的 <code>52</code> 位为有效数字 <code>M</code>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060602.png" srcset="/img/loading.gif" alt="img"></p>
-<p>&emsp;&emsp;在 IEEE 754 标准中，对 <code>M</code> 和 <code>E</code> 还有一些特别的规定，用于应对一些极端情况。</p>
-<p>&emsp;&emsp;<strong>对于<code>M</code></strong>,前面有提到， <code>1 &lt;= M &lt; 2</code>，也就是说， <code>M</code> 可以写成 <code>1.xxxx</code> 的形式，其中 <code>xxxx</code> 表示小数部分。既然我们知道<strong>计算机在保存 <code>M</code> 时第一位默认总是 <code>1</code></strong>,那么我们可以先省略这个数，只保存 <code>xxxx</code> 这样的小数部分，然后在最后的结果前再加上 <code>1</code>，这样，我们就能多出一位来保存小数 <code>xxxx</code> 了。IEEE 754 中就是这样规定的。  </p>
-<p>&emsp;&emsp;<strong>对于<code>E</code></strong>,情况会复杂些：</p>
-<p>&emsp;&emsp;首先，<code>E</code> 是一个无符号整数，若 <code>E</code> 为 <code>8</code> 位，它的取值范围就是 <code>0 - 255</code>，若 <code>E</code> 为 <code>11</code> 位，它的取值范围就是 <code>0 - 2047</code>，但是，在科学计数法中，指数位 <code>E</code> 是能取负值的，因此 IEEE 754 中规定,<strong><code>E</code> 的真实值需要再减去一个中间数</strong>,相当于是一个偏置（bias），<strong>对于 <code>8</code> 位的 <code>E</code>，这个偏置是 <code>127</code>，对于 <code>11</code> 位的 <code>E</code>，这个偏置是 <code>1023</code>。</strong></p>
-<p>&emsp;&emsp;比如，<code>2^10</code> 的 <code>E</code> 是 <code>10</code>，因此在保存为 <code>32</code> 位浮点数时，需要保存为 <code>10 + 127 = 137</code>，即 <code>10001001</code>（因为 <code>E</code> 在变成 <code>10</code> 之前，减去了一个偏置 <code>127</code>）</p>
-<p>&emsp;&emsp;<code>E</code> 还能分成三种情况讨论：</p>
-<ol>
-<li><p><strong>规格化：当 <code>E</code> 的二进制位不全为 <code>0</code>,也不全为 <code>1</code> 时，二进制浮点数 <code>V</code> 为规格化形式。</strong> </p>
-<p>这时 <code>E</code> 的计算就按上面的规则，减去 <code>127</code> 或 <code>1023</code>。如 <code>E</code> 为 <code>10000100</code>，则 <code>E = 132</code> ，<code>E</code> 的真实值 <code>e = 132 - 127 = 5</code> 。</p>
-<p><code>M</code> 也是如之前所述，在左侧加上隐含位 <code>1</code>，也就是  <code>1.M</code>  ，如 <code>M</code> 为 <code>1010...0</code>（ <code>101</code> 后面共 20 个 0），则 <code>1.M = 1.101 = 1.625</code></p>
-</li>
-<li><p><strong>非规格化：当 <code>E</code> 的二进制位全部为 <code>0</code> 时，<code>V</code> 为非规格化形式。</strong> </p>
-<p>这时，<code>E</code> 的计算就是 <code>1 - 127</code> （或 <code>1 - 1023</code>），这样做的目的主要是为了规格化数值和非规格化数值之间的平滑过渡。并且，有效数字 <code>M</code> 不再加上第一位的 <code>1</code>，而是按原样输出：<code>0.xxxx</code>。这样，我们就能表示 <code>±0</code> （具体看符号位 <code>s</code>）和一些非常逼近 <code>0</code> 的小数了。</p>
-</li>
-<li><p><strong>特殊数值： 当E的二进制位全为 <code>1</code> 时为特殊数值。</strong> </p>
-<p>此时，若 <code>M</code> 的二进制位全为 <code>0</code> 则表示 <code>±无穷大</code>（具体看符号位 <code>s</code>），而若 <code>M</code> 的二进制位不全为 <code>0</code>  的话，则表示 <code>NaN</code>（Not a Number），表示这不是一个合法实数或者该数未经初始化。　　</p>
-</li>
-</ol>
-<h1 id="浮点数例子"><a href="#浮点数例子" class="headerlink" title="浮点数例子"></a>浮点数例子</h1><p>&emsp;&emsp;有一段 C 代码是这样的：</p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-keyword">int</span> a = <span class="hljs-number">9</span>;
-    <span class="hljs-keyword">float</span>* pFloat = (<span class="hljs-keyword">float</span>*)&amp;a;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, a);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
-
-    *pFloat = <span class="hljs-number">9.0</span>;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, *pFloat);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/">https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/</a></p>
+<p>难度：中等</p>
+<hr>
+<p>&emsp;&emsp;给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span>
+  <span class="hljs-keyword">int</span> val;
+  Node *left;
+  Node *right;
+  Node *next;
 &#125;</code></pre>
 
-<p>&emsp;&emsp;程序的打印结果：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005230741731.png" srcset="/img/loading.gif" alt="image-20201005230741731" style="zoom:80%;" />
 
-<p>&emsp;&emsp;在上面的代码中，我们先申明了一个整型 <code>a = 9</code>，然后申明了一个浮点指针 <code>pFloat</code> 指向 <code>a</code> 的地址。</p>
-<p>&emsp;&emsp;<strong>1）</strong> 使用浮点数格式打印 <code>a</code> 时，发现为 <code>0.000000</code>；</p>
-<p>&emsp;&emsp;<strong>2）</strong> 然后我们根据 <code>a</code> 的地址 <code>pFloat</code> 修改它的值为 <code>9.0</code>，此时再以整型来打印 <code>a</code>，输出的却是 <code>1091567616</code>。</p>
-<p>&emsp;&emsp;<strong>首先来看 <code>1)</code></strong> ，为什么整型的 <code>9</code> 以浮点格式输出时打印出来的是 <code>0.000000</code>。</p>
-<p>&emsp;&emsp;将 32 位的整型 <code>9</code> 转化为二进制形式，得到： <code>0 0000 0000 000 0000 0000 0000 0000 1001</code> </p>
-<p>&emsp;&emsp;根据前面的知识，可以知道 <code>s = 0</code>，<code>E = 0</code>，<code>M = 0...1001</code>，指数 <code>E</code> 的二进制位全为 <code>0</code>，因此是第二种非规格化的情况，因此浮点数 <code>V</code> 就写成：</p>
-<p><code>V = (-1)^0 x 0.00000000000000000001001 x 2^(-126) = 1.001 x 2^(-146)</code></p>
-<p>&emsp;&emsp;显然，<code>V</code> 是一个非常小的接近 <code>0</code> 的数，因此用十进制小数表示就是 <code>0.000000</code>。</p>
-<p> &emsp;&emsp;<strong>再来看看 <code>2)</code></strong> ，为什么内存中的 <code>9</code> 变成 <code>9.0</code> 后，以整型格式打印，结果会是 <code>1091567616</code>。</p>
-<p>&emsp;&emsp;将浮点数 <code>9.0</code> 转换为二进制小数形式：<code>1001.0</code> 即 <code>1.001 x 2^3</code> ，那么，我们可以知道 <code>s = 0</code>，<code>E = 3 + 127 = 130</code>，二进制表示的话就是 <code>10000010</code> ，<code>M = 100 1000 0000 0000 0000 0000</code>  ，因此，<code>9.0</code> 的二进制形式表示就是：<code>s + E + M</code> ，也就是：<code>0 1000 0010 100 1000 0000 0000 0000 0000</code> ，这个 32 位的二进制，用十进制表示就是：<code>1,091,567,616</code></p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>&emsp;&emsp;<strong>很多小数不能准确表示成二进制形式</strong>。比如 <code>0.4</code>，你就无法写出它的精确二进制形式（即 <code>0.5</code>的各次幂的累加），我们只能不断接近 <code>0.4</code>，而不能达到它。</p>
-<p>&emsp;&emsp;因为 <code>0.4</code> 的二进制表示是：<code>0.01100110011....</code> 无限循环，因此我们只能逼近而不能精确表示。</p>
+<p>&emsp;&emsp;填充它的每个 <code>next </code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next </code>指针设置为 <code>NULL</code>。</p>
+<p>&emsp;&emsp;初始状态下，所有 <code>next </code>指针都被设置为 <code>NULL</code>。</p>
+<p><strong>示例：</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" />
+
+
 <hr>
-<p>REF：</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/linven1911/article/details/2596038">https://blog.csdn.net/linven1911/article/details/2596038</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html">https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html</a></p>
-</li>
-</ul>
+<p>&emsp;&emsp;首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p>
+<h2 id="解法1：层次优先遍历"><a href="#解法1：层次优先遍历" class="headerlink" title="解法1：层次优先遍历"></a>解法1：层次优先遍历</h2><p>&emsp;&emsp;由于每个节点的 <code>next</code> 指针都是指向当前层次的右边节点，因此很容易想到使用层次优先遍历，且由于是完美二叉树，每层的节点个数也很容易计算出来（即都是 <code>2</code> 的倍数）。</p>
+<p>&emsp;&emsp;具体做法是使用一个队列，从右到左往队列中添加节点，这样，除了最右侧节点，其他节点在出队时将其 <code>next</code> 指向上一个出队节点即可。</p>
+<p><strong>JS 代码如下：</strong></p>
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * // Definition for a Node.</span>
+<span class="hljs-comment"> * function Node(val, left, right, next) &#123;</span>
+<span class="hljs-comment"> *    this.val = val === undefined ? null : val;</span>
+<span class="hljs-comment"> *    this.left = left === undefined ? null : left;</span>
+<span class="hljs-comment"> *    this.right = right === undefined ? null : right;</span>
+<span class="hljs-comment"> *    this.next = next === undefined ? null : next;</span>
+<span class="hljs-comment"> * &#125;;</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Node&#125;</span> <span class="hljs-variable">root</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Node&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!root) &#123;
+        <span class="hljs-keyword">return</span> root;
+    &#125;
+    <span class="hljs-keyword">let</span> queue = [];
+    <span class="hljs-keyword">let</span> last, cur;
+    <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>, nums = <span class="hljs-number">1</span>;
+
+    queue.push(root);
+
+    <span class="hljs-keyword">while</span> (queue.length) &#123;
+        cur = queue.shift();
+        n++;
+        <span class="hljs-keyword">if</span> (last) &#123;
+            cur.next = last;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (cur.right) &#123;
+            queue.push(cur.right);
+        &#125;
+        <span class="hljs-keyword">if</span> (cur.left) &#123;
+            queue.push(cur.left);
+        &#125;
+
+        last = cur;
+        <span class="hljs-keyword">if</span> (n === nums) &#123;
+            nums *= <span class="hljs-number">2</span>;
+            n = <span class="hljs-number">0</span>;
+            last = <span class="hljs-literal">null</span>;
+        &#125;
+    &#125;
+
+    <span class="hljs-keyword">return</span> root;
+&#125;;</code></pre>
+
+
+
+<h2 id="解法2：使用父节点-next-指针"><a href="#解法2：使用父节点-next-指针" class="headerlink" title="解法2：使用父节点 next 指针"></a>解法2：使用父节点 next 指针</h2><p>&emsp;&emsp;首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" />
+
+<p>&emsp;&emsp;而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" />
+
+<p>&emsp;&emsp;根据这种思路，我们能够写出递归版本和迭代版本的代码：</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>&emsp;&emsp;递归版本很直观，就是按照上面的两种情况来的：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!root) &#123;
+        <span class="hljs-keyword">return</span> root;
+    &#125;
+
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (!root) &#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (root.left) &#123;
+            root.left.next = root.right;
+            <span class="hljs-comment">// 若当前节点不是最右侧节点，那么可以通过 next 指针找到其右侧节点</span>
+            <span class="hljs-keyword">if</span> (root.next) &#123;
+                root.right.next = root.next.left;
+            &#125;
+        &#125;
+
+        dfs(root.left);
+        dfs(root.right);
+    &#125;;
+
+    dfs(root);
+
+    <span class="hljs-keyword">return</span> root;
+&#125;;</code></pre>
+
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>&emsp;&emsp;对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" />
+
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!root) &#123;
+        <span class="hljs-keyword">return</span> root;
+    &#125;
+
+    <span class="hljs-keyword">let</span> leftSide = root;
+    <span class="hljs-keyword">while</span> (leftSide.left) &#123;
+        <span class="hljs-keyword">let</span> node = leftSide;
+        <span class="hljs-keyword">while</span> (node) &#123;
+            node.left.next = node.right;
+            <span class="hljs-keyword">if</span> (node.next) &#123;
+                node.right.next = node.next.left;
+            &#125;
+            node = node.next;
+        &#125;
+        leftSide = leftSide.left;
+    &#125;
+
+    <span class="hljs-keyword">return</span> root;
+&#125;;</code></pre>
+
+
+
+
+
+
+
 
             </div>
             <hr>
@@ -309,7 +382,11 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
                     
                   </div>
                 
@@ -317,7 +394,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B5%AE%E7%82%B9%E6%95%B0/">浮点数</a>
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     
                   </div>
                 
@@ -330,18 +409,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2.URL与资源</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/406-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
-                        <span class="hidden-mobile">LeetCode 406. 根据身高重建队列</span>
+                      <a href="/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/">
+                        <span class="hidden-mobile">2.URL与资源</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -610,7 +683,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "计算机中的浮点数表示&nbsp;",
+        "116. 填充每个节点的下一个右侧节点指针&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

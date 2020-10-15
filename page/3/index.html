@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>分类 - HTTP - Ylea</title>
+  <title>Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -49,7 +49,7 @@
 <script type="text/javascript" src="/js/FunnyTitle.js"></script>
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -143,10 +143,10 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/img/分类.png') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/img/首页.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
@@ -155,6 +155,10 @@
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -165,33 +169,88 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2.URL与资源</span>
-      <time style="float: right;">10-10</time>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/hadoop.jpg" srcset="/img/loading.gif" alt="使用 Python 编写 MapReduce -- Hadoop Streaming">
+        </a>
+      </div>
     
-    <a href="/2020/09/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/1.HTTP%E6%A6%82%E8%BF%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">1. HTTP概述</span>
-      <time style="float: right;">09-21</time>
-    </a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">使用 Python 编写 MapReduce -- Hadoop Streaming</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%20streaming/">
+          
+          
+            
+          
+          要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming
+hadoop streaming 简介&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。
+&emsp;&emsp
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-18 21:17" pubdate>
+              2020-08-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop/">hadoop</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/big-data/">big data</a>
+            
+              <a href="/tags/hadoop-streaming/">hadoop streaming</a>
+            
+              <a href="/tags/MapReduce/">MapReduce</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </span>
+  </nav>
   
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -381,7 +440,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "分类 - HTTP&nbsp;",
+        "一直在路上...&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

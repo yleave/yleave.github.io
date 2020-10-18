@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>牛顿迭代法</title>
+    <link href="/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
+    <url>/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>转自 <a href="https://leetcode-cn.com/problems/sqrtx/solution/x-de-ping-fang-gen-by-leetcode-solution/">LeetCode 解答</a></p><hr><p>&emsp;&emsp;<a href="https://baike.baidu.com/item/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95">牛顿迭代法</a>是一种可以用来快速求解函数零点的方法。</p><p>&emsp;&emsp;以 <a href="https://leetcode-cn.com/problems/sqrtx/">LeetCode</a> 上的一题为例：模拟 <code>int sqrt(x)</code> 函数，返回的开方值向下取整。</p><p>&emsp;&emsp;为了叙述方便，我们用 <code>C</code> 表示待求出平方根的那个整数。显然，<code>C</code> 的平方根就是函数<br>$$<br>y = f(x) = x^2 - C<br>$$<br>&emsp;&emsp;的零点。</p><p>&emsp;&emsp;牛顿迭代法的本质是借助泰勒级数，从初始值开始快速向零点逼近。我们任取一个 $x_0$ 作为初始值，在每一步的迭代中，我们找到图像上的点 $(x_i,f(x_i))$ ，过该点做一条斜率为该点导数 $f’(x_i)$ 的直线，直线与 <code>x</code> 轴的交点记为 $x_{i+1}$，$x_{i+1}$ 相对于 $x_i$ 而言距离零点更加接近。进过多次迭代后，就能得到一个非常接近零点的与 <code>x</code> 轴的交点。</p><p>&emsp;&emsp;下图给出了从 $x_0$ 开始迭代两次，得到 $x_1$ 和 $x_2$ 的过程：</p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018114250949.png" alt="image-20201018114250949" style="zoom:80%;" /><p>&emsp;&emsp;首先，我们选择 $x_0 = C$ 作为初始值。</p><p>&emsp;&emsp;在每一步的迭代中，通过当前与 <code>x</code> 轴的交点 $x_i$ ，得到函数图像上的一点 $(x_i, x^2 - C)$ ，做一条斜率为 $f’(x_i) = 2x_i$ 的直线，直线方程为：<br>$$<br>y - y_0 = k(x - x_0)<br>$$</p><p>$$<br>y = 2x_i(x - x_i) + x_i^2 - C<br>$$</p><p>&emsp;&emsp;因此，与 <code>x</code> 轴的交点为方程 $2x_ix - (x_i^2 + C) = 0$ 的解，即为新的迭代结果 $x_{i+1}$ ：<br>$$<br>x_{i+1} = \frac{1}{2}(x_i + \frac{C}{x_i})<br>$$<br>&emsp;&emsp;在进行 <code>k</code> 次迭代之后，$x_k$ 与真实值 $\sqrt{C}$ 足够接近，即可作为答案。</p><p>&emsp;&emsp;<strong>选择 $x_0 = C$ 作为初始值的原因：</strong></p><p>&emsp;&emsp;因为函数 $y = x^2 - C$ 有两个零点 $-\sqrt{C}$ 和 $\sqrt{C}$。而我们想找的是 $\sqrt{C}$，如果初始值比较小的话，有可能迭代到 $-\sqrt{C}$ 这个零点，因此选择 $x_0 = C$ 作为初始值。且每次迭代均有 $x_{i+1} &lt; x_i$，零点 $\sqrt{C}$ 在其左侧，因此我们一定会迭代到这个零点。</p><p>&emsp;&emsp;<strong>迭代终止条件：</strong></p><p>&emsp;&emsp;每一次迭代，我们都会离零点更近一步，所以当两次迭代的距离非常近时，就可以认为是已经非常逼近零点了，也就能将其作为答案。判断接近程度可以使用一个非常小的值来做比较，如 $x_{i+1} - x_i &lt; 10^{-6}$ 。</p><p>&emsp;&emsp;<strong>C 代码如下：</strong></p><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123;    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) &#123;        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;    &#125;    <span class="hljs-keyword">double</span> x0 = x, c = x;    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;        <span class="hljs-keyword">double</span> xi = <span class="hljs-number">0.5</span> * (x0 + c / x0);        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(x0 - xi) &lt; <span class="hljs-number">1e-6</span>) &#123;            <span class="hljs-keyword">break</span>;        &#125;        x0 = xi;    &#125;    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)x0;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>算法知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学问题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>二分查找</title>
+    <link href="/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    <url>/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;所谓二分查找，就是从一个查找范围中每次取中间值，然后根据中间值来判断是否满足条件或是缩小查找范围的过程，且这个范围内的值需要是有规律的，比如是有序的。</p><h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>&emsp;&emsp;以 <a href="https://leetcode-cn.com/problems/search-insert-position/">LeetCode</a> 的一道简单题为例：给定一个排序数组和一个目标值，返回目标值的索引，若不存在，则返回能够插入该目标值的索引。</p><p>&emsp;&emsp;如 ：<code>array = [1,5,7,10,12], target = 6</code></p><p>&emsp;&emsp;则返回值为 <code>2</code></p><p>&emsp;&emsp;这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p><p>代码如下：</p><pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;    <span class="hljs-keyword">int</span> mid;    <span class="hljs-keyword">while</span>(left &lt;= right)&#123;        mid = (left + right) / <span class="hljs-number">2</span>;        <span class="hljs-keyword">if</span>(r[mid] == x)&#123;            <span class="hljs-keyword">return</span> mid;        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r[mid] &gt; x)&#123;            right = mid - <span class="hljs-number">1</span>;        &#125;<span class="hljs-keyword">else</span>&#123;            left = mid + <span class="hljs-number">1</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> left;&#125;</code></pre><p>&emsp;&emsp;其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p><h1 id="二分查找变形"><a href="#二分查找变形" class="headerlink" title="二分查找变形"></a>二分查找变形</h1><p>&emsp;&emsp;根据使用场景的不同，二分查找有一些变形算法。</p><h2 id="返回第一个大于等于-x-的位置"><a href="#返回第一个大于等于-x-的位置" class="headerlink" title="返回第一个大于等于 x 的位置"></a>返回第一个大于等于 x 的位置</h2><p>&emsp;&emsp;在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在大于等于 <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是恰好大于等于 <code>x</code> 的位置。</p><p>&emsp;&emsp;所以说，下面的代码作用和上面例子中的代码是完全一样的。</p><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;    <span class="hljs-keyword">while</span> (left &lt; right) &#123;        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);        <span class="hljs-keyword">let</span> num = arr[mid];        <span class="hljs-keyword">if</span> (tar &lt;= num) &#123;            right = mid;        &#125; <span class="hljs-keyword">else</span> &#123;            left = mid + <span class="hljs-number">1</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> left;&#125;</code></pre><p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 5</code>，返回 <code>3</code></p><h2 id="返回第一个大于-x-的位置"><a href="#返回第一个大于-x-的位置" class="headerlink" title="返回第一个大于 x 的位置"></a>返回第一个大于 x 的位置</h2><p>&emsp;&emsp;这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;    <span class="hljs-keyword">while</span> (left &lt; right) &#123;        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);        <span class="hljs-keyword">let</span> num = arr[mid];        <span class="hljs-keyword">if</span> (tar &lt; num) &#123;            right = mid;        &#125; <span class="hljs-keyword">else</span> &#123;            left = mid + <span class="hljs-number">1</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> left;&#125;</code></pre><p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 3</code>，返回 <code>3</code></p><h2 id="返回第一个小于等于-x-的位置"><a href="#返回第一个小于等于-x-的位置" class="headerlink" title="返回第一个小于等于 x 的位置"></a>返回第一个小于等于 x 的位置</h2><p>&emsp;&emsp;同理，在循环中稍加变动，就能实现另一个功能，不过这时候计算 <code>mid</code> 需要向上取整了（之前都是向上取整的），不然可能会出现无限循环，因为每次都向下取整的话可能会出现 <code>left</code> 不变的情况：</p><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;    <span class="hljs-keyword">while</span> (left &lt; right) &#123;        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);        <span class="hljs-keyword">let</span> num = arr[mid];        <span class="hljs-keyword">if</span> (tar &gt;= num) &#123;            left = mid;        &#125; <span class="hljs-keyword">else</span> &#123;            right = mid - <span class="hljs-number">1</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> right;&#125;</code></pre><p>&emsp;&emsp;同理，第一个<strong>小于</strong> <code>x</code> 的位置：</p><pre><code class="hljs js"><span class="hljs-keyword">while</span> (left &lt; right) &#123;    <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);    <span class="hljs-keyword">let</span> num = arr[mid];    <span class="hljs-keyword">if</span> (tar &gt; num) &#123;        left = mid;    &#125; <span class="hljs-keyword">else</span> &#123;        right = mid - <span class="hljs-number">1</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>算法知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>查找</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ThreeJS 坐标转换</title>
     <link href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/"/>
     <url>/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/</url>
@@ -33,7 +87,7 @@
   
   
   <entry>
-    <title>52. N皇后 II</title>
+    <title>LeetCode 52. N皇后 II</title>
     <link href="/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/52-N%E7%9A%87%E5%90%8E-II/"/>
     <url>/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/52-N%E7%9A%87%E5%90%8E-II/</url>
     
@@ -64,7 +118,7 @@
   
   
   <entry>
-    <title>51. N皇后</title>
+    <title>LeetCode 51. N皇后</title>
     <link href="/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/51-N%E7%9A%87%E5%90%8E/"/>
     <url>/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/51-N%E7%9A%87%E5%90%8E/</url>
     

@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode 116. 填充每个节点的下一个右侧节点指针 - Ylea</title>
+  <title>二分查找 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -156,7 +156,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/52.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -171,8 +171,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-15 14:43" pubdate>
-        2020年10月15日 下午
+      <time datetime="2020-10-18 15:34" pubdate>
+        2020年10月18日 下午
       </time>
     </span>
   
@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      805 字
+      830 字
     </span>
   
 
@@ -231,146 +231,90 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 116. 填充每个节点的下一个右侧节点指针</h1>
+            <h1 style="display: none">二分查找</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/">https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/</a></p>
-<p>难度：中等</p>
-<hr>
-<p>&emsp;&emsp;给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
-<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span>
-  <span class="hljs-keyword">int</span> val;
-  Node *left;
-  Node *right;
-  Node *next;
+              <p>&emsp;&emsp;所谓二分查找，就是从一个查找范围中每次取中间值，然后根据中间值来判断是否满足条件或是缩小查找范围的过程，且这个范围内的值需要是有规律的，比如是有序的。</p>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>&emsp;&emsp;以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-insert-position/">LeetCode</a> 的一道简单题为例：给定一个排序数组和一个目标值，返回目标值的索引，若不存在，则返回能够插入该目标值的索引。</p>
+<p>&emsp;&emsp;如 ：<code>array = [1,5,7,10,12], target = 6</code></p>
+<p>&emsp;&emsp;则返回值为 <code>2</code></p>
+<p>&emsp;&emsp;这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p>
+<p>代码如下：</p>
+<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;
+    <span class="hljs-keyword">int</span> mid;
+    <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
+        mid = (left + right) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(r[mid] == x)&#123;
+            <span class="hljs-keyword">return</span> mid;
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r[mid] &gt; x)&#123;
+            right = mid - <span class="hljs-number">1</span>;
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            left = mid + <span class="hljs-number">1</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> left;
 &#125;</code></pre>
 
-
-<p>&emsp;&emsp;填充它的每个 <code>next </code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next </code>指针设置为 <code>NULL</code>。</p>
-<p>&emsp;&emsp;初始状态下，所有 <code>next </code>指针都被设置为 <code>NULL</code>。</p>
-<p><strong>示例：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" />
-
-
-<hr>
-<p>&emsp;&emsp;首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p>
-<h2 id="解法1：层次优先遍历"><a href="#解法1：层次优先遍历" class="headerlink" title="解法1：层次优先遍历"></a>解法1：层次优先遍历</h2><p>&emsp;&emsp;由于每个节点的 <code>next</code> 指针都是指向当前层次的右边节点，因此很容易想到使用层次优先遍历，且由于是完美二叉树，每层的节点个数也很容易计算出来（即都是 <code>2</code> 的倍数）。</p>
-<p>&emsp;&emsp;具体做法是使用一个队列，从右到左往队列中添加节点，这样，除了最右侧节点，其他节点在出队时将其 <code>next</code> 指向上一个出队节点即可。</p>
-<p><strong>JS 代码如下：</strong></p>
-<pre><code class="hljs js"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * // Definition for a Node.</span>
-<span class="hljs-comment"> * function Node(val, left, right, next) &#123;</span>
-<span class="hljs-comment"> *    this.val = val === undefined ? null : val;</span>
-<span class="hljs-comment"> *    this.left = left === undefined ? null : left;</span>
-<span class="hljs-comment"> *    this.right = right === undefined ? null : right;</span>
-<span class="hljs-comment"> *    this.next = next === undefined ? null : next;</span>
-<span class="hljs-comment"> * &#125;;</span>
-<span class="hljs-comment"> */</span>
-
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Node&#125;</span> <span class="hljs-variable">root</span></span></span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;Node&#125;</span></span></span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> root;
-    &#125;
-    <span class="hljs-keyword">let</span> queue = [];
-    <span class="hljs-keyword">let</span> last, cur;
-    <span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>, nums = <span class="hljs-number">1</span>;
-
-    queue.push(root);
-
-    <span class="hljs-keyword">while</span> (queue.length) &#123;
-        cur = queue.shift();
-        n++;
-        <span class="hljs-keyword">if</span> (last) &#123;
-            cur.next = last;
-        &#125;
-
-        <span class="hljs-keyword">if</span> (cur.right) &#123;
-            queue.push(cur.right);
-        &#125;
-        <span class="hljs-keyword">if</span> (cur.left) &#123;
-            queue.push(cur.left);
-        &#125;
-
-        last = cur;
-        <span class="hljs-keyword">if</span> (n === nums) &#123;
-            nums *= <span class="hljs-number">2</span>;
-            n = <span class="hljs-number">0</span>;
-            last = <span class="hljs-literal">null</span>;
+<p>&emsp;&emsp;其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p>
+<h1 id="二分查找变形"><a href="#二分查找变形" class="headerlink" title="二分查找变形"></a>二分查找变形</h1><p>&emsp;&emsp;根据使用场景的不同，二分查找有一些变形算法。</p>
+<h2 id="返回第一个大于等于-x-的位置"><a href="#返回第一个大于等于-x-的位置" class="headerlink" title="返回第一个大于等于 x 的位置"></a>返回第一个大于等于 x 的位置</h2><p>&emsp;&emsp;在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在大于等于 <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是恰好大于等于 <code>x</code> 的位置。</p>
+<p>&emsp;&emsp;所以说，下面的代码作用和上面例子中的代码是完全一样的。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
+        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">let</span> num = arr[mid];
+        <span class="hljs-keyword">if</span> (tar &lt;= num) &#123;
+            right = mid;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            left = mid + <span class="hljs-number">1</span>;
         &#125;
     &#125;
+    <span class="hljs-keyword">return</span> left;
+&#125;</code></pre>
 
-    <span class="hljs-keyword">return</span> root;
-&#125;;</code></pre>
-
-
-
-<h2 id="解法2：使用父节点-next-指针"><a href="#解法2：使用父节点-next-指针" class="headerlink" title="解法2：使用父节点 next 指针"></a>解法2：使用父节点 next 指针</h2><p>&emsp;&emsp;首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" />
-
-<p>&emsp;&emsp;而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" />
-
-<p>&emsp;&emsp;根据这种思路，我们能够写出递归版本和迭代版本的代码：</p>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>&emsp;&emsp;递归版本很直观，就是按照上面的两种情况来的：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> root;
-    &#125;
-
-    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (!root) &#123;
-            <span class="hljs-keyword">return</span>;
+<p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 5</code>，返回 <code>3</code></p>
+<h2 id="返回第一个大于-x-的位置"><a href="#返回第一个大于-x-的位置" class="headerlink" title="返回第一个大于 x 的位置"></a>返回第一个大于 x 的位置</h2><p>&emsp;&emsp;这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
+        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">let</span> num = arr[mid];
+        <span class="hljs-keyword">if</span> (tar &lt; num) &#123;
+            right = mid;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            left = mid + <span class="hljs-number">1</span>;
         &#125;
-
-        <span class="hljs-keyword">if</span> (root.left) &#123;
-            root.left.next = root.right;
-            <span class="hljs-comment">// 若当前节点不是最右侧节点，那么可以通过 next 指针找到其右侧节点</span>
-            <span class="hljs-keyword">if</span> (root.next) &#123;
-                root.right.next = root.next.left;
-            &#125;
-        &#125;
-
-        dfs(root.left);
-        dfs(root.right);
-    &#125;;
-
-    dfs(root);
-
-    <span class="hljs-keyword">return</span> root;
-&#125;;</code></pre>
-
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>&emsp;&emsp;对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" />
-
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
-    <span class="hljs-keyword">if</span> (!root) &#123;
-        <span class="hljs-keyword">return</span> root;
     &#125;
+    <span class="hljs-keyword">return</span> left;
+&#125;</code></pre>
 
-    <span class="hljs-keyword">let</span> leftSide = root;
-    <span class="hljs-keyword">while</span> (leftSide.left) &#123;
-        <span class="hljs-keyword">let</span> node = leftSide;
-        <span class="hljs-keyword">while</span> (node) &#123;
-            node.left.next = node.right;
-            <span class="hljs-keyword">if</span> (node.next) &#123;
-                node.right.next = node.next.left;
-            &#125;
-            node = node.next;
+<p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 3</code>，返回 <code>3</code></p>
+<h2 id="返回第一个小于等于-x-的位置"><a href="#返回第一个小于等于-x-的位置" class="headerlink" title="返回第一个小于等于 x 的位置"></a>返回第一个小于等于 x 的位置</h2><p>&emsp;&emsp;同理，在循环中稍加变动，就能实现另一个功能，不过这时候计算 <code>mid</code> 需要向上取整了（之前都是向上取整的），不然可能会出现无限循环，因为每次都向下取整的话可能会出现 <code>left</code> 不变的情况：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
+        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">let</span> num = arr[mid];
+        <span class="hljs-keyword">if</span> (tar &gt;= num) &#123;
+            left = mid;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            right = mid - <span class="hljs-number">1</span>;
         &#125;
-        leftSide = leftSide.left;
     &#125;
+    <span class="hljs-keyword">return</span> right;
+&#125;</code></pre>
 
-    <span class="hljs-keyword">return</span> root;
-&#125;;</code></pre>
-
-
-
-
-
+<p>&emsp;&emsp;同理，第一个<strong>小于</strong> <code>x</code> 的位置：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">while</span> (left &lt; right) &#123;
+    <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">let</span> num = arr[mid];
+    <span class="hljs-keyword">if</span> (tar &gt; num) &#123;
+        left = mid;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        right = mid - <span class="hljs-number">1</span>;
+    &#125;
+&#125;</code></pre>
 
 
 
@@ -384,9 +328,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">算法知识</a>
                     
                   </div>
                 
@@ -394,9 +336,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                      <a class="hover-with-bg" href="/tags/%E6%9F%A5%E6%89%BE/">查找</a>
                     
                   </div>
                 
@@ -409,9 +349,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/51-N%E7%9A%87%E5%90%8E/">
+                      <a href="/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode 51. N皇后</span>
+                        <span class="hidden-mobile">牛顿迭代法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -419,8 +359,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/2.URL%E4%B8%8E%E8%B5%84%E6%BA%90/">
-                        <span class="hidden-mobile">2.URL与资源</span>
+                      <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">ThreeJS 坐标转换</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -689,7 +629,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode 116. 填充每个节点的下一个右侧节点指针&nbsp;",
+        "二分查找&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

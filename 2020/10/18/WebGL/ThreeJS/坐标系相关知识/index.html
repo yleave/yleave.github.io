@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>坐标系相关知识 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-18 20:10" pubdate>
+        2020年10月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      46
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">坐标系相关知识</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>REF ：<a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/08%20Coordinate%20Systems/">https://learnopengl-cn.github.io/01%20Getting%20started/08%20Coordinate%20Systems/</a></p>
+<p>WebGL的一些词汇表：<a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/10%20Review/">https://learnopengl-cn.github.io/01%20Getting%20started/10%20Review/</a></p>
+<hr>
+<p>&emsp;&emsp;比较重要的主要有五个坐标系统：</p>
+<ul>
+<li>局部空间（Local Space，或称为物体空间（Object Space））</li>
+<li>世界空间（World Space）</li>
+<li>观察空间（View Space，或称为眼空间（Eye Space））</li>
+<li>裁剪空间（Clip Space）</li>
+<li>屏幕空间（Screen Space）</li>
+</ul>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&emsp;&emsp;为了将坐标从一个坐标系变换到另一个坐标系，我们需要用到几个变换矩阵，最重要的几个分别是<strong>模型</strong>(Model) 矩阵、<strong>观察</strong> (View) 矩阵 和 <strong>投影</strong> (Projection) 矩阵。</p>
+<p>&emsp;&emsp;我们的顶点坐标起始于局部空间(Local Space)，在这里它称为<strong>局部坐标</strong>(Local Coordinate)，并最后以<strong>屏幕坐标</strong>(Screen Coordinate)的形式结束。</p>
+<p>&emsp;&emsp;下图展示了整个的变换流程：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018185023147.png" srcset="/img/loading.gif" alt="image-20201018185023147" style="zoom:80%;" />
+
+<ol>
+<li><strong>局部坐标</strong>是对象相对于局部原点的坐标，也是物体起始的坐标。</li>
+<li>下一步是将局部坐标变换为<strong>世界空间坐标</strong>，世界空间坐标是处于一个更大的空间范围的。这些坐标相对于世界的全局原点，它们会和其它物体一起相对于世界的原点进行摆放。</li>
+<li>接下来我们将世界坐标变换为<strong>观察空间坐标</strong>，使得每个坐标都是从摄像机或者说观察者的角度进行观察的。</li>
+<li>坐标到达观察空间之后，我们需要将其投影到<strong>裁剪坐标</strong>。裁剪坐标会被处理至 <code>-1.0</code> 到 <code>1.0</code> 的范围内，并判断哪些顶点将会出现在屏幕上。</li>
+<li>最后，我们将裁剪坐标变换为<strong>屏幕坐标</strong>，我们将使用一个叫做<strong>视口变换</strong>(Viewport Transform)的过程。视口变换将位于 <code>-1.0</code> 到 <code>1.0</code> 范围的坐标变换到由 <code>glViewport </code>函数所定义的坐标范围内。最后变换出来的坐标将会送到光栅器，将其转化为片段。</li>
+</ol>
+<p>&emsp;&emsp;之所以将顶点变换到各个不同的空间的原因是有些操作在特定的坐标系统中才有意义且更方便。</p>
+<p>&emsp;&emsp;例如：</p>
+<ul>
+<li><p>当需要对物体进行修改的时候，在局部空间中来操作会更说得通；</p>
+</li>
+<li><p>如果要对一个物体做出一个相对于其它物体位置的操作时，在世界坐标系中来做这个才更说得通；</p>
+</li>
+<li><p>等等。</p>
+</li>
+</ul>
+<h2 id="局部空间"><a href="#局部空间" class="headerlink" title="局部空间"></a>局部空间</h2><p>&emsp;&emsp;局部空间是指物体所在的坐标空间，即对象最开始所在的地方。</p>
+<p>&emsp;&emsp;想象你在一个建模软件（比如说Blender）中创建了一个立方体。你创建的立方体的原点有可能位于<code>(0, 0, 0)</code>，即便它有可能最后在程序中处于完全不同的位置。甚至有可能你创建的所有模型都以<code>(0, 0, 0)</code>为初始位置（然而它们会最终出现在世界的不同位置）。</p>
+<p>&emsp;&emsp;所以，你的模型的所有顶点都是在<strong>局部</strong>空间中：它们相对于你的物体来说都是局部的。</p>
+<h2 id="世界空间"><a href="#世界空间" class="headerlink" title="世界空间"></a>世界空间</h2><p>&emsp;&emsp;如果我们将我们所有的物体导入到程序当中，它们有可能会全挤在世界的原点<code>(0, 0, 0)</code>上，这并不是我们想要的结果。我们想为每一个物体定义一个位置，从而能在更大的世界当中放置它们。</p>
+<p>&emsp;&emsp;世界空间中的坐标正如其名：是指顶点相对于（游戏）世界的坐标。如果你希望将物体分散在世界上摆放（特别是非常真实的那样），这就是你希望物体变换到的空间。物体的坐标将会从局部变换到世界空间；该变换是由**模型矩阵(Model Matrix)**实现的。</p>
+<p>&emsp;&emsp;模型矩阵是一种变换矩阵，它能通过对物体进行<strong>位移</strong>、<strong>缩放</strong>、<strong>旋转</strong>来将它置于它本应该在的位置或朝向。你可以将它想像为变换一个房子，你需要先将它缩小（它在局部空间中太大了），并将其位移至郊区的一个小镇，然后在 <code>y</code> 轴上往左旋转一点以搭配附近的房子。</p>
+<h2 id="观察空间"><a href="#观察空间" class="headerlink" title="观察空间"></a>观察空间</h2><p>&emsp;&emsp;<strong>观察空间</strong>经常被人们称之为摄像机(Camera)（所以有时也称为<strong>摄像机空间</strong>(Camera Space)或<strong>视觉空间</strong>(Eye Space)）。</p>
+<p>&emsp;&emsp;观察空间是将世界空间坐标转化为用户视野前方的坐标而产生的结果。因此<strong>观察空间就是从摄像机的视角所观察到的空间</strong>。而这通常是由一系列的位移和旋转的组合来完成，平移/旋转场景从而使得特定的对象被变换到摄像机的前方。这些组合在一起的变换通常存储在一个<strong>观察矩阵(View Matrix)**里，它被用来</strong>将世界坐标变换到观察空间**。</p>
+<h2 id="裁剪空间"><a href="#裁剪空间" class="headerlink" title="裁剪空间"></a>裁剪空间</h2><p>&emsp;&emsp;在一个顶点着色器运行的最后，OpenGL期望所有的坐标都能落在一个特定的范围内，且<strong>任何在这个范围之外的点都应该被裁剪掉</strong>(Clipped)。被裁剪掉的坐标就会被忽略，所以剩下的坐标就将变为屏幕上可见的片段。这也就是<strong>裁剪空间</strong>(Clip Space)名字的由来。</p>
+<p>&emsp;&emsp;因为将所有可见的坐标都指定在 <code>-1.0</code> 到 <code>1.0</code> 的范围内不是很直观，所以我们会指定自己的坐标集(Coordinate Set)并将它变换回标准化设备坐标系。</p>
+<p>&emsp;&emsp;为了将顶点坐标从观察变换到裁剪空间，我们需要定义一个<strong>投影矩阵(Projection Matrix)**，它指定了一个范围的坐标，比如在每个维度上的 <code>-1000</code> 到 <code>1000</code>。投影矩阵接着会将在这个指定的范围内的坐标变换为</strong>标准化设备坐标**的范围<code>(-1.0, 1.0)</code>。所有在范围外的坐标不会被映射到在 <code>-1.0 </code>到 <code>1.0</code> 的范围之间，所以会被裁剪掉。在上面这个投影矩阵所指定的范围内，坐标<code>(1250, 500, 750)</code>将是不可见的，这是由于它的 <code>x</code> 坐标超出了范围，它被转化为一个大于<code>1.0</code>的标准化设备坐标，所以被裁剪掉了。</p>
+<blockquote>
+<p>&emsp;&emsp;如果只是图元(Primitive)，例如三角形，的一部分超出了裁剪体积(Clipping Volume)，则OpenGL会重新构建这个三角形为一个或多个三角形让其能够适合这个裁剪范围。</p>
+</blockquote>
+<p>&emsp;&emsp;由投影矩阵创建的<strong>观察箱</strong>(Viewing Box)被称为平截头体(Frustum)，每个出现在平截头体范围内的坐标都会最终出现在用户的屏幕上。</p>
+<p>&emsp;&emsp;<strong>将特定范围内的坐标转化到标准化设备坐标系的过程（而且它很容易被映射到2D观察空间坐标）被称之为投影(Projection)**，因为使用</strong>投影矩阵**能将3D坐标投影(Project)到很容易映射到2D的标准化设备坐标系中。</p>
+<p>&emsp;&emsp;一旦所有顶点被变换到裁剪空间，最终的操作——<strong>透视除法</strong>(Perspective Division)将会执行，在这个过程中我们将位置向量的<code>x</code>，<code>y</code>，<code>z</code>分量分别除以向量的齐次<code>w</code>分量；<strong>透视除法是将4D裁剪空间坐标变换为3D标准化设备坐标的过程</strong>。这一步会在每一个顶点着色器运行的最后被自动执行。</p>
+<p>&emsp;&emsp;在这一阶段之后，最终的坐标将会被映射到屏幕空间中，并被变换成片段。</p>
+<p>&emsp;&emsp;将观察坐标变换为裁剪坐标的投影矩阵可以为两种不同的形式，每种形式都定义了不同的平截头体。主要有：<strong>正交投影矩阵</strong>(Orthographic Projection Matrix)和<strong>透视投影矩阵</strong>(Perspective Projection Matrix)。</p>
+<h2 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a>正交投影</h2><p>&emsp;&emsp;正交投影矩阵定义了一个类似立方体的平截头箱，它定义了一个裁剪空间，在这空间之外的顶点都会被裁剪掉。创建一个正交投影矩阵需要指定可见平截头体的<strong>宽</strong>、<strong>高</strong>和<strong>长度</strong>。在使用正射投影矩阵变换至裁剪空间之后处于这个平截头体内的所有坐标将不会被裁剪掉。它的平截头体看起来像一个容器：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018191759632.png" srcset="/img/loading.gif" alt="image-20201018191759632" style="zoom:80%;" />
+
+
+
+<p>&emsp;&emsp;上面的平截头体定义了可见的坐标，它由由<strong>宽</strong>、<strong>高</strong>、<strong>近(Near)平面</strong>和<strong>远(Far)平面</strong>所指定。<strong>任何出现在近平面之前或远平面之后的坐标都会被裁剪掉</strong>。正交平截头体直接将平截头体内部的所有坐标映射为标准化设备坐标，因为每个向量的<code>w</code>分量都没有进行改变；如果<code>w</code>分量等于<code>1.0</code>，透视除法则不会改变这个坐标。</p>
+<h2 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h2><p>&emsp;&emsp;相比于正交投影，透视投影显得更加真实，它所投影的物体看起来进大远小。</p>
+<p>&emsp;&emsp;透视的效果在我们看一条无限长的高速公路或铁路时尤其明显，正如下面图片显示的那样：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018192044212.png" srcset="/img/loading.gif" alt="image-20201018192044212" style="zoom:80%;" />
+
+<p>&emsp;&emsp;由于透视，这两条线在很远的地方看起来会相交。</p>
+<p>&emsp;&emsp;这正是透视投影想要模仿的效果，它是使用<strong>透视投影矩阵</strong>来完成的。这个投影矩阵将给定的平截头体范围映射到裁剪空间，除此之外还修改了每个顶点坐标的<code>w</code>值，从而使得<strong>离观察者越远的顶点坐标<code>w</code>分量越大</strong>。被变换到裁剪空间的坐标都会在 <code>-w</code> 到 <code>w</code> 的范围之间（任何大于这个范围的坐标都会被裁剪掉）。OpenGL要求所有可见的坐标都落在 <code>-1.0</code> 到 <code>1.0</code> 范围内，作为顶点着色器最后的输出，因此，一旦坐标在裁剪空间内之后，透视除法就会被应用到裁剪空间坐标上：<br>$$<br>out = \begin{pmatrix} x /w \ y / w \ z / w \end{pmatrix}<br>$$<br>&emsp;&emsp;顶点坐标的每个分量都会除以它的<code>w</code>分量，距离观察者越远顶点坐标就会越小。</p>
+<blockquote>
+<p>&emsp;&emsp;如果你对正射投影矩阵和透视投影矩阵是如何计算的很感兴趣（且不会对数学感到恐惧的话）推荐这篇由Songho写的<a target="_blank" rel="noopener" href="http://www.songho.ca/opengl/gl_projectionmatrix.html">文章</a>。</p>
+</blockquote>
+<p>&emsp;&emsp;一个透视平截头体可以被看作一个不均匀形状的箱子，在这个箱子内部的每个坐标都会被映射到裁剪空间上的一个点。下面是一张透视平截头体的图片：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018192418084.png" srcset="/img/loading.gif" alt="image-20201018192418084" style="zoom:80%;" />
+
+<p>&emsp;&emsp;<code>fov</code> 值表示了它的视野（field of view）大小，一般设置为 <code>45</code> 会显得比较真实。此外，若要创建一个这样的平截头体，还需要提供宽高比、近平面和远平面距离。通常设置近距离为<code>0.1</code>，而远距离设为<code>100.0</code>。所有在近平面和远平面内且处于平截头体内的顶点都会被渲染。</p>
+<blockquote>
+<p>&emsp;&emsp;当你把透视矩阵的 <em>near</em> 值设置太大时（如<code>10.0</code>），OpenGL会将靠近摄像机的坐标（在<code>0.0</code>和<code>10.0</code>之间）都裁剪掉，这会导致一个你在游戏中很熟悉的视觉效果：在太过靠近一个物体的时候你的视线会直接穿过去。</p>
+</blockquote>
+<h2 id="将变换矩阵组合到一起"><a href="#将变换矩阵组合到一起" class="headerlink" title="将变换矩阵组合到一起"></a>将变换矩阵组合到一起</h2><p>&emsp;&emsp;上述的每一个步骤都创建了一个变换矩阵：<strong>模型矩阵</strong>、<strong>观察矩阵</strong>和<strong>投影矩阵</strong>。一个顶点坐标将会根据以下过程被变换到裁剪坐标：<br>$$<br>V_{clip} = M_{projection} \cdot M_{view} \cdot M_{model} \cdot V_{local}<br>$$<br>&emsp;&emsp;注意<strong>矩阵运算的顺序是相反的</strong>（记住我们需要从右往左阅读矩阵的乘法）。</p>
+<h2 id="右手坐标系"><a href="#右手坐标系" class="headerlink" title="右手坐标系"></a>右手坐标系</h2><p>&emsp;&emsp;OpenGL是一个右手坐标系。简单来说，就是正 <code>x</code> 轴在你的右手边，正 <code>y</code> 轴朝上，而正 <code>z</code> 轴是朝向后方的。想象你的屏幕处于三个轴的中心，则正 <code>z</code> 轴穿过你的屏幕朝向你。坐标系画起来如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018193442847.png" srcset="/img/loading.gif" alt="image-20201018193442847" style="zoom:80%;" />
+
+<p>&emsp;&emsp;为了理解为什么被称为右手坐标系，按如下的步骤做：</p>
+<ul>
+<li>沿着正<code>y</code>轴方向伸出你的右臂，手指着上方。</li>
+<li>大拇指指向右方。</li>
+<li>食指指向上方。</li>
+<li>中指向下弯曲<code>90</code>度。</li>
+</ul>
+<p>&emsp;&emsp;如果你的动作正确，那么你的大拇指指向正<code>x</code>轴方向，食指指向正<code>y</code>轴方向，中指指向正<code>z</code>轴方向。</p>
+<p>&emsp;&emsp;如果你用左臂来做这些动作，你会发现**<code>z</code>轴的方向是相反的<strong>。这个叫做</strong>左手坐标系**，它被DirectX广泛地使用。注意在标准化设备坐标系中OpenGL实际上使用的是左手坐标系（投影矩阵交换了左右手）。</p>
+<h2 id="欧拉角"><a href="#欧拉角" class="headerlink" title="欧拉角"></a>欧拉角</h2><p>&emsp;&emsp;欧拉角(Euler Angle)是可以表示3D空间中任何旋转的3个值，由莱昂哈德·欧拉(Leonhard Euler)在18世纪提出。一共有3种欧拉角：<strong>俯仰角(Pitch)**、</strong>偏航角(Yaw)<strong>和</strong>滚转角(Roll)**，下面的图片展示了它们的含义：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018194424470.png" srcset="/img/loading.gif" alt="image-20201018194424470" style="zoom:80%;" />
+
+<p>&emsp;&emsp;对于我们的摄像机系统来说，我们只关心<strong>俯仰角</strong>和<strong>偏航角</strong></p>
+<p>&emsp;&emsp;给定一个俯仰角和偏航角，我们可以把它们转换为一个代表新的方向向量的3D向量。</p>
+<p>&emsp;&emsp;我们先从最基本的情况开始：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018194704239.png" srcset="/img/loading.gif" alt="image-20201018194704239" style="zoom:80%;" />
+
+<p>&emsp;&emsp;把斜边边长定义为<code>1</code>，我们就能知道<strong>邻边</strong>的长度是 $\cos \ \color{red}x/\color{purple}h = \cos \ \color{red}x/\color{purple}1 = \cos\ \color{red}x$，它的<strong>对边</strong>是 $\sin \ \color{green}y/\color{purple}h = \sin \ \color{green}y/\color{purple}1 = \sin\ \color{green}y$。这样我们获得了能够得到<code>x</code>和<code>y</code>方向长度的通用公式，它们取决于所给的角度。我们使用它来计算方向向量的分量：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018195303241.png" srcset="/img/loading.gif" alt="image-20201018195303241" style="zoom:80%;" />
+
+<p>&emsp;&emsp;如果我们想象自己在<code>xz</code>平面上，看向<code>y</code>轴，我们可以基于第一个三角形计算来计算它的<code>长度/y方向的强度</code>(Strength)（我们往上或往下看多少）。</p>
+<pre><code class="hljs js">direction.y = sin(glm::radians(pitch)); <span class="hljs-comment">// 注意我们先把角度转为弧度</span></code></pre>
+
+<p>&emsp;&emsp;这里我们只更新了<code>y</code>值，仔细观察<code>x</code>和<code>z</code>分量也被影响了。从三角形中我们可以看到它们的值等于：</p>
+<pre><code class="hljs js">direction.x = cos(glm::radians(pitch));
+direction.z = cos(glm::radians(pitch));</code></pre>
+
+<p>&emsp;&emsp;下面来看航偏角：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018195223028.png" srcset="/img/loading.gif" alt="image-20201018195223028" style="zoom:80%;" />
+
+<p>&emsp;&emsp;就像俯仰角的三角形一样，我们可以看到<code>x</code>分量取决于<code>cos(yaw)</code>的值，<code>z</code>值同样取决于偏航角的正弦值。把这个加到前面的值中，会得到基于俯仰角和偏航角的方向向量：</p>
+<pre><code class="hljs js">direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw)); <span class="hljs-comment">// direction代表摄像机的前轴(Front)，这个前轴是和下图的摄像机的方向向量是相反的</span>
+direction.y = sin(glm::radians(pitch));
+direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));</code></pre>
+
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018195835526.png" srcset="/img/loading.gif" alt="image-20201018195835526" style="zoom:80%;" />
+
+<p>&emsp;&emsp;这样我们就有了一个可以把俯仰角和偏航角转化为用来自由旋转视角的摄像机的3维方向向量了。</p>
+<h2 id="鼠标输入"><a href="#鼠标输入" class="headerlink" title="鼠标输入"></a>鼠标输入</h2><p>&emsp;&emsp;偏航角和俯仰角是通过鼠标（或手柄）移动获得的，<strong>水平的移动影响偏航角</strong>，<strong>竖直的移动影响俯仰角</strong>。它的原理就是，储存上一帧鼠标的位置，在当前帧中我们当前计算鼠标位置与上一帧的位置相差多少。如果水平/竖直差别越大那么俯仰角或偏航角就改变越大，也就是摄像机需要移动更多的距离。</p>
+<p>&emsp;&emsp;在根据鼠标移动获取了俯仰角与偏航角后，就能用它们来计算真正的方向向量了：</p>
+<pre><code class="hljs js">glm::vec3 front;
+front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+front.y = sin(glm::radians(pitch));
+front.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+cameraFront = glm::normalize(front);</code></pre>
+
+<p>&emsp;&emsp;计算出来的方向向量就会包含根据鼠标移动计算出来的所有旋转了。</p>
+<blockquote>
+<p>&emsp;&emsp;<strong>注意</strong>，使用欧拉角的摄像机系统并不完美。根据你的视角限制或者是配置，你仍然可能引入<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Gimbal_lock">万向节死锁</a>问题。最好的摄像机系统是使用四元数(Quaternions)的。（[这里](<a target="_blank" rel="noopener" href="https://github.com/cybercser/OpenGL_3_3_Tutorial_Translation/blob/master/Tutorial">https://github.com/cybercser/OpenGL_3_3_Tutorial_Translation/blob/master/Tutorial</a> 17 Rotations.md)可以查看四元数摄像机的实现）</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/WebGL/">WebGL</a>
+                    
+                      <a class="hover-with-bg" href="/categories/WebGL/ThreeJS/">ThreeJS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9D%90%E6%A0%87%E7%B3%BB/">坐标系</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E6%8D%A2%E7%9F%A9%E9%98%B5/">转换矩阵</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/18/WebGL/ThreeJS/threeJS-%E4%B8%AD%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">
+                        <span class="hidden-mobile">threeJS 中数学相关内容</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "坐标系相关知识&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

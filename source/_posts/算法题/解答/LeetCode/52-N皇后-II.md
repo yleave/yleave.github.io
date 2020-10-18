@@ -1,5 +1,5 @@
 ---
-title: 52. N皇后 II
+title: LeetCode 52. N皇后 II
 index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/LeetCode.jpg
 banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
 date: 2020-10-17 12:05:48

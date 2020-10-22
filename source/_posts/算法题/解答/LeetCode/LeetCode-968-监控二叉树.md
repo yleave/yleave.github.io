@@ -4,7 +4,11 @@ index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/LeetCode.jpg
 banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg'
 date: 2020-09-23 00:04:54
 categories:
+    - 算法题
+    - 解答
+    - LeetCode
 tags:
+    - 二叉树
 ---
 
 https://leetcode-cn.com/problems/binary-tree-cameras/

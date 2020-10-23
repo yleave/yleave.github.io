@@ -251,7 +251,6 @@
  / \
 v   v
 <span class="hljs-number">2</span>--&gt;<span class="hljs-number">3</span></code></pre>
-
 <p><strong>示例 2:</strong></p>
 <p>输入: <code>[[1,2], [2,3], [3,4], [4,1], [1,5]]</code></p>
 <p>输出: <code>[4,1]</code></p>
@@ -260,7 +259,6 @@ v   v
      ^    |
      |    v
      <span class="hljs-number">4</span> &lt;- <span class="hljs-number">3</span></code></pre>
-
 <p><strong>注意:</strong></p>
 <ul>
 <li>二维数组大小的在<code>3</code>到<code>1000</code>范围内。</li>
@@ -269,16 +267,13 @@ v   v
 <h2 id="解法1：并查集"><a href="#解法1：并查集" class="headerlink" title="解法1：并查集"></a>解法1：并查集</h2><p>思路来源：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/comments/70573">Nu11Pointer</a></p>
 <p>&emsp;&emsp;对于一条能使一棵树变成图的边，它有以下几种情况：</p>
 <ol>
-<li><img src="https://i.loli.net/2020/09/17/OJIs4VDuBwAyxSd.png" srcset="/img/loading.gif" alt="image-20200917170455420" style="zoom:80%;" />  
-
+<li><p><img src="https://i.loli.net/2020/09/17/OJIs4VDuBwAyxSd.png" srcset="/img/loading.gif" alt="image-20200917170455420" style="zoom:80%;" />  </p>
 <p>这条边从任意节点出发，指向了根结点，此时树形成了环，树也就没有根结点了（表现就是所有结点的入度都为 1），而这种情况下，处于这个环中的所有边都能被删除，因为删除任意一条边都能变成一棵正常的树，这也就是题目中提到的“多条边”的情况，但根据题目，需要删除边集中最后一条在环中的边。</p>
 </li>
-<li><img src="https://i.loli.net/2020/09/17/Cazh1PI3D4YecFn.png" srcset="/img/loading.gif" alt="image-20200917170905916" style="zoom:80%;" />  
-
+<li><p><img src="https://i.loli.net/2020/09/17/Cazh1PI3D4YecFn.png" srcset="/img/loading.gif" alt="image-20200917170905916" style="zoom:80%;" />  </p>
 <p>这条边从任意节点出发，指向了其祖先节点，树中形成了环，但仍有根结点，不过造成的后果就是有一个节点的入度变成 2了。这种情况下，只能删除环中的且造成 2 个入度的边，即图中橙色的边。</p>
 </li>
-<li><img src="https://i.loli.net/2020/09/17/qnpHve92sCIwOPW.png" srcset="/img/loading.gif" alt="image-20200917171311259" style="zoom:80%;" /> 
-
+<li><p><img src="https://i.loli.net/2020/09/17/qnpHve92sCIwOPW.png" srcset="/img/loading.gif" alt="image-20200917171311259" style="zoom:80%;" /> </p>
 <p> 这条边从任意节点出发，指向了一个非祖先节点。这种情况下，有一个节点的入度会为 2，这两条造成入度为 2 的边都能删除，但根据题目，需要删除后出现的那条。</p>
 </li>
 </ol>
@@ -350,9 +345,6 @@ v   v
 
     <span class="hljs-keyword">return</span> meetCircle ? res[<span class="hljs-number">0</span>] : res[<span class="hljs-number">1</span>];
 &#125;;</code></pre>
-
-
-
 <p>&emsp;&emsp;优化后的代码：只遍历了一次边集</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> findRedundantDirectedConnection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">edges</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [], father = [];

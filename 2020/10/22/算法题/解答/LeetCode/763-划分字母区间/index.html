@@ -299,9 +299,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
-
-
 <h2 id="解法2：贪心"><a href="#解法2：贪心" class="headerlink" title="解法2：贪心"></a>解法2：贪心</h2><p>&emsp;&emsp;解法2 为<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/partition-labels/solution/hua-fen-zi-mu-qu-jian-by-leetcode-solution/">官方的思路</a> ，具体做法与解法1类似，不过会比较简洁。</p>
 <p>&emsp;&emsp;主要思路是先获取到所有字母的最大下标位置，然后遍历所有字母，不断更新最大下标位置 <code>max</code>，当遍历到了这个最大下标位置 <code>max</code> 时，就说明已遍历到的字母都在当前范围内了（因为对于每一个遍历的字母，都会比较字母的最大下标位置来更新范围的最大下标 <code>max</code>），这时候划分范围一定能得到最多的划分区域。</p>
 <p>&emsp;&emsp;获取范围还需要一个最小下标 <code>min</code>，<code>min</code> 初始时为 <code>0</code>，每当划分一个范围时，就更新 <code>min</code> 为 <code>max + 1</code>，代表下一个范围的最小下标。</p>
@@ -325,7 +322,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 
             </div>
             <hr>

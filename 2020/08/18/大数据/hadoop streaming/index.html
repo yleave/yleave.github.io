@@ -250,7 +250,6 @@
 <span class="hljs-number">4</span>    <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
 <span class="hljs-number">5</span>    <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
 <span class="hljs-number">6</span>    <span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
-
 <p>&emsp;&emsp;所谓 “倒排” 就是将数据中的每一个字符 <code>word</code> 与其前面的编号 <code>num</code> 对应起来，如 <code>bread</code>，它在编号 <code>1</code>、<code>4</code>、<code>6</code> 中都有出现，因此 倒排 的结果就是：<code>bread 1 4 6</code>。</p>
 <p>&emsp;&emsp;首先，编写一个 <code>mapper</code> 来将数据拆分为一个个的 <code>word, num</code> 对：</p>
 <pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span>
@@ -266,8 +265,7 @@
         word = words[i]
         print(<span class="hljs-string">&#x27;%s\t%s&#x27;</span> % (word, num))
 </code></pre>
-
-<p>&emsp;&emsp;接着，编写 <code>reducer </code>，将同一个 <code>word</code> 的所属编号收集到一起：</p>
+<p>&emsp;&emsp;接着，编写 <code>reducer</code>，将同一个 <code>word</code> 的所属编号收集到一起：</p>
 <pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python</span>
 <span class="hljs-comment">#coding:utf-8</span>
 
@@ -295,12 +293,10 @@ wordCount = <span class="hljs-number">0</span>
             print(<span class="hljs-string">&#x27;%s\t%r&#x27;</span> % (curWord, output[curWord]))
         wordCount = <span class="hljs-number">1</span>
         curWord = word</code></pre>
-
 <h2 id="执行-MR-脚本"><a href="#执行-MR-脚本" class="headerlink" title="执行 MR 脚本"></a>执行 MR 脚本</h2><p>&emsp;&emsp;通常执行 MR 脚本需要在 hadoop 系统上工作，但是为了防止出错， <code>mapper</code> 脚本可以在本地测试，而 <code>reducer</code> 脚本通常涉及排序，在本地测试可能会得到错误结果。</p>
 <h3 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h3><p>&emsp;&emsp;在当前路径下有 <code>t1.txt</code> 存放数据，<code>mapper/mapper1.py</code> 为 mapper 脚本，在 <code>shell</code> 上运行命令：</p>
 <p><code>cat t1.txt | python mapper/mapper1.py</code> ，这样 mapper 运行的结果就会打印在屏幕上了，若想要输出到文件中，可以使用 <code>&gt;</code> ，即 <code>cat t1.txt | python mapper/mapper1.py &gt; out1.txt</code></p>
-<img src="https://i.loli.net/2020/09/11/iXvlZ6Tx2MoReJs.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" />
-
+<p><img src="https://i.loli.net/2020/09/11/iXvlZ6Tx2MoReJs.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;若想要读取一个文件夹下的所有文件的话，则改为：<code>cat data/*.txt | python mapper/mapper1.py</code> </p>
 <h3 id="分布式系统上执行"><a href="#分布式系统上执行" class="headerlink" title="分布式系统上执行"></a>分布式系统上执行</h3><p>&emsp;&emsp;首先，将数据上传到 HDFS 的 <code>/pj</code> 目录下：<code>hadoop fs -put t1.txt /pj</code></p>
 <p>&emsp;&emsp;然后使用 hadoop streaming 执行 MapReduce，hadoop streaming 需要提供一些设置参数，可以在命令行中直接输入，也可以编写 <code>shell</code> 脚本来执行（推荐）</p>
@@ -317,18 +313,17 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 -file mapper/mapper1.py -mapper mapper/mapper1.py  \
 -file reducer/reducer1.py -reducer reducer/reducer1.py  \
 -input /pj/t1.txt -output /pj/output/</code></pre>
-
 <p>&emsp;&emsp;简单说明一下这个 <code>shell</code> 脚本：</p>
 <p>&emsp;&emsp;第一行 <code>#!/bin/bash</code> 说明这个是一个 <code>shell</code> 脚本</p>
 <p>&emsp;&emsp;第二行中的 <code>hadoop-streaming-2.7.7.jar</code> jar 包路径是在自己安装 hadoop 的路径下，应该都会有的</p>
 <p>&emsp;&emsp;再下面，<code>-jobconfig</code> 的那些参数根据自己的需要来设置，具体可以参照<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">官网</a> 和这篇<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">博客</a>的介绍</p>
 <p>&emsp;&emsp;而 <code>file</code>、<code>mapper</code>、<code>reducer</code>、<code>input</code> 和 <code>output</code> 是必须的。</p>
 <p>&emsp;&emsp;其中 <code>file</code> 选项是让f ramework 把可执行文件作为作业的一部分，一起打包提交。</p>
-<p>&emsp;&emsp;接下来，运行这个 <code>shell </code> 脚本，假设这个 <code>shell</code> 脚本的文件名是 <code>run.sh</code>。</p>
+<p>&emsp;&emsp;接下来，运行这个 <code>shell</code> 脚本，假设这个 <code>shell</code> 脚本的文件名是 <code>run.sh</code>。</p>
 <p>&emsp;&emsp;<code>shell</code> 脚本有三种运行方式：</p>
 <ol>
 <li><p>先输入 <code>chmod +x run.sh</code> 赋予可执行权限，然后在命令行中输入 <code>./run.sh</code> 即可运行</p>
-<img src="https://i.loli.net/2020/09/11/1SlUOAciyk4GLhK.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" />
+<p><img src="https://i.loli.net/2020/09/11/1SlUOAciyk4GLhK.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" /></p>
 </li>
 <li><p>使用 <code>sh run.sh</code> 运行</p>
 </li>
@@ -336,12 +331,9 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 </li>
 </ol>
 <p>&emsp;&emsp;脚本若正确执行完毕，拉取 HDFS 上的结果：<code>hadoop fs -get /pj/output</code></p>
-   <img src="https://i.loli.net/2020/09/11/kIN7CSXZxvsniMp.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" />
-
-
+<p>   <img src="https://i.loli.net/2020/09/11/kIN7CSXZxvsniMp.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;顺便一提，若不是使用编写 <code>shell</code> 脚本的方式运行，则上面的 hadoop streaming 运行方式为：</p>
-<img src="https://i.loli.net/2020/09/11/G4fhzH6aeVMjX8E.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" />
-
+<p><img src="https://i.loli.net/2020/09/11/G4fhzH6aeVMjX8E.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;即将脚本里的内容全写在命令行中。</p>
 <h2 id="关于-hadoop-streaming-配置的一些参考学习文章"><a href="#关于-hadoop-streaming-配置的一些参考学习文章" class="headerlink" title="关于 hadoop streaming 配置的一些参考学习文章"></a>关于 hadoop streaming 配置的一些参考学习文章</h2><p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/r1.0.4/cn/streaming.html">Hadoop Streaming</a></p>
 <p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/44024.html?spm=a2c4g.11186623.6.914.162d19d6A0ZelV">阿里云Hadoop Streaming</a></p>

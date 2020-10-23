@@ -255,7 +255,6 @@
   <span class="hljs-number">2</span>
  /
 <span class="hljs-number">2</span></code></pre>
-
 <p>&emsp;&emsp;返回 <code>[2]</code></p>
 <p><strong>提示</strong>：如果众数超过1个，不需考虑输出顺序</p>
 <p><strong>进阶：</strong> 你可以不使用额外的空间吗？（假设由递归产生的隐式调用栈的开销不被计算在内）</p>
@@ -310,7 +309,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 <p>C 版本：</p>
 <pre><code class="hljs c"><span class="hljs-keyword">int</span> max;
 <span class="hljs-keyword">int</span> count;
@@ -367,9 +365,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;</code></pre>
-
-
-
 <h2 id="解法2：Morris-算法"><a href="#解法2：Morris-算法" class="headerlink" title="解法2：Morris 算法"></a>解法2：Morris 算法</h2><p>&emsp;&emsp;所有能使用中序遍历解决的问题都能使用 Morris 算法来优化其空间复杂度。</p>
 <p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法详情可看</a></p>
 <p>&emsp;&emsp;在使用 Morris 算法时最重要的是要把握好节点遍历的时机。</p>

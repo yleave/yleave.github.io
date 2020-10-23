@@ -243,32 +243,23 @@
 <p>&emsp;&emsp;效果确实好了很多。</p>
 <h2 id="七牛云图床吐槽"><a href="#七牛云图床吐槽" class="headerlink" title="七牛云图床吐槽"></a>七牛云图床吐槽</h2><p>&emsp;&emsp;<font color="skyblye" style="font-size:150%;font-weight:bold"> 不过!!! </font></p>
 <p>&emsp;&emsp;虽然七牛云有提供免费的 10G 空间，但是如果想要真正使用七牛云图床的完整服务的话，你的网站<strong>需要备案</strong>，也就是说需要自己租一个服务器，在上面部署网站（掏了下口袋，空空的，想想还是算了吧）。</p>
-<img src="https://i.loli.net/2020/09/18/Ei4Smw3g5lD8M2I.jpg" srcset="/img/loading.gif" alt="穷" style="zoom:50%;" />
-
+<p><img src="https://i.loli.net/2020/09/18/Ei4Smw3g5lD8M2I.jpg" srcset="/img/loading.gif" alt="穷" style="zoom:50%;" /></p>
 <p>&emsp;&emsp;否则，你只能得到一个<strong>临时域名</strong>，也就是你你资源路径的前面部分，如 <code>http://xxxxx.hd-bkt.clouddn.com/1.jpg</code> 。然后这个临时域名会在 30 天之后回收！！这意味着 30 天后你网站中所有使用七牛云存储的静态资源都不能正常访问了！！</p>
-<img src="https://i.loli.net/2020/09/18/meyl9OXUJAZu2xr.png" srcset="/img/loading.gif" alt="image-20200918153307205" style="zoom:80%;" />
-
+<p><img src="https://i.loli.net/2020/09/18/meyl9OXUJAZu2xr.png" srcset="/img/loading.gif" alt="image-20200918153307205" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;其次，七牛云上的临时域名还是 <code>HTTP</code> 的，就算使用了备案的域名绑定，想使用 <code>HTTPS</code> 的域名也需要交费（又掏了掏口袋）。</p>
 <p>&emsp;&emsp;你的网站就会变成这样（看着是不是很不爽）</p>
-<img src="https://i.loli.net/2020/09/18/9jygoJbrIdp4q7l.png" srcset="/img/loading.gif" alt="image-20200918154227852" style="zoom:80%;" />
-
+<p><img src="https://i.loli.net/2020/09/18/9jygoJbrIdp4q7l.png" srcset="/img/loading.gif" alt="image-20200918154227852" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;因此，果断抛弃七牛云，尝试使用 github 图床 + jsDelivr CDN加速访问！</p>
 <p>&emsp;&emsp;好了，说了这么多废话，下面是配置过程。</p>
 <h1 id="配置-github-图床"><a href="#配置-github-图床" class="headerlink" title="配置 github 图床"></a>配置 github 图床</h1><p>&emsp;&emsp;首先，新建一个 github 仓库：</p>
-<img src="https://i.loli.net/2020/09/18/uk7X3qAhBJTIzNQ.png" srcset="/img/loading.gif" alt="image-20200918154812090" style="zoom: 50%;" />
-
+<p><img src="https://i.loli.net/2020/09/18/uk7X3qAhBJTIzNQ.png" srcset="/img/loading.gif" alt="image-20200918154812090" style="zoom: 50%;" /></p>
 <p>&emsp;&emsp;依次点击 Settings -&gt; DeveloperSettings -&gt; Personal access tokens -&gt;  Generate new token</p>
 <p><img src="https://i.loli.net/2020/09/18/ZzsiVL1nSIbkKlH.png" srcset="/img/loading.gif" alt="image-20200918155050224" style="zoom: 67%;" /> <img src="https://i.loli.net/2020/09/18/GKp6XhkMWPgnaoT.png" srcset="/img/loading.gif" alt="image-20200918155149215" style="zoom:50%;" /> <img src="https://i.loli.net/2020/09/18/A6iyYX3ObQLZraI.png" srcset="/img/loading.gif" alt="image-20200918155324860" style="zoom:50%;" /></p>
 <p>&emsp;&emsp;填写描述，再勾选 repo，最后拉到底点击 Generate token。</p>
-<img src="https://i.loli.net/2020/09/18/w2dSAbWyuz6QXF8.png" srcset="/img/loading.gif" alt="image-20200918155537060" style="zoom:67%;" /> 
-
-<img src="https://i.loli.net/2020/09/18/raUQvJ4lgGb7R1y.png" srcset="/img/loading.gif" alt="image-20200918155736272" style="zoom:50%;" /> 
-
-
-
+<p><img src="https://i.loli.net/2020/09/18/w2dSAbWyuz6QXF8.png" srcset="/img/loading.gif" alt="image-20200918155537060" style="zoom:67%;" /> </p>
+<p><img src="https://i.loli.net/2020/09/18/raUQvJ4lgGb7R1y.png" srcset="/img/loading.gif" alt="image-20200918155736272" style="zoom:50%;" /> </p>
 <h1 id="PicGo-配置"><a href="#PicGo-配置" class="headerlink" title="PicGo 配置"></a>PicGo 配置</h1><p>&emsp;&emsp;然后打开 <a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/picgo/releases">PicGo</a> 进行配置 （PicGo 是图床管理工具，能配合种图床使用，typora 中也支持使用 PicGo 自动上传图片，使用起来不要太方便了~</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918174221758.png" srcset="/img/loading.gif" alt="image-20200918174221758" style="zoom: 67%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918174221758.png" srcset="/img/loading.gif" alt="image-20200918174221758" style="zoom: 67%;" /></p>
 <p>&emsp;&emsp;配置如上。</p>
 <ul>
 <li>仓库名：格式是 ：github用户名/图床仓库名</li>
@@ -282,26 +273,20 @@
 <p>&emsp;&emsp;如我在 <code>imagehost</code> 仓库的 <code>img</code> 文件夹下有一张图片 <code>default.png</code> ，这样就能通过：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/default.png">https://cdn.jsdelivr.net/gh/yleave/imagehost/img/default.png</a> 来访问它了。</p>
 <p>&emsp;&emsp;当然，jsDelivr 不止能加速图片的访问，对于视频文件和音频文件也能使用同样的方法访问，不过美中不足的是仓库大小不能超过 50M。</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="Imagine"><a href="#Imagine" class="headerlink" title="Imagine"></a>Imagine</h2><p>&emsp;&emsp;jsDelivr 限制了仓库大小，因此图片的压缩很重要，这里再推荐一个图片压缩工具 <a target="_blank" rel="noopener" href="https://github.com/meowtec/Imagine">Imagine</a> ，非常好用，压缩效果很好，1M多的图片压缩成不到 100k 的图片也基本上看不出什么差别：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175722716.png" srcset="/img/loading.gif" alt="image-20200918175722716" style="zoom: 67%;" />
-
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175745739.png" srcset="/img/loading.gif" alt="image-20200918175745739" style="zoom:67%;" />
-
-
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175722716.png" srcset="/img/loading.gif" alt="image-20200918175722716" style="zoom: 67%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175745739.png" srcset="/img/loading.gif" alt="image-20200918175745739" style="zoom:67%;" /></p>
 <h2 id="staticaly-与-githack"><a href="#staticaly-与-githack" class="headerlink" title="staticaly 与 githack"></a>staticaly 与 githack</h2><p>&emsp;&emsp;除了 jsDelivr 外，还有几个免费的且不限流量的CDN， <code>staticaly</code> <code>githack</code> ，它们都是全球通用的。</p>
 <h3 id="staticaly"><a href="#staticaly" class="headerlink" title="staticaly"></a>staticaly</h3><p>&emsp;&emsp;官网地址：<a target="_blank" rel="noopener" href="https://statically.io/">https://www.staticaly.com</a></p>
 <p>&emsp;&emsp;轻松地从GitHub / GitLab / Bitbucket等加载您的项目 没有流量限制或限制。</p>
 <p>&emsp;&emsp;文件通过超快速全球CDN提供。 在URL（不是分支）中使用特定标记或提交哈希。</p>
 <p>&emsp;&emsp;根据URL永久缓存文件。 除master分支外，文件在浏览器中缓存1年。 具体用法：</p>
 <p>&emsp;&emsp;<code>staticaly</code> 的用法：进入网站，将你的资源链接贴上去就会有了可用的链接：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005010468.png" srcset="/img/loading.gif" alt="image-20200919005010468" style="zoom: 50%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005010468.png" srcset="/img/loading.gif" alt="image-20200919005010468" style="zoom: 50%;" /></p>
 <h3 id="githack"><a href="#githack" class="headerlink" title="githack"></a>githack</h3><p><strong>该 CDN 亲测需要接外网</strong></p>
 <p>&emsp;&emsp;直接从GitHub，Bitbucket或GitLab提供原始文件</p>
 <p>&emsp;&emsp;官网地址：<a target="_blank" rel="noopener" href="https://raw.githack.com/">http://raw.githack.com/</a> 具体用法和上面的<code>staticaly</code>很类似</p>
 <p>&emsp;&emsp;同样，在网站中输入资源链接，如：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005149597.png" srcset="/img/loading.gif" alt="image-20200919005149597" style="zoom: 80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005149597.png" srcset="/img/loading.gif" alt="image-20200919005149597" style="zoom: 80%;" /></p>
 <p>&emsp;&emsp;有两个 URL 版本：生产模式和开发模式，亲测生产模式速度会更快些，开发模式的 URL 会更“工整” 些，以便测试。不过别看生产模式的 URL 是有一长串字符，这些只要你前面的路径没变，这些字符都是一样的，因此同样比较方便统一路径。</p>
 <p>&emsp;&emsp;当然，最最具有吸引力的就是它没有限制仓库容量，并且是永久免费的！</p>
 <hr>

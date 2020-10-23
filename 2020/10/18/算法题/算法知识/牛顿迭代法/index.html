@@ -238,19 +238,23 @@
               <p>转自 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/solution/x-de-ping-fang-gen-by-leetcode-solution/">LeetCode 解答</a></p>
 <p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/4581403/blog/4561900">一篇解释得很细的文章</a></p>
 <hr>
-<p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95">牛顿迭代法</a>是一种可以用来快速求解函数零点的方法。</p>
+<p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/牛顿迭代法">牛顿迭代法</a>是一种可以用来快速求解函数零点的方法。</p>
 <p>&emsp;&emsp;以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">LeetCode</a> 上的一题为例：模拟 <code>int sqrt(x)</code> 函数，返回的开方值向下取整。</p>
-<p>&emsp;&emsp;为了叙述方便，我们用 <code>C</code> 表示待求出平方根的那个整数。显然，<code>C</code> 的平方根就是函数<br>$$<br>y = f(x) = x^2 - C<br>$$<br>&emsp;&emsp;的零点。</p>
-<p>&emsp;&emsp;牛顿迭代法的本质是借助泰勒级数，从初始值开始快速向零点逼近。我们任取一个 $x_0$ 作为初始值，在每一步的迭代中，我们找到图像上的点 $(x_i,f(x_i))$ ，过该点做一条斜率为该点导数 $f’(x_i)$ 的直线，直线与 <code>x</code> 轴的交点记为 $x_{i+1}$，$x_{i+1}$ 相对于 $x_i$ 而言距离零点更加接近。进过多次迭代后，就能得到一个非常接近零点的与 <code>x</code> 轴的交点。</p>
+<p>&emsp;&emsp;为了叙述方便，我们用 <code>C</code> 表示待求出平方根的那个整数。显然，<code>C</code> 的平方根就是函数</p>
+<script type="math/tex; mode=display">
+y = f(x) = x^2 - C</script><p>&emsp;&emsp;的零点。</p>
+<p>&emsp;&emsp;牛顿迭代法的本质是借助泰勒级数，从初始值开始快速向零点逼近。我们任取一个 $x<em>0$ 作为初始值，在每一步的迭代中，我们找到图像上的点 $(x_i,f(x_i))$ ，过该点做一条斜率为该点导数 $f’(x_i)$ 的直线，直线与 <code>x</code> 轴的交点记为 $x</em>{i+1}$，$x_{i+1}$ 相对于 $x_i$ 而言距离零点更加接近。进过多次迭代后，就能得到一个非常接近零点的与 <code>x</code> 轴的交点。</p>
 <p>&emsp;&emsp;下图给出了从 $x_0$ 开始迭代两次，得到 $x_1$ 和 $x_2$ 的过程：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018114250949.png" srcset="/img/loading.gif" alt="image-20201018114250949" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018114250949.png" srcset="/img/loading.gif" alt="image-20201018114250949" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;首先，我们选择 $x_0 = C$ 作为初始值。</p>
-<p>&emsp;&emsp;在每一步的迭代中，通过当前与 <code>x</code> 轴的交点 $x_i$ ，得到函数图像上的一点 $(x_i, x^2 - C)$ ，做一条斜率为 $f’(x_i) = 2x_i$ 的直线，直线方程为：<br>$$<br>y - y_0 = k(x - x_0)<br>$$</p>
-<p>$$<br>y = 2x_i(x - x_i) + x_i^2 - C<br>$$</p>
-<p>&emsp;&emsp;因此，与 <code>x</code> 轴的交点为方程 $2x_ix - (x_i^2 + C) = 0$ 的解，即为新的迭代结果 $x_{i+1}$ ：<br>$$<br>x_{i+1} = \frac{1}{2}(x_i + \frac{C}{x_i})<br>$$<br>&emsp;&emsp;在进行 <code>k</code> 次迭代之后，$x_k$ 与真实值 $\sqrt{C}$ 足够接近，即可作为答案。</p>
+<p>&emsp;&emsp;在每一步的迭代中，通过当前与 <code>x</code> 轴的交点 $x_i$ ，得到函数图像上的一点 $(x_i, x^2 - C)$ ，做一条斜率为 $f’(x_i) = 2x_i$ 的直线，直线方程为：</p>
+<script type="math/tex; mode=display">
+y - y_0 = k(x - x_0)</script><script type="math/tex; mode=display">
+y = 2x_i(x - x_i) + x_i^2 - C</script><p>&emsp;&emsp;因此，与 <code>x</code> 轴的交点为方程 $2x<em>ix - (x_i^2 + C) = 0$ 的解，即为新的迭代结果 $x</em>{i+1}$ ：</p>
+<script type="math/tex; mode=display">
+x_{i+1} = \frac{1}{2}(x_i + \frac{C}{x_i})</script><p>&emsp;&emsp;在进行 <code>k</code> 次迭代之后，$x_k$ 与真实值 $\sqrt{C}$ 足够接近，即可作为答案。</p>
 <p>&emsp;&emsp;<strong>选择 $x_0 = C$ 作为初始值的原因：</strong></p>
-<p>&emsp;&emsp;因为函数 $y = x^2 - C$ 有两个零点 $-\sqrt{C}$ 和 $\sqrt{C}$。而我们想找的是 $\sqrt{C}$，如果初始值比较小的话，有可能迭代到 $-\sqrt{C}$ 这个零点，因此选择 $x_0 = C$ 作为初始值。且每次迭代均有 $x_{i+1} &lt; x_i$，零点 $\sqrt{C}$ 在其左侧，因此我们一定会迭代到这个零点。</p>
+<p>&emsp;&emsp;因为函数 $y = x^2 - C$ 有两个零点 $-\sqrt{C}$ 和 $\sqrt{C}$。而我们想找的是 $\sqrt{C}$，如果初始值比较小的话，有可能迭代到 $-\sqrt{C}$ 这个零点，因此选择 $x<em>0 = C$ 作为初始值。且每次迭代均有 $x</em>{i+1} &lt; x_i$，零点 $\sqrt{C}$ 在其左侧，因此我们一定会迭代到这个零点。</p>
 <p>&emsp;&emsp;<strong>迭代终止条件：</strong></p>
 <p>&emsp;&emsp;每一次迭代，我们都会离零点更近一步，所以当两次迭代的距离非常近时，就可以认为是已经非常逼近零点了，也就能将其作为答案。判断接近程度可以使用一个非常小的值来做比较，如 $x_{i+1} - x_i &lt; 10^{-6}$ 。</p>
 <p>&emsp;&emsp;<strong>C 代码如下：</strong></p>
@@ -271,7 +275,6 @@
 
     <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)x0;
 &#125;</code></pre>
-
 
             </div>
             <hr>

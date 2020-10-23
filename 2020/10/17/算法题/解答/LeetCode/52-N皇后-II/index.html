@@ -239,8 +239,7 @@
 <p>难度：困难</p>
 <hr>
 <p>&emsp;&emsp;<em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;上图为 8 皇后问题的一种解法。</p>
 <p>&emsp;&emsp;给定一个整数 <em>n</em>，返回 <em>n</em> 皇后<strong>不同的解决方案的数量</strong>。</p>
 <p><strong>示例:</strong></p>
@@ -258,9 +257,6 @@
   <span class="hljs-string">&quot;...Q&quot;</span>,
   <span class="hljs-string">&quot;.Q..&quot;</span>]
 ]</code></pre>
-
-
-
 <h2 id="解法1：回溯"><a href="#解法1：回溯" class="headerlink" title="解法1：回溯"></a>解法1：回溯</h2><p>&emsp;&emsp;解法和 <a target="_blank" rel="noopener" href="http://yleave.top/2020/10/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/51-N%E7%9A%87%E5%90%8E/">N皇后1</a> 是一样的，区别就是本题求的是解法个数， N皇后1 求的是所有的解法棋盘布局。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> totalNQueens = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
     <span class="hljs-keyword">let</span> dirs = [[<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>], [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>]];
@@ -305,18 +301,14 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 <h2 id="解法2：空间优化"><a href="#解法2：空间优化" class="headerlink" title="解法2：空间优化"></a>解法2：空间优化</h2><p>&emsp;&emsp;对于解法1，使用了 <code>n * n</code> 的棋盘来帮助判断某个位置是否满足安置皇后的要求，但是，对于每种 N皇后的安置策略，我们仅使用了棋盘中的一部分来帮助判断（即每个位置的两条斜线和直线），因此，我们可以缩小空间，仅使用三个列表来分别表示直行、和两条斜行上是否有皇后。</p>
 <p>&emsp;&emsp;例如，对于直行，若第三列上有皇后，则 <code>cols[3] = 1</code>，否则，<code>cols[3] = 0</code></p>
 <p>&emsp;&emsp;直行判断是否有皇后很简单，只要使用列下标即可。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017104019691.png" srcset="/img/loading.gif" alt="image-20201017104019691" style="zoom:67%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017104019691.png" srcset="/img/loading.gif" alt="image-20201017104019691" style="zoom:67%;" /></p>
 <p>&emsp;&emsp;对于其中一个方向的斜线，棋盘中的每条这个方向的斜线都能使用一个下标来表示，即 <strong>行下标 - 列下标</strong>：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110155747.png" srcset="/img/loading.gif" alt="image-20201017110155747" style="zoom:67%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110155747.png" srcset="/img/loading.gif" alt="image-20201017110155747" style="zoom:67%;" /></p>
 <p>&emsp;&emsp;另一个方向的斜线能使用 <strong>行下标 + 列下标</strong> 来表示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110328469.png" srcset="/img/loading.gif" alt="image-20201017110328469" style="zoom:67%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110328469.png" srcset="/img/loading.gif" alt="image-20201017110328469" style="zoom:67%;" /></p>
 <p>&emsp;&emsp;因此，对于棋盘中的一个位置，只需借助这三个列表来判断位置是否合法即可（三个列表中都不含当前位置）</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> totalNQueens = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
@@ -357,7 +349,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 
             </div>
             <hr>

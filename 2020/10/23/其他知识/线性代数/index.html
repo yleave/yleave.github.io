@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>线性代数 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/65.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-23 14:31" pubdate>
+        2020年10月23日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      54
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">线性代数</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="线性（向量）空间基本知识"><a href="#线性（向量）空间基本知识" class="headerlink" title="线性（向量）空间基本知识"></a>线性（向量）空间基本知识</h1><p>１）<strong>线性空间</strong> ： </p>
+<p>&emsp;&emsp;n 维有序数组组成的向量的全体集合构成的空间称为 n 维向量空间，也即 n 维线性空间。</p>
+<p>２）<strong>线性相关与线性无关</strong>：</p>
+<p>&emsp;&emsp;在ｎ维线性空间中的ｎ个ｎ维向量中，若存在１个向量，可以由其它ｎ－ｌ个ｎ维向量线性表示，则称这ｎ个ｎ维向量是<strong>线性相关</strong>的。此时，ｎ个ｎ维向量组成的矩阵的秩小于ｎ。</p>
+<p>&emsp;&emsp;若不存在可以被其他ｎ－１个向量线性表示的向量，则称这ｎ个向量是<strong>线性无关</strong>的。ｎ个ｎ维向量组成的矩阵的秩等于ｎ，即矩阵满秩。</p>
+<p>３）<strong>向量正交</strong>：</p>
+<p>&emsp;&emsp;两个同维向量的点积等于零，称这两个向量正交。当ｎ个ｎ维向量两两点积为零时，称这ｎ个向量两两正交。</p>
+<p>４）<strong>向量的模</strong>：</p>
+<p>&emsp;&emsp;ｎ维向量的各个分量的平方和再开方，在三维中表示向量的空间长度。</p>
+<p>５）<strong>线性空间的基</strong>：</p>
+<p>&emsp;&emsp;在ｎ维线性空间中，若存在ｎ个ｎ维向量，<strong>它们线性无关</strong>且可以线性表示该线性空间中的任意ｎ维向量，则称这ｎ个ｎ维向量为该线性空间的一组基，其中的向量称为基向量。例如，三维空间中最常用的一组基为 $(1,0,0)^T$、 $(0,1,0)^T$、 $(0,0,1)^T$。</p>
+<p>６）<strong>正交积与标准（规范）正交积</strong>：</p>
+<p>&emsp;&emsp;当一组基中的各个基向量两两正交时，这组基称为正交积。同时，若各个基向量的模均为１，则称这组基为标准正交积。</p>
+<p>７）<strong>向量的坐标空间表示方法</strong>：</p>
+<p>&emsp;&emsp;对于ｎ维线性空间中的任意一个位置，都可以由一组基以及这组基下的坐标表示。例如，在三维空间中的点位置，用最一般最常用的标准正交积 $(1,0,0)^T$、 $(0,1,0)^T$、 $(0,0,1)^T$ 表示的公式为下式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200517170227524.png" srcset="/img/loading.gif" alt="image-20200517170227524" style="zoom:80%;" /></p>
+<p>&emsp;&emsp;为了描述线性空间的坐标单位转换比以及坐标轴原点的位置，需要在三维的基础上增加一个维度，即上式需要扩充为下式。其中第四个列向量的前三位是坐标轴原点的位置，第四位是坐标单位转换比，其值通常为１。</p>
+<p>&emsp;&emsp;标准正交基中向量的末尾需要补充零元素来构成向量表达式。该式与对应的矩阵表示形式等价。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200517170327760.png" srcset="/img/loading.gif" alt="image-20200517170327760" style="zoom:80%;" /></p>
+<p>&emsp;&emsp;不失一般性，对于三维空间中任意位置作为坐标原点且任意满足右手法则的标准正交基构成的坐标系统框架有如下一般表达式。坐标原点为 $(R_x,R_y,R_z)^T$，坐标单位转换比为 ｍ，坐标轴单位向量组为  $(X_x,X_y,X_z)^T$， $(Y_x,Y_y,Y_z)^T$， $(Z_x,Z_y,Z_z)^T$。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200517170503758.png" srcset="/img/loading.gif" alt="image-20200517170503758" style="zoom:80%;" /></p>
+<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><p>REF：<a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/07%20Transformations/">https://learnopengl-cn.github.io/01%20Getting%20started/07%20Transformations/</a></p>
+<h2 id="向量点乘"><a href="#向量点乘" class="headerlink" title="向量点乘"></a>向量点乘</h2><p>&emsp;&emsp;点乘(Dot Product)，记作 $\vec{v}·\vec{k}$ </p>
+<p>&emsp;&emsp;两个向量的点乘等于他们数乘结果乘上他们夹角的余弦值：</p>
+<script type="math/tex; mode=display">
+\vec{v}·\vec{k} = \vec{\left \| v \right \|} · \vec{\left \|k  \right \|}·cos\theta</script><p>&emsp;&emsp;<code>90</code> 度的余弦角是 <code>0</code>，因此点乘能够测试出两个向量是否正交（Orthogonal），且当 $\vec{v}$ 和 $\vec{k}$ 都是单位向量时，公式就简化为：</p>
+<script type="math/tex; mode=display">
+\vec{v}·\vec{k} = 1·1·cos\theta = cos\theta</script><p>&emsp;&emsp;而 <code>0</code> 度的余弦角是 <code>1</code>，因此此时点乘能够用来测试两个向量是否平行。</p>
+<p>&emsp;&emsp;当然，点乘还能计算两个向量之间的夹角。</p>
+<p>&emsp;&emsp;点乘是通过将对应分量逐个相乘，然后再把所得积相加来计算的。两个单位向量的（你可以验证它们的长度都为1）点乘会像是这样：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} \color{red}{0.6} \\ -\color{green}{0.8} \\ \color{blue}0 \end{pmatrix} \cdot \begin{pmatrix} \color{red}0 \\ \color{green}1 \\ \color{blue}0 \end{pmatrix} = (\color{red}{0.6} * \color{red}0) + (-\color{green}{0.8} * \color{green}1) + (\color{blue}0 * \color{blue}0) = -0.8</script><p>&emsp;&emsp;要计算两个单位向量间的夹角，我们可以使用反余弦函数 $cos^{-1}$ ，可得结果是 <code>143.1</code> 度。现在我们很快就计算出了这两个向量的夹角。点乘会在计算光照的时候非常有用。</p>
+<h2 id="叉乘"><a href="#叉乘" class="headerlink" title="叉乘"></a>叉乘</h2><p>&emsp;&emsp;叉乘只在3D空间中有定义，它需要两个不平行向量作为输入，<strong>生成一个正交于两个输入向量的第三个向量。</strong></p>
+<p>&emsp;&emsp;下面的图片展示了3D空间中叉乘的样子：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018160946197.png" srcset="/img/loading.gif" alt="image-20201018160946197" style="zoom:80%;" /></p>
+<p>&emsp;&emsp;两个正交向量A和B叉积公式：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix} \color{red}{A_{x}} \\ \color{green}{A_{y}} \\ \color{blue}{A_{z}} \end{pmatrix} \times \begin{pmatrix} \color{red}{B_{x}} \\ \color{green}{B_{y}} \\ \color{blue}{B_{z}}  \end{pmatrix} = \begin{pmatrix} \color{green}{A_{y}} \cdot \color{blue}{B_{z}} - \color{blue}{A_{z}} \cdot \color{green}{B_{y}} \\ \color{blue}{A_{z}} \cdot \color{red}{B_{x}} - \color{red}{A_{x}} \cdot \color{blue}{B_{z}} \\ \color{red}{A_{x}} \cdot \color{green}{B_{y}} - \color{green}{A_{y}} \cdot \color{red}{B_{x}} \end{pmatrix}</script><h1 id="矩阵变换"><a href="#矩阵变换" class="headerlink" title="矩阵变换"></a>矩阵变换</h1><p>REF：<a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/07%20Transformations/">https://learnopengl-cn.github.io/01%20Getting%20started/07%20Transformations/</a></p>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>&emsp;&emsp;对一个向量进行<strong>缩放(Scaling)</strong>就是对向量的长度进行缩放，而保持它的方向不变。</p>
+<p>&emsp;&emsp;<strong>均匀缩放(Uniform Scale)</strong>：对空间中的每个轴都使用相同的缩放因子（Scaling Factor）</p>
+<p>&emsp;&emsp;<strong>不均匀缩放(Non-uniform)</strong>：对空间中的轴有使用了不同的缩放因子</p>
+<p>&emsp;&emsp;如果我们把缩放变量表示为 $(\color{red}{S_1}, \color{green}{S_2}, \color{blue}{S_3})$ 我们可以为任意向量 $(x,y,z)$ 定义一个缩放矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} \color{red}{S_1} & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}{S_2} & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}{S_3} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{S_1} \cdot x \\ \color{green}{S_2} \cdot y \\ \color{blue}{S_3} \cdot z \\ 1 \end{pmatrix}</script><p>&emsp;&emsp;<strong>注意</strong>，第四个缩放向量仍然是 <code>1</code>，因为在3D空间中缩放 <code>w</code> 分量是无意义的。<code>w</code> 分量另有其他用途，在后面我们会看到。</p>
+<h2 id="位移"><a href="#位移" class="headerlink" title="位移"></a>位移</h2><p>&emsp;&emsp;<strong>位移(Translation)</strong> 是在原始向量的基础上加上另一个向量从而获得一个在不同位置的新向量的过程，从而在位移向量基础上<strong>移动</strong>了原始向量。</p>
+<p>&emsp;&emsp;和缩放矩阵一样，在 <code>4×4</code> 矩阵上有几个特别的位置用来执行特定的操作，对于位移来说它们是<strong>第四列最上面的 3 个值</strong>。如果我们把位移向量表示为 $(\color{red}{T_x},\color{green}{T_y},\color{blue}{T_z})$，我们就能把位移矩阵定义为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}  \color{red}1 & \color{red}0 & \color{red}0 & \color{red}{T_x} \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}{T_y} \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}{T_z} \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x + \color{red}{T_x} \\ y + \color{green}{T_y} \\ z + \color{blue}{T_z} \\ 1 \end{pmatrix}</script><blockquote>
+<p><strong>齐次坐标(Homogeneous Coordinates)</strong></p>
+<p>&emsp;&emsp;向量的<code>w</code>分量也叫<strong>齐次坐标</strong>。想要从齐次向量得到3D向量，我们可以把<code>x</code>、<code>y</code>和<code>z</code>坐标分别除以<code>w</code>坐标。我们通常不会注意这个问题，因为w分量通常是1.0。</p>
+<p>&emsp;&emsp;使用齐次坐标有几点好处：它允许我们在3D向量上进行位移</p>
+<p>&emsp;&emsp;<strong>如果一个向量的齐次坐标是<code>0</code>，这个坐标就是方向向量</strong>(Direction Vector)，因为<code>w</code>坐标是<code>0</code>，这个向量就不能位移</p>
+</blockquote>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>&emsp;&emsp;2D 或 3D 空间中的旋转用角(Angle)来表示。角可以是角度制或弧度制的，周角是 360 角度或 2PI 弧度。我个人更喜欢用角度，因为它们看起来更直观。</p>
+<blockquote>
+<p>不过大多数旋转函数需要用弧度制的角，它们能够进行相互转换：</p>
+<ul>
+<li>弧度转角度：<code>角度 = 弧度 * (180.0f / PI)</code></li>
+<li>角度转弧度：<code>弧度 = 角度 * (PI / 180.0f)</code></li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;下图中展示的 2D 向量 $\color{red}{\bar{v}}$ 是由 $\color{green}{\bar{k}}$ 向右旋转 <code>72</code> 度所得的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018163907433.png" srcset="/img/loading.gif" alt="image-20201018163907433" style="zoom:80%;" /></p>
+<p>&emsp;&emsp;在3D空间中旋转需要定义一个角<strong>和</strong>一个<strong>旋转轴</strong>(Rotation Axis)。当2D向量在3D空间中旋转时，我们把旋转轴设为 <code>z</code> 轴。</p>
+<p>&emsp;&emsp;给定一个角度，可以把一个向量变换为一个经过旋转的新向量。这通常是使用一系列正弦（sin）和余弦函数（cos）各种巧妙的组合得到的</p>
+<p>&emsp;&emsp;旋转矩阵在3D空间中每个单位轴都有不同定义，旋转角度用 <code>θ</code> 表示：</p>
+<p>&emsp;&emsp;<strong>沿 <code>x</code> 轴旋转：</strong></p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} \color{red}1 & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}{\cos \theta} & - \color{green}{\sin \theta} & \color{green}0 \\ \color{blue}0 & \color{blue}{\sin \theta} & \color{blue}{\cos \theta} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} x \\ \color{green}{\cos \theta} \cdot y - \color{green}{\sin \theta} \cdot z \\ \color{blue}{\sin \theta} \cdot y + \color{blue}{\cos \theta} \cdot z \\ 1 \end{pmatrix}</script><p>&emsp;&emsp;<strong>沿 <code>y</code> 轴旋转：</strong></p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} \color{red}{\cos \theta} & \color{red}0 & \color{red}{\sin \theta} & \color{red}0 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}0 \\ - \color{blue}{\sin \theta} & \color{blue}0 & \color{blue}{\cos \theta} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x + \color{red}{\sin \theta} \cdot z \\ y \\ - \color{blue}{\sin \theta} \cdot x + \color{blue}{\cos \theta} \cdot z \\ 1 \end{pmatrix}</script><p>&emsp;&emsp;<strong>沿 <code>z</code> 轴旋转：</strong></p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} \color{red}{\cos \theta} & - \color{red}{\sin \theta} & \color{red}0 & \color{red}0 \\ \color{green}{\sin \theta} & \color{green}{\cos \theta} & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x - \color{red}{\sin \theta} \cdot y  \\ \color{green}{\sin \theta} \cdot x + \color{green}{\cos \theta} \cdot y \\ z \\ 1 \end{pmatrix}</script><blockquote>
+<p> 关于正余弦组合问题可看下面的<a href="#旋转变换">仿射变换小节</a></p>
+</blockquote>
+<p>&emsp;&emsp;利用旋转矩阵我们可以把任意位置向量沿一个单位旋转轴进行旋转。也可以将多个矩阵复合，比如先沿着<code>x</code>轴旋转再沿着<code>y</code>轴旋转。但是这会很快导致一个问题——<strong>万向节死锁</strong>（Gimbal Lock，可以看看<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zc8b2Jo7mno">这个视频</a><a target="_blank" rel="noopener" href="http://v.youku.com/v_show/id_XNzkyOTIyMTI=.html">（优酷）</a>来了解）。</p>
+<p>&emsp;&emsp;避免万向节死锁的真正解决方案是使用<strong>四元数</strong>(Quaternion)，它不仅更安全，而且计算会更有效率。</p>
+<blockquote>
+<p>&emsp;&emsp;对四元数的理解会用到非常多的数学知识。如果想了解四元数与3D旋转之间的关系，可以来阅读<a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/">教程</a>。如果你对万向节死锁的概念仍不是那么清楚，可以来阅读教程的<a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/bonus_gimbal_lock.pdf">Bonus章节</a>。</p>
+<p>&emsp;&emsp;现在3Blue1Brown也已经开始了一个四元数的视频系列，他采用球极平面投影(Stereographic Projection)的方式将四元数投影到3D空间，同样有助于理解四元数的概念（仍在更新中）：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=d4EgbgTm0Bg">https://www.youtube.com/watch?v=d4EgbgTm0Bg</a></p>
+</blockquote>
+<h2 id="矩阵的组合"><a href="#矩阵的组合" class="headerlink" title="矩阵的组合"></a>矩阵的组合</h2><p>&emsp;&emsp;根据矩阵之间的乘法，我们可以把多个变换组合到一个矩阵中。</p>
+<p>&emsp;&emsp;假设我们有一个顶点 $(x, y, z)$，我们希望将其<strong>缩放</strong> <code>2</code> 倍，然后<strong>位移</strong> $(1, 2, 3) $个单位。结果的变换矩阵看起来像这样：</p>
+<script type="math/tex; mode=display">
+Trans . Scale = \begin{bmatrix} \color{red}1 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} . \begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}0 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} = \begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix}</script><p>&emsp;&emsp;<strong>注意</strong>，当矩阵相乘时我们<strong>先写位移再写缩放</strong>变换的。矩阵乘法是不遵守交换律的，这意味着它们的顺序很重要。</p>
+<p>&emsp;&emsp;当矩阵相乘时，在<strong>最右边</strong>的矩阵是第一个与向量相乘的，所以你应该<strong>从右向左读</strong>这个乘法。</p>
+<p>&emsp;&emsp;建议在组合矩阵时，<strong>先</strong>进行<strong>缩放</strong>操作，<strong>然后</strong>是<strong>旋转</strong>，<strong>最后</strong>才是<strong>位移</strong>，否则它们会（消极地）互相影响。</p>
+<p>&emsp;&emsp;比如，如果你先位移再缩放，位移的向量也会同样被缩放（比如向某方向移动 2 米，2 米也许会被缩放成 1 米）！</p>
+<p>&emsp;&emsp;用最终的<strong>变换矩阵左乘</strong>我们的向量会得到以下结果：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} \color{red}2 & \color{red}0 & \color{red}0 & \color{red}1 \\ \color{green}0 & \color{green}2 & \color{green}0 & \color{green}2 \\ \color{blue}0 & \color{blue}0 & \color{blue}2 & \color{blue}3 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} . \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} \color{red}2x + \color{red}1 \\ \color{green}2y + \color{green}2  \\ \color{blue}2z + \color{blue}3 \\ 1 \end{bmatrix}</script><p>&emsp;&emsp;向量先缩放 <code>2</code> 倍，然后位移了 $(1, 2, 3)$ 个单位。</p>
+<h1 id="仿射变换"><a href="#仿射变换" class="headerlink" title="仿射变换"></a>仿射变换</h1><p>REF：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011681952/article/details/98942207">https://blog.csdn.net/u011681952/article/details/98942207</a></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;仿射变换（Affine Transformation）其实是另外两种简单变换的叠加：一个是线性变换，一个是平移变换</p>
+<p>&emsp;&emsp;仿射变换变化包括<strong>缩放(Scale)</strong>、<strong>平移(transform)</strong>、<strong>旋转(rotate)</strong>、<strong>反射(reflection)</strong>、<strong>错切(shear mapping</strong>，感觉像是一个图形的倒影)，原来的直线仿射变换后还是直线，原来的平行线经过仿射变换之后还是平行线，这就是仿射.</p>
+<p>&emsp;&emsp;仿射变换中集合中的一些性质保持不变：</p>
+<ul>
+<li><strong>凸性</strong></li>
+<li><strong>共线性</strong>：若几个点变换前在一条线上，则仿射变换后仍然在一条线上</li>
+<li><strong>平行性</strong>：若两条线变换前平行，则变换后仍然平行</li>
+<li><strong>共线比例不变性</strong>：变换前一条线上两条线段的比例，在变换后比例不变</li>
+</ul>
+<p>&emsp;&emsp;注：所有的三角形都能通过仿射变化为其他三角形，所有平行四边形也能仿射变换为另一个平行四边形。</p>
+<h2 id="数学表达"><a href="#数学表达" class="headerlink" title="数学表达"></a>数学表达</h2><p>&emsp;&emsp;一个集合 X 的仿射变换为：</p>
+<script type="math/tex; mode=display">
+f(x) = Ax + b, x∈X</script><p>&emsp;&emsp;仿射变换是二维平面中一种重要的变换，在图像图形领域有广泛的应用，在二维图像变换中，一般表达为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603191636610.png" srcset="/img/loading.gif" alt="image-20200603191636610" style="zoom:80%;" /></p>
+<h2 id="仿射变换理解"><a href="#仿射变换理解" class="headerlink" title="仿射变换理解"></a>仿射变换理解</h2><p>&emsp;&emsp;要熟练应用仿射变换，则需先理解仿射变换，说白了就是要弄清楚上面的 R，T 矩阵各个参数代表什么含义，用图像来表达</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603191940164.png" srcset="/img/loading.gif" alt="image-20200603191940164" style="zoom:80%;" /></p>
+<h4 id="平移变换"><a href="#平移变换" class="headerlink" title="平移变换"></a>平移变换</h4><p>&emsp;&emsp;不难想象，就是将 x，y 平移指定值，则 R 矩阵为单位矩阵，T 矩阵为指定值，如上图中，第一行第二列图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193352104.png" srcset="/img/loading.gif" alt="image-20200603193352104" style="zoom: 67%;" /></p>
+<h4 id="反射变换"><a href="#反射变换" class="headerlink" title="反射变换"></a>反射变换</h4><p>&emsp;&emsp;见图最后一行，如相对 x 轴反射，则 x 不变，y 变为相反号</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193420276.png" srcset="/img/loading.gif" alt="image-20200603193420276" style="zoom:67%;" /></p>
+<h4 id="旋转变换"><a href="#旋转变换" class="headerlink" title="旋转变换"></a>旋转变换</h4><p>&emsp;&emsp;为简单起见，只从一个点的旋转来看</p>
+<p><strong>1) 左下角为坐标原点</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193445281.png" srcset="/img/loading.gif" alt="image-20200603193445281" style="zoom: 50%;" /></p>
+<ul>
+<li>坐标原点为左下角</li>
+<li>点 <code>P(x,y)</code> 为坐标系中一个点，与 x 轴的夹角为 <code>α</code>，假设其到原点的距离为 1（方便计算）</li>
+<li>点 <code>P&#39;(x&#39;,y&#39;)</code> 为 p 点逆时针旋转 <code>θ</code> 角度的点</li>
+<li>点 <code>P&#39;&#39;(x&#39;&#39;,y&#39;&#39;)</code> 为 p 点顺时针旋转 <code>θ</code> 角度的点</li>
+</ul>
+<p>&emsp;&emsp;根据简单三角关系，可知</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193546673.png" srcset="/img/loading.gif" alt="image-20200603193546673" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;逆时针时：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193601041.png" srcset="/img/loading.gif" alt="image-20200603193601041" style="zoom: 67%;" /></p>
+<p>&emsp;&emsp;则，逆时针旋转矩阵 <code>R</code> 为:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193643720.png" srcset="/img/loading.gif" alt="image-20200603193643720" style="zoom: 67%;" /></p>
+<p>&emsp;&emsp;顺时针时：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193757123.png" srcset="/img/loading.gif" alt="image-20200603193757123" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;则，顺时针旋转矩阵 <code>R&#39;&#39;</code> 为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193817280.png" srcset="/img/loading.gif" alt="image-20200603193817280" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;从上可以看出，这个负号位置问题，个人认为与<strong>旋转方向相关</strong></p>
+<p><strong>2) 左上角为坐标原点</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193835147.png" srcset="/img/loading.gif" alt="image-20200603193835147" style="zoom: 50%;" /></p>
+<ul>
+<li>坐标原点为左上角</li>
+<li>点 <code>P(x,y)</code> 为坐标系中一个点，与 x 轴的夹角为 <code>α</code>，假设其到原点的距离为 1（方便计算）</li>
+<li>点 <code>P&#39;(x&#39;,y&#39;)</code> 为 p 点逆时针旋转 <code>θ</code> 角度的点</li>
+<li>点 <code>P&#39;&#39;(x&#39;&#39;,y&#39;&#39;)</code> 为 p 点顺时针旋转 <code>θ</code> 角度的点</li>
+</ul>
+<p>&emsp;&emsp;根据简单三角关系，可知</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193900029.png" srcset="/img/loading.gif" alt="image-20200603193900029" style="zoom: 67%;" /></p>
+<p>&emsp;&emsp;逆时针时：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193913608.png" srcset="/img/loading.gif" alt="image-20200603193913608" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;则，逆时针旋转矩阵 <code>R</code> 为:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603193924992.png" srcset="/img/loading.gif" alt="image-20200603193924992" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;顺时针时：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603194039716.png" srcset="/img/loading.gif" alt="image-20200603194039716" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;则，顺时针旋转矩阵 <code>R&#39;&#39;</code> 为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603194047691.png" srcset="/img/loading.gif" alt="image-20200603194047691" style="zoom:67%;" /></p>
+<p>&emsp;&emsp;从上可以看出，这个负号位置问题，不但<strong>与旋转方向有关</strong>，<strong>还与原点有关</strong></p>
+<p><strong>3) 总结</strong></p>
+<ul>
+<li>旋转矩阵 R 中，<code>sinθ</code> 的负号位置与旋转方向和原点相关</li>
+<li>当记逆时针为正，左上角为原点时（opencv默认），旋转矩阵为：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200603194100107.png" srcset="/img/loading.gif" alt="image-20200603194100107" style="zoom:67%;" /></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/">其他知识</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2/">矩阵变换</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2/">仿射变换</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/23/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
+                        <span class="hidden-mobile">236. 二叉树的最近公共祖先</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "线性代数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -247,16 +247,12 @@
 </ul>
 <h2 id="三维投影矩阵-u-matrix-计算公式"><a href="#三维投影矩阵-u-matrix-计算公式" class="headerlink" title="三维投影矩阵(u_matrix)计算公式"></a>三维投影矩阵(u_matrix)计算公式</h2><p>&emsp;&emsp;三维投影矩阵计算公式如下：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> uMatrix = ProjectMatrix * CameraMatrixWorldInverse * ObjectMatrixWorld</code></pre>
-
 <h3 id="相机投影矩阵（ProjectMatrix）"><a href="#相机投影矩阵（ProjectMatrix）" class="headerlink" title="相机投影矩阵（ProjectMatrix）"></a>相机投影矩阵（ProjectMatrix）</h3><p>&emsp;&emsp;在THREE中，通过用不同的相机类实例化，得到不同类型的相机，例如定义一个透视投影相机：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> camera = <span class="hljs-keyword">new</span> THREE.PerspectiveCamera(fov, aspect, near, far);</code></pre>
-
 <ul>
 <li><p>获得 <code>ProjectionMatrix</code></p>
 <pre><code class="hljs js">camera.projectionMatrix</code></pre>
-
-<img src="three.js数学相关内容.assets/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" />
-
+<p><img src="three.js数学相关内容.assets/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" /></p>
 </li>
 </ul>
 <h3 id="相机视图矩阵-CameraMatrixWorldInverse"><a href="#相机视图矩阵-CameraMatrixWorldInverse" class="headerlink" title="相机视图矩阵(CameraMatrixWorldInverse)"></a>相机视图矩阵(CameraMatrixWorldInverse)</h3><p>&emsp;&emsp;有的三维引擎或教程，会把视图矩阵称为<code>ViewMatrix</code>（例如webglfundamentals）</p>
@@ -267,19 +263,14 @@
 <li>固定人，向右移动相机</li>
 </ul>
 <p>&emsp;&emsp;这两种情况在相机眼中是一样的。</p>
-<img src="three.js数学相关内容.assets/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" />
-
+<p><img src="three.js数学相关内容.assets/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;在THREE中，我们一般通过设置<code>camera</code>的position和up，调用<code>lookAt</code>来改变相机的视图矩阵</p>
 <pre><code class="hljs js">camera.position.set(x, y, z);
 camera.up.set(x, y, z);
 camera.lookAt(x, y, z);</code></pre>
-
 <ul>
 <li><p>获得 <code>CameraMatrixInverse</code></p>
 <pre><code class="hljs js">camera.matrixWorldInverse</code></pre>
-
-
-
 </li>
 </ul>
 <blockquote>
@@ -290,7 +281,6 @@ camera.lookAt(x, y, z);</code></pre>
 <ul>
 <li><p>获得 <code>ObjectWorldMatrix</code></p>
 <pre><code class="hljs js">object.matrixWorld</code></pre>
-
 </li>
 </ul>
 <p>&emsp;&emsp;前面提到，THREE中的物体是有层级关系的，所以THREE中物体的<code>matrixWorld</code>是通过<code>local matrix</code>（<code>object.matrix</code>）与父亲的<code>matrixWorld</code>递归相乘得到的， 其中的原理可以查阅webglfundamentals中的<a target="_blank" rel="noopener" href="https://webglfundamentals.org/webgl/lessons/zh_cn/webgl-scene-graph.html">这篇教程</a></p>
@@ -299,7 +289,6 @@ camera.lookAt(x, y, z);</code></pre>
 <p>&emsp;&emsp;构造器参数<code>Box3( min : Vector3, max : Vector3 )</code>，其参数为两个三维向量，第一个向量为Box3在3D空间中各个维度的最小值，第二个参数为Box3在3D空间中各个维度的最大值，代码如下。</p>
 <pre><code class="hljs js">copyvar box = <span class="hljs-keyword">new</span> THREE.Box3(<span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>), <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>));
 js</code></pre>
-
 <p>&emsp;&emsp;这个box就表示3D空间中中心点在<code>(0,0,0)</code>，长宽高为<code>4</code>的包围盒。</p>
 <h1 id="Vector3"><a href="#Vector3" class="headerlink" title="Vector3"></a>Vector3</h1><p>REF: <a target="_blank" rel="noopener" href="https://www.mrguo.link/article?id=14">https://www.mrguo.link/article?id=14</a></p>
 <hr>
@@ -307,27 +296,19 @@ js</code></pre>
 <pre><code class="hljs js">copyvar vec1 = <span class="hljs-keyword">new</span> THREE.Vector3();
 <span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix4().makeScale(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);
 vec1.setFromMatrixScale(matrix);<span class="hljs-comment">//返回Vector3 &#123;x: 1, y: 2, z: 3&#125;</span></code></pre>
-
 <h3 id="applyMatrix4-m-Matrix4-this"><a href="#applyMatrix4-m-Matrix4-this" class="headerlink" title="applyMatrix4( m: Matrix4 ): this"></a>applyMatrix4( m: Matrix4 ): this</h3><p>&emsp;&emsp;将该向量乘以四阶矩阵<code>m</code>（第四个维度隐式地为<code>1</code>）</p>
 <pre><code class="hljs js">copyvar vec1 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
 <span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix4().makeRotationZ(-<span class="hljs-built_in">Math</span>.PI/<span class="hljs-number">6</span>);
 vec1.applyMatrix4(matrix);<span class="hljs-comment">//返回值和上面相同</span></code></pre>
-
-
-
-
-
 <h1 id="Matrix3"><a href="#Matrix3" class="headerlink" title="Matrix3"></a>Matrix3</h1><p>&emsp;&emsp;three.js文档中以行为主的顺序显示矩阵。 但是，如果您正在阅读源代码，您必须对这里列出的任何矩阵进行转置<code>transpose</code>，以理解计算。例如：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix3 = <span class="hljs-keyword">new</span> THREE.Matrix3().set( <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>); 
 <span class="hljs-comment">//而其内部elements则展示为： matrix3.elements = [1,4,7,2,5,8,3,6,9];</span></code></pre>
-
 <h2 id="Matrix3-的属性"><a href="#Matrix3-的属性" class="headerlink" title="Matrix3 的属性"></a>Matrix3 的属性</h2><p>&emsp;&emsp;<code>elements:Array</code> ：矩阵列优先column-major列表。</p>
 <p>&emsp;&emsp;<code>isMatrix3:Boolean</code>：用于判定此对象或者此类的派生对象是否是三维矩阵。默认值为 <code>true</code>。</p>
 <h2 id="Matrix3的方法"><a href="#Matrix3的方法" class="headerlink" title="Matrix3的方法"></a>Matrix3的方法</h2><h3 id="set-Matrix3"><a href="#set-Matrix3" class="headerlink" title="set() : Matrix3"></a>set() : Matrix3</h3><p>&emsp;&emsp;三维矩阵不能在构造函数中直接设置参数值，需要通过<code>set()</code>方法设置，<code>set()</code>方法参数采用<strong>行优先</strong>row-major， 而它们在内部是用列优先column-major顺序存储在数组当中。</p>
 <h3 id="identity-Matrix3"><a href="#identity-Matrix3" class="headerlink" title="identity():Matrix3"></a>identity():Matrix3</h3><p>&emsp;&emsp;将此矩阵重置为3x3单位矩阵。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.identity();<span class="hljs-comment">//返回elements: (9) [1, 0, 0, 0, 1, 0, 0, 0, 1]</span></code></pre>
-
 <h3 id="clone-this"><a href="#clone-this" class="headerlink" title="clone():this"></a>clone():this</h3><p>&emsp;&emsp;创建一个新的矩阵，元素 elements 与该矩阵相同。</p>
 <h3 id="copy-m-Matrix3-this"><a href="#copy-m-Matrix3-this" class="headerlink" title="copy(m:Matrix3):this"></a>copy(m:Matrix3):this</h3><p>&emsp;&emsp;将矩阵<code>m</code>的元素复制到当前矩阵中。</p>
 <h3 id="extractBasis-xAxis-Vector3-yAxis-Vector3-zAxis-Vector3-Matrix3"><a href="#extractBasis-xAxis-Vector3-yAxis-Vector3-zAxis-Vector3-Matrix3" class="headerlink" title="extractBasis( xAxis: Vector3, yAxis: Vector3, zAxis: Vector3 ): Matrix3"></a>extractBasis( xAxis: Vector3, yAxis: Vector3, zAxis: Vector3 ): Matrix3</h3><p>&emsp;&emsp;将此矩阵的基提取到提供的三个轴向量中。</p>
@@ -339,22 +320,18 @@ matrix.set( <span class="hljs-number">1</span>,<span class="hljs-number">2</span
 matrix.extractBasis(a, b, c); 
 <span class="hljs-built_in">console</span>.log(a,b,c);
 <span class="hljs-comment">//返回Vector3 &#123;x: 1, y: 4, z: 7&#125; Vector3 &#123;x: 2, y: 5, z: 8&#125; Vector3 &#123;x: 3, y: 6, z: 9&#125;</span></code></pre>
-
 <h3 id="setFromMatrix4-m-Matrix4-Matrix3"><a href="#setFromMatrix4-m-Matrix4-Matrix3" class="headerlink" title="setFromMatrix4( m: Matrix4 ): Matrix3"></a>setFromMatrix4( m: Matrix4 ): Matrix3</h3><p>&emsp;&emsp;将当前矩阵设置为<code>4X4</code>矩阵，<code>m</code>左上<code>3X3</code>，</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 <span class="hljs-keyword">var</span> matrix4 = <span class="hljs-keyword">new</span> THREE.Matrix4().makeScale(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>); 
 matrix.setFromMatrix4(matrix4)<span class="hljs-comment">//elements: (9) [2, 0, 0, 0, 2, 0, 0, 0, 2]</span></code></pre>
-
 <h3 id="multiplyScalar-s-number-Matrix3"><a href="#multiplyScalar-s-number-Matrix3" class="headerlink" title="multiplyScalar( s: number ): Matrix3"></a>multiplyScalar( s: number ): Matrix3</h3><p>&emsp;&emsp;当前矩阵所有的元素乘以该缩放值<code>s</code></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.set( <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>)； 
 matrix.multiplyScalar(<span class="hljs-number">2</span>)<span class="hljs-comment">//elements: (9) [2, 8, 14, 4, 10, 16, 6, 12, 18]</span></code></pre>
-
 <h3 id="determinant-number"><a href="#determinant-number" class="headerlink" title="determinant(): number"></a>determinant(): number</h3><p>&emsp;&emsp;计算并返回矩阵的行列式determinant 。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.set( <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>)； 
 matrix.determinant()<span class="hljs-comment">//返回0</span></code></pre>
-
 <h3 id="getInverse-matrix-Matrix3-throwOnDegenerate-boolean-Matrix3"><a href="#getInverse-matrix-Matrix3-throwOnDegenerate-boolean-Matrix3" class="headerlink" title="getInverse( matrix: Matrix3, throwOnDegenerate?: boolean ): Matrix3"></a>getInverse( matrix: Matrix3, throwOnDegenerate?: boolean ): Matrix3</h3><p>&emsp;&emsp;求传入矩阵<code>m</code>的逆矩阵，使用解析法将该矩阵设置为传递矩阵<code>m</code>的逆矩阵。</p>
 <p>&emsp;&emsp;行列式为零的矩阵不能求逆。如果尝试这样做，该方法将返回一个零矩阵。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix1 = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
@@ -362,59 +339,50 @@ matrix.determinant()<span class="hljs-comment">//返回0</span></code></pre>
 matrix1.set(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>)； matrix2.set(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)； 
 <span class="hljs-keyword">new</span> THREE.Matrix3().getInverse(matrix1)<span class="hljs-comment">//因为行列式的值为0，所以返回零矩阵elements: (9) [0, 0, 0, 0, 0, 0, 0, 0, 0] </span>
 <span class="hljs-keyword">new</span> THREE.Matrix3().getInverse(matrix2)<span class="hljs-comment">//因为行列式的值不为0，所以返回elements: (9) [1, 0, 0, -1, 1, 0, 1, -1, 1]</span></code></pre>
-
 <p>&emsp;&emsp;求逆矩阵的方法有很多，可以通过伴随矩阵求逆矩阵，也可以行做差来构造逆矩阵。</p>
 <h3 id="transpose-Matrix3"><a href="#transpose-Matrix3" class="headerlink" title="transpose(): Matrix3"></a>transpose(): Matrix3</h3><p>&emsp;&emsp;将该矩阵转置。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.set(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)；<span class="hljs-comment">//返回elements: (9) [1, 0, 0, 1, 1, 0, 0, 1, 1]; matrix.transpose(); </span>
 <span class="hljs-built_in">console</span>.log(matrix);<span class="hljs-comment">//返回elements: (9) [1, 1, 0, 0, 1, 1, 0, 0, 1];</span></code></pre>
-
 <h3 id="getNormalMatrix-matrix4-Matrix4-Matrix3"><a href="#getNormalMatrix-matrix4-Matrix4-Matrix3" class="headerlink" title="getNormalMatrix( matrix4: Matrix4 ): Matrix3"></a>getNormalMatrix( matrix4: Matrix4 ): Matrix3</h3><p>&emsp;&emsp;将这个矩阵设置为给定矩阵的正规矩阵normal matrix（左上角的3x3）。 </p>
-<p>&emsp;&emsp;正规矩阵是矩阵<code>m</code>的逆矩阵<code>inverse </code>的转置<code>transpose</code>。</p>
+<p>&emsp;&emsp;正规矩阵是矩阵<code>m</code>的逆矩阵<code>inverse</code>的转置<code>transpose</code>。</p>
 <pre><code class="hljs js"><span class="hljs-built_in">this</span>.setFromMatrix4( matrix4 ).getInverse( <span class="hljs-built_in">this</span> ).transpose();</code></pre>
-
 <p>&emsp;&emsp;上面是three.js的源码，从源码可以看出这是setFromMatrix4，getInverse和transpose的组合用法。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 <span class="hljs-keyword">var</span> matrix4 = <span class="hljs-keyword">new</span> THREE.Matrix4().makeScale(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>); 
 matrix.getNormalMatrix(matrix4);<span class="hljs-comment">//返回elements: (9) [0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5]</span></code></pre>
-
 <h3 id="transposeIntoArray-r-number-Matrix3"><a href="#transposeIntoArray-r-number-Matrix3" class="headerlink" title="transposeIntoArray( r: number[] ): Matrix3"></a>transposeIntoArray( r: number[] ): Matrix3</h3><p>&emsp;&emsp;将当前矩阵的转置<code>Transposes</code>存入给定的数组<code>array : Array</code>但不改变当前矩阵， 并返回当前矩阵。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.set(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)； 
 <span class="hljs-keyword">var</span> array = []; 
 matrix.transposeIntoArray(array); 
 <span class="hljs-built_in">console</span>.log(array);<span class="hljs-comment">//返回[1, 1, 0, 0, 1, 1, 0, 0, 1]</span></code></pre>
-
 <h3 id="setUvTransform-tx-number-ty-number-sx-number-sy-number-rotation-number-cx-number-cy-number-Matrix3"><a href="#setUvTransform-tx-number-ty-number-sx-number-sy-number-rotation-number-cx-number-cy-number-Matrix3" class="headerlink" title="setUvTransform( tx: number, ty: number, sx: number, sy: number, rotation: number, cx: number, cy: number ): Matrix3"></a>setUvTransform( tx: number, ty: number, sx: number, sy: number, rotation: number, cx: number, cy: number ): Matrix3</h3><p><code>tx</code> - x偏移量</p>
 <p><code>ty</code> - y偏移量</p>
 <p><code>sx</code> - x方向的重复比例</p>
 <p><code>sy</code> - y方向的重复比例</p>
-<p><code>rotation </code>- 旋转（弧度）</p>
-<p><code>cx </code>- 旋转中心x</p>
-<p><code>cy </code>- 旋转中心y</p>
+<p><code>rotation</code>- 旋转（弧度）</p>
+<p><code>cx</code>- 旋转中心x</p>
+<p><code>cy</code>- 旋转中心y</p>
 <p>&emsp;&emsp;使用偏移，重复，旋转和中心点位置设置UV变换矩阵。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.setUvTransform(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>); 
 <span class="hljs-built_in">console</span>.log(matrix);<span class="hljs-comment">//返回elements: (9) [0, -0, 0, 0, 0, 0, 0.5, 0.5, 1]</span></code></pre>
-
-<h3 id="equals-matrix-Matrix3-boolean"><a href="#equals-matrix-Matrix3-boolean" class="headerlink" title="equals( matrix: Matrix3 ): boolean"></a>equals( matrix: Matrix3 ): boolean</h3><p>&emsp;&emsp;如果矩阵<code>m </code>与当前矩阵所有对应元素相同则返回<code>true</code>。</p>
+<h3 id="equals-matrix-Matrix3-boolean"><a href="#equals-matrix-Matrix3-boolean" class="headerlink" title="equals( matrix: Matrix3 ): boolean"></a>equals( matrix: Matrix3 ): boolean</h3><p>&emsp;&emsp;如果矩阵<code>m</code>与当前矩阵所有对应元素相同则返回<code>true</code>。</p>
 <h3 id="fromArray-array-number-offset-number-Matrix3"><a href="#fromArray-array-number-offset-number-Matrix3" class="headerlink" title="fromArray( array: number[], offset?: number ): Matrix3"></a>fromArray( array: number[], offset?: number ): Matrix3</h3><p>&emsp;&emsp;使用基于列优先格式column-major的数组来设置该矩阵。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.fromArray([<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>]);<span class="hljs-comment">//因为是基于列优先原则，所以设置的数组和elements属性相同，不需转置。</span></code></pre>
-
 <h3 id="toArray-array-number-offset-number-number"><a href="#toArray-array-number-offset-number-number" class="headerlink" title="toArray( array?: number[], offset?: number ): number[]"></a>toArray( array?: number[], offset?: number ): number[]</h3><p>&emsp;&emsp;使用列优先column-major格式将此矩阵的元素写入数组中。这是<code>fromArray</code>的逆运算。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix.set(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>); 
 matrix.toArray(array); 
 <span class="hljs-built_in">console</span>.log(array);<span class="hljs-comment">//返回[1, 4, 7, 2, 5, 8, 3, 6, 9]</span></code></pre>
-
 <h3 id="multiply-m-Matrix3-Matrix3"><a href="#multiply-m-Matrix3-Matrix3" class="headerlink" title="multiply( m: Matrix3 ): Matrix3"></a>multiply( m: Matrix3 ): Matrix3</h3><p>&emsp;&emsp;将当前矩阵乘以矩阵<code>m</code>。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix1 = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 <span class="hljs-keyword">var</span> matrix2 = <span class="hljs-keyword">new</span> THREE.Matrix3(); 
 matrix1.set(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>); 
 matrix2.setFromMatrix4(<span class="hljs-keyword">new</span> THREE.Matrix4().makeScale(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>));<span class="hljs-comment">//通过4维矩阵，得到三维矩阵 </span>
 matrix1.multiply(matrix2);<span class="hljs-comment">//返回elements: (9) [0.5, 2, 3.5, 1, 2.5, 4, 1.5, 3, 4.5]</span></code></pre>
-
 <h3 id="premultiply-m-Matrix3-Matrix3"><a href="#premultiply-m-Matrix3-Matrix3" class="headerlink" title="premultiply( m: Matrix3 ): Matrix3"></a>premultiply( m: Matrix3 ): Matrix3</h3><p>&emsp;&emsp;将矩阵<code>m</code>乘以当前矩阵。和上面相比这是左乘和右乘的问题。</p>
 <h3 id="multiplyMatrices-a-Matrix3-b-Matrix3-Matrix3"><a href="#multiplyMatrices-a-Matrix3-b-Matrix3-Matrix3" class="headerlink" title="multiplyMatrices( a: Matrix3, b: Matrix3 ): Matrix3"></a>multiplyMatrices( a: Matrix3, b: Matrix3 ): Matrix3</h3><p>&emsp;&emsp;设置当前矩阵为矩阵a x 矩阵b。和上面的方法差不多</p>
 <h3 id="multiplyVector3-vector-Vector3-any"><a href="#multiplyVector3-vector-Vector3-any" class="headerlink" title="multiplyVector3( vector: Vector3 ): any"></a>multiplyVector3( vector: Vector3 ): any</h3><p>&emsp;&emsp;和Vector3.applyMatrix3一样</p>
@@ -422,28 +390,17 @@ matrix1.multiply(matrix2);<span class="hljs-comment">//返回elements: (9) [0.5,
 matrix1.set(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>); 
 <span class="hljs-keyword">var</span> vector3 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>); 
 matrix1.multiplyVector3(vector3);<span class="hljs-comment">//返回Vector3 &#123;x: 14, y: 32, z: 50&#125;</span></code></pre>
-
-
-
-
-
-
-
 <h1 id="分离轴定理（Separating-Axis-Theorem）"><a href="#分离轴定理（Separating-Axis-Theorem）" class="headerlink" title="分离轴定理（Separating Axis Theorem）"></a>分离轴定理（Separating Axis Theorem）</h1><p><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/02/16/2d-collision-detection/">https://aotu.io/notes/2017/02/16/2d-collision-detection/</a></p>
 <p>&emsp;&emsp;<strong>概念</strong>：通过判断任意两个 <code>凸多边形</code> 在任意角度下的投影是否均存在重叠，来判断是否发生碰撞。若在某一角度光源下，两物体的投影存在间隙，则为不碰撞，否则为发生碰撞。</p>
 <p><strong>图例：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121724065-2000235824.png" srcset="/img/loading.gif" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121724065-2000235824.png" srcset="/img/loading.gif" alt="83792-20170706121724065-2000235824" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;在程序中，遍历所有角度是不现实的。那如何确定 <code>投影轴</code> 呢？其实只需对多边形的每一条边都判断一遍即可。且在判断过程中，若提前发现间隙，则不用进行剩下的判断了。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121734284-438000124.png" srcset="/img/loading.gif" alt="83792-20170706121734284-438000124" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121734284-438000124.png" srcset="/img/loading.gif" alt="83792-20170706121734284-438000124" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;每个投影轴其实就是对应边的法向量：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200808212950411.png" srcset="/img/loading.gif" alt="image-20200808212950411" style="zoom: 50%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200808212950411.png" srcset="/img/loading.gif" alt="image-20200808212950411" style="zoom: 50%;" /></p>
 <p><strong>圆形与多边形之间的碰撞检测</strong></p>
 <p>&emsp;&emsp;由于圆形可近似地看成一个有无数条边的正多边形，而我们不可能按照这些边一一进行投影与测试。我们只需将圆形投射到一条投影轴上即可，这条轴就是圆心与多边形顶点中最近的一点的连线，如图所示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706122010112-1512221308.png" srcset="/img/loading.gif" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706122010112-1512221308.png" srcset="/img/loading.gif" alt="83792-20170706122010112-1512221308" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;因此，该投影轴和多边形自身的投影轴就组成了一组待检测的投影轴了。另外，圆的投影可以先投影圆心那一点，然后再在两边加上半径即可。</p>
 <p>&emsp;&emsp;而对于圆形与圆形之间的碰撞检测依然是最初的两圆心距离是否小于两半径之和。</p>
 

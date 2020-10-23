@@ -280,9 +280,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
-
-
 <h2 id="解法2：逐个插入、调整"><a href="#解法2：逐个插入、调整" class="headerlink" title="解法2：逐个插入、调整"></a>解法2：逐个插入、调整</h2><p><strong>（第 27/37 个 case 会超时）</strong></p>
 <p>&emsp;&emsp;主要思路是先找到序列的第一个 <code>tuple</code> ，然后根据每个 <code>tuple</code> 的 <code>h</code> 和 <code>k</code> 找到插入的位置，所有数据都插入完成之后，有些 <code>tuple</code> 会因为插入操作而导致站位错误，因此需要逐个检查判断是否站错，若站错，则将这个 <code>tuple</code> 重新插入，反复执行此操作，直到所有数据都满足站位要求：</p>
 <pre><code class="hljs js"><span class="hljs-comment">/**</span>
@@ -356,10 +353,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
-
-
-
 
             </div>
             <hr>

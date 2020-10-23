@@ -243,14 +243,12 @@
 
 <span class="hljs-keyword">const</span> image = <span class="hljs-keyword">new</span> Image();
 image.src = renderer.domElement.toDataURL();</code></pre>
-
-<p>&emsp;&emsp;而 <code>preserveDrawingBuffer </code> 参数的含义是：是否保留缓直到手动清除或被覆盖。若设为 <code>true</code>，在任意时刻，前一帧的缓存图像不会被清除，因此可以获取到任意一刻的截图，若未设置的话，获取的截图可能就会是一张空白的图片。不过，这有一个明显的副作用，那就是会更加的消耗性能和占用内存。因此<strong>不推荐</strong>这种方式。</p>
+<p>&emsp;&emsp;而 <code>preserveDrawingBuffer</code> 参数的含义是：是否保留缓直到手动清除或被覆盖。若设为 <code>true</code>，在任意时刻，前一帧的缓存图像不会被清除，因此可以获取到任意一刻的截图，若未设置的话，获取的截图可能就会是一张空白的图片。不过，这有一个明显的副作用，那就是会更加的消耗性能和占用内存。因此<strong>不推荐</strong>这种方式。</p>
 <p>&emsp;&emsp;<strong>另一种方式</strong>就是在获取截图之前先再渲染一下场景，这样就不会因为缓存清空而导致截屏空白了：</p>
 <pre><code class="hljs js">renderer.clear();
 renderer.render(scene, camera);
 <span class="hljs-keyword">const</span> image = <span class="hljs-keyword">new</span> Image();
 image.src = canvas.toDataURL(<span class="hljs-string">&quot;image/png&quot;</span>);</code></pre>
-
 <h1 id="2-在屏幕上显示出来"><a href="#2-在屏幕上显示出来" class="headerlink" title="2.在屏幕上显示出来"></a>2.在屏幕上显示出来</h1><p>&emsp;&emsp;既然我们已经能够获取到正确的快照了，那么要将其显示在屏幕上，我们可以再创建一个新的 <code>canvas</code>，然后将获取的快照使用这个新的 <code>canvas</code> 加载出来就行了，代码如下：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> canvas = renderer.domElement;
 
@@ -268,9 +266,8 @@ mycanvas.height = canvas.height;
 image.onload = <span class="hljs-function">() =&gt;</span> &#123;
     ctx.drawImage(image, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 &#125;;</code></pre>
-
 <p>&emsp;&emsp;使用 <code>canvas</code> 载入图像使用了 <code>drawImage</code> 方法，它的第二第三个参数的意思是从源图像的哪个位置开始载入，要载入整张图像，填入 <code>0</code> 即可。</p>
-<p>&emsp;&emsp;<code>drawImage</code> 详细一些的介绍可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/20/HTML/canvas%E6%93%8D%E4%BD%9C%E5%9B%BE%E5%83%8F/">drawImage</a></p>
+<p>&emsp;&emsp;<code>drawImage</code> 详细一些的介绍可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/20/HTML/canvas操作图像/">drawImage</a></p>
 
             </div>
             <hr>

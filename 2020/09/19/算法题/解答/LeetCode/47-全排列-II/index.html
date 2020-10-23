@@ -247,7 +247,6 @@
   [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],
   [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
 ]</code></pre>
-
 <h2 id="解法1：回溯-剪枝"><a href="#解法1：回溯-剪枝" class="headerlink" title="解法1：回溯 + 剪枝"></a>解法1：回溯 + 剪枝</h2><p>&emsp;&emsp;这题求全排列的步骤与 <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/46-%E5%85%A8%E6%8E%92%E5%88%97/">46.全排列</a> 这题是一样的，区别就是 <code>46.</code> 这题给的数字序列是不含重复的数字，而本题则包含重复数字。</p>
 <p>&emsp;&emsp;这样的话，我们只需要在原先的基础上对其进行剪枝即可，将造成重复组合的情况去除。</p>
 <p>&emsp;&emsp;考虑一组序列：<code>[2, 2, 1, 1]</code>，标记一下以便区分：<code>[2, 2&#39;, 1, 1&#39;]</code>，对于这组序列，按照 <code>46.</code> 的思路，会造成重复的情况有在固定索引 <code>0</code> 处的值时，序列中的两个 <code>2</code> 和两个 <code>1</code> 都会造成固定值重复，即 <code>[2, 2&#39;, 1, 1&#39;]</code> 、<code>[2&#39;, 2, 1, 1&#39;]</code>，<code>[1, 2&#39;, 2, 1&#39;]</code> 和 <code>[1&#39;, 2&#39;, 1, 2]</code> ，这样，由于第一个固定的数字就重复，后面的所有组合也都是重复的。</p>
@@ -287,7 +286,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 
             </div>
             <hr>

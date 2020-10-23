@@ -240,8 +240,7 @@
 <p>&emsp;&emsp;举个例子，对于十进制的 <code>5.0</code>，写成<strong>二进制</strong>就是 <code>101.0</code>，相当于 <code>1.01 x 2^2</code>。</p>
 <p>&emsp;&emsp;按照上面的标准，可以得出： <code>s = 0</code>，<code>M = 1.01</code> ， <code>E = 2</code></p>
 <p>&emsp;&emsp;IEEE 754 规定，对于 <strong>32 位</strong>的浮点数，最高的 <code>1</code> 位是符号位 <code>s</code>，接着的 <code>8</code> 位是指数 <code>E</code>，剩下的 <code>23</code> 位为有效数字 <code>M</code>:</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060601.png" srcset="/img/loading.gif" alt="img"  />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060601.png" srcset="/img/loading.gif" alt="img"  /></p>
 <p>&emsp;&emsp;对于 <strong>64位</strong> 的浮点数，最高的 <code>1</code>位是符号位 <code>S</code> ，接着的 <code>11</code> 位是指数 <code>E</code>，剩下的 <code>52</code> 位为有效数字 <code>M</code>。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060602.png" srcset="/img/loading.gif" alt="img"></p>
 <p>&emsp;&emsp;在 IEEE 754 标准中，对 <code>M</code> 和 <code>E</code> 还有一些特别的规定，用于应对一些极端情况。</p>
@@ -275,10 +274,8 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-
 <p>&emsp;&emsp;程序的打印结果：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005230741731.png" srcset="/img/loading.gif" alt="image-20201005230741731" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005230741731.png" srcset="/img/loading.gif" alt="image-20201005230741731" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;在上面的代码中，我们先申明了一个整型 <code>a = 9</code>，然后申明了一个浮点指针 <code>pFloat</code> 指向 <code>a</code> 的地址。</p>
 <p>&emsp;&emsp;<strong>1）</strong> 使用浮点数格式打印 <code>a</code> 时，发现为 <code>0.000000</code>；</p>
 <p>&emsp;&emsp;<strong>2）</strong> 然后我们根据 <code>a</code> 的地址 <code>pFloat</code> 修改它的值为 <code>9.0</code>，此时再以整型来打印 <code>a</code>，输出的却是 <code>1091567616</code>。</p>
@@ -298,8 +295,7 @@
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/linven1911/article/details/2596038">https://blog.csdn.net/linven1911/article/details/2596038</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html">https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html">https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html</a></li>
 </ul>
 
             </div>

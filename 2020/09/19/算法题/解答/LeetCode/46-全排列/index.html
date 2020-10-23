@@ -250,12 +250,11 @@
   [<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],
   [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]
 ]</code></pre>
-
 <h2 id="解法1：回溯法"><a href="#解法1：回溯法" class="headerlink" title="解法1：回溯法"></a>解法1：回溯法</h2><p>&emsp;&emsp;对于一组<strong>没有重复</strong>数字的序列，要求它的全排列，假设这个序列是 <code>[1, 2, 3]</code>，若用手算，我们是这样算的：</p>
 <ol>
 <li><p>固定索引 <code>0</code> 处的数字 <code>1</code> ，剩下的就是 <code>[2, 3]</code>，两个数字的组合有 <code>[2, 3]</code> 和 <code>[3, 2]</code> ，再加上 <code>1</code> ，就得到了组合 <code>[1, 2, 3]</code> 和 <code>[1, 3, 2]</code>。（其实对于如 <code>[2, 3]</code> 这样的未固定的数字，我们也是像固定 <code>1</code> 一样，先固定住索引 <code>1</code> 处的数字 <code>2</code> ，剩下一个 <code>3</code>，得到组合后再回溯回去，换一个值固定在索引 <code>1</code> 处，即 <code>[3, 2]</code> … ）。</p>
 </li>
-<li><p>现在再改变索引 <code>0</code> 处的数字为 <code>2</code>，即 <code>1 </code> 与 <code>2</code> 互换位置，那么剩下的数字就是 <code>[1, 3]</code> ，组合有 <code>[1, 3]</code> 和 <code>[3, 1]</code>，再加上固定的 <code>2</code> ，就得到了 <code>[2, 1, 3]</code> 和 <code>[2, 3, 1]</code>。</p>
+<li><p>现在再改变索引 <code>0</code> 处的数字为 <code>2</code>，即 <code>1</code> 与 <code>2</code> 互换位置，那么剩下的数字就是 <code>[1, 3]</code> ，组合有 <code>[1, 3]</code> 和 <code>[3, 1]</code>，再加上固定的 <code>2</code> ，就得到了 <code>[2, 1, 3]</code> 和 <code>[2, 3, 1]</code>。</p>
 </li>
 <li><p>同理，恢复到初始的 <code>[1, 2, 3]</code>，再改变索引 <code>0</code> 的值为 <code>3</code>，剩下了 <code>[2, 1]</code> ，组合有 <code>[2, 1]</code> 和 <code>[1, 2]</code>，加上 <code>3</code> ，得到的组合就是 <code>[3, 2, 1]</code> 和 <code>[3, 1, 2]</code>。</p>
 </li>
@@ -290,7 +289,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
 <p><strong>CPP 代码：</strong></p>
 <pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span>
 <span class="hljs-keyword">public</span>:
@@ -312,7 +310,6 @@
         &#125;
     &#125;
 &#125;;</code></pre>
-
 
             </div>
             <hr>

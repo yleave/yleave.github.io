@@ -239,8 +239,7 @@
 <p>难度：困难</p>
 <hr>
 <p>&emsp;&emsp;<em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;图为 8 皇后问题的一种解法。</p>
 <p>&emsp;&emsp;给定一个整数 <code>n</code>，返回所有不同的 <code>n</code> 皇后问题的解决方案。</p>
 <p>&emsp;&emsp;每一种解法包含一个明确的 <code>n</code> 皇后问题的棋子放置方案，该方案中 <code>&#39;Q&#39;</code> 和 <code>&#39;.&#39;</code> 分别代表了皇后和空位。</p>
@@ -251,13 +250,11 @@
   <span class="hljs-string">&quot;...Q&quot;</span>,
   <span class="hljs-string">&quot;Q...&quot;</span>,
   <span class="hljs-string">&quot;..Q.&quot;</span>],</code></pre>
-
 <pre><code class="hljs awk"> [<span class="hljs-string">&quot;..Q.&quot;</span>,  <span class="hljs-regexp">//</span> 解法 <span class="hljs-number">2</span>
   <span class="hljs-string">&quot;Q...&quot;</span>,
   <span class="hljs-string">&quot;...Q&quot;</span>,
   <span class="hljs-string">&quot;.Q..&quot;</span>]
 ]</code></pre>
-
 <p>解释: 4 皇后问题存在两个不同的解法。</p>
 <p><strong>提示：</strong></p>
 <ul>
@@ -266,8 +263,7 @@
 <h2 id="解法1：回溯"><a href="#解法1：回溯" class="headerlink" title="解法1：回溯"></a>解法1：回溯</h2><p>&emsp;&emsp;对每个位置都进行尝试。</p>
 <p>&emsp;&emsp;<code>n</code> 行，每行从头开始遍历，对当前位置，判断这个位置是否满足皇后位置的要求，即横、纵、斜线上都没有其他皇后存在，因为我们是从头开始遍历的，因此，对当前位置只需要判断处于一条竖线的上方、处于左斜线的上方和处于右斜线的上方是否有皇后存在即可。若当前位置满足，则开始寻找下一行的皇后的位置。直到第 <code>n</code> 行找到最后一个皇后。</p>
 <p>&emsp;&emsp;如下图，假设遍历到 Q3 位置，它只需要判断三条蓝线的方向是否有皇后即可。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017101137969.png" srcset="/img/loading.gif" alt="image-20201017101137969" style="zoom:80%;" />
-
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017101137969.png" srcset="/img/loading.gif" alt="image-20201017101137969" style="zoom:80%;" /></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> solveNQueens = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
     <span class="hljs-keyword">let</span> board = [];
@@ -330,9 +326,6 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-
-
-
 
             </div>
             <hr>

@@ -235,7 +235,9 @@
             <h1 style="display: none">threeJS 中数学相关内容</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Three-中的矩阵关系"><a href="#Three-中的矩阵关系" class="headerlink" title="Three 中的矩阵关系"></a>Three 中的矩阵关系</h1><h2 id="REF-https-juejin-im-post-6844903510769664014"><a href="#REF-https-juejin-im-post-6844903510769664014" class="headerlink" title="REF: https://juejin.im/post/6844903510769664014"></a>REF: <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903510769664014">https://juejin.im/post/6844903510769664014</a></h2><p>&emsp;&emsp;我们将相机的位置方向, 相机的类型, 物体的位置和形变能转换为 <strong>矩阵</strong>, 将这些矩阵进行一系列计算后, 最终得到<strong>三维投影矩阵</strong>: <code>u_matrix</code></p>
+              <h1 id="Three-中的矩阵关系"><a href="#Three-中的矩阵关系" class="headerlink" title="Three 中的矩阵关系"></a>Three 中的矩阵关系</h1><p>REF: <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903510769664014">https://juejin.im/post/6844903510769664014</a></p>
+<hr>
+<p>&emsp;&emsp;我们将相机的位置方向, 相机的类型, 物体的位置和形变能转换为 <strong>矩阵</strong>, 将这些矩阵进行一系列计算后, 最终得到<strong>三维投影矩阵</strong>: <code>u_matrix</code></p>
 <p>&emsp;&emsp;基于它, 任意给定三维坐标<code>[x, y, z]</code>, 我们都能算出相机视平面上的位置:</p>
 <p>&emsp;&emsp;<strong>[x, y] = u_matrix * [x, y, z, 1]</strong></p>
 <h2 id="THREE-中的矩阵"><a href="#THREE-中的矩阵" class="headerlink" title="THREE 中的矩阵"></a>THREE 中的矩阵</h2><p>&emsp;&emsp;THREE定义了场景(Scene)和相机(Camera)， Scene用来添加管理三维物体, Camera用来控制相机的位置， 角度等。</p>

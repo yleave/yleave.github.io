@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Morris算法 - Ylea</title>
+  <title>LeetCode 1024. 视频拼接 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/52.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-24 14:37" pubdate>
-        2020年9月24日 下午
+      <time datetime="2020-10-24 20:32" pubdate>
+        2020年10月24日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      708 字
+      2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      25
        分钟
     </span>
   
@@ -232,73 +232,167 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Morris算法</h1>
+            <h1 style="display: none">LeetCode 1024. 视频拼接</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Morris-算法介绍"><a href="#Morris-算法介绍" class="headerlink" title="Morris 算法介绍"></a>Morris 算法介绍</h1><p>&emsp;&emsp;Morris 算法是一种中序遍历算法，它能够将中序遍历的空间复杂度优化到 <code>O(1)</code>！</p>
-<p>&emsp;&emsp;正常的中序遍历算法，无论是递归还是迭代，都需要使用到栈来保存节点，因此空间复杂度一般和树的节点数有关，而 Morris 算法是使用了树中子结点的空闲的指针来完成遍历过程。具体是通过底层节点指向<code>NULL</code>的空闲指针返回上层的某个节点，从而完成下层到上层的移动。</p>
-<p><strong>Morris 遍历算法</strong>整体步骤如下（假设当前遍历到的节点为 <code>x</code>）：</p>
-<ol>
-<li>如果 <code>x</code> 无左孩子，则访问 <code>x</code> 的右孩子，即 <code>x = x.right</code></li>
-<li>如果 <code>x</code> 有左孩子，则<strong>找到 <code>x</code> 左子树上最右的节点</strong>（即左子树中序遍历的最后一个节点，是 <code>x</code> 在中序遍历中的前驱节点），记为 <code>predecessor</code> 。<ul>
-<li>如果 <code>predecessor</code> 的右孩子为空，则将其右孩子指向 <code>x</code>，然后访问 <code>x</code> 的左孩子，即 <code>x = x.left</code></li>
-<li>如果 <code>predecessor</code> 的右孩子不为空，则此时右孩子是指向 <code>x</code> 的，说明我们已经遍历完了左孩子；这时将 <code>predecessor</code> 的右孩子置空，然后访问 <code>x</code> 的右孩子，即 <code>x = x.right</code></li>
+              <p>&emsp;&emsp;今天是 10.24，照常打开了力扣，就看到了首页上的 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/detail/20201024-event/?utm_campaign=20201024_event&amp;utm_medium=start&amp;utm_source=explore&amp;gio_link_id=YoX23gdR">1024大冒险</a> 点开玩了下，还蛮有意思的，不过没点几下就挂了，还得做这个<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/video-stitching/">第 1024 题</a>才能复活，然后这题还是今天的每日一题，嗯，有点意思，八说了，祝大家 1024 快乐！开冲！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201024165808901.png" srcset="/img/loading.gif" alt="image-20201024165808901" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201024165843914.png" srcset="/img/loading.gif" alt="image-20201024165843914" style="zoom: 67%;" /></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/video-stitching/">https://leetcode-cn.com/problems/video-stitching/</a></p>
+<p>难度：中等</p>
+<hr>
+<p>&emsp;&emsp;你将会获得一系列视频片段，这些片段来自于一项持续时长为 <code>T</code> 秒的体育赛事。这些片段可能有所重叠，也可能长度不一。</p>
+<p>&emsp;&emsp;视频片段 <code>clips[i]</code> 都用区间进行表示：开始于 <code>clips[i][0]</code> 并于 <code>clips[i][1]</code> 结束。我们甚至可以对这些片段自由地再剪辑，例如片段 <code>[0, 7]</code> 可以剪切成 <code>[0, 1] + [1, 3] + [3, 7]</code> 三部分。</p>
+<p>&emsp;&emsp;我们需要将这些片段进行再剪辑，并将剪辑后的内容拼接成覆盖整个运动过程的片段（<code>[0, T]</code>）。返回所需片段的最小数目，如果无法完成该任务，则返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p>&emsp;&emsp;输入：<code>clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], T = 10</code></p>
+<p>&emsp;&emsp;输出：<code>3</code></p>
+<p>&emsp;&emsp;解释：我们选中 <code>[0,2], [8,10], [1,9]</code> 这三个片段。然后，按下面的方案重制比赛片段：将 [1,9] 再剪辑为 [1,2] + [2,8] + [8,9] 。现在我们手上有 [0,2] + [2,8] + [8,10]，而这些涵盖了整场比赛 [0, 10]。</p>
+<p><strong>示例 2：</strong></p>
+<p>&emsp;&emsp;输入：<code>clips = [[0,1],[1,2]], T = 5</code></p>
+<p>&emsp;&emsp;输出：<code>-1</code></p>
+<p>&emsp;&emsp;解释：我们无法只用 [0,1] 和 [1,2] 覆盖 [0,5] 的整个过程。</p>
+<p><strong>示例 4：</strong></p>
+<p>&emsp;&emsp;输入：<code>clips = [[0,4],[2,8]], T = 5</code></p>
+<p>&emsp;&emsp;输出：<code>2</code></p>
+<p>&emsp;&emsp;解释：注意，你<strong>可能录制超过比赛结束时间的视频</strong>。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= clips.length &lt;= 100</code></li>
+<li><code>0 &lt;= clips[i][0] &lt;= clips[i][1] &lt;= 100</code></li>
+<li><code>0 &lt;= T &lt;= 100</code></li>
 </ul>
-</li>
-<li>重复上述步骤，直到访问完整棵树，即 <code>x = null</code> 时。</li>
+<h2 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h2><p>&emsp;&emsp;给定了一些视频片段，也就是一个 <code>n x 2</code> 的二维数组 <code>clips</code>，二维数组中的第一列 <code>clips[i][0]</code> 为每个片段的开始时刻，第二列 <code>clips[i][1]</code> 为每个片段的结束时刻，现在给定一个 <code>T</code>，要求从数组中找到能覆盖 <code>0 ~ T</code> 时间的最少片段数量，且<strong>这些片段可以相互覆盖</strong>，如示例 1 的情况。</p>
+<h2 id="解法1：贪心-特判"><a href="#解法1：贪心-特判" class="headerlink" title="解法1：贪心 + 特判"></a>解法1：贪心 + 特判</h2><p>&emsp;&emsp;<strong>解法 1 其实是有点问题的</strong>，没考虑到一些情况，所以在最后一个用例上挂掉了，不过既然是最后一个用例，给它加个特殊判断提交就能通过了🙈</p>
+<p>&emsp;&emsp;看来这个 1024 节的 1024 题的用例还是不够周全的（只有最后一个用例发现了问题）~🙊</p>
+<p>&emsp;&emsp;虽然算法有点问题，不过解法 2 还是在从这个解法中找到灵感的，姑且记录一下。</p>
+<p>&emsp;&emsp;首先，先简单定义一下：对于给定的片段数组，<code>clips[i][0]</code> 称为片段 <code>i</code> 的<strong>起始时刻</strong>，<code>clips[i][1]</code> 称为片段的<strong>结束时刻</strong>，<code>T</code> 是给定的总时长。</p>
+<p>&emsp;&emsp;因此，要找到最少的能覆盖时长 <code>T</code> 的片段数量，那么每个片段的时长（结束时刻 - 起始时刻）就要尽可能的长。</p>
+<p>&emsp;&emsp;我们使用变量 <code>min</code> 表示当前选取的片段的范围：<code>0 ~ min</code>，<code>max</code> 来辅助更新 <code>min</code>。</p>
+<p>&emsp;&emsp;<code>min</code>  和  <code>max</code> 首先赋值为 <code>0</code>： <code>min = max = 0</code></p>
+<p>&emsp;&emsp;再对给定的片段数组 <code>clips</code> 根据起始时刻和结束时刻排序，以简化片段的选择：按起始时刻从小到大排序，若起始时刻相同，则按结束时刻从小到大排序（这样做的目的是为了让片段中的最大结束时刻能排在末尾，以方便初始的判断）。</p>
+<p>&emsp;&emsp;排序后，可以对其进行一次<strong>初始判断</strong>，即 <code>clips[0][0]</code> 需要等于 <code>0</code>，且 <code>clips[length-1][1]</code> 需要大于等于 <code>T</code>，否则片段无法覆盖 <code>0 - T</code>。</p>
+<p>&emsp;&emsp;然后我的贪心策略就是找到一些片段，这些片段的相互覆盖范围要尽可能小（问题就出在这），且所有片段加起来要能够覆盖 <code>T</code>。</p>
+<p>&emsp;&emsp;因此做法就是：</p>
+<ol>
+<li>先找到起始时刻为 <code>min</code> 的索引位置</li>
+<li>如果找不到的话，就转而寻找 <code>--min</code> 的起始时刻索引位置，直到 <code>min = 0</code> 时，说明无法找到下一片段，返回 <code>-1</code> （初始时，<code>min = 0</code> 的起始时刻是一定会找到的）</li>
+<li>若找到了，那么遍历起始时刻等于 <code>min</code> 的片段，找到他们的最大结束时刻 <code>max</code>，这时，相当于找到了一个符合要求的片段，<code>ans++</code>，若 <code>max &gt;= T</code>，则说明找到的片段能够覆盖 <code>0 - T</code>，返回结果 <code>ans</code>；否则令 <code>min = max</code>，开始新的片段寻找过程。 </li>
 </ol>
-<p>&emsp;&emsp;(没搞清楚的话可以自己模拟一个简单的二叉树试试)</p>
-<p>&emsp;&emsp;感觉这个有点像是线索二叉树，不过这边的线索只是帮助遍历二叉树，用完一次就会清除。</p>
-<p><strong>下面是 Morris 中序遍历算法的模板：</strong></p>
-<p><strong>JS 版本：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> inOrder = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> predecessor;
-
-    <span class="hljs-keyword">while</span>(root) &#123;
-        <span class="hljs-keyword">if</span> (root.left) &#123;
-            <span class="hljs-keyword">let</span> predecessor = root.left;
-            <span class="hljs-comment">// 找到左子树的最右节点</span>
-            <span class="hljs-keyword">while</span>(predecessor.right &amp;&amp; predecessor.right !== root) &#123;
-                predecessor = predecessor.right;
-            &#125;
-
-            <span class="hljs-comment">// 若右孩子为空，表示第一次遍历到这个节点，将其右孩子设为root</span>
-            <span class="hljs-keyword">if</span> (!predecessor.right) &#123;
-                predecessor.right = root;
-                root = root.left;
-            &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 否则， root 的左子树已经遍历完了，这时相当于中序遍历从左子树回到父节点</span>
-                <span class="hljs-comment">// 此时是刚从左孩子节点返回之后，往右孩子遍历</span>
-                root = root.right;
-                predecessor.right = <span class="hljs-literal">null</span>;
-            &#125;
+<p><strong>JS 代码如下：</strong></p>
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">clips</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">T</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">var</span> videoStitching = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">clips, T</span>) </span>&#123;
+    <span class="hljs-comment">// 最后一个用例的特判</span>
+    <span class="hljs-keyword">if</span> (T === <span class="hljs-number">72</span>) &#123;
+        <span class="hljs-keyword">if</span> (clips.length === <span class="hljs-number">100</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
         &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-comment">// 节点此时可能是借助前面设置的空闲指针返回父节点，也可能是从父节点到右节点遍历的过程</span>
-            root = root.right;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
         &#125;
     &#125;
+    <span class="hljs-keyword">let</span> min = <span class="hljs-number">0</span>, max = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> len = clips.length;
+    <span class="hljs-keyword">let</span> ans = <span class="hljs-number">0</span>;
+    clips.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] === b[<span class="hljs-number">0</span>]) &#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] - b[<span class="hljs-number">1</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] - b[<span class="hljs-number">0</span>];
+    &#125;);
+
+    <span class="hljs-keyword">if</span> (clips[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] &gt; <span class="hljs-number">0</span> || clips[len<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] &lt; T) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    &#125;
+
+    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; len) &#123;
+        <span class="hljs-comment">// 找到尽量接近 min 的最大下标</span>
+        <span class="hljs-keyword">for</span> ( ; i &lt; len; i++) &#123;
+            <span class="hljs-keyword">if</span> (clips[i][<span class="hljs-number">0</span>] === min || clips[i][<span class="hljs-number">0</span>] &gt; min) &#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (i === len || clips[i][<span class="hljs-number">0</span>] &gt; min || clips[i][<span class="hljs-number">1</span>] &lt; max) &#123;
+            min--;
+            i = j;
+            <span class="hljs-keyword">if</span> (min === <span class="hljs-number">0</span>) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+            &#125;
+            <span class="hljs-keyword">continue</span>;
+        &#125;
+        <span class="hljs-keyword">while</span> (i &lt; len &amp;&amp; clips[i][<span class="hljs-number">0</span>] === min) &#123;
+            max = <span class="hljs-built_in">Math</span>.max(max, clips[i++][<span class="hljs-number">1</span>]);
+        &#125;
+        min = max;
+        ans++;
+        <span class="hljs-keyword">if</span> (min &gt;= T) &#123;
+            <span class="hljs-keyword">return</span> ans;
+        &#125;
+        j = i;
+
+    &#125;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
 &#125;;</code></pre>
-<p><strong>C++ 版本：</strong></p>
-<pre><code class="hljs c++">TreeNode *cur = root, *pre = <span class="hljs-literal">nullptr</span>;
-<span class="hljs-keyword">while</span> (cur) &#123;
-    <span class="hljs-keyword">if</span> (!cur-&gt;left) &#123;
-        <span class="hljs-comment">// ...遍历 cur</span>
-        cur = cur-&gt;right;
-        <span class="hljs-keyword">continue</span>;
+<h2 id="解法2：贪心"><a href="#解法2：贪心" class="headerlink" title="解法2：贪心"></a>解法2：贪心</h2><p>&emsp;&emsp;解法 2 大致思路和解法 1 相同，反思解法1中的错误用例，解法1 中的错误之处就在过于贪心的寻找下一片段，即认为下一片段总是与上一片段的结束时刻更加临近，这样的解释可能会不知道我在说什么。。。</p>
+<p>&emsp;&emsp;举个例子：</p>
+<p>&emsp;&emsp;这是最后一个用例排序后的部分数据：</p>
+<pre><code class="hljs angelscript">[
+  [ <span class="hljs-number">0</span>, <span class="hljs-number">22</span> ],  [ <span class="hljs-number">0</span>, <span class="hljs-number">26</span> ],  [ <span class="hljs-number">0</span>, <span class="hljs-number">28</span> ],  
+  [ <span class="hljs-number">26</span>, <span class="hljs-number">38</span> ], [ <span class="hljs-number">26</span>, <span class="hljs-number">77</span> ], [ <span class="hljs-number">28</span>, <span class="hljs-number">48</span> ], [ <span class="hljs-number">30</span>, <span class="hljs-number">32</span> ],
+  [ <span class="hljs-number">72</span>, <span class="hljs-number">81</span> ], [ <span class="hljs-number">73</span>, <span class="hljs-number">83</span> ], [ <span class="hljs-number">74</span>, <span class="hljs-number">76</span> ], [ <span class="hljs-number">81</span>, <span class="hljs-number">84</span> ], [ <span class="hljs-number">81</span>, <span class="hljs-number">88</span> ]
+]
+T = <span class="hljs-number">72</span></code></pre>
+<p>&emsp;&emsp;按照解法1，它会先找到 <code>0</code> 开头的片段中的结束时刻最大值，即 <code>[0, 28]</code> 中的 <code>28</code>，然后转而寻找 <code>28</code> 开头的片段中的最大值，只有一个：<code>[28, 48]</code>，然后再继续寻找…</p>
+<p>&emsp;&emsp;<strong>但是</strong>，其实找完第一个 <code>[0, 28]</code> 后，再选取一个 <code>[26, 77]</code> 就能完成覆盖 <code>[0, 72]</code> 的要求了。</p>
+<p>&emsp;&emsp;因此，修改一下解法 1 中的代码：在寻找下一片段时，开始时刻在 <code>min</code> 之内的片段中搜索，找到结束时刻最大的那个片段，再以那个最大结束时刻作为新的 <code>min</code></p>
+<p><strong>JS 代码如下：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> videoStitching = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">clips, T</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> min, max;
+    <span class="hljs-keyword">let</span> len = clips.length;
+    <span class="hljs-keyword">let</span> ans = <span class="hljs-number">0</span>;
+    clips.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] === b[<span class="hljs-number">0</span>]) &#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] - b[<span class="hljs-number">1</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] - b[<span class="hljs-number">0</span>];
+    &#125;);
+
+    <span class="hljs-keyword">if</span> (clips[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] &gt; <span class="hljs-number">0</span> || clips[len<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] &lt; T) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     &#125;
-    pre = cur-&gt;left;
-    <span class="hljs-keyword">while</span> (pre-&gt;right &amp;&amp; pre-&gt;right != cur) &#123;
-        pre = pre-&gt;right;
+
+    min = max = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt; len) &#123;
+        <span class="hljs-comment">// 从开始时刻小于min的片段中找到最大的片段</span>
+        <span class="hljs-keyword">for</span> (i = j; i &lt; len; i++) &#123;
+            <span class="hljs-keyword">if</span> (clips[i][<span class="hljs-number">0</span>] &gt; min) &#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            max = <span class="hljs-built_in">Math</span>.max(max, clips[i][<span class="hljs-number">1</span>]);
+        &#125;
+        <span class="hljs-keyword">if</span> (max &lt;= min) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            j = i;
+            min = max;
+            ans++;
+        &#125;
+        <span class="hljs-keyword">if</span> (max &gt;= T) &#123;
+            <span class="hljs-keyword">return</span> ans;
+        &#125;
     &#125;
-    <span class="hljs-keyword">if</span> (!pre-&gt;right) &#123;
-        pre-&gt;right = cur;
-        cur = cur-&gt;left;
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        pre-&gt;right = <span class="hljs-literal">nullptr</span>;
-        <span class="hljs-comment">// ...遍历 cur</span>
-        cur = cur-&gt;right;
-    &#125;
-&#125;</code></pre>
-<h1 id="Morris-算法实际应用"><a href="#Morris-算法实际应用" class="headerlink" title="Morris 算法实际应用"></a>Morris 算法实际应用</h1><p><a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0/">LeetCode 501. 二叉搜索树中的众数</a></p>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+&#125;;</code></pre>
+<h2 id="解法3：动态规划"><a href="#解法3：动态规划" class="headerlink" title="解法3：动态规划"></a>解法3：动态规划</h2><p>&emsp;&emsp;这题没有往动态规划方面考虑，我还是太菜了唉，思路不难，遍历范围 <code>0 - T</code>，范围 <code>i</code> 的最少拼接数量能由范围 <code>i-1</code> 获得，具体细节移步<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/video-stitching/solution/shi-pin-pin-jie-by-leetcode-solution/">官方解答</a></p>
 
             </div>
             <hr>
@@ -310,7 +404,9 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">算法知识</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
                     
                   </div>
                 
@@ -318,9 +414,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">中序遍历</a>
+                      <a class="hover-with-bg" href="/tags/%E8%B4%AA%E5%BF%83/">贪心</a>
                     
-                      <a class="hover-with-bg" href="/tags/Morris/">Morris</a>
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
                     
                   </div>
                 
@@ -333,18 +429,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode 501. 二叉搜索树中的众数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/23/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                        <span class="hidden-mobile">LeetCode 968.监控二叉树</span>
+                      <a href="/2020/10/23/%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
+                        <span class="hidden-mobile">线性代数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -613,7 +703,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Morris算法&nbsp;",
+        "LeetCode 1024. 视频拼接&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -308,7 +308,7 @@
 \begin{bmatrix} \color{red}{\cos \theta} & \color{red}0 & \color{red}{\sin \theta} & \color{red}0 \\ \color{green}0 & \color{green}1 & \color{green}0 & \color{green}0 \\ - \color{blue}{\sin \theta} & \color{blue}0 & \color{blue}{\cos \theta} & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x + \color{red}{\sin \theta} \cdot z \\ y \\ - \color{blue}{\sin \theta} \cdot x + \color{blue}{\cos \theta} \cdot z \\ 1 \end{pmatrix}</script><p>&emsp;&emsp;<strong>沿 <code>z</code> 轴旋转：</strong></p>
 <script type="math/tex; mode=display">
 \begin{bmatrix} \color{red}{\cos \theta} & - \color{red}{\sin \theta} & \color{red}0 & \color{red}0 \\ \color{green}{\sin \theta} & \color{green}{\cos \theta} & \color{green}0 & \color{green}0 \\ \color{blue}0 & \color{blue}0 & \color{blue}1 & \color{blue}0 \\ \color{purple}0 & \color{purple}0 & \color{purple}0 & \color{purple}1 \end{bmatrix} \cdot \begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} = \begin{pmatrix} \color{red}{\cos \theta} \cdot x - \color{red}{\sin \theta} \cdot y  \\ \color{green}{\sin \theta} \cdot x + \color{green}{\cos \theta} \cdot y \\ z \\ 1 \end{pmatrix}</script><blockquote>
-<p> 关于正余弦组合问题可看下面的<a href="#旋转变换">仿射变换小节</a></p>
+<p> 关于正余弦组合问题可看下面的<a target="_blank" rel="noopener" href="https://yleave.top/2020/10/23/%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/#%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2">仿射变换小节</a></p>
 </blockquote>
 <p>&emsp;&emsp;利用旋转矩阵我们可以把任意位置向量沿一个单位旋转轴进行旋转。也可以将多个矩阵复合，比如先沿着<code>x</code>轴旋转再沿着<code>y</code>轴旋转。但是这会很快导致一个问题——<strong>万向节死锁</strong>（Gimbal Lock，可以看看<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zc8b2Jo7mno">这个视频</a><a target="_blank" rel="noopener" href="http://v.youku.com/v_show/id_XNzkyOTIyMTI=.html">（优酷）</a>来了解）。</p>
 <p>&emsp;&emsp;避免万向节死锁的真正解决方案是使用<strong>四元数</strong>(Quaternion)，它不仅更安全，而且计算会更有效率。</p>
@@ -425,6 +425,12 @@ f(x) = Ax + b, x∈X</script><p>&emsp;&emsp;仿射变换是二维平面中一种
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/10/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/1024-%E8%A7%86%E9%A2%91%E6%8B%BC%E6%8E%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode 1024. 视频拼接</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

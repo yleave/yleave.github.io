@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>LeetCode 845. 数组中的最长山脉</title>
+    <link href="/2020/10/25/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89/"/>
+    <url>/2020/10/25/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/longest-mountain-in-array/">https://leetcode-cn.com/problems/longest-mountain-in-array/</a></p><p>难度：中等</p><hr /><p>  我们把数组 <code>A</code> 中符合下列属性的任意连续子数组 <code>B</code> 称为 “山脉”：</p><ul><li><code>B.length &gt;= 3</code></li><li>存在 <code>0 &lt; i &lt; B.length - 1</code> 使得 <code>B[0] &lt; B[1] &lt; ... B[i-1] &lt; B[i] &gt; B[i+1] &gt; ... &gt; B[B.length - 1]</code><br />（注意：<code>B</code> 可以是 <code>A</code> 的任意子数组，包括整个数组 <code>A</code>。）</li></ul><p>  给出一个整数数组 <code>A</code>，返回最长 “山脉” 的长度。</p><p>  如果不含有 “山脉” 则返回 <code>0</code>。</p><p><strong>示例 1：</strong></p><p>  输入：<code>[2,1,4,7,3,2,5]</code></p><p>  输出：<code>5</code></p><p>  解释：最长的 “山脉” 是 <code>[1,4,7,3,2]</code>，长度为 <code>5</code>。</p><p><strong>示例 2：</strong></p><p>  输入：<code>[2,2,2]</code></p><p>  输出：<code>0</code></p><p>  解释：不含 “山脉”。</p><p>提示：</p><ul><li><code>0 &lt;= A.length &lt;= 10000</code></li><li><code>0 &lt;= A[i] &lt;= 10000</code></li></ul><h2 id="解法1状态判断"><a class="markdownIt-Anchor" href="#解法1状态判断"></a> 解法1：状态判断</h2><p>  根据题意，我们需要寻找数组中的最长山脉，而这条山脉一定会是连续的，因此我们可以找到一种方案只遍历一次数组，计算每条山脉的长度，并从中选取最长的山脉。</p><p>  对于数组中的数字 <code>A[i]</code> （<code>0 &lt;= i &lt; length - 1</code>），它只有三种状态：</p><ul><li><strong>状态1</strong>：当前数字小于下一数字：<code>A[i] &lt; A[i+1]</code>，这种情况，它可能会是一条山脉的左半组成部分</li><li><strong>状态2</strong>：当前数字等于下一数字：<code>A[i] == A[i+1]</code>，这种情况，这个数字可能会是山脉的右半部分的结束位置，也有可能不属于山脉的一部分</li><li><strong>状态3</strong>：当前数字大于下一数字：<code>A[i] &gt; A[i+1]</code>，这种情况，这个数字可能会是一条山脉的右半组成部分</li></ul><p>  且<strong>要构成一条山脉，需要先增后减</strong>，我们可以定义一个 <code>temp</code> 来表示组成一个山脉的数字个数，初始为 <code>0</code>，当遇到状态1和状态3时，<code>temp</code> 都会加 <code>1</code>，再定义一个 <code>decrease</code> 来标识对于一串连续的数字，是否出现了递减的部分。</p><p>  注意到，一条山脉只会在遇到以下三种情况时结束：</p><ul><li><strong>结束1</strong>：当前数字处于递减状态（状态1）且遇到数组末尾</li><li><strong>结束2</strong>：前面数字是处于递减状态（状态3），而当前数字处于递增状态（状态1）</li><li><strong>结束3</strong>：前面数字处于递减状态（状态3），当前数字处于平缓状态（状态2）</li></ul><p><strong>具体操作可结合代码和注释来理解</strong></p><p><strong>C代码如下：</strong></p><pre><code class="hljs js">int longestMountain(int* A, int ASize)&#123;    <span class="hljs-keyword">if</span> (ASize &lt; <span class="hljs-number">3</span>) &#123;        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;    &#125;    bool decrease = <span class="hljs-literal">false</span>;    int i, max = <span class="hljs-number">0</span>, temp = <span class="hljs-number">0</span>;    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; ASize<span class="hljs-number">-1</span>; i++) &#123;        <span class="hljs-comment">// 若处于递增状态</span>        <span class="hljs-keyword">if</span> (A[i + <span class="hljs-number">1</span>] &gt; A[i]) &#123;            <span class="hljs-comment">// 结束情况2：前面数字处于递减状态，而当前处于递增状态</span>            <span class="hljs-keyword">if</span> (decrease) &#123;                decrease = <span class="hljs-literal">false</span>;                max = fmax(max, temp + <span class="hljs-number">1</span>); <span class="hljs-comment">// 算上当前的数字： temp + 1</span>                temp = <span class="hljs-number">0</span>;             &#125;             temp++;        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (A[i + <span class="hljs-number">1</span>] == A[i]) &#123;            <span class="hljs-comment">// 结束情况2：前面数字处于递减状态，当前数字处于平缓状态</span>            <span class="hljs-keyword">if</span> (decrease) &#123;                decrease = <span class="hljs-literal">false</span>;                max = fmax(max, temp + <span class="hljs-number">1</span>);            &#125;            temp = <span class="hljs-number">0</span>;        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (temp &gt; <span class="hljs-number">0</span>)&#123;            decrease = <span class="hljs-literal">true</span>;            temp++;            <span class="hljs-comment">// 结束情况1：当前数字处于递减状态，而遇到了数组末尾</span>            <span class="hljs-keyword">if</span> (i == ASize - <span class="hljs-number">2</span>) &#123;                max = fmax(max, temp + <span class="hljs-number">1</span>);            &#125;        &#125;    &#125;    <span class="hljs-keyword">return</span> max;&#125;</code></pre><h2 id="解法2动态规划"><a class="markdownIt-Anchor" href="#解法2动态规划"></a> 解法2：动态规划</h2><p><a href="https://leetcode-cn.com/problems/longest-mountain-in-array/solution/shu-zu-zhong-de-zui-chang-shan-mai-by-leetcode-sol/">参考官方解答</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>解答</category>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>动态规划</tag>
+      
+      <tag>状态分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode 1024. 视频拼接</title>
     <link href="/2020/10/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/1024-%E8%A7%86%E9%A2%91%E6%8B%BC%E6%8E%A5/"/>
     <url>/2020/10/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/1024-%E8%A7%86%E9%A2%91%E6%8B%BC%E6%8E%A5/</url>

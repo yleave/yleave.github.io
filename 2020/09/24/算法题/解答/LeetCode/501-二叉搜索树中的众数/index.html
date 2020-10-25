@@ -237,32 +237,36 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/</a></p>
 <p>难度：简单</p>
-<hr>
-<p>&emsp;&emsp;给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。</p>
+<hr />
+<p>  给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。</p>
 <p>假定 BST 有如下定义：</p>
 <ul>
-<li><p>结点左子树中所含结点的值小于等于当前结点的值</p>
+<li>
+<p>结点左子树中所含结点的值小于等于当前结点的值</p>
 </li>
-<li><p>结点右子树中所含结点的值大于等于当前结点的值</p>
+<li>
+<p>结点右子树中所含结点的值大于等于当前结点的值</p>
 </li>
-<li><p>左子树和右子树都是二叉搜索树</p>
+<li>
+<p>左子树和右子树都是二叉搜索树</p>
 </li>
 </ul>
 <p><strong>例如：</strong></p>
-<p>&emsp;&emsp;给定 BST <code>[1,null,2,2]</code>,</p>
+<p>  给定 BST <code>[1,null,2,2]</code>,</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">1</span>
  \
   <span class="hljs-number">2</span>
  /
 <span class="hljs-number">2</span></code></pre>
-<p>&emsp;&emsp;返回 <code>[2]</code></p>
+<p>  返回 <code>[2]</code></p>
 <p><strong>提示</strong>：如果众数超过1个，不需考虑输出顺序</p>
 <p><strong>进阶：</strong> 你可以不使用额外的空间吗？（假设由递归产生的隐式调用栈的开销不被计算在内）</p>
-<hr>
-<h2 id="解法1：中序遍历"><a href="#解法1：中序遍历" class="headerlink" title="解法1：中序遍历"></a>解法1：中序遍历</h2><p>&emsp;&emsp;对于一棵二叉搜索树，若对其进行中序遍历并在遍历过程中顺序记录节点值，那么记录的值会是一个单调递增序列（在本题中是单调不减序列）。</p>
-<p>&emsp;&emsp;这样的话，若要求众数，我们可以先对其进行中序遍历，众数在序列中的位置一定是连续的，如 <code>[1, 2, 2, 2, 3]</code>。这样，我们对这个序列进行遍历并计数，就能够得到它的众数。</p>
-<p>&emsp;&emsp;不过，为了避免使用额外空间，我们可以在遍历过程中就求出众数，具体做法是维护一个 <code>max</code> ，表示当前所遇到的最多的连续数字的个数，然后在遍历过程中累计每个数字出现的次数，若比 <code>max</code> 大，则使用当前数字覆盖结果数组，并更新 <code>max</code> 值。</p>
-<p>&emsp;&emsp;在中序遍历完成之后，我们还需要最后进行一次众数判断，因为最后的连续数字不会在遍历过程中判断是否是众数。</p>
+<hr />
+<h2 id="解法1中序遍历"><a class="markdownIt-Anchor" href="#解法1中序遍历"></a> 解法1：中序遍历</h2>
+<p>  对于一棵二叉搜索树，若对其进行中序遍历并在遍历过程中顺序记录节点值，那么记录的值会是一个单调递增序列（在本题中是单调不减序列）。</p>
+<p>  这样的话，若要求众数，我们可以先对其进行中序遍历，众数在序列中的位置一定是连续的，如 <code>[1, 2, 2, 2, 3]</code>。这样，我们对这个序列进行遍历并计数，就能够得到它的众数。</p>
+<p>  不过，为了避免使用额外空间，我们可以在遍历过程中就求出众数，具体做法是维护一个 <code>max</code> ，表示当前所遇到的最多的连续数字的个数，然后在遍历过程中累计每个数字出现的次数，若比 <code>max</code> 大，则使用当前数字覆盖结果数组，并更新 <code>max</code> 值。</p>
+<p>  在中序遍历完成之后，我们还需要最后进行一次众数判断，因为最后的连续数字不会在遍历过程中判断是否是众数。</p>
 <p><strong>JS 代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> findMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
@@ -279,7 +283,7 @@
         &#125;
 
         dfs(node.left);
-
+        
         <span class="hljs-keyword">if</span> (n === <span class="hljs-literal">undefined</span>) &#123;
             n = node.val;
             count = <span class="hljs-number">1</span>;
@@ -320,7 +324,7 @@
     &#125;
 
     dfs(root-&gt;left, res, returnSize);
-
+    
     <span class="hljs-keyword">if</span> (count == <span class="hljs-number">-1</span>) &#123;
         cur = root-&gt;val;
         count = <span class="hljs-number">1</span>;
@@ -365,9 +369,10 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;</code></pre>
-<h2 id="解法2：Morris-算法"><a href="#解法2：Morris-算法" class="headerlink" title="解法2：Morris 算法"></a>解法2：Morris 算法</h2><p>&emsp;&emsp;所有能使用中序遍历解决的问题都能使用 Morris 算法来优化其空间复杂度。</p>
-<p>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法详情可看</a></p>
-<p>&emsp;&emsp;在使用 Morris 算法时最重要的是要把握好节点遍历的时机。</p>
+<h2 id="解法2morris-算法"><a class="markdownIt-Anchor" href="#解法2morris-算法"></a> 解法2：Morris 算法</h2>
+<p>  所有能使用中序遍历解决的问题都能使用 Morris 算法来优化其空间复杂度。</p>
+<p>  <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法详情可看</a></p>
+<p>  在使用 Morris 算法时最重要的是要把握好节点遍历的时机。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> findMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
     <span class="hljs-keyword">if</span> (!root) &#123;
@@ -414,7 +419,7 @@
                 root = root.right;
             &#125;
         &#125; <span class="hljs-keyword">else</span> &#123;
-               <span class="hljs-comment">// 节点此时可能是借助前面设置的空闲指针返回父节点，也可能是从父节点到右节点遍历的过程</span>
+           	<span class="hljs-comment">// 节点此时可能是借助前面设置的空闲指针返回父节点，也可能是从父节点到右节点遍历的过程</span>
             <span class="hljs-keyword">if</span> (n === <span class="hljs-literal">undefined</span>) &#123;
                 n = root.val;
                 count = <span class="hljs-number">1</span>;
@@ -816,40 +821,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

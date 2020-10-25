@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      18
        分钟
     </span>
   
@@ -237,11 +237,11 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/">https://leetcode-cn.com/problems/redundant-connection-ii/</a></p>
 <p>难度：困难</p>
-<hr>
-<p>&emsp;&emsp;在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。</p>
-<p>&emsp;&emsp;输入一个有向图，该图由一个有着<code>N</code>个节点 (节点值不重复1, 2, …, N) 的树及一条附加的边构成。附加的边的两个顶点包含在<code>1</code>到<code>N</code>中间，这条附加的边不属于树中已存在的边。</p>
-<p>&emsp;&emsp;结果图是一个以边组成的二维数组。 每一个边 的元素是一对 <code>[u, v]</code>，用以表示有向图中连接顶点 <code>u</code> 和顶点 <code>v</code> 的边，其中 <code>u</code> 是 <code>v</code> 的一个父节点。</p>
-<p>&emsp;&emsp;返回一条能删除的边，使得剩下的图是有<code>N</code>个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
+<hr />
+<p>  在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。</p>
+<p>  输入一个有向图，该图由一个有着<code>N</code>个节点 (节点值不重复1, 2, …, N) 的树及一条附加的边构成。附加的边的两个顶点包含在<code>1</code>到<code>N</code>中间，这条附加的边不属于树中已存在的边。</p>
+<p>  结果图是一个以边组成的二维数组。 每一个边 的元素是一对 <code>[u, v]</code>，用以表示有向图中连接顶点 <code>u</code> 和顶点 <code>v</code> 的边，其中 <code>u</code> 是 <code>v</code> 的一个父节点。</p>
+<p>  返回一条能删除的边，使得剩下的图是有<code>N</code>个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
 <p><strong>简化题目：</strong> 根据给定的边集，求出一条多余的边，使得删除这条边后，图会变成一棵树，对于一些情况，这样的边会有多条，删除边集中出现的最后一条满足条件的边。</p>
 <p><strong>示例 1:</strong></p>
 <p>输入: <code>[[1,2], [1,3], [2,3]]</code></p>
@@ -264,26 +264,30 @@ v   v
 <li>二维数组大小的在<code>3</code>到<code>1000</code>范围内。</li>
 <li>二维数组中的每个整数在<code>1</code>到<code>N</code>之间，其中 <code>N</code> 是二维数组的大小。</li>
 </ul>
-<h2 id="解法1：并查集"><a href="#解法1：并查集" class="headerlink" title="解法1：并查集"></a>解法1：并查集</h2><p>思路来源：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/comments/70573">Nu11Pointer</a></p>
-<p>&emsp;&emsp;对于一条能使一棵树变成图的边，它有以下几种情况：</p>
+<h2 id="解法1并查集"><a class="markdownIt-Anchor" href="#解法1并查集"></a> 解法1：并查集</h2>
+<p>思路来源：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/redundant-connection-ii/comments/70573">Nu11Pointer</a></p>
+<p>  对于一条能使一棵树变成图的边，它有以下几种情况：</p>
 <ol>
-<li><p><img src="https://i.loli.net/2020/09/17/OJIs4VDuBwAyxSd.png" srcset="/img/loading.gif" alt="image-20200917170455420" style="zoom:80%;" />  </p>
+<li>
+<img src="https://i.loli.net/2020/09/17/OJIs4VDuBwAyxSd.png" srcset="/img/loading.gif" alt="image-20200917170455420" style="zoom:80%;" />  
 <p>这条边从任意节点出发，指向了根结点，此时树形成了环，树也就没有根结点了（表现就是所有结点的入度都为 1），而这种情况下，处于这个环中的所有边都能被删除，因为删除任意一条边都能变成一棵正常的树，这也就是题目中提到的“多条边”的情况，但根据题目，需要删除边集中最后一条在环中的边。</p>
 </li>
-<li><p><img src="https://i.loli.net/2020/09/17/Cazh1PI3D4YecFn.png" srcset="/img/loading.gif" alt="image-20200917170905916" style="zoom:80%;" />  </p>
+<li>
+<img src="https://i.loli.net/2020/09/17/Cazh1PI3D4YecFn.png" srcset="/img/loading.gif" alt="image-20200917170905916" style="zoom:80%;" />  
 <p>这条边从任意节点出发，指向了其祖先节点，树中形成了环，但仍有根结点，不过造成的后果就是有一个节点的入度变成 2了。这种情况下，只能删除环中的且造成 2 个入度的边，即图中橙色的边。</p>
 </li>
-<li><p><img src="https://i.loli.net/2020/09/17/qnpHve92sCIwOPW.png" srcset="/img/loading.gif" alt="image-20200917171311259" style="zoom:80%;" /> </p>
-<p> 这条边从任意节点出发，指向了一个非祖先节点。这种情况下，有一个节点的入度会为 2，这两条造成入度为 2 的边都能删除，但根据题目，需要删除后出现的那条。</p>
+<li>
+<img src="https://i.loli.net/2020/09/17/qnpHve92sCIwOPW.png" srcset="/img/loading.gif" alt="image-20200917171311259" style="zoom:80%;" /> 
+<p>这条边从任意节点出发，指向了一个非祖先节点。这种情况下，有一个节点的入度会为 2，这两条造成入度为 2 的边都能删除，但根据题目，需要删除后出现的那条。</p>
 </li>
 </ol>
-<p>&emsp;&emsp;</p>
-<p>&emsp;&emsp;好了，既然清楚可能的几种情况，就需要想办法找到这些满足条件的边了。</p>
-<p>&emsp;&emsp;对于这种需要判断环的问题，可以考虑使用<a target="_blank" rel="noopener" href="http://localhost:4000/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>来做。在创建并查集的过程中，合并两个节点 <code>a</code> 和 <code>b</code> 时，若这两个节点有着公共的根结点，那么将它们合并的话就会出现环了。</p>
-<p>&emsp;&emsp;好的，首先，我们可以判断图中是否存在入度为 2 的节点，<strong>若存在</strong>，那么就是第 2 和第 3 种情况，将造成入度为 2 的这两条边（<code>edge1，edge2</code>）都先记录下来。</p>
-<p>&emsp;&emsp;然后创建并查集，我们跳过 <code>edge2</code> （<strong>后出现的边</strong>）这条边，若创建并查集的过程一路畅通（即未出现环），那么答案就是 <code>edge2</code>，也就是 <code>2.</code> 中删了正确的边（橙色的边）和 <code>3.</code> 中的情况 。</p>
-<p>&emsp;&emsp;而若创建并查集的过程中出现了环，那么对应的就是 <code>2.</code> 中删除了错误的边，那么答案就是 <code>edge1</code>。</p>
-<p>&emsp;&emsp;<strong>若不存在入度为 2 的节点</strong> ，那么就是 <code>1.</code> 中的情况了。此时，在创建并查集的过程中，记录那条造成环出现的边，这条边会是环中的边（废话），且会是边集中最后出现的满足条件的边，将其记录下来，作为答案返回。</p>
+<p>  </p>
+<p>  好了，既然清楚可能的几种情况，就需要想办法找到这些满足条件的边了。</p>
+<p>  对于这种需要判断环的问题，可以考虑使用<a target="_blank" rel="noopener" href="http://localhost:4000/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>来做。在创建并查集的过程中，合并两个节点 <code>a</code> 和 <code>b</code> 时，若这两个节点有着公共的根结点，那么将它们合并的话就会出现环了。</p>
+<p>  好的，首先，我们可以判断图中是否存在入度为 2 的节点，<strong>若存在</strong>，那么就是第 2 和第 3 种情况，将造成入度为 2 的这两条边（<code>edge1，edge2</code>）都先记录下来。</p>
+<p>  然后创建并查集，我们跳过 <code>edge2</code> （<strong>后出现的边</strong>）这条边，若创建并查集的过程一路畅通（即未出现环），那么答案就是 <code>edge2</code>，也就是 <code>2.</code> 中删了正确的边（橙色的边）和 <code>3.</code> 中的情况 。</p>
+<p>  而若创建并查集的过程中出现了环，那么对应的就是 <code>2.</code> 中删除了错误的边，那么答案就是 <code>edge1</code>。</p>
+<p>  <strong>若不存在入度为 2 的节点</strong> ，那么就是 <code>1.</code> 中的情况了。此时，在创建并查集的过程中，记录那条造成环出现的边，这条边会是环中的边（废话），且会是边集中最后出现的满足条件的边，将其记录下来，作为答案返回。</p>
 <p><strong>JS 代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> findRedundantDirectedConnection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">edges</span>) </span>&#123;
     <span class="hljs-keyword">let</span> inDegrees = [];
@@ -345,7 +349,7 @@ v   v
 
     <span class="hljs-keyword">return</span> meetCircle ? res[<span class="hljs-number">0</span>] : res[<span class="hljs-number">1</span>];
 &#125;;</code></pre>
-<p>&emsp;&emsp;优化后的代码：只遍历了一次边集</p>
+<p>  优化后的代码：只遍历了一次边集</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> findRedundantDirectedConnection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">edges</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [], father = [];
     <span class="hljs-keyword">let</span> indegrees = [];
@@ -390,7 +394,7 @@ v   v
             &#125;
         &#125;
     &#125;
-
+    
     <span class="hljs-comment">// 若没有入度为 2 的点，则说明冗余的边指向了根结点</span>
     <span class="hljs-keyword">if</span> (res.length === <span class="hljs-number">0</span>) &#123;
         <span class="hljs-keyword">return</span> meetCircle;
@@ -784,40 +788,8 @@ v   v
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

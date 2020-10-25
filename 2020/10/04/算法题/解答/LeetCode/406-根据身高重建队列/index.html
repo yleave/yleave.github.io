@@ -237,18 +237,19 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/queue-reconstruction-by-height/">https://leetcode-cn.com/problems/queue-reconstruction-by-height/</a></p>
 <p>难度：中等</p>
-<hr>
-<p>&emsp;&emsp;假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对<code>(h, k)</code>表示，其中h是这个人的身高，<code>k</code>是排在这个人前面且身高大于或等于<code>h</code>的人数。 编写一个算法来重建这个队列。</p>
+<hr />
+<p>  假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对<code>(h, k)</code>表示，其中h是这个人的身高，<code>k</code>是排在这个人前面且身高大于或等于<code>h</code>的人数。 编写一个算法来重建这个队列。</p>
 <p><strong>注意：</strong></p>
-<p>&emsp;&emsp;总人数少于<code>1100</code>人。</p>
+<p>  总人数少于<code>1100</code>人。</p>
 <p><strong>示例</strong></p>
 <p>输入: <code>[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</code></p>
 <p>输出: <code>[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]</code></p>
-<hr>
-<h2 id="解法1：排序-调整"><a href="#解法1：排序-调整" class="headerlink" title="解法1：排序+调整"></a>解法1：排序+调整</h2><p>&emsp;&emsp;通过观察，我们可以知道，对于一组数据，如示例中的 <code>(7,0)</code> 和 <code>(7,1)</code>，无论它们所处的位置在哪，在最终结果中，它们的相对位置是不会发生变化的：<code>(7,1)</code> 一定会在 <code>(7,0)</code> 的后面，可能中间隔了一个、可能隔了 <code>n</code> 个。</p>
-<p>&emsp;&emsp;因此，我们可以先对这组数据排序，先保证它们的相对位置，具体做法是根据 <code>(h, k)</code> 来排序：我们先按 <code>h</code> 从大到小进行排序，这样保证了对于每一个数 <code>i</code>，它前面的数字都不会小于自身，然后对于 <code>h</code> 相同的数字，按 <code>k</code> 从小到大排序，这样，对于 <code>h</code> 相同的数据，它们的相对位置开始就是正确的。</p>
-<p>&emsp;&emsp;之后，遍历这组排序过的数据，我们使用 <code>tuple</code> 来表示一个 <code>(h, k)</code> 对，遍历过程中，数组索引 <code>i</code> 能够表示不小于当前 <code>tuple</code> 的所有 <code>tuple</code> 的个数（因为我们提前按 <code>h</code> 进行排序了），这样，我们只要根据每个 <code>tuple</code> 的 <code>k</code> 来进行调整即可。</p>
-<p>&emsp;&emsp;具体调整方法是：对于当前的 <code>tuple</code> ，若 <code>k &lt; i</code> ，说明在当前 <code>tuple</code> 前面的位置，比它高的 <code>tuple</code> 个数太多了，需要将这个 <code>tuple</code> 向前调整 <code>i-k</code> 个位置，让其前面的 <code>tuple</code> 个数刚好等于 <code>k</code>，也就是移动到第 <code>k</code> 个位置。且这样调整并不会影响到已调整的序列，因为那些数据的相对位置并不会发生改变。</p>
+<hr />
+<h2 id="解法1排序调整"><a class="markdownIt-Anchor" href="#解法1排序调整"></a> 解法1：排序+调整</h2>
+<p>  通过观察，我们可以知道，对于一组数据，如示例中的 <code>(7,0)</code> 和 <code>(7,1)</code>，无论它们所处的位置在哪，在最终结果中，它们的相对位置是不会发生变化的：<code>(7,1)</code> 一定会在 <code>(7,0)</code> 的后面，可能中间隔了一个、可能隔了 <code>n</code> 个。</p>
+<p>  因此，我们可以先对这组数据排序，先保证它们的相对位置，具体做法是根据 <code>(h, k)</code> 来排序：我们先按 <code>h</code> 从大到小进行排序，这样保证了对于每一个数 <code>i</code>，它前面的数字都不会小于自身，然后对于 <code>h</code> 相同的数字，按 <code>k</code> 从小到大排序，这样，对于 <code>h</code> 相同的数据，它们的相对位置开始就是正确的。</p>
+<p>  之后，遍历这组排序过的数据，我们使用 <code>tuple</code> 来表示一个 <code>(h, k)</code> 对，遍历过程中，数组索引 <code>i</code> 能够表示不小于当前 <code>tuple</code> 的所有 <code>tuple</code> 的个数（因为我们提前按 <code>h</code> 进行排序了），这样，我们只要根据每个 <code>tuple</code> 的 <code>k</code> 来进行调整即可。</p>
+<p>  具体调整方法是：对于当前的 <code>tuple</code> ，若 <code>k &lt; i</code> ，说明在当前 <code>tuple</code> 前面的位置，比它高的 <code>tuple</code> 个数太多了，需要将这个 <code>tuple</code> 向前调整 <code>i-k</code> 个位置，让其前面的 <code>tuple</code> 个数刚好等于 <code>k</code>，也就是移动到第 <code>k</code> 个位置。且这样调整并不会影响到已调整的序列，因为那些数据的相对位置并不会发生改变。</p>
 <p><strong>JS 代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">people</span></span></span>
@@ -260,7 +261,7 @@
     &#125;
 
     <span class="hljs-keyword">let</span> res = [];
-
+    
     <span class="hljs-comment">// 先根据 h 和 k 排序，主 h 副 k , h 从大到小排序，k 从小到大排序</span>
     people.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] === b[<span class="hljs-number">0</span>]) &#123;
@@ -280,8 +281,9 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-<h2 id="解法2：逐个插入、调整"><a href="#解法2：逐个插入、调整" class="headerlink" title="解法2：逐个插入、调整"></a>解法2：逐个插入、调整</h2><p><strong>（第 27/37 个 case 会超时）</strong></p>
-<p>&emsp;&emsp;主要思路是先找到序列的第一个 <code>tuple</code> ，然后根据每个 <code>tuple</code> 的 <code>h</code> 和 <code>k</code> 找到插入的位置，所有数据都插入完成之后，有些 <code>tuple</code> 会因为插入操作而导致站位错误，因此需要逐个检查判断是否站错，若站错，则将这个 <code>tuple</code> 重新插入，反复执行此操作，直到所有数据都满足站位要求：</p>
+<h2 id="解法2逐个插入-调整"><a class="markdownIt-Anchor" href="#解法2逐个插入-调整"></a> 解法2：逐个插入、调整</h2>
+<p><strong>（第 27/37 个 case 会超时）</strong></p>
+<p>  主要思路是先找到序列的第一个 <code>tuple</code> ，然后根据每个 <code>tuple</code> 的 <code>h</code> 和 <code>k</code> 找到插入的位置，所有数据都插入完成之后，有些 <code>tuple</code> 会因为插入操作而导致站位错误，因此需要逐个检查判断是否站错，若站错，则将这个 <code>tuple</code> 重新插入，反复执行此操作，直到所有数据都满足站位要求：</p>
 <pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">people</span></span></span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[][]&#125;</span></span></span>
@@ -294,7 +296,7 @@
     <span class="hljs-keyword">let</span> n = people.length;
     <span class="hljs-keyword">let</span> first;
     <span class="hljs-keyword">let</span> tuple, k, height, insertIndex;
-
+    
     <span class="hljs-comment">// 先进行第一次排序</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
         tuple = people[i];
@@ -732,40 +734,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

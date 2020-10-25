@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      17
        分钟
     </span>
   
@@ -236,22 +236,25 @@
             
             <div class="markdown-body" id="post-body">
               <p>要使用其他语言编写 MR 任务，首先要了解一下 Hadoop Streaming</p>
-<h2 id="hadoop-streaming-简介"><a href="#hadoop-streaming-简介" class="headerlink" title="hadoop streaming 简介"></a>hadoop streaming 简介</h2><p>&emsp;&emsp;Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。</p>
-<p>&emsp;&emsp;也就是 hadoop streaming 可以帮助我们使用其他语言（非 java) 来编写 mapper 和 reducer。</p>
+<h2 id="hadoop-streaming-简介"><a class="markdownIt-Anchor" href="#hadoop-streaming-简介"></a> hadoop streaming 简介</h2>
+<p>  Hadoop streaming 是 Hadoop的一个工具， 它帮助用户创建和运行一类特殊的 map/reduce 作业， 这些特殊的map/reduce 作业是由一些可执行文件或脚本文件充当 mapper 或者 reducer。</p>
+<p>  也就是 hadoop streaming 可以帮助我们使用其他语言（非 java) 来编写 mapper 和 reducer。</p>
 <p><strong>下面使用 python 来编写 MR 脚本</strong></p>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>&emsp;&emsp;在 hadoop streaming 中，mapper 和 reducer 都是可执行文件，它们从标准输入流读取数据，使用标准输出流输出数据。</p>
-<p>&emsp;&emsp;在 python 中就是：<code>sys.stdin</code> 和 <code>print</code></p>
-<p>&emsp;&emsp;mapper 和 reducer 会一行一行的读取数据，根据分隔符（默认为 <code>tab</code>）将读入的数据切分为 <code>key</code> 和 <code>value</code>，同时，输出的数据也需要是一个 <code>key,value</code> 对，在第一个 <code>tab</code> 分隔符前的会被认为是 <code>key</code>，后面的都作为 <code>value</code>。</p>
-<p>&emsp;&emsp;如，输出时 <code>print(&quot;%s\t%s&quot;, %(key, value))</code></p>
-<h2 id="MR-编写示例"><a href="#MR-编写示例" class="headerlink" title="MR 编写示例"></a>MR 编写示例</h2><p>&emsp;&emsp;假设有数据如下，下面编写 MR 实现 “倒排”。</p>
-<pre><code class="hljs scheme"><span class="hljs-number">1</span>    <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;fruit</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
-<span class="hljs-number">2</span>    <span class="hljs-symbol">&#x27;noodle</span>&#x27; <span class="hljs-symbol">&#x27;beef</span>&#x27; <span class="hljs-symbol">&#x27;pork</span>&#x27; <span class="hljs-symbol">&#x27;water</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;
-<span class="hljs-number">3</span>    <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
-<span class="hljs-number">4</span>    <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
-<span class="hljs-number">5</span>    <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
-<span class="hljs-number">6</span>    <span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
-<p>&emsp;&emsp;所谓 “倒排” 就是将数据中的每一个字符 <code>word</code> 与其前面的编号 <code>num</code> 对应起来，如 <code>bread</code>，它在编号 <code>1</code>、<code>4</code>、<code>6</code> 中都有出现，因此 倒排 的结果就是：<code>bread 1 4 6</code>。</p>
-<p>&emsp;&emsp;首先，编写一个 <code>mapper</code> 来将数据拆分为一个个的 <code>word, num</code> 对：</p>
+<h2 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h2>
+<p>  在 hadoop streaming 中，mapper 和 reducer 都是可执行文件，它们从标准输入流读取数据，使用标准输出流输出数据。</p>
+<p>  在 python 中就是：<code>sys.stdin</code> 和 <code>print</code></p>
+<p>  mapper 和 reducer 会一行一行的读取数据，根据分隔符（默认为 <code>tab</code>）将读入的数据切分为 <code>key</code> 和 <code>value</code>，同时，输出的数据也需要是一个 <code>key,value</code> 对，在第一个 <code>tab</code> 分隔符前的会被认为是 <code>key</code>，后面的都作为 <code>value</code>。</p>
+<p>  如，输出时 <code>print(&quot;%s\t%s&quot;, %(key, value))</code></p>
+<h2 id="mr-编写示例"><a class="markdownIt-Anchor" href="#mr-编写示例"></a> MR 编写示例</h2>
+<p>  假设有数据如下，下面编写 MR 实现 “倒排”。</p>
+<pre><code class="hljs scheme"><span class="hljs-number">1</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;fruit</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">2</span>	<span class="hljs-symbol">&#x27;noodle</span>&#x27; <span class="hljs-symbol">&#x27;beef</span>&#x27; <span class="hljs-symbol">&#x27;pork</span>&#x27; <span class="hljs-symbol">&#x27;water</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;
+<span class="hljs-number">3</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">4</span>	<span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;eggs</span>&#x27;
+<span class="hljs-number">5</span>	<span class="hljs-symbol">&#x27;socks</span>&#x27; <span class="hljs-symbol">&#x27;shoes</span>&#x27; <span class="hljs-symbol">&#x27;sweater</span>&#x27; <span class="hljs-symbol">&#x27;cap</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;vegetable</span>&#x27; <span class="hljs-symbol">&#x27;gloves</span>&#x27;
+<span class="hljs-number">6</span>	<span class="hljs-symbol">&#x27;eggs</span>&#x27; <span class="hljs-symbol">&#x27;bread</span>&#x27; <span class="hljs-symbol">&#x27;milk</span>&#x27; <span class="hljs-symbol">&#x27;fish</span>&#x27; <span class="hljs-symbol">&#x27;crab</span>&#x27; <span class="hljs-symbol">&#x27;shrimp</span>&#x27; <span class="hljs-symbol">&#x27;rice</span>&#x27;</code></pre>
+<p>  所谓 “倒排” 就是将数据中的每一个字符 <code>word</code> 与其前面的编号 <code>num</code> 对应起来，如 <code>bread</code>，它在编号 <code>1</code>、<code>4</code>、<code>6</code> 中都有出现，因此 倒排 的结果就是：<code>bread 1 4 6</code>。</p>
+<p>  首先，编写一个 <code>mapper</code> 来将数据拆分为一个个的 <code>word, num</code> 对：</p>
 <pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span>
 <span class="hljs-comment"># coding=utf-8</span>
 
@@ -265,7 +268,7 @@
         word = words[i]
         print(<span class="hljs-string">&#x27;%s\t%s&#x27;</span> % (word, num))
 </code></pre>
-<p>&emsp;&emsp;接着，编写 <code>reducer</code>，将同一个 <code>word</code> 的所属编号收集到一起：</p>
+<p>  接着，编写 <code>reducer</code>，将同一个 <code>word</code> 的所属编号收集到一起：</p>
 <pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python</span>
 <span class="hljs-comment">#coding:utf-8</span>
 
@@ -293,14 +296,17 @@ wordCount = <span class="hljs-number">0</span>
             print(<span class="hljs-string">&#x27;%s\t%r&#x27;</span> % (curWord, output[curWord]))
         wordCount = <span class="hljs-number">1</span>
         curWord = word</code></pre>
-<h2 id="执行-MR-脚本"><a href="#执行-MR-脚本" class="headerlink" title="执行 MR 脚本"></a>执行 MR 脚本</h2><p>&emsp;&emsp;通常执行 MR 脚本需要在 hadoop 系统上工作，但是为了防止出错， <code>mapper</code> 脚本可以在本地测试，而 <code>reducer</code> 脚本通常涉及排序，在本地测试可能会得到错误结果。</p>
-<h3 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h3><p>&emsp;&emsp;在当前路径下有 <code>t1.txt</code> 存放数据，<code>mapper/mapper1.py</code> 为 mapper 脚本，在 <code>shell</code> 上运行命令：</p>
+<h2 id="执行-mr-脚本"><a class="markdownIt-Anchor" href="#执行-mr-脚本"></a> 执行 MR 脚本</h2>
+<p>  通常执行 MR 脚本需要在 hadoop 系统上工作，但是为了防止出错， <code>mapper</code> 脚本可以在本地测试，而 <code>reducer</code> 脚本通常涉及排序，在本地测试可能会得到错误结果。</p>
+<h3 id="本地测试"><a class="markdownIt-Anchor" href="#本地测试"></a> 本地测试</h3>
+<p>  在当前路径下有 <code>t1.txt</code> 存放数据，<code>mapper/mapper1.py</code> 为 mapper 脚本，在 <code>shell</code> 上运行命令：</p>
 <p><code>cat t1.txt | python mapper/mapper1.py</code> ，这样 mapper 运行的结果就会打印在屏幕上了，若想要输出到文件中，可以使用 <code>&gt;</code> ，即 <code>cat t1.txt | python mapper/mapper1.py &gt; out1.txt</code></p>
-<p><img src="https://i.loli.net/2020/09/11/iXvlZ6Tx2MoReJs.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;若想要读取一个文件夹下的所有文件的话，则改为：<code>cat data/*.txt | python mapper/mapper1.py</code> </p>
-<h3 id="分布式系统上执行"><a href="#分布式系统上执行" class="headerlink" title="分布式系统上执行"></a>分布式系统上执行</h3><p>&emsp;&emsp;首先，将数据上传到 HDFS 的 <code>/pj</code> 目录下：<code>hadoop fs -put t1.txt /pj</code></p>
-<p>&emsp;&emsp;然后使用 hadoop streaming 执行 MapReduce，hadoop streaming 需要提供一些设置参数，可以在命令行中直接输入，也可以编写 <code>shell</code> 脚本来执行（推荐）</p>
-<p>&emsp;&emsp;来看 <code>shell</code> 脚本的编写，文件命名后缀是 <code>.sh</code></p>
+<img src="https://i.loli.net/2020/09/11/iXvlZ6Tx2MoReJs.png" srcset="/img/loading.gif" alt="image-20200828222203501" style="zoom:80%;" />
+<p>  若想要读取一个文件夹下的所有文件的话，则改为：<code>cat data/*.txt | python mapper/mapper1.py</code></p>
+<h3 id="分布式系统上执行"><a class="markdownIt-Anchor" href="#分布式系统上执行"></a> 分布式系统上执行</h3>
+<p>  首先，将数据上传到 HDFS 的 <code>/pj</code> 目录下：<code>hadoop fs -put t1.txt /pj</code></p>
+<p>  然后使用 hadoop streaming 执行 MapReduce，hadoop streaming 需要提供一些设置参数，可以在命令行中直接输入，也可以编写 <code>shell</code> 脚本来执行（推荐）</p>
+<p>  来看 <code>shell</code> 脚本的编写，文件命名后缀是 <code>.sh</code></p>
 <pre><code class="hljs sh"><span class="hljs-meta">#!/bin/bash</span>
 hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.7.jar \
 -jobconf mapreduce.reduce.shuffle.memory.limit.percent=0.1 \
@@ -313,33 +319,37 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
 -file mapper/mapper1.py -mapper mapper/mapper1.py  \
 -file reducer/reducer1.py -reducer reducer/reducer1.py  \
 -input /pj/t1.txt -output /pj/output/</code></pre>
-<p>&emsp;&emsp;简单说明一下这个 <code>shell</code> 脚本：</p>
-<p>&emsp;&emsp;第一行 <code>#!/bin/bash</code> 说明这个是一个 <code>shell</code> 脚本</p>
-<p>&emsp;&emsp;第二行中的 <code>hadoop-streaming-2.7.7.jar</code> jar 包路径是在自己安装 hadoop 的路径下，应该都会有的</p>
-<p>&emsp;&emsp;再下面，<code>-jobconfig</code> 的那些参数根据自己的需要来设置，具体可以参照<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">官网</a> 和这篇<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">博客</a>的介绍</p>
-<p>&emsp;&emsp;而 <code>file</code>、<code>mapper</code>、<code>reducer</code>、<code>input</code> 和 <code>output</code> 是必须的。</p>
-<p>&emsp;&emsp;其中 <code>file</code> 选项是让f ramework 把可执行文件作为作业的一部分，一起打包提交。</p>
-<p>&emsp;&emsp;接下来，运行这个 <code>shell</code> 脚本，假设这个 <code>shell</code> 脚本的文件名是 <code>run.sh</code>。</p>
-<p>&emsp;&emsp;<code>shell</code> 脚本有三种运行方式：</p>
+<p>  简单说明一下这个 <code>shell</code> 脚本：</p>
+<p>  第一行 <code>#!/bin/bash</code> 说明这个是一个 <code>shell</code> 脚本</p>
+<p>  第二行中的 <code>hadoop-streaming-2.7.7.jar</code> jar 包路径是在自己安装 hadoop 的路径下，应该都会有的</p>
+<p>  再下面，<code>-jobconfig</code> 的那些参数根据自己的需要来设置，具体可以参照<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">官网</a> 和这篇<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">博客</a>的介绍</p>
+<p>  而 <code>file</code>、<code>mapper</code>、<code>reducer</code>、<code>input</code> 和 <code>output</code> 是必须的。</p>
+<p>  其中 <code>file</code> 选项是让f ramework 把可执行文件作为作业的一部分，一起打包提交。</p>
+<p>  接下来，运行这个 <code>shell</code> 脚本，假设这个 <code>shell</code> 脚本的文件名是 <code>run.sh</code>。</p>
+<p>  <code>shell</code> 脚本有三种运行方式：</p>
 <ol>
-<li><p>先输入 <code>chmod +x run.sh</code> 赋予可执行权限，然后在命令行中输入 <code>./run.sh</code> 即可运行</p>
-<p><img src="https://i.loli.net/2020/09/11/1SlUOAciyk4GLhK.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" /></p>
+<li>
+<p>先输入 <code>chmod +x run.sh</code> 赋予可执行权限，然后在命令行中输入 <code>./run.sh</code> 即可运行</p>
+<img src="https://i.loli.net/2020/09/11/1SlUOAciyk4GLhK.png" srcset="/img/loading.gif" alt="image-20200828224508743" style="zoom:80%;" />
 </li>
-<li><p>使用 <code>sh run.sh</code> 运行</p>
+<li>
+<p>使用 <code>sh run.sh</code> 运行</p>
 </li>
-<li><p>使用 <code>source run.sh</code> 运行</p>
+<li>
+<p>使用 <code>source run.sh</code> 运行</p>
 </li>
 </ol>
-<p>&emsp;&emsp;脚本若正确执行完毕，拉取 HDFS 上的结果：<code>hadoop fs -get /pj/output</code></p>
-<p>   <img src="https://i.loli.net/2020/09/11/kIN7CSXZxvsniMp.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;顺便一提，若不是使用编写 <code>shell</code> 脚本的方式运行，则上面的 hadoop streaming 运行方式为：</p>
-<p><img src="https://i.loli.net/2020/09/11/G4fhzH6aeVMjX8E.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;即将脚本里的内容全写在命令行中。</p>
-<h2 id="关于-hadoop-streaming-配置的一些参考学习文章"><a href="#关于-hadoop-streaming-配置的一些参考学习文章" class="headerlink" title="关于 hadoop streaming 配置的一些参考学习文章"></a>关于 hadoop streaming 配置的一些参考学习文章</h2><p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/r1.0.4/cn/streaming.html">Hadoop Streaming</a></p>
+<p>  脚本若正确执行完毕，拉取 HDFS 上的结果：<code>hadoop fs -get /pj/output</code></p>
+   <img src="https://i.loli.net/2020/09/11/kIN7CSXZxvsniMp.png" srcset="/img/loading.gif" alt="image-20200828224740795" style="zoom:80%;" />
+<p>  顺便一提，若不是使用编写 <code>shell</code> 脚本的方式运行，则上面的 hadoop streaming 运行方式为：</p>
+<img src="https://i.loli.net/2020/09/11/G4fhzH6aeVMjX8E.png" srcset="/img/loading.gif" alt="image-20200828225015917" style="zoom:80%;" />
+<p>  即将脚本里的内容全写在命令行中。</p>
+<h2 id="关于-hadoop-streaming-配置的一些参考学习文章"><a class="markdownIt-Anchor" href="#关于-hadoop-streaming-配置的一些参考学习文章"></a> 关于 hadoop streaming 配置的一些参考学习文章</h2>
+<p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/r1.0.4/cn/streaming.html">Hadoop Streaming</a></p>
 <p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/44024.html?spm=a2c4g.11186623.6.914.162d19d6A0ZelV">阿里云Hadoop Streaming</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shay-zhangjin/p/7714868.html">Hadoop Streaming详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Alanyungz/article/details/106767668">Hadoop Streaming介绍与实战</a></p>
-<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">JobConfFile</a> </p>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/HADOOP2/JobConfFile">JobConfFile</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.uml.org.cn/zjjs/201205303.asp">hadoop作业调优参数整理及原理</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/loveblair1990/article/details/53608293">hadoop streaming参数配置</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69df99d949">Hadoop-Streaming参考一</a></p>
@@ -724,40 +734,8 @@ hadoop jar /usr/<span class="hljs-built_in">local</span>/hadoop/share/hadoop/too
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

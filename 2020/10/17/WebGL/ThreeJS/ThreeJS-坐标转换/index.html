@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      322 字
+      309 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      3
        分钟
     </span>
   
@@ -235,21 +235,24 @@
             <h1 style="display: none">ThreeJS 坐标转换</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="物体坐标转屏幕坐标"><a href="#物体坐标转屏幕坐标" class="headerlink" title="物体坐标转屏幕坐标"></a>物体坐标转屏幕坐标</h1><p>&emsp;&emsp;在 ThreeJS 中，一个物体可看作一个 <code>Mesh</code>，<code>Mesh</code> 的坐标是用一个 <code>Vector3</code> 来表示的，<code>Vector3</code> 中包含了 <code>x</code>、<code>y</code>、<code>z</code> 坐标。</p>
-<h2 id="project-方法"><a href="#project-方法" class="headerlink" title="project 方法"></a>project 方法</h2><p>&emsp;&emsp;通过 <code>Vector3</code>对象的方法 <code>project</code>，方法的参数是相机对象，语句 <code>worldVector.project(camera);</code>返回的结果是世界坐标 <code>worldVector</code>在 <code>camera</code>相机对象矩阵变化下对应的标准设备坐标， 标准设备坐标 <code>xyz</code> 的范围是<code>[-1,1]</code>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015163144727.png" srcset="/img/loading.gif" alt="image-20201015163144727" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;Three 的场景是建立在 <code>canvas</code> 之上的，<code>canvas</code> 画布的宽高是：<code>canvas.offsetWidth</code> 和 <code>canvas.offsetHeight</code>，从<strong>屏幕坐标系</strong>来看，画布的中心就是：<code>(canvas.offsetWidth / 2，canvas.offsetHeight / 2)</code>，从 WebGL <strong>标准设备坐标系</strong>的角度来看画布中心是坐标原点 <code>(0, 0)</code>。</p>
-<p>&emsp;&emsp;因此，从标准设备坐标系转换到屏幕坐标系我们可以这样做：</p>
-<p>&emsp;&emsp;首先计算出屏幕坐标系中心：</p>
+              <h1 id="物体坐标转屏幕坐标"><a class="markdownIt-Anchor" href="#物体坐标转屏幕坐标"></a> 物体坐标转屏幕坐标</h1>
+<p>  在 ThreeJS 中，一个物体可看作一个 <code>Mesh</code>，<code>Mesh</code> 的坐标是用一个 <code>Vector3</code> 来表示的，<code>Vector3</code> 中包含了 <code>x</code>、<code>y</code>、<code>z</code> 坐标。</p>
+<h2 id="project-方法"><a class="markdownIt-Anchor" href="#project-方法"></a> project 方法</h2>
+<p>  通过 <code>Vector3</code>对象的方法 <code>project</code>，方法的参数是相机对象，语句 <code>worldVector.project(camera);</code>返回的结果是世界坐标 <code>worldVector</code>在 <code>camera</code>相机对象矩阵变化下对应的标准设备坐标， 标准设备坐标 <code>xyz</code> 的范围是<code>[-1,1]</code>。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015163144727.png" srcset="/img/loading.gif" alt="image-20201015163144727" style="zoom:80%;" />
+<p>  Three 的场景是建立在 <code>canvas</code> 之上的，<code>canvas</code> 画布的宽高是：<code>canvas.offsetWidth</code> 和 <code>canvas.offsetHeight</code>，从<strong>屏幕坐标系</strong>来看，画布的中心就是：<code>(canvas.offsetWidth / 2，canvas.offsetHeight / 2)</code>，从 WebGL <strong>标准设备坐标系</strong>的角度来看画布中心是坐标原点 <code>(0, 0)</code>。</p>
+<p>  因此，从标准设备坐标系转换到屏幕坐标系我们可以这样做：</p>
+<p>  首先计算出屏幕坐标系中心：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> centerX = canvas.offsetWidth / <span class="hljs-number">2</span>;
 <span class="hljs-keyword">const</span> centerY = canvas.offsetHeight / <span class="hljs-number">2</span>;</code></pre>
-<p>&emsp;&emsp;计算出的 <code>centerX</code> 和 <code>centerY</code> 同时也表示了坐标轴的一半大小。</p>
-<p>&emsp;&emsp;然后，由于<strong>屏幕坐标系的原点是在左上角</strong>，因此转换公式如下：</p>
+<p>  计算出的 <code>centerX</code> 和 <code>centerY</code> 同时也表示了坐标轴的一半大小。</p>
+<p>  然后，由于<strong>屏幕坐标系的原点是在左上角</strong>，因此转换公式如下：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> standardVec = worldVector.project(camera);
 
 <span class="hljs-keyword">const</span> screenX = <span class="hljs-built_in">Math</span>.round(centerX * standardVec.x + centerX);
 <span class="hljs-keyword">const</span> screenY = <span class="hljs-built_in">Math</span>.round(-centerY * standardVec.y + centerY);</code></pre>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="http://www.yanhuangxueyuan.com/Three.js_course/screen.html">http://www.yanhuangxueyuan.com/Three.js_course/screen.html</a></p>
+<h1 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h1>
+<p><a target="_blank" rel="noopener" href="http://www.yanhuangxueyuan.com/Three.js_course/screen.html">http://www.yanhuangxueyuan.com/Three.js_course/screen.html</a></p>
 
             </div>
             <hr>
@@ -629,40 +632,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

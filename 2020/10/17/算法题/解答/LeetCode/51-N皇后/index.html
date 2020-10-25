@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      661 字
+      643 字
     </span>
   
 
@@ -237,12 +237,12 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-queens/">https://leetcode-cn.com/problems/n-queens/</a></p>
 <p>难度：困难</p>
-<hr>
-<p>&emsp;&emsp;<em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;图为 8 皇后问题的一种解法。</p>
-<p>&emsp;&emsp;给定一个整数 <code>n</code>，返回所有不同的 <code>n</code> 皇后问题的解决方案。</p>
-<p>&emsp;&emsp;每一种解法包含一个明确的 <code>n</code> 皇后问题的棋子放置方案，该方案中 <code>&#39;Q&#39;</code> 和 <code>&#39;.&#39;</code> 分别代表了皇后和空位。</p>
+<hr />
+<p>  <em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" />
+<p>  图为 8 皇后问题的一种解法。</p>
+<p>  给定一个整数 <code>n</code>，返回所有不同的 <code>n</code> 皇后问题的解决方案。</p>
+<p>  每一种解法包含一个明确的 <code>n</code> 皇后问题的棋子放置方案，该方案中 <code>'Q'</code> 和 <code>'.'</code> 分别代表了皇后和空位。</p>
 <p><strong>示例：</strong></p>
 <p>输入：<code>4</code></p>
 <pre><code class="hljs awk">输出：[
@@ -260,14 +260,15 @@
 <ul>
 <li>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</li>
 </ul>
-<h2 id="解法1：回溯"><a href="#解法1：回溯" class="headerlink" title="解法1：回溯"></a>解法1：回溯</h2><p>&emsp;&emsp;对每个位置都进行尝试。</p>
-<p>&emsp;&emsp;<code>n</code> 行，每行从头开始遍历，对当前位置，判断这个位置是否满足皇后位置的要求，即横、纵、斜线上都没有其他皇后存在，因为我们是从头开始遍历的，因此，对当前位置只需要判断处于一条竖线的上方、处于左斜线的上方和处于右斜线的上方是否有皇后存在即可。若当前位置满足，则开始寻找下一行的皇后的位置。直到第 <code>n</code> 行找到最后一个皇后。</p>
-<p>&emsp;&emsp;如下图，假设遍历到 Q3 位置，它只需要判断三条蓝线的方向是否有皇后即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017101137969.png" srcset="/img/loading.gif" alt="image-20201017101137969" style="zoom:80%;" /></p>
+<h2 id="解法1回溯"><a class="markdownIt-Anchor" href="#解法1回溯"></a> 解法1：回溯</h2>
+<p>  对每个位置都进行尝试。</p>
+<p>  <code>n</code> 行，每行从头开始遍历，对当前位置，判断这个位置是否满足皇后位置的要求，即横、纵、斜线上都没有其他皇后存在，因为我们是从头开始遍历的，因此，对当前位置只需要判断处于一条竖线的上方、处于左斜线的上方和处于右斜线的上方是否有皇后存在即可。若当前位置满足，则开始寻找下一行的皇后的位置。直到第 <code>n</code> 行找到最后一个皇后。</p>
+<p>  如下图，假设遍历到 Q3 位置，它只需要判断三条蓝线的方向是否有皇后即可。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017101137969.png" srcset="/img/loading.gif" alt="image-20201017101137969" style="zoom:80%;" />
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> solveNQueens = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
     <span class="hljs-keyword">let</span> board = [];
-
+    
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
         board[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n).fill(<span class="hljs-string">&#x27;.&#x27;</span>);
     &#125;
@@ -306,7 +307,7 @@
                     <span class="hljs-keyword">break</span>;
                 &#125;
             &#125;
-
+            
             <span class="hljs-keyword">if</span> (flag) &#123;
                 board[row][i] = <span class="hljs-string">&#x27;Q&#x27;</span>;
                 helper(row+<span class="hljs-number">1</span>);
@@ -707,40 +708,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

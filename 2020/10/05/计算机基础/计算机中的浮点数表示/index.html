@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      17
        分钟
     </span>
   
@@ -235,67 +235,79 @@
             <h1 style="display: none">计算机中的浮点数表示</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="IEEE-754-标准"><a href="#IEEE-754-标准" class="headerlink" title="IEEE 754 标准"></a>IEEE 754 标准</h1><p>&emsp;&emsp;在这个标准中，任意一个二进制浮点数 <code>V</code> 可以表示成下面这样的形式：</p>
-<p>&emsp;&emsp;1. <code>(-1)^s</code> 表示符号位，当 <code>s = 0</code> 时， <code>V</code> 为正， <code>s = 1</code> 时，<code>V</code> 为负<br>&emsp;&emsp;2. <code>M</code> 表示有效数字，<code>1 &lt;= M &lt; 2</code><br>&emsp;&emsp;3. <code>E</code> 表示指数，如 <code>2^E</code></p>
-<p>&emsp;&emsp;举个例子，对于十进制的 <code>5.0</code>，写成<strong>二进制</strong>就是 <code>101.0</code>，相当于 <code>1.01 x 2^2</code>。</p>
-<p>&emsp;&emsp;按照上面的标准，可以得出： <code>s = 0</code>，<code>M = 1.01</code> ， <code>E = 2</code></p>
-<p>&emsp;&emsp;IEEE 754 规定，对于 <strong>32 位</strong>的浮点数，最高的 <code>1</code> 位是符号位 <code>s</code>，接着的 <code>8</code> 位是指数 <code>E</code>，剩下的 <code>23</code> 位为有效数字 <code>M</code>:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060601.png" srcset="/img/loading.gif" alt="img"  /></p>
-<p>&emsp;&emsp;对于 <strong>64位</strong> 的浮点数，最高的 <code>1</code>位是符号位 <code>S</code> ，接着的 <code>11</code> 位是指数 <code>E</code>，剩下的 <code>52</code> 位为有效数字 <code>M</code>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060602.png" srcset="/img/loading.gif" alt="img"></p>
-<p>&emsp;&emsp;在 IEEE 754 标准中，对 <code>M</code> 和 <code>E</code> 还有一些特别的规定，用于应对一些极端情况。</p>
-<p>&emsp;&emsp;<strong>对于<code>M</code></strong>,前面有提到， <code>1 &lt;= M &lt; 2</code>，也就是说， <code>M</code> 可以写成 <code>1.xxxx</code> 的形式，其中 <code>xxxx</code> 表示小数部分。既然我们知道<strong>计算机在保存 <code>M</code> 时第一位默认总是 <code>1</code></strong>,那么我们可以先省略这个数，只保存 <code>xxxx</code> 这样的小数部分，然后在最后的结果前再加上 <code>1</code>，这样，我们就能多出一位来保存小数 <code>xxxx</code> 了。IEEE 754 中就是这样规定的。  </p>
-<p>&emsp;&emsp;<strong>对于<code>E</code></strong>,情况会复杂些：</p>
-<p>&emsp;&emsp;首先，<code>E</code> 是一个无符号整数，若 <code>E</code> 为 <code>8</code> 位，它的取值范围就是 <code>0 - 255</code>，若 <code>E</code> 为 <code>11</code> 位，它的取值范围就是 <code>0 - 2047</code>，但是，在科学计数法中，指数位 <code>E</code> 是能取负值的，因此 IEEE 754 中规定,<strong><code>E</code> 的真实值需要再减去一个中间数</strong>,相当于是一个偏置（bias），<strong>对于 <code>8</code> 位的 <code>E</code>，这个偏置是 <code>127</code>，对于 <code>11</code> 位的 <code>E</code>，这个偏置是 <code>1023</code>。</strong></p>
-<p>&emsp;&emsp;比如，<code>2^10</code> 的 <code>E</code> 是 <code>10</code>，因此在保存为 <code>32</code> 位浮点数时，需要保存为 <code>10 + 127 = 137</code>，即 <code>10001001</code>（因为 <code>E</code> 在变成 <code>10</code> 之前，减去了一个偏置 <code>127</code>）</p>
-<p>&emsp;&emsp;<code>E</code> 还能分成三种情况讨论：</p>
+              <h1 id="ieee-754-标准"><a class="markdownIt-Anchor" href="#ieee-754-标准"></a> IEEE 754 标准</h1>
+<p>  在这个标准中，任意一个二进制浮点数 <code>V</code> 可以表示成下面这样的形式：</p>
+<p>  1. <code>(-1)^s</code> 表示符号位，当 <code>s = 0</code> 时， <code>V</code> 为正， <code>s = 1</code> 时，<code>V</code> 为负<br />
+  2. <code>M</code> 表示有效数字，<code>1 &lt;= M &lt; 2</code><br />
+  3. <code>E</code> 表示指数，如 <code>2^E</code></p>
+<p>  举个例子，对于十进制的 <code>5.0</code>，写成<strong>二进制</strong>就是 <code>101.0</code>，相当于 <code>1.01 x 2^2</code>。</p>
+<p>  按照上面的标准，可以得出： <code>s = 0</code>，<code>M = 1.01</code> ， <code>E = 2</code></p>
+<p>  IEEE 754 规定，对于 <strong>32 位</strong>的浮点数，最高的 <code>1</code> 位是符号位 <code>s</code>，接着的 <code>8</code> 位是指数 <code>E</code>，剩下的 <code>23</code> 位为有效数字 <code>M</code>:</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060601.png" srcset="/img/loading.gif" alt="img"  />
+<p>  对于 <strong>64位</strong> 的浮点数，最高的 <code>1</code>位是符号位 <code>S</code> ，接着的 <code>11</code> 位是指数 <code>E</code>，剩下的 <code>52</code> 位为有效数字 <code>M</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/bg2010060602.png" srcset="/img/loading.gif" alt="img" /></p>
+<p>  在 IEEE 754 标准中，对 <code>M</code> 和 <code>E</code> 还有一些特别的规定，用于应对一些极端情况。</p>
+<p>  <strong>对于<code>M</code></strong>,前面有提到， <code>1 &lt;= M &lt; 2</code>，也就是说， <code>M</code> 可以写成 <code>1.xxxx</code> 的形式，其中 <code>xxxx</code> 表示小数部分。既然我们知道<strong>计算机在保存 <code>M</code> 时第一位默认总是 <code>1</code></strong>,那么我们可以先省略这个数，只保存 <code>xxxx</code> 这样的小数部分，然后在最后的结果前再加上 <code>1</code>，这样，我们就能多出一位来保存小数 <code>xxxx</code> 了。IEEE 754 中就是这样规定的。</p>
+<p>  <strong>对于<code>E</code></strong>,情况会复杂些：</p>
+<p>  首先，<code>E</code> 是一个无符号整数，若 <code>E</code> 为 <code>8</code> 位，它的取值范围就是 <code>0 - 255</code>，若 <code>E</code> 为 <code>11</code> 位，它的取值范围就是 <code>0 - 2047</code>，但是，在科学计数法中，指数位 <code>E</code> 是能取负值的，因此 IEEE 754 中规定,<strong><code>E</code> 的真实值需要再减去一个中间数</strong>,相当于是一个偏置（bias），<strong>对于 <code>8</code> 位的 <code>E</code>，这个偏置是 <code>127</code>，对于 <code>11</code> 位的 <code>E</code>，这个偏置是 <code>1023</code>。</strong></p>
+<p>  比如，<code>2^10</code> 的 <code>E</code> 是 <code>10</code>，因此在保存为 <code>32</code> 位浮点数时，需要保存为 <code>10 + 127 = 137</code>，即 <code>10001001</code>（因为 <code>E</code> 在变成 <code>10</code> 之前，减去了一个偏置 <code>127</code>）</p>
+<p>  <code>E</code> 还能分成三种情况讨论：</p>
 <ol>
-<li><p><strong>规格化：当 <code>E</code> 的二进制位不全为 <code>0</code>,也不全为 <code>1</code> 时，二进制浮点数 <code>V</code> 为规格化形式。</strong> </p>
+<li>
+<p><strong>规格化：当 <code>E</code> 的二进制位不全为 <code>0</code>,也不全为 <code>1</code> 时，二进制浮点数 <code>V</code> 为规格化形式。</strong></p>
 <p>这时 <code>E</code> 的计算就按上面的规则，减去 <code>127</code> 或 <code>1023</code>。如 <code>E</code> 为 <code>10000100</code>，则 <code>E = 132</code> ，<code>E</code> 的真实值 <code>e = 132 - 127 = 5</code> 。</p>
 <p><code>M</code> 也是如之前所述，在左侧加上隐含位 <code>1</code>，也就是  <code>1.M</code>  ，如 <code>M</code> 为 <code>1010...0</code>（ <code>101</code> 后面共 20 个 0），则 <code>1.M = 1.101 = 1.625</code></p>
 </li>
-<li><p><strong>非规格化：当 <code>E</code> 的二进制位全部为 <code>0</code> 时，<code>V</code> 为非规格化形式。</strong> </p>
+<li>
+<p><strong>非规格化：当 <code>E</code> 的二进制位全部为 <code>0</code> 时，<code>V</code> 为非规格化形式。</strong></p>
 <p>这时，<code>E</code> 的计算就是 <code>1 - 127</code> （或 <code>1 - 1023</code>），这样做的目的主要是为了规格化数值和非规格化数值之间的平滑过渡。并且，有效数字 <code>M</code> 不再加上第一位的 <code>1</code>，而是按原样输出：<code>0.xxxx</code>。这样，我们就能表示 <code>±0</code> （具体看符号位 <code>s</code>）和一些非常逼近 <code>0</code> 的小数了。</p>
 </li>
-<li><p><strong>特殊数值： 当E的二进制位全为 <code>1</code> 时为特殊数值。</strong> </p>
-<p>此时，若 <code>M</code> 的二进制位全为 <code>0</code> 则表示 <code>±无穷大</code>（具体看符号位 <code>s</code>），而若 <code>M</code> 的二进制位不全为 <code>0</code>  的话，则表示 <code>NaN</code>（Not a Number），表示这不是一个合法实数或者该数未经初始化。　　</p>
+<li>
+<p><strong>特殊数值： 当E的二进制位全为 <code>1</code> 时为特殊数值。</strong></p>
+<p>此时，若 <code>M</code> 的二进制位全为 <code>0</code> 则表示 <code>±无穷大</code>（具体看符号位 <code>s</code>），而若 <code>M</code> 的二进制位不全为 <code>0</code>  的话，则表示 <code>NaN</code>（Not a Number），表示这不是一个合法实数或者该数未经初始化。</p>
 </li>
 </ol>
-<h1 id="浮点数例子"><a href="#浮点数例子" class="headerlink" title="浮点数例子"></a>浮点数例子</h1><p>&emsp;&emsp;有一段 C 代码是这样的：</p>
+<h1 id="浮点数例子"><a class="markdownIt-Anchor" href="#浮点数例子"></a> 浮点数例子</h1>
+<p>  有一段 C 代码是这样的：</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-keyword">int</span> a = <span class="hljs-number">9</span>;
-    <span class="hljs-keyword">float</span>* pFloat = (<span class="hljs-keyword">float</span>*)&amp;a;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, a);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
+	<span class="hljs-keyword">int</span> a = <span class="hljs-number">9</span>;
+	<span class="hljs-keyword">float</span>* pFloat = (<span class="hljs-keyword">float</span>*)&amp;a;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
 
-    *pFloat = <span class="hljs-number">9.0</span>;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, *pFloat);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
+	*pFloat = <span class="hljs-number">9.0</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, *pFloat);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);
 
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre>
-<p>&emsp;&emsp;程序的打印结果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005230741731.png" srcset="/img/loading.gif" alt="image-20201005230741731" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;在上面的代码中，我们先申明了一个整型 <code>a = 9</code>，然后申明了一个浮点指针 <code>pFloat</code> 指向 <code>a</code> 的地址。</p>
-<p>&emsp;&emsp;<strong>1）</strong> 使用浮点数格式打印 <code>a</code> 时，发现为 <code>0.000000</code>；</p>
-<p>&emsp;&emsp;<strong>2）</strong> 然后我们根据 <code>a</code> 的地址 <code>pFloat</code> 修改它的值为 <code>9.0</code>，此时再以整型来打印 <code>a</code>，输出的却是 <code>1091567616</code>。</p>
-<p>&emsp;&emsp;<strong>首先来看 <code>1)</code></strong> ，为什么整型的 <code>9</code> 以浮点格式输出时打印出来的是 <code>0.000000</code>。</p>
-<p>&emsp;&emsp;将 32 位的整型 <code>9</code> 转化为二进制形式，得到： <code>0 0000 0000 000 0000 0000 0000 0000 1001</code> </p>
-<p>&emsp;&emsp;根据前面的知识，可以知道 <code>s = 0</code>，<code>E = 0</code>，<code>M = 0...1001</code>，指数 <code>E</code> 的二进制位全为 <code>0</code>，因此是第二种非规格化的情况，因此浮点数 <code>V</code> 就写成：</p>
+<p>  程序的打印结果：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201005230741731.png" srcset="/img/loading.gif" alt="image-20201005230741731" style="zoom:80%;" />
+<p>  在上面的代码中，我们先申明了一个整型 <code>a = 9</code>，然后申明了一个浮点指针 <code>pFloat</code> 指向 <code>a</code> 的地址。</p>
+<p>  <strong>1）</strong> 使用浮点数格式打印 <code>a</code> 时，发现为 <code>0.000000</code>；</p>
+<p>  <strong>2）</strong> 然后我们根据 <code>a</code> 的地址 <code>pFloat</code> 修改它的值为 <code>9.0</code>，此时再以整型来打印 <code>a</code>，输出的却是 <code>1091567616</code>。</p>
+<p>  <strong>首先来看 <code>1)</code></strong> ，为什么整型的 <code>9</code> 以浮点格式输出时打印出来的是 <code>0.000000</code>。</p>
+<p>  将 32 位的整型 <code>9</code> 转化为二进制形式，得到： <code>0 0000 0000 000 0000 0000 0000 0000 1001</code></p>
+<p>  根据前面的知识，可以知道 <code>s = 0</code>，<code>E = 0</code>，<code>M = 0...1001</code>，指数 <code>E</code> 的二进制位全为 <code>0</code>，因此是第二种非规格化的情况，因此浮点数 <code>V</code> 就写成：</p>
 <p><code>V = (-1)^0 x 0.00000000000000000001001 x 2^(-126) = 1.001 x 2^(-146)</code></p>
-<p>&emsp;&emsp;显然，<code>V</code> 是一个非常小的接近 <code>0</code> 的数，因此用十进制小数表示就是 <code>0.000000</code>。</p>
-<p> &emsp;&emsp;<strong>再来看看 <code>2)</code></strong> ，为什么内存中的 <code>9</code> 变成 <code>9.0</code> 后，以整型格式打印，结果会是 <code>1091567616</code>。</p>
-<p>&emsp;&emsp;将浮点数 <code>9.0</code> 转换为二进制小数形式：<code>1001.0</code> 即 <code>1.001 x 2^3</code> ，那么，我们可以知道 <code>s = 0</code>，<code>E = 3 + 127 = 130</code>，二进制表示的话就是 <code>10000010</code> ，<code>M = 100 1000 0000 0000 0000 0000</code>  ，因此，<code>9.0</code> 的二进制形式表示就是：<code>s + E + M</code> ，也就是：<code>0 1000 0010 100 1000 0000 0000 0000 0000</code> ，这个 32 位的二进制，用十进制表示就是：<code>1,091,567,616</code></p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>&emsp;&emsp;<strong>很多小数不能准确表示成二进制形式</strong>。比如 <code>0.4</code>，你就无法写出它的精确二进制形式（即 <code>0.5</code>的各次幂的累加），我们只能不断接近 <code>0.4</code>，而不能达到它。</p>
-<p>&emsp;&emsp;因为 <code>0.4</code> 的二进制表示是：<code>0.01100110011....</code> 无限循环，因此我们只能逼近而不能精确表示。</p>
-<hr>
+<p>  显然，<code>V</code> 是一个非常小的接近 <code>0</code> 的数，因此用十进制小数表示就是 <code>0.000000</code>。</p>
+<p>  <strong>再来看看 <code>2)</code></strong> ，为什么内存中的 <code>9</code> 变成 <code>9.0</code> 后，以整型格式打印，结果会是 <code>1091567616</code>。</p>
+<p>  将浮点数 <code>9.0</code> 转换为二进制小数形式：<code>1001.0</code> 即 <code>1.001 x 2^3</code> ，那么，我们可以知道 <code>s = 0</code>，<code>E = 3 + 127 = 130</code>，二进制表示的话就是 <code>10000010</code> ，<code>M = 100 1000 0000 0000 0000 0000</code>  ，因此，<code>9.0</code> 的二进制形式表示就是：<code>s + E + M</code> ，也就是：<code>0 1000 0010 100 1000 0000 0000 0000 0000</code> ，这个 32 位的二进制，用十进制表示就是：<code>1,091,567,616</code></p>
+<h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
+<p>  <strong>很多小数不能准确表示成二进制形式</strong>。比如 <code>0.4</code>，你就无法写出它的精确二进制形式（即 <code>0.5</code>的各次幂的累加），我们只能不断接近 <code>0.4</code>，而不能达到它。</p>
+<p>  因为 <code>0.4</code> 的二进制表示是：<code>0.01100110011....</code> 无限循环，因此我们只能逼近而不能精确表示。</p>
+<hr />
 <p>REF：</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">https://ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/linven1911/article/details/2596038">https://blog.csdn.net/linven1911/article/details/2596038</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/linven1911/article/details/2596038">https://blog.csdn.net/linven1911/article/details/2596038</a></p>
 </li>
-<li><a target="_blank" rel="noopener" href="https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html">https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html</a></li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html">https://www.zhoulujun.cn/html/theory/ComputerScienceTechnology/Constitution/2016_0714_7860.html</a></p>
+</li>
 </ul>
 
             </div>
@@ -672,40 +684,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

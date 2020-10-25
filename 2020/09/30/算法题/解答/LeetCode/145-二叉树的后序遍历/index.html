@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      858 字
+      844 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -235,7 +235,7 @@
             <h1 style="display: none">LeetCode 145. 二叉树的后序遍历</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>&emsp;&emsp;给定一个二叉树，返回它的 <strong>后序</strong> 遍历。</p>
+              <p>  给定一个二叉树，返回它的 <strong>后序</strong> 遍历。</p>
 <p><strong>示例:</strong></p>
 <p>输入: <code>[1,null,2,3]</code></p>
 <pre><code class="hljs angelscript"><span class="hljs-number">1</span>
@@ -245,15 +245,16 @@
 <span class="hljs-number">3</span></code></pre>
 <p>输出: <code>[3,2,1]</code></p>
 <p><strong>进阶</strong>: 递归算法很简单，你可以通过迭代算法完成吗？</p>
-<h2 id="解法1：借助栈进行后序非递归遍历"><a href="#解法1：借助栈进行后序非递归遍历" class="headerlink" title="解法1：借助栈进行后序非递归遍历"></a>解法1：借助栈进行后序非递归遍历</h2><p>&emsp;&emsp;后序非递归遍历的<strong>关键点</strong>在于判断遍历过程中什么时候该往右走，什么时候该访问节点内容。</p>
-<p>&emsp;&emsp;我们使用一个栈来保存遍历路径上的节点，步骤如下：</p>
+<h2 id="解法1借助栈进行后序非递归遍历"><a class="markdownIt-Anchor" href="#解法1借助栈进行后序非递归遍历"></a> 解法1：借助栈进行后序非递归遍历</h2>
+<p>  后序非递归遍历的<strong>关键点</strong>在于判断遍历过程中什么时候该往右走，什么时候该访问节点内容。</p>
+<p>  我们使用一个栈来保存遍历路径上的节点，步骤如下：</p>
 <ol>
 <li>一直往左孩子遍历，遍历过程中保存遍历的节点</li>
 <li>当左孩子为空时，我们访问右孩子</li>
 <li>当左右孩子都为空时，我们访问这个节点内容，并返回到父节点</li>
 <li>每当从孩子节点返回父节点时，需要判断是从左孩子返回的还是从右孩子返回的，若是从左孩子返回的，我们需要继续访问右孩子，而若是从右孩子返回的，我们则访问当前节点，并返回到其父节点。</li>
 </ol>
-<p>&emsp;&emsp;判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
+<p>  判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
 <p><strong>C 代码：</strong></p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
     <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
@@ -283,9 +284,10 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;</code></pre>
-<h2 id="解法2：morris-算法"><a href="#解法2：morris-算法" class="headerlink" title="解法2：morris 算法"></a>解法2：morris 算法</h2><p>&emsp;&emsp;Morris 算法一般是用于解决中序遍历的问题，不过若只是需要进行普通的后续遍历， morris 算法也能做到。</p>
-<p>&emsp;&emsp;Morris 算法的步骤可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a></p>
-<p>&emsp;&emsp;根据 Morris 算法的思想，<strong>对于每个节点，当它是借助左子树的最右下结点的空指针返回的时候，我们就倒序输出从当前节点到其左子树最右下节点的路径</strong>，就能得到后续遍历的结果了（想不通的一定要手动模拟一下 morris 算法），最后，在 morris 算法结束后，需要加上从根结点到其右子树最右节点的逆序路径，因为 morris 算法在遍历完成后不会再回到根结点。</p>
+<h2 id="解法2morris-算法"><a class="markdownIt-Anchor" href="#解法2morris-算法"></a> 解法2：morris 算法</h2>
+<p>  Morris 算法一般是用于解决中序遍历的问题，不过若只是需要进行普通的后续遍历， morris 算法也能做到。</p>
+<p>  Morris 算法的步骤可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a></p>
+<p>  根据 Morris 算法的思想，<strong>对于每个节点，当它是借助左子树的最右下结点的空指针返回的时候，我们就倒序输出从当前节点到其左子树最右下节点的路径</strong>，就能得到后续遍历的结果了（想不通的一定要手动模拟一下 morris 算法），最后，在 morris 算法结束后，需要加上从根结点到其右子树最右节点的逆序路径，因为 morris 算法在遍历完成后不会再回到根结点。</p>
 <p><strong>JS 代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
@@ -716,40 +718,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

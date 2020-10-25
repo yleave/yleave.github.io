@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      490 字
+      484 字
     </span>
   
 
@@ -236,8 +236,10 @@
             
             <div class="markdown-body" id="post-body">
               <p><strong>最大的素数为：999983</strong></p>
-<h1 id="一、素数介绍"><a href="#一、素数介绍" class="headerlink" title="一、素数介绍"></a>一、素数介绍</h1><p>&emsp;&emsp;<strong>素数</strong>又称为<strong>质数</strong>，是除了<code>1</code>和本身之外，不能被其他数整除的一类数。即对给定的正整数<code>n</code> ，如果对任意的正整数 <code>a(1 &lt;  a &lt; n)</code>，都有 <code>n % a != 0</code> 成立，那么称 <code>n</code> 是素数，否则，如果存在正整数 <code>a(1 &lt;  a &lt; n)</code>，都有 <code>n % a == 0</code> 成立，那么称 <code>n</code> 为<strong>合数</strong>。（<code>1</code>既不是素数，也不是合数）</p>
-<h1 id="二、素数的判断"><a href="#二、素数的判断" class="headerlink" title="二、素数的判断"></a>二、素数的判断</h1><p>&emsp;&emsp;只需要判断 <code>n</code> 是否能被 <code>2,3，···，sqrt(n)</code>(向下取整)，即可判断 <code>n</code> 是否为素数。该算法的时间复杂度为 <code>O(sqrt(n))</code>;</p>
+<h1 id="一-素数介绍"><a class="markdownIt-Anchor" href="#一-素数介绍"></a> 一、素数介绍</h1>
+<p>  <strong>素数</strong>又称为<strong>质数</strong>，是除了<code>1</code>和本身之外，不能被其他数整除的一类数。即对给定的正整数<code>n</code> ，如果对任意的正整数 <code>a(1 &lt; a &lt; n)</code>，都有 <code>n % a != 0</code> 成立，那么称 <code>n</code> 是素数，否则，如果存在正整数 <code>a(1 &lt; a &lt; n)</code>，都有 <code>n % a == 0</code> 成立，那么称 <code>n</code> 为<strong>合数</strong>。（<code>1</code>既不是素数，也不是合数）</p>
+<h1 id="二-素数的判断"><a class="markdownIt-Anchor" href="#二-素数的判断"></a> 二、素数的判断</h1>
+<p>  只需要判断 <code>n</code> 是否能被 <code>2,3，···，sqrt(n)</code>(向下取整)，即可判断 <code>n</code> 是否为素数。该算法的时间复杂度为 <code>O(sqrt(n))</code>;</p>
 <p><strong>C代码如下：</strong></p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPrime</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;
     <span class="hljs-keyword">int</span> i;
@@ -265,7 +267,8 @@
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;</code></pre>
-<h1 id="三、获取素数表"><a href="#三、获取素数表" class="headerlink" title="三、获取素数表"></a>三、获取素数表</h1><pre><code class="hljs js"><span class="hljs-keyword">const</span> int maxn <span class="hljs-number">101</span>;      <span class="hljs-comment">//表长</span>
+<h1 id="三-获取素数表"><a class="markdownIt-Anchor" href="#三-获取素数表"></a> 三、获取素数表</h1>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> int maxn <span class="hljs-number">101</span>;      <span class="hljs-comment">//表长</span>
 int prime[maxn],pNum = <span class="hljs-number">0</span>;
 bool p[<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0</span>&#125;;  <span class="hljs-comment">//p[i] == true表示 i 是素数</span>
 <span class="hljs-keyword">void</span> find_Prime()&#123;
@@ -277,7 +280,8 @@ bool p[<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0
         &#125;
     &#125;
 &#125;</code></pre>
-<h2 id="更高效的算法———埃氏筛法：Eratosthenes"><a href="#更高效的算法———埃氏筛法：Eratosthenes" class="headerlink" title="更高效的算法———埃氏筛法：Eratosthenes"></a>更高效的算法———埃氏筛法：Eratosthenes</h2><p>&emsp;&emsp;埃氏筛法的具体思想是：在对每一个数判断是否是素数时，将其所有倍数都标记为非素数，这样，在后面遇到这个数的倍数时，就不用一一从头开始判断是否能被其他数整除了。</p>
+<h2 id="更高效的算法-埃氏筛法eratosthenes"><a class="markdownIt-Anchor" href="#更高效的算法-埃氏筛法eratosthenes"></a> 更高效的算法------埃氏筛法：Eratosthenes</h2>
+<p>  埃氏筛法的具体思想是：在对每一个数判断是否是素数时，将其所有倍数都标记为非素数，这样，在后面遇到这个数的倍数时，就不用一一从头开始判断是否能被其他数整除了。</p>
 <pre><code class="hljs c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn <span class="hljs-number">101</span>;      <span class="hljs-comment">//表长</span>
 <span class="hljs-keyword">int</span> prime[maxn],pNum = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">bool</span> p[<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0</span>&#125;;  <span class="hljs-comment">//p[i] 为false表示 i 是素数，true 表示 i 不是素数</span>
@@ -293,7 +297,8 @@ bool p[<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0
         &#125;
     &#125;
 &#125;</code></pre>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/">LeetCode 204</a></p>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/">LeetCode 204</a></p>
 
             </div>
             <hr>
@@ -671,40 +676,8 @@ bool p[<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

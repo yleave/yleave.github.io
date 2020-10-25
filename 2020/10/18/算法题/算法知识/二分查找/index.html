@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      830 字
+      802 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -235,11 +235,12 @@
             <h1 style="display: none">二分查找</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>&emsp;&emsp;所谓二分查找，就是从一个查找范围中每次取中间值，然后根据中间值来判断是否满足条件或是缩小查找范围的过程，且这个范围内的值需要是有规律的，比如是有序的。</p>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>&emsp;&emsp;以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-insert-position/">LeetCode</a> 的一道简单题为例：给定一个排序数组和一个目标值，返回目标值的索引，若不存在，则返回能够插入该目标值的索引。</p>
-<p>&emsp;&emsp;如 ：<code>array = [1,5,7,10,12], target = 6</code></p>
-<p>&emsp;&emsp;则返回值为 <code>2</code></p>
-<p>&emsp;&emsp;这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p>
+              <p>  所谓二分查找，就是从一个查找范围中每次取中间值，然后根据中间值来判断是否满足条件或是缩小查找范围的过程，且这个范围内的值需要是有规律的，比如是有序的。</p>
+<h1 id="引子"><a class="markdownIt-Anchor" href="#引子"></a> 引子</h1>
+<p>  以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-insert-position/">LeetCode</a> 的一道简单题为例：给定一个排序数组和一个目标值，返回目标值的索引，若不存在，则返回能够插入该目标值的索引。</p>
+<p>  如 ：<code>array = [1,5,7,10,12], target = 6</code></p>
+<p>  则返回值为 <code>2</code></p>
+<p>  这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p>
 <p>代码如下：</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;
     <span class="hljs-keyword">int</span> mid;
@@ -255,10 +256,12 @@
     &#125;
     <span class="hljs-keyword">return</span> left;
 &#125;</code></pre>
-<p>&emsp;&emsp;其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p>
-<h1 id="二分查找变形"><a href="#二分查找变形" class="headerlink" title="二分查找变形"></a>二分查找变形</h1><p>&emsp;&emsp;根据使用场景的不同，二分查找有一些变形算法。</p>
-<h2 id="返回第一个大于等于-x-的位置"><a href="#返回第一个大于等于-x-的位置" class="headerlink" title="返回第一个大于等于 x 的位置"></a>返回第一个大于等于 x 的位置</h2><p>&emsp;&emsp;在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在大于等于 <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是恰好大于等于 <code>x</code> 的位置。</p>
-<p>&emsp;&emsp;所以说，下面的代码作用和上面例子中的代码是完全一样的。</p>
+<p>  其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p>
+<h1 id="二分查找变形"><a class="markdownIt-Anchor" href="#二分查找变形"></a> 二分查找变形</h1>
+<p>  根据使用场景的不同，二分查找有一些变形算法。</p>
+<h2 id="返回第一个大于等于-x-的位置"><a class="markdownIt-Anchor" href="#返回第一个大于等于-x-的位置"></a> 返回第一个大于等于 x 的位置</h2>
+<p>  在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在大于等于 <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是恰好大于等于 <code>x</code> 的位置。</p>
+<p>  所以说，下面的代码作用和上面例子中的代码是完全一样的。</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
     <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span> (left &lt; right) &#123;
@@ -272,8 +275,9 @@
     &#125;
     <span class="hljs-keyword">return</span> left;
 &#125;</code></pre>
-<p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 5</code>，返回 <code>3</code></p>
-<h2 id="返回第一个大于-x-的位置"><a href="#返回第一个大于-x-的位置" class="headerlink" title="返回第一个大于 x 的位置"></a>返回第一个大于 x 的位置</h2><p>&emsp;&emsp;这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p>
+<p>  如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 5</code>，返回 <code>3</code></p>
+<h2 id="返回第一个大于-x-的位置"><a class="markdownIt-Anchor" href="#返回第一个大于-x-的位置"></a> 返回第一个大于 x 的位置</h2>
+<p>  这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
     <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span> (left &lt; right) &#123;
@@ -287,8 +291,9 @@
     &#125;
     <span class="hljs-keyword">return</span> left;
 &#125;</code></pre>
-<p>&emsp;&emsp;如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 3</code>，返回 <code>3</code></p>
-<h2 id="返回第一个小于等于-x-的位置"><a href="#返回第一个小于等于-x-的位置" class="headerlink" title="返回第一个小于等于 x 的位置"></a>返回第一个小于等于 x 的位置</h2><p>&emsp;&emsp;同理，在循环中稍加变动，就能实现另一个功能，不过这时候计算 <code>mid</code> 需要向上取整了（之前都是向上取整的），不然可能会出现无限循环，因为每次都向下取整的话可能会出现 <code>left</code> 不变的情况：</p>
+<p>  如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 3</code>，返回 <code>3</code></p>
+<h2 id="返回第一个小于等于-x-的位置"><a class="markdownIt-Anchor" href="#返回第一个小于等于-x-的位置"></a> 返回第一个小于等于 x 的位置</h2>
+<p>  同理，在循环中稍加变动，就能实现另一个功能，不过这时候计算 <code>mid</code> 需要向上取整了（之前都是向上取整的），不然可能会出现无限循环，因为每次都向下取整的话可能会出现 <code>left</code> 不变的情况：</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
     <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span> (left &lt; right) &#123;
@@ -300,9 +305,9 @@
             right = mid - <span class="hljs-number">1</span>;
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> right;
+	<span class="hljs-keyword">return</span> right;
 &#125;</code></pre>
-<p>&emsp;&emsp;同理，第一个<strong>小于</strong> <code>x</code> 的位置：</p>
+<p>  同理，第一个<strong>小于</strong> <code>x</code> 的位置：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">while</span> (left &lt; right) &#123;
     <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);
     <span class="hljs-keyword">let</span> num = arr[mid];
@@ -689,40 +694,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

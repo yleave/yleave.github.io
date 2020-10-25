@@ -198,8 +198,10 @@
           
             
           
-          Morris 算法介绍&emsp;&emsp;Morris 算法是一种中序遍历算法，它能够将中序遍历的空间复杂度优化到 O(1)！
-&emsp;&emsp;正常的中序遍历算法，无论是递归还是迭代，都需要使用到栈来保存节点，因此空间复杂度一般和树的节点数有关，而 Morris 算法是使用了树中子结点的空闲的指针来完成遍历过程。具体是通过底层节点指向NULL的空闲指针返回上层的某个节点，从而完成下层到
+           Morris 算法介绍
+  Morris 算法是一种中序遍历算法，它能够将中序遍历的空间复杂度优化到 O(1)！
+  正常的中序遍历算法，无论是递归还是迭代，都需要使用到栈来保存节点，因此空间复杂度一般和树的节点数有关，而 Morris 算法是使用了树中子结点的空闲的指针来完成遍历过程。具体是通过底层节点指向NULL的空闲指针返回上层的某个节点，从而完成下层到上层的移动。
+Morris 遍历算法
         </a>
       </p>
 
@@ -259,12 +261,14 @@
           https://leetcode-cn.com/problems/binary-tree-cameras/
 难度：困难
 
-&emsp;&emsp;给定一个二叉树，我们在树的节点上安装摄像头。
-&emsp;&emsp;节点上的每个摄影头都可以监视其父对象、自身及其直接子对象。
-&emsp;&emsp;计算监控树的所有节点所需的最小摄像头数量。
+  给定一个二叉树，我们在树的节点上安装摄像头。
+  节点上的每个摄影头都可以监视其父对象、自身及其直接子对象。
+  计算监控树的所有节点所需的最小摄像头数量。
 示例 1：
  
-&emsp;&emsp;输入：[0,0,
+  输入：[0,0,null,0,0]
+  输出：1
+  解释：如图所示，一台摄像头足以监控所有节点
         </a>
       </p>
 
@@ -321,9 +325,11 @@
           
             
           
-          1. WEB资源1.1 媒体类型&emsp;&emsp;MIME（Multipurpose Internet Mail Extention，多用途因特网邮件拓展）。
-&emsp;&emsp;MIME类型 （MIME type）是一种文本标记，表示一种主要的对象类型和一个特定的子类型，中间由一条斜杠来分隔。
-&emsp;&emsp;WEB 服务器会为所有的 HTTP 对象数据附加一个 MIME 类型
+           1. WEB资源
+ 1.1 媒体类型
+  MIME（Multipurpose Internet Mail Extention，多用途因特网邮件拓展）。
+  MIME类型 （MIME type）是一种文本标记，表示一种主要的对象类型和一个特定的子类型，中间由一条斜杠来分隔。
+  WEB 服务器会为所有的 HTTP 对象数据附加一个 MIME 类型，当 WEB 浏览器从服务器中取回一个对象时，会检查
         </a>
       </p>
 
@@ -378,9 +384,10 @@
           
             
           
-          &emsp;&emsp;假设有一个需求，需要获取 Three 场景的一张快照，然后再将其显示在屏幕上。
-1. 获取快照&emsp;&emsp;对于这个需求，一种方法是在创建 WebGLRenderer 时设置一个 preserveDrawingBuffer 参数为 true，然后再调用场景中的 canvas 的 toDataURL 方法来获取某一帧的 base64 格式的图像数据：
-rendere
+            假设有一个需求，需要获取 Three 场景的一张快照，然后再将其显示在屏幕上。
+ 1. 获取快照
+  对于这个需求，一种方法是在创建 WebGLRenderer 时设置一个 preserveDrawingBuffer 参数为 true，然后再调用场景中的 canvas 的 toDataURL 方法来获取某一帧的 base64 格式的图像数据：
+renderer = new WebGLRende
         </a>
       </p>
 
@@ -439,11 +446,13 @@ rendere
           
             
           
-          canvas 获取截图&emsp;&emsp;具体是使用 canvas 的 toDataURL 方法：
+           canvas 获取截图
+  具体是使用 canvas 的 toDataURL 方法：
 var image = new Image();
 image.src = canvas.toDataURL(&quot;image/png&quot;);
-&emsp;&emsp;toDataURL 的第一个参数是图像类型，默认是 image/png，也可设置为 image/jpeg 。
-&em
+  toDataURL 的第一个参数是图像类型，默认是 image/png，也可设置为 image/jpeg 。
+  详细可看 MDN 的介绍。
+  若想将
         </a>
       </p>
 
@@ -501,7 +510,7 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
           https://leetcode-cn.com/problems/permutations-ii/
 难度：中等
 
-&emsp;&emsp;给定一个可包含重复数字的序列，返回所有不重复的全排列。
+  给定一个可包含重复数字的序列，返回所有不重复的全排列。
 示例:
 输入: [1,1,2]
 输出:
@@ -510,7 +519,8 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
   [1,2,1],
   [2,1,1]
 ]
-解法1：回溯 + 剪枝&emsp;&emsp;这题求全排列的步骤与 46.全排列 这题是一样的
+ 解法1：回溯 + 剪枝
+  这题求全排列的步骤与 46.全排列 这题是一样的，区别就是 46. 这题给的数字序列
         </a>
       </p>
 
@@ -572,7 +582,7 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
           https://leetcode-cn.com/problems/permutations/
 难度：中等
 
-&emsp;&emsp;给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+  给定一个 没有重复 数字的序列，返回其所有可能的全排列。
 示例:
 输入: [1,2,3]
 输出:
@@ -584,7 +594,8 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
   [3,1,2],
   [3,2,1]
 ]
-解法1：回溯法&emsp;&em
+ 解法1：回溯法
+  对于一组没有重复数字的序列，要
         </a>
       </p>
 
@@ -643,8 +654,9 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
           
             
           
-          前言&emsp;&emsp;不论是写博客还是记笔记，图床的选择很重要。且对于一个博客平台来说，网站中的图片、视频以及音频等资源的下载速度直接影响到了整个博客网站的加载和体验，这点我深有体会。
-&emsp;&emsp;就我个人来说，最开始，我在博客中有加入音乐播放器，音频和部分图片是直接存储在博客项目里的，而文章中的一些图片则使用 SM.MS 图床存储，然后每次打开网站时都要等很久网站的资源才能加载
+           前言
+  不论是写博客还是记笔记，图床的选择很重要。且对于一个博客平台来说，网站中的图片、视频以及音频等资源的下载速度直接影响到了整个博客网站的加载和体验，这点我深有体会。
+  就我个人来说，最开始，我在博客中有加入音乐播放器，音频和部分图片是直接存储在博客项目里的，而文章中的一些图片则使用 SM.MS 图床存储，然后每次打开网站时都要等很久网站的资源才能加载出来，开始我还认为是因为博客是部署在
         </a>
       </p>
 
@@ -712,10 +724,12 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
 …
 
 并查集的几个操作：
-初始化for (int i = 0; i &lt; N; i++) &#123;
+ 初始化
+for (int i = 0; i &lt; N; i++) &#123;
     father[i] = i;
 &#125;
-查找用于快速找到某个节
+ 查找
+用于快速找
         </a>
       </p>
 
@@ -775,8 +789,8 @@ image.src = canvas.toDataURL(&quot;image/png&quot;);
           https://leetcode-cn.com/problems/redundant-connection-ii/
 难度：困难
 
-&emsp;&emsp;在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。
-&emsp;&emsp;输入一个有向图，该图由一个有着N个节点 (节点值不重复1, 2, …, N) 
+  在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。
+  输入一个有向图，该图由一个有着N个节点 (节点值不重复1, 2, …, N) 的树及一条附加的边构成。附加的边的两个顶
         </a>
       </p>
 

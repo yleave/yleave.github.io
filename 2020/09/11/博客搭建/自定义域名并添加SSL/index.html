@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      11
        分钟
     </span>
   
@@ -235,67 +235,73 @@
             <h1 style="display: none">自定义域名并添加SSL</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>&emsp;&emsp;本博客是部署在 Github Pages 上的，因此访问时域名为： <code>yleave.github.io</code> ，不过还是感觉太长了，于是乎捣鼓了两天，给博客加了个域名并添加了SSL证书，下面记录了一些捣鼓经验。</p>
-<h1 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h1><p>&emsp;&emsp;前置条件：一个已部署在 github 上的博客</p>
-<p>&emsp;&emsp;首先，需要注册一个域名，我是在<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/domain/?spm=5176.100251.111252.21.72014f15uvzIEz">阿里云</a>上注册的，首年 9 元，续费 27 元，价格还可以接受，步骤也不麻烦。</p>
-<p>&emsp;&emsp;第一次注册的需要实名认证，而名认证审核时间大概半天就能完成。</p>
-<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>&emsp;&emsp;域名注册完成后，进入解析页面，点击添加记录：</p>
-<p><img src="https://i.loli.net/2020/09/11/izd5jS7e2TVDgM4.png" srcset="/img/loading.gif" alt="image-20200911163555583" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;先获取你的博客 IP 地址，可以使用命令行窗口 <code>ping</code> 一下：<code>ping name.github.io</code>  :</p>
-<p><img src="https://i.loli.net/2020/09/11/dUDfhNnM5B6xTtL.png" srcset="/img/loading.gif" alt="image-20200911163939089" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;或是去<a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns">网站</a>查一下：</p>
-<p><img src="https://i.loli.net/2020/09/11/rp169ZtWCVNwMfD.png" srcset="/img/loading.gif" alt="image-20200911164127950" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;这几个其实都是 github 的 IP 地址，应该所有在 github 上部署的博客都是这几个地址。</p>
-<p>&emsp;&emsp;可以只选择一个 ip 进行解析，不过我这边将这四个地址都解析了：</p>
-<p><img src="https://i.loli.net/2020/09/11/iTPvBhr7J8nEmV4.png" srcset="/img/loading.gif" alt="image-20200911164331299" style="zoom: 67%;" /></p>
-<p><img src="https://i.loli.net/2020/09/11/PGYWM2OEjw7ycRk.png" srcset="/img/loading.gif" alt="image-20200911164419343" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;然后解析一个 <code>CNAME</code> 类型的记录：</p>
-<p><img src="https://i.loli.net/2020/09/11/zbDgrJtNh7d2uKL.png" srcset="/img/loading.gif" alt="image-20200911164528656" style="zoom: 67%;" /></p>
-<p>&emsp;&emsp;最后，在博客所在项目的 <code>source</code> 文件夹下新建一个 <code>CNAME</code> 文件，写入申请的域名：</p>
-<p><img src="https://i.loli.net/2020/09/11/buEdOwZFxce8jQz.png" srcset="/img/loading.gif" alt="image-20200911164738664" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;不过这一步不知道它的作用是什么，但看其他教程都有这步，就加上去吧。</p>
-<p>&emsp;&emsp;到这里，域名解析步骤就完成了。</p>
-<h2 id="github-绑定"><a href="#github-绑定" class="headerlink" title="github 绑定"></a>github 绑定</h2><p>&emsp;&emsp;这个步骤中将解析的域名与 github 上的博客项目绑定起来。</p>
-<p>&emsp;&emsp;先进入博客项目的 <code>Settings</code> 中： </p>
-<p><img src="https://i.loli.net/2020/09/11/rEj2z1pJh76ctsg.png" srcset="/img/loading.gif" alt="image-20200911165059055" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;拉到底部，在 <code>Custom domain</code> 栏中填入申请的域名：</p>
-<p><img src="https://i.loli.net/2020/09/11/3c5nN9RMHSADZbX.png" srcset="/img/loading.gif" alt="image-20200911165140522" style="zoom:67%;" /></p>
-<p>&emsp;&emsp;到这一步，自定义域名的步骤就完成了，但由于我是第一次注册，还需等待实名认证完成，审核完成后就能通过 <code>www.yleave.top</code> 和 <code>yleave.top</code> 访问了。</p>
-<p><img src="https://i.loli.net/2020/09/11/tSsPnkwdz59qO4F.png" srcset="/img/loading.gif" alt="image-20200911165328548" style="zoom:80%;" /></p>
-<h1 id="给博客网站添加-SSL"><a href="#给博客网站添加-SSL" class="headerlink" title="给博客网站添加 SSL"></a>给博客网站添加 SSL</h1><p><img src="https://i.loli.net/2020/09/11/WX46dDuBK8OvMig.png" srcset="/img/loading.gif" alt="image-20200911165528080" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;关于 SSL 和 HTTPS 的介绍这里就不说明了，这篇<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/721195">文章</a>有一些简介可以看看。</p>
-<h2 id="申请免费SSL证书"><a href="#申请免费SSL证书" class="headerlink" title="申请免费SSL证书"></a>申请免费SSL证书</h2><p>&emsp;&emsp;证书这边我是在 <a target="_blank" rel="noopener" href="https://console.qcloud.com/ssl">腾讯云</a>申请免费的 SSL 证书，不过只有一年免费时间。</p>
-<p><img src="https://i.loli.net/2020/09/11/qwMHnYxtACdPuiW.png" srcset="/img/loading.gif" alt="image-20200911170245686" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;阿里云应该也能申请，不过我没找到，因此去腾讯云申请了，但是证书申请和域名申请不在同一个网站的话，后面上传证书时会稍微麻烦一些，不过也还好。</p>
-<p>&emsp;&emsp;申请步骤很简单，只需要填写一个表格并实名认证就行。</p>
-<p><img src="https://i.loli.net/2020/09/11/QWJShizDbOuTClr.png" srcset="/img/loading.gif" alt="image-20200911170359563" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;申请完成后需要进行 DNS 验证：</p>
-<p><img src="https://i.loli.net/2020/09/11/IQqkwEmhx62lcav.png" srcset="/img/loading.gif" alt="image-20200911171152620" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;因此再回到阿里云的 DNS 解析页面，将上表中出现的字段填入解析记录中：</p>
-<p><img src="https://i.loli.net/2020/09/11/QGcaB6q4i9dOPVL.png" srcset="/img/loading.gif" alt="image-20200911171242463" style="zoom:80%;" /></p>
+              <p>  本博客是部署在 Github Pages 上的，因此访问时域名为： <code>yleave.github.io</code> ，不过还是感觉太长了，于是乎捣鼓了两天，给博客加了个域名并添加了SSL证书，下面记录了一些捣鼓经验。</p>
+<h1 id="自定义域名"><a class="markdownIt-Anchor" href="#自定义域名"></a> 自定义域名</h1>
+<p>  前置条件：一个已部署在 github 上的博客</p>
+<p>  首先，需要注册一个域名，我是在<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/domain/?spm=5176.100251.111252.21.72014f15uvzIEz">阿里云</a>上注册的，首年 9 元，续费 27 元，价格还可以接受，步骤也不麻烦。</p>
+<p>  第一次注册的需要实名认证，而名认证审核时间大概半天就能完成。</p>
+<h2 id="域名解析"><a class="markdownIt-Anchor" href="#域名解析"></a> 域名解析</h2>
+<p>  域名注册完成后，进入解析页面，点击添加记录：</p>
+<img src="https://i.loli.net/2020/09/11/izd5jS7e2TVDgM4.png" srcset="/img/loading.gif" alt="image-20200911163555583" style="zoom:80%;" />
+<p>  先获取你的博客 IP 地址，可以使用命令行窗口 <code>ping</code> 一下：<code>ping name.github.io</code>  :</p>
+<img src="https://i.loli.net/2020/09/11/dUDfhNnM5B6xTtL.png" srcset="/img/loading.gif" alt="image-20200911163939089" style="zoom:80%;" />
+<p>  或是去<a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns">网站</a>查一下：</p>
+<img src="https://i.loli.net/2020/09/11/rp169ZtWCVNwMfD.png" srcset="/img/loading.gif" alt="image-20200911164127950" style="zoom:80%;" />
+<p>  这几个其实都是 github 的 IP 地址，应该所有在 github 上部署的博客都是这几个地址。</p>
+<p>  可以只选择一个 ip 进行解析，不过我这边将这四个地址都解析了：</p>
+<img src="https://i.loli.net/2020/09/11/iTPvBhr7J8nEmV4.png" srcset="/img/loading.gif" alt="image-20200911164331299" style="zoom: 67%;" />
+<img src="https://i.loli.net/2020/09/11/PGYWM2OEjw7ycRk.png" srcset="/img/loading.gif" alt="image-20200911164419343" style="zoom:80%;" />
+<p>  然后解析一个 <code>CNAME</code> 类型的记录：</p>
+<img src="https://i.loli.net/2020/09/11/zbDgrJtNh7d2uKL.png" srcset="/img/loading.gif" alt="image-20200911164528656" style="zoom: 67%;" />
+<p>  最后，在博客所在项目的 <code>source</code> 文件夹下新建一个 <code>CNAME</code> 文件，写入申请的域名：</p>
+<img src="https://i.loli.net/2020/09/11/buEdOwZFxce8jQz.png" srcset="/img/loading.gif" alt="image-20200911164738664" style="zoom:80%;" />
+<p>  不过这一步不知道它的作用是什么，但看其他教程都有这步，就加上去吧。</p>
+<p>  到这里，域名解析步骤就完成了。</p>
+<h2 id="github-绑定"><a class="markdownIt-Anchor" href="#github-绑定"></a> github 绑定</h2>
+<p>  这个步骤中将解析的域名与 github 上的博客项目绑定起来。</p>
+<p>  先进入博客项目的 <code>Settings</code> 中：</p>
+<img src="https://i.loli.net/2020/09/11/rEj2z1pJh76ctsg.png" srcset="/img/loading.gif" alt="image-20200911165059055" style="zoom:80%;" />
+<p>  拉到底部，在 <code>Custom domain</code> 栏中填入申请的域名：</p>
+<img src="https://i.loli.net/2020/09/11/3c5nN9RMHSADZbX.png" srcset="/img/loading.gif" alt="image-20200911165140522" style="zoom:67%;" />
+<p>  到这一步，自定义域名的步骤就完成了，但由于我是第一次注册，还需等待实名认证完成，审核完成后就能通过 <code>www.yleave.top</code> 和 <code>yleave.top</code> 访问了。</p>
+<img src="https://i.loli.net/2020/09/11/tSsPnkwdz59qO4F.png" srcset="/img/loading.gif" alt="image-20200911165328548" style="zoom:80%;" />
+<h1 id="给博客网站添加-ssl"><a class="markdownIt-Anchor" href="#给博客网站添加-ssl"></a> 给博客网站添加 SSL</h1>
+<img src="https://i.loli.net/2020/09/11/WX46dDuBK8OvMig.png" srcset="/img/loading.gif" alt="image-20200911165528080" style="zoom:80%;" />
+<p>  关于 SSL 和 HTTPS 的介绍这里就不说明了，这篇<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/721195">文章</a>有一些简介可以看看。</p>
+<h2 id="申请免费ssl证书"><a class="markdownIt-Anchor" href="#申请免费ssl证书"></a> 申请免费SSL证书</h2>
+<p>  证书这边我是在 <a target="_blank" rel="noopener" href="https://console.qcloud.com/ssl">腾讯云</a>申请免费的 SSL 证书，不过只有一年免费时间。</p>
+<img src="https://i.loli.net/2020/09/11/qwMHnYxtACdPuiW.png" srcset="/img/loading.gif" alt="image-20200911170245686" style="zoom:80%;" />
+<p>  阿里云应该也能申请，不过我没找到，因此去腾讯云申请了，但是证书申请和域名申请不在同一个网站的话，后面上传证书时会稍微麻烦一些，不过也还好。</p>
+<p>  申请步骤很简单，只需要填写一个表格并实名认证就行。</p>
+<img src="https://i.loli.net/2020/09/11/QWJShizDbOuTClr.png" srcset="/img/loading.gif" alt="image-20200911170359563" style="zoom:80%;" />
+<p>  申请完成后需要进行 DNS 验证：</p>
+<img src="https://i.loli.net/2020/09/11/IQqkwEmhx62lcav.png" srcset="/img/loading.gif" alt="image-20200911171152620" style="zoom:80%;" />
+<p>  因此再回到阿里云的 DNS 解析页面，将上表中出现的字段填入解析记录中：</p>
+<img src="https://i.loli.net/2020/09/11/QGcaB6q4i9dOPVL.png" srcset="/img/loading.gif" alt="image-20200911171242463" style="zoom:80%;" />
 <p>然后，等待<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/ssl/detail/gLRDXe3L">腾讯云</a>那边的 DNS 验证</p>
-<p><img src="https://i.loli.net/2020/09/11/YrRZfFmPxEBCqze.png" srcset="/img/loading.gif" alt="image-20200911171319884" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;过了大概五分钟，腾讯云发来短信，提示 DNS 解析成功。</p>
-<p><img src="https://i.loli.net/2020/09/11/7MBHXatQUG5Z4A6.png" srcset="/img/loading.gif" alt="image-20200911171410380" style="zoom:67%;" /></p>
-<p>&emsp;&emsp;证书下载下来是一个压缩包，里面是这样子的，我估摸着是不同代理的证书：</p>
-<p><img src="https://i.loli.net/2020/09/11/X6adrQ8wRF79fU2.png" srcset="/img/loading.gif" alt="image-20200911171553060" style="zoom:80%;" /></p>
-<h2 id="上传SSL证书"><a href="#上传SSL证书" class="headerlink" title="上传SSL证书"></a>上传SSL证书</h2><p>&emsp;&emsp;在腾讯云上申请完 SSL 证书后，需要将其上传到域名申请的地方，也就是阿里云的<a target="_blank" rel="noopener" href="https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou">证书管理中心</a>：</p>
-<p><img src="https://i.loli.net/2020/09/11/e8iPSIDBodCVhlq.png" srcset="/img/loading.gif" alt="image-20200911171741501" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;证书名称可以随便填，证书文件就是 <code>.crt</code> 的文件中的内容，一个证书文件对应了一个私钥，如 Apache 目录下， <code>_www.yleave.top.crt</code> 就是证书文件，<code>.key</code> 就是私钥，填入这两个就好了：</p>
-<p><img src="https://i.loli.net/2020/09/11/8Ns2I6nyMZFhrAK.png" srcset="/img/loading.gif" alt="image-20200911171826131" style="zoom:80%;" /></p>
-<p><img src="https://i.loli.net/2020/09/11/DvlAJ6pV9KyXGdf.png" srcset="/img/loading.gif" alt="image-20200911171859459" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;我这边先是上传了两个证书：</p>
-<p><img src="https://i.loli.net/2020/09/11/KFQq7to6xyhvfXC.png" srcset="/img/loading.gif" alt="image-20200911171934657"></p>
-<p>&emsp;&emsp;上传完后点击部署按钮：</p>
-<p><img src="https://i.loli.net/2020/09/11/eJ1HLE5PRY3mhqO.png" srcset="/img/loading.gif" alt="image-20200911172010043" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;全选，点击部署：</p>
-<p><img src="https://i.loli.net/2020/09/11/rgBiSMDbJIOoNtp.png" srcset="/img/loading.gif" alt="image-20200911172049141" style="zoom: 80%;" /></p>
-<p>&emsp;&emsp;不过刚部署完后访问网站还是 <code>http</code> 类型的，当时感觉是不是自己哪错了（后来发现应该是要等一会儿才能生效），于是看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sslwork/p/5984167.html">一个博文</a> 里说还需要部署中间证书，于是按照上面的方法又上传部署了一个带中间证书内容的证书，但刚部署完仍未生效。</p>
-<p>&emsp;&emsp;不过过了一会儿，正当我沮丧找其他博文参考时，又访问了一下发现证书好像生效了：</p>
-<p><img src="https://i.loli.net/2020/09/11/LlnEkSad2G4eMVP.png" srcset="/img/loading.gif" alt="image-20200911172535154" style="zoom:80%;" /></p>
-<p>&emsp;&emsp;最后，在浏览其他博文时，发现 github 上还有一个 <code>Enforce HTTPS</code> 选项，暂时不清楚作用，总之先勾选上：</p>
-<p><img src="https://i.loli.net/2020/09/11/MWEApjaytkvcVCT.png" srcset="/img/loading.gif" alt="image-20200911172829156" style="zoom:67%;" /></p>
-<p>&emsp;&emsp;捣鼓了两天，虽然过程中对一些步骤的作用还不太清楚，但最后成功完成，时间还是没白费的</p>
+<img src="https://i.loli.net/2020/09/11/YrRZfFmPxEBCqze.png" srcset="/img/loading.gif" alt="image-20200911171319884" style="zoom:80%;" />
+<p>  过了大概五分钟，腾讯云发来短信，提示 DNS 解析成功。</p>
+<img src="https://i.loli.net/2020/09/11/7MBHXatQUG5Z4A6.png" srcset="/img/loading.gif" alt="image-20200911171410380" style="zoom:67%;" />
+<p>  证书下载下来是一个压缩包，里面是这样子的，我估摸着是不同代理的证书：</p>
+<img src="https://i.loli.net/2020/09/11/X6adrQ8wRF79fU2.png" srcset="/img/loading.gif" alt="image-20200911171553060" style="zoom:80%;" />
+<h2 id="上传ssl证书"><a class="markdownIt-Anchor" href="#上传ssl证书"></a> 上传SSL证书</h2>
+<p>  在腾讯云上申请完 SSL 证书后，需要将其上传到域名申请的地方，也就是阿里云的<a target="_blank" rel="noopener" href="https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou">证书管理中心</a>：</p>
+<img src="https://i.loli.net/2020/09/11/e8iPSIDBodCVhlq.png" srcset="/img/loading.gif" alt="image-20200911171741501" style="zoom:80%;" />
+<p>  证书名称可以随便填，证书文件就是 <code>.crt</code> 的文件中的内容，一个证书文件对应了一个私钥，如 Apache 目录下， <code>_www.yleave.top.crt</code> 就是证书文件，<code>.key</code> 就是私钥，填入这两个就好了：</p>
+<img src="https://i.loli.net/2020/09/11/8Ns2I6nyMZFhrAK.png" srcset="/img/loading.gif" alt="image-20200911171826131" style="zoom:80%;" />
+<img src="https://i.loli.net/2020/09/11/DvlAJ6pV9KyXGdf.png" srcset="/img/loading.gif" alt="image-20200911171859459" style="zoom:80%;" />
+<p>  我这边先是上传了两个证书：</p>
+<p><img src="https://i.loli.net/2020/09/11/KFQq7to6xyhvfXC.png" srcset="/img/loading.gif" alt="image-20200911171934657" /></p>
+<p>  上传完后点击部署按钮：</p>
+<img src="https://i.loli.net/2020/09/11/eJ1HLE5PRY3mhqO.png" srcset="/img/loading.gif" alt="image-20200911172010043" style="zoom:80%;" />
+<p>  全选，点击部署：</p>
+<img src="https://i.loli.net/2020/09/11/rgBiSMDbJIOoNtp.png" srcset="/img/loading.gif" alt="image-20200911172049141" style="zoom: 80%;" />
+<p>  不过刚部署完后访问网站还是 <code>http</code> 类型的，当时感觉是不是自己哪错了（后来发现应该是要等一会儿才能生效），于是看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sslwork/p/5984167.html">一个博文</a> 里说还需要部署中间证书，于是按照上面的方法又上传部署了一个带中间证书内容的证书，但刚部署完仍未生效。</p>
+<p>  不过过了一会儿，正当我沮丧找其他博文参考时，又访问了一下发现证书好像生效了：</p>
+<img src="https://i.loli.net/2020/09/11/LlnEkSad2G4eMVP.png" srcset="/img/loading.gif" alt="image-20200911172535154" style="zoom:80%;" />
+<p>  最后，在浏览其他博文时，发现 github 上还有一个 <code>Enforce HTTPS</code> 选项，暂时不清楚作用，总之先勾选上：</p>
+<img src="https://i.loli.net/2020/09/11/MWEApjaytkvcVCT.png" srcset="/img/loading.gif" alt="image-20200911172829156" style="zoom:67%;" />
+<p>  捣鼓了两天，虽然过程中对一些步骤的作用还不太清楚，但最后成功完成，时间还是没白费的</p>
 
             </div>
             <hr>
@@ -673,40 +679,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

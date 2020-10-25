@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      805 字
+      783 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -237,22 +237,23 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/">https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/</a></p>
 <p>难度：中等</p>
-<hr>
-<p>&emsp;&emsp;给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<hr />
+<p>  给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
 <pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span>
   <span class="hljs-keyword">int</span> val;
   Node *left;
   Node *right;
   Node *next;
 &#125;</code></pre>
-<p>&emsp;&emsp;填充它的每个 <code>next</code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next</code>指针设置为 <code>NULL</code>。</p>
-<p>&emsp;&emsp;初始状态下，所有 <code>next</code>指针都被设置为 <code>NULL</code>。</p>
+<p>  填充它的每个 <code>next</code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next</code>指针设置为 <code>NULL</code>。</p>
+<p>  初始状态下，所有 <code>next</code>指针都被设置为 <code>NULL</code>。</p>
 <p><strong>示例：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" /></p>
-<hr>
-<p>&emsp;&emsp;首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p>
-<h2 id="解法1：层次优先遍历"><a href="#解法1：层次优先遍历" class="headerlink" title="解法1：层次优先遍历"></a>解法1：层次优先遍历</h2><p>&emsp;&emsp;由于每个节点的 <code>next</code> 指针都是指向当前层次的右边节点，因此很容易想到使用层次优先遍历，且由于是完美二叉树，每层的节点个数也很容易计算出来（即都是 <code>2</code> 的倍数）。</p>
-<p>&emsp;&emsp;具体做法是使用一个队列，从右到左往队列中添加节点，这样，除了最右侧节点，其他节点在出队时将其 <code>next</code> 指向上一个出队节点即可。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" />
+<hr />
+<p>  首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p>
+<h2 id="解法1层次优先遍历"><a class="markdownIt-Anchor" href="#解法1层次优先遍历"></a> 解法1：层次优先遍历</h2>
+<p>  由于每个节点的 <code>next</code> 指针都是指向当前层次的右边节点，因此很容易想到使用层次优先遍历，且由于是完美二叉树，每层的节点个数也很容易计算出来（即都是 <code>2</code> 的倍数）。</p>
+<p>  具体做法是使用一个队列，从右到左往队列中添加节点，这样，除了最右侧节点，其他节点在出队时将其 <code>next</code> 指向上一个出队节点即可。</p>
 <p><strong>JS 代码如下：</strong></p>
 <pre><code class="hljs js"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * // Definition for a Node.</span>
@@ -302,17 +303,19 @@
 
     <span class="hljs-keyword">return</span> root;
 &#125;;</code></pre>
-<h2 id="解法2：使用父节点-next-指针"><a href="#解法2：使用父节点-next-指针" class="headerlink" title="解法2：使用父节点 next 指针"></a>解法2：使用父节点 next 指针</h2><p>&emsp;&emsp;首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" /></p>
-<p>&emsp;&emsp;而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" /></p>
-<p>&emsp;&emsp;根据这种思路，我们能够写出递归版本和迭代版本的代码：</p>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>&emsp;&emsp;递归版本很直观，就是按照上面的两种情况来的：</p>
+<h2 id="解法2使用父节点-next-指针"><a class="markdownIt-Anchor" href="#解法2使用父节点-next-指针"></a> 解法2：使用父节点 next 指针</h2>
+<p>  首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" />
+<p>  而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" />
+<p>  根据这种思路，我们能够写出递归版本和迭代版本的代码：</p>
+<h3 id="递归"><a class="markdownIt-Anchor" href="#递归"></a> 递归</h3>
+<p>  递归版本很直观，就是按照上面的两种情况来的：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">if</span> (!root) &#123;
         <span class="hljs-keyword">return</span> root;
     &#125;
-
+    
     <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
         <span class="hljs-keyword">if</span> (!root) &#123;
             <span class="hljs-keyword">return</span>;
@@ -320,7 +323,7 @@
 
         <span class="hljs-keyword">if</span> (root.left) &#123;
             root.left.next = root.right;
-            <span class="hljs-comment">// 若当前节点不是最右侧节点，那么可以通过 next 指针找到其右侧节点</span>
+			<span class="hljs-comment">// 若当前节点不是最右侧节点，那么可以通过 next 指针找到其右侧节点</span>
             <span class="hljs-keyword">if</span> (root.next) &#123;
                 root.right.next = root.next.left;
             &#125;
@@ -334,13 +337,14 @@
 
     <span class="hljs-keyword">return</span> root;
 &#125;;</code></pre>
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>&emsp;&emsp;对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" /></p>
+<h3 id="迭代"><a class="markdownIt-Anchor" href="#迭代"></a> 迭代</h3>
+<p>  对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" />
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">if</span> (!root) &#123;
         <span class="hljs-keyword">return</span> root;
     &#125;
-
+    
     <span class="hljs-keyword">let</span> leftSide = root;
     <span class="hljs-keyword">while</span> (leftSide.left) &#123;
         <span class="hljs-keyword">let</span> node = leftSide;
@@ -737,40 +741,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

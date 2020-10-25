@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      556 字
+      532 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      6
        分钟
     </span>
   
@@ -237,8 +237,8 @@
             <div class="markdown-body" id="post-body">
               <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">https://leetcode-cn.com/problems/permutations-ii/</a></p>
 <p>难度：中等</p>
-<hr>
-<p>&emsp;&emsp;给定一个可<strong>包含重复数字</strong>的序列，返回所有不重复的全排列。</p>
+<hr />
+<p>  给定一个可<strong>包含重复数字</strong>的序列，返回所有不重复的全排列。</p>
 <p><strong>示例:</strong></p>
 <p>输入: <code>[1,1,2]</code></p>
 <p>输出:</p>
@@ -247,12 +247,13 @@
   [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],
   [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
 ]</code></pre>
-<h2 id="解法1：回溯-剪枝"><a href="#解法1：回溯-剪枝" class="headerlink" title="解法1：回溯 + 剪枝"></a>解法1：回溯 + 剪枝</h2><p>&emsp;&emsp;这题求全排列的步骤与 <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/46-%E5%85%A8%E6%8E%92%E5%88%97/">46.全排列</a> 这题是一样的，区别就是 <code>46.</code> 这题给的数字序列是不含重复的数字，而本题则包含重复数字。</p>
-<p>&emsp;&emsp;这样的话，我们只需要在原先的基础上对其进行剪枝即可，将造成重复组合的情况去除。</p>
-<p>&emsp;&emsp;考虑一组序列：<code>[2, 2, 1, 1]</code>，标记一下以便区分：<code>[2, 2&#39;, 1, 1&#39;]</code>，对于这组序列，按照 <code>46.</code> 的思路，会造成重复的情况有在固定索引 <code>0</code> 处的值时，序列中的两个 <code>2</code> 和两个 <code>1</code> 都会造成固定值重复，即 <code>[2, 2&#39;, 1, 1&#39;]</code> 、<code>[2&#39;, 2, 1, 1&#39;]</code>，<code>[1, 2&#39;, 2, 1&#39;]</code> 和 <code>[1&#39;, 2&#39;, 1, 2]</code> ，这样，由于第一个固定的数字就重复，后面的所有组合也都是重复的。</p>
-<p>&emsp;&emsp;因此，我们要做的就是<strong>让每个索引处固定的值不再重复！</strong></p>
-<p>&emsp;&emsp;要做到这样，我们可以借用一个 <code>map</code>，对于每个固定的索引，当一个值是第一次出现时，将其记录在 <code>map</code> 中，而若是遇到了 <code>map</code> 中已经存的值，则说明这个值已经固定过了，跳过它，这样就完成了全排列过程中的去重要求。</p>
-<p>&emsp;&emsp;当然，还有一个很耿直的做法就是：还是像 <code>46.</code> 一样计算序列的组合，只在保存每个组合结果时，使用一个 <code>map</code> 记录当前组合是否保存过，若未保存过，则记录到结果数组中。。。</p>
+<h2 id="解法1回溯-剪枝"><a class="markdownIt-Anchor" href="#解法1回溯-剪枝"></a> 解法1：回溯 + 剪枝</h2>
+<p>  这题求全排列的步骤与 <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/17/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/46-%E5%85%A8%E6%8E%92%E5%88%97/">46.全排列</a> 这题是一样的，区别就是 <code>46.</code> 这题给的数字序列是不含重复的数字，而本题则包含重复数字。</p>
+<p>  这样的话，我们只需要在原先的基础上对其进行剪枝即可，将造成重复组合的情况去除。</p>
+<p>  考虑一组序列：<code>[2, 2, 1, 1]</code>，标记一下以便区分：<code>[2, 2', 1, 1']</code>，对于这组序列，按照 <code>46.</code> 的思路，会造成重复的情况有在固定索引 <code>0</code> 处的值时，序列中的两个 <code>2</code> 和两个 <code>1</code> 都会造成固定值重复，即 <code>[2, 2', 1, 1']</code> 、<code>[2', 2, 1, 1']</code>，<code>[1, 2', 2, 1']</code> 和 <code>[1', 2', 1, 2]</code> ，这样，由于第一个固定的数字就重复，后面的所有组合也都是重复的。</p>
+<p>  因此，我们要做的就是<strong>让每个索引处固定的值不再重复！</strong></p>
+<p>  要做到这样，我们可以借用一个 <code>map</code>，对于每个固定的索引，当一个值是第一次出现时，将其记录在 <code>map</code> 中，而若是遇到了 <code>map</code> 中已经存的值，则说明这个值已经固定过了，跳过它，这样就完成了全排列过程中的去重要求。</p>
+<p>  当然，还有一个很耿直的做法就是：还是像 <code>46.</code> 一样计算序列的组合，只在保存每个组合结果时，使用一个 <code>map</code> 记录当前组合是否保存过，若未保存过，则记录到结果数组中。。。</p>
 <p>剪枝的 JS 代码：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> permuteUnique = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
@@ -667,40 +668,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

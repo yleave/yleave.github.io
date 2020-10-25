@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      675 字
+      647 字
     </span>
   
 
@@ -243,7 +243,7 @@
 <p>&emsp;&emsp;为了叙述方便，我们用 <code>C</code> 表示待求出平方根的那个整数。显然，<code>C</code> 的平方根就是函数</p>
 <script type="math/tex; mode=display">
 y = f(x) = x^2 - C</script><p>&emsp;&emsp;的零点。</p>
-<p>&emsp;&emsp;牛顿迭代法的本质是借助泰勒级数，从初始值开始快速向零点逼近。我们任取一个 $x<em>0$ 作为初始值，在每一步的迭代中，我们找到图像上的点 $(x_i,f(x_i))$ ，过该点做一条斜率为该点导数 $f’(x_i)$ 的直线，直线与 <code>x</code> 轴的交点记为 $x</em>{i+1}$，$x_{i+1}$ 相对于 $x_i$ 而言距离零点更加接近。进过多次迭代后，就能得到一个非常接近零点的与 <code>x</code> 轴的交点。</p>
+<p>&emsp;&emsp;我们任取一个 $x<em>0$ 作为初始值，在每一步的迭代中，我们找到图像上的点 $(x_i,f(x_i))$ 过该点做一条斜率为该点导数 $f’(x_i)$ 的直线，直线与 <code>x</code> 轴的交点记为 $x</em>{i+1}$，$x_{i+1}$ 相对于 $x_i$ 而言距离零点更加接近。进过多次迭代后，就能得到一个非常接近零点的与 <code>x</code> 轴的交点。</p>
 <p>&emsp;&emsp;下图给出了从 $x_0$ 开始迭代两次，得到 $x_1$ 和 $x_2$ 的过程：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018114250949.png" srcset="/img/loading.gif" alt="image-20201018114250949" style="zoom:80%;" /></p>
 <p>&emsp;&emsp;首先，我们选择 $x_0 = C$ 作为初始值。</p>

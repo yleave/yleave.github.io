@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      700 字
+      774 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      9
        分钟
     </span>
   
@@ -236,7 +236,8 @@
             
             <div class="markdown-body" id="post-body">
               <h1 id="morris-算法介绍"><a class="markdownIt-Anchor" href="#morris-算法介绍"></a> Morris 算法介绍</h1>
-<p>  Morris 算法是一种中序遍历算法，它能够将中序遍历的空间复杂度优化到 <code>O(1)</code>！</p>
+<p>  Morris 算法是一种巧妙的方法可以在<strong>线性时间</strong>内，只占用<strong>常数空间</strong>来实现树的遍历。这种方法由 J. H. Morris 在 1979 年的论文「Traversing Binary Trees Simply and Cheaply」中首次提出，因此被称为 Morris 遍历。</p>
+<p>  Morris 算法一般用在解决中序遍历的问题，不过稍微修改一下，它也能用在前序遍历和<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/#%E8%A7%A3%E6%B3%952morris-%E7%AE%97%E6%B3%95">后序遍历</a>上。</p>
 <p>  正常的中序遍历算法，无论是递归还是迭代，都需要使用到栈来保存节点，因此空间复杂度一般和树的节点数有关，而 Morris 算法是使用了树中子结点的空闲的指针来完成遍历过程。具体是通过底层节点指向<code>NULL</code>的空闲指针返回上层的某个节点，从而完成下层到上层的移动。</p>
 <p><strong>Morris 遍历算法</strong>整体步骤如下（假设当前遍历到的节点为 <code>x</code>）：</p>
 <ol>

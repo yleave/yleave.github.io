@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode 145. 二叉树的后序遍历 - Ylea</title>
+  <title>144. 二叉树的前序遍历 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-30 23:16" pubdate>
-        2020年9月30日 晚上
+      <time datetime="2020-10-27 13:40" pubdate>
+        2020年10月27日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      833 字
+      637 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      8
        分钟
     </span>
   
@@ -232,106 +232,112 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 145. 二叉树的后序遍历</h1>
+            <h1 style="display: none">144. 二叉树的前序遍历</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>  给定一个二叉树，返回它的 <strong>后序</strong> 遍历。</p>
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">https://leetcode-cn.com/problems/binary-tree-preorder-traversal/</a></p>
+<p>难度：中等</p>
+<hr />
+<p>  给定一个二叉树，返回它的 <strong>前序</strong> 遍历。</p>
 <p><strong>示例:</strong></p>
-<p>输入: <code>[1,null,2,3]</code></p>
+<p>  输入: <code>[1,null,2,3]</code></p>
 <pre><code class="hljs angelscript"><span class="hljs-number">1</span>
  \
   <span class="hljs-number">2</span>
  /
 <span class="hljs-number">3</span></code></pre>
-<p>输出: <code>[3,2,1]</code></p>
+<p>  输出: <code>[1,2,3]</code></p>
 <p><strong>进阶</strong>: 递归算法很简单，你可以通过迭代算法完成吗？</p>
-<h2 id="解法1借助栈进行后序非递归遍历"><a class="markdownIt-Anchor" href="#解法1借助栈进行后序非递归遍历"></a> 解法1：借助栈进行后序非递归遍历</h2>
-<p>  后序非递归遍历的<strong>关键点</strong>在于判断遍历过程中什么时候该往右走，什么时候该访问节点内容。</p>
-<p>  我们使用一个栈来保存遍历路径上的节点，步骤如下：</p>
-<ol>
-<li>一直往左孩子遍历，遍历过程中保存遍历的节点</li>
-<li>当左孩子为空时，我们访问右孩子</li>
-<li>当左右孩子都为空时，我们访问这个节点内容，并返回到父节点</li>
-<li>每当从孩子节点返回父节点时，需要判断是从左孩子返回的还是从右孩子返回的，若是从左孩子返回的，我们需要继续访问右孩子，而若是从右孩子返回的，我们则访问当前节点，并返回到其父节点。</li>
-</ol>
-<p>  判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
-<p><strong>C 代码：</strong></p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
-    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>** <span class="hljs-title">stack</span> = <span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">TreeNode</span>*) * 2001);</span>
-    <span class="hljs-keyword">int</span> size = <span class="hljs-number">0</span>;
-    *returnSize = <span class="hljs-number">0</span>;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">r</span>;</span> <span class="hljs-comment">// r 为辅助节点，用于判断当节点返回时，是从哪个方向返回到父节点的。</span>
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">p</span> = <span class="hljs-title">root</span>;</span>
-    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> || size &gt; <span class="hljs-number">0</span>) &#123;
-        <span class="hljs-comment">// 先从左走到底</span>
-        <span class="hljs-keyword">if</span> (p) &#123;
-            <span class="hljs-built_in">stack</span>[size++] = p;
-            p = p-&gt;left;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            p = <span class="hljs-built_in">stack</span>[size<span class="hljs-number">-1</span>];
-            <span class="hljs-comment">// 若右孩子还未遍历，遍历右孩子</span>
-            <span class="hljs-keyword">if</span> (p-&gt;right &amp;&amp; p-&gt;right != r) &#123;
-                p = p-&gt;right;
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                p = <span class="hljs-built_in">stack</span>[--size];
-                res[(*returnSize)++] = p-&gt;val;
-                r = p;
-                p = <span class="hljs-literal">NULL</span>;
-            &#125;
+<h2 id="解法1迭代"><a class="markdownIt-Anchor" href="#解法1迭代"></a> 解法1：迭代</h2>
+<p>  能使用递归完成的算法，一般也能使用迭代来完成，递归其实就是使用了栈来保存当前的上下文环境，因此可以自定义栈来保存所需的环境 + 迭代来完成。</p>
+<p>  对于前序遍历来说，我们需要保存的上下文环境就是遍历路径上的父节点。</p>
+<p>  因此，按照前序遍历，从根结点开始，一直往左走，并将路径上的节点保存在栈中，当左孩子节点为空时，从栈中弹出父节点，并开始往右边走。</p>
+<p>JS 代码：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> st = [];
+    <span class="hljs-keyword">let</span> node = root;
+    <span class="hljs-keyword">if</span> (!root) &#123;
+        <span class="hljs-keyword">return</span> res;
+    &#125;
+
+    <span class="hljs-keyword">while</span> (node || st.length) &#123;
+        <span class="hljs-comment">// 一直往左走，直到左孩子结点为空</span>
+        <span class="hljs-keyword">while</span> (node) &#123;
+            st.push(node);
+            res.push(node.val);
+            node = node.left;
         &#125;
+        <span class="hljs-comment">// 开始往右走</span>
+        node = st.pop();
+        node = node.right;
+    &#125;
+
+    <span class="hljs-keyword">return</span> res;
+&#125;;</code></pre>
+<p>C 代码：</p>
+<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">preorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
+    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">st</span>[2001];</span>
+    <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>;
+    *returnSize = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (!root) &#123;
+        <span class="hljs-keyword">return</span> res;
+    &#125;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">node</span> = <span class="hljs-title">root</span>;</span>
+
+    <span class="hljs-keyword">while</span> (top || node) &#123;
+        <span class="hljs-comment">// 一直往左走，直到左孩子结点为空</span>
+        <span class="hljs-keyword">while</span> (node) &#123;
+            res[(*returnSize)++] = node-&gt;val;
+            st[top++] = node;
+            node = node-&gt;left;
+        &#125;
+        <span class="hljs-comment">// 开始往右走</span>
+        node = st[--top];
+        node = node-&gt;right;
     &#125;
 
     <span class="hljs-keyword">return</span> res;
 &#125;</code></pre>
-<h2 id="解法2morris-算法"><a class="markdownIt-Anchor" href="#解法2morris-算法"></a> 解法2：morris 算法</h2>
+<h2 id="解法2morris-算法"><a class="markdownIt-Anchor" href="#解法2morris-算法"></a> 解法2：Morris 算法</h2>
+<p>  <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a>是一种能在线性时间内且只使用常数空间来实现树的遍历。</p>
 <p>  Morris 算法对于三种顺序（前、中、后）的遍历，<strong>主要区分点在于访问节点的时机</strong> 。</p>
-<p>  Morris 算法的步骤可看：<a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a></p>
-<p>  根据 Morris 算法的思想，<strong>对于每个节点，当它是借助左子树的最右下结点的空指针返回的时候，我们就倒序输出从当前节点到其左子树最右下节点的路径</strong>，就能得到后续遍历的结果了（想不通的一定要手动模拟一下 morris 算法），最后，在 morris 算法结束后，需要加上从根结点到其右子树最右节点的逆序路径，因为 morris 算法在遍历完成后不会再回到根结点。</p>
+<p>  了解了 Morris 算法的原理后，要进行前序遍历，节点访问的时机主要有两个：</p>
+<ul>
+<li><strong>时机1</strong>：在创建当前节点左子树最右下结点的右指针时，访问当前节点</li>
+<li><strong>时机2</strong>：在需要借助最右下结点的右指针返回时，访问这个最右下结点</li>
+</ul>
+<p><strong>访问时机可结合代码来理解，建议自己手动模拟一遍来帮助理解</strong></p>
 <p><strong>JS 代码：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = [];
-    <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> node = root;
     <span class="hljs-keyword">if</span> (!root) &#123;
         <span class="hljs-keyword">return</span> res;
     &#125;
-    <span class="hljs-keyword">let</span> pre, tmp = root;
 
-    <span class="hljs-comment">// 对每个新添加的路径逆序排列</span>
-    <span class="hljs-keyword">const</span> addPath = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;
-        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">while</span>(root) &#123;
-            res[len++] = root.val;
-            root = root.right;
-            count++;
-        &#125;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = len-count, j = len<span class="hljs-number">-1</span>; i &lt; j; i++, j--) &#123;
-            <span class="hljs-keyword">let</span> tmp = res[i];
-            res[i] = res[j];
-            res[j] = tmp;
-        &#125;
-    &#125;;
-
-    <span class="hljs-keyword">while</span>(root) &#123;
-        <span class="hljs-keyword">if</span> (root.left) &#123;
-            pre = root.left;
-            <span class="hljs-keyword">while</span>(pre.right &amp;&amp; pre.right !== root) &#123;
-                pre = pre.right;
+    <span class="hljs-keyword">while</span> (node) &#123;
+        <span class="hljs-keyword">let</span> left = node.left;
+        <span class="hljs-keyword">if</span> (left) &#123;
+            <span class="hljs-keyword">while</span> (left.right &amp;&amp; left.right !== node) &#123;
+                left = left.right;
             &#125;
-            <span class="hljs-keyword">if</span> (!pre.right) &#123;
-                pre.right = root;
-                root = root.left;
+            <span class="hljs-keyword">if</span> (!left.right) &#123;
+                <span class="hljs-comment">// 时机1</span>
+                res.push(node.val);
+                left.right = node;
+                node = node.left;
+                <span class="hljs-keyword">continue</span>;
             &#125; <span class="hljs-keyword">else</span> &#123;
-                pre.right = <span class="hljs-literal">null</span>;
-                addPath(root.left);
-                root = root.right;
+                left.right = <span class="hljs-literal">null</span>;
             &#125;
         &#125; <span class="hljs-keyword">else</span> &#123;
-            root = root.right;
+            <span class="hljs-comment">// 时机2</span>
+            res.push(node.val);
         &#125;
+        node = node.right;
     &#125;
-
-    addPath(tmp);
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
@@ -356,11 +362,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">后序遍历</a>
-                    
-                      <a class="hover-with-bg" href="/tags/morris/">morris</a>
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">前序遍历</a>
                     
                   </div>
                 
@@ -373,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/406-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode 406. 根据身高重建队列</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/">
-                        <span class="hidden-mobile">后序非递归遍历</span>
+                      <a href="/2020/10/26/WebGL/%E7%90%83%E5%BF%83%E5%9D%90%E6%A0%87%E4%B8%8E%E6%9C%AC%E5%9C%B0%E5%9D%90%E6%A0%87/">
+                        <span class="hidden-mobile">球心坐标与本地坐标</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -653,7 +649,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode 145. 二叉树的后序遍历&nbsp;",
+        "144. 二叉树的前序遍历&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

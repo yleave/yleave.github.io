@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      532 字
+      857 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      10
        分钟
     </span>
   
@@ -287,7 +287,46 @@
 
     <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
+<h2 id="牛客网的全排列"><a class="markdownIt-Anchor" href="#牛客网的全排列"></a> 牛客网的全排列</h2>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=188&amp;tags=&amp;title=&amp;diffculty=0&amp;judgeStatus=0&amp;rp=1">题目地址</a></p>
+<p><strong>题目描述</strong></p>
+<p>  输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串<code>abc</code>,则按字典序打印出由字符<code>a,b,c</code>所能排列出来的所有字符串<code>abc</code>,<code>acb</code>,<code>bac</code>,<code>bca</code>,<code>cab</code>和<code>cba</code>。</p>
+<p>**输入描述:**输入一个字符串,长度不超过<code>9</code>(<strong>可能有字符重复</strong>),字符只包括大小写字母。</p>
+<p>  相较于 LeetCode 的全排列，这题要求答案需要按照字符序进行排列，因此使用上面的方法并不能满足字符序的要求。</p>
+<p>  一个简单的使用回溯输出字符序全排列的方法就是创建一个 <code>visited</code> 数组，每次选取字符时从头到尾遍历一次，跳过已经选取的字符，最后在保存结果时判断一下是否有重复的结果，若无，则保存，有则跳过。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Permutation</span>(<span class="hljs-params">str</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span> (str === <span class="hljs-string">&#x27;&#x27;</span>) &#123;
+        <span class="hljs-keyword">return</span> [];
+    &#125;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> len = str.length;
+    <span class="hljs-keyword">let</span> arr = [];
+    <span class="hljs-keyword">let</span> visited = [];
 
+    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (index === len) &#123;
+            <span class="hljs-keyword">let</span> s = arr.join(<span class="hljs-string">&#x27;&#x27;</span>);
+            <span class="hljs-keyword">if</span> (res.indexOf(s) === <span class="hljs-number">-1</span>) &#123;
+                res.push(s);
+            &#125;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;
+            <span class="hljs-keyword">if</span> (!visited[i]) &#123;
+                arr.push(str[i]);
+                visited[i] = <span class="hljs-literal">true</span>;
+                dfs(index+<span class="hljs-number">1</span>);
+                arr.pop();
+                visited[i] = <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+    &#125;;
+    
+    dfs(<span class="hljs-number">0</span>);
+    
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre>
             </div>
             <hr>
             <div>

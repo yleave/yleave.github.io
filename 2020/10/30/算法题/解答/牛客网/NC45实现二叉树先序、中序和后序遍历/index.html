@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>剑指 Offer 17. 打印从1到最大的n位数 - Ylea</title>
+  <title>NC45实现二叉树先序、中序和后序遍历 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-28 21:46" pubdate>
-        2020年10月28日 晚上
+      <time datetime="2020-10-30 12:56" pubdate>
+        2020年10月30日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      884 字
+      421 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      5
        分钟
     </span>
   
@@ -232,84 +232,75 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">剑指 Offer 17. 打印从1到最大的n位数</h1>
+            <h1 style="display: none">NC45实现二叉树先序、中序和后序遍历</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/</a></p>
-<p>难度：简单</p>
+              <p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/a9fec6c46a684ad5a3abd4e365a9d362?tpId=117&amp;&amp;tqId=35075&amp;rp=1&amp;ru=/ta/job-code-high&amp;qru=/ta/job-code-high/question-ranking">题目地址</a></p>
 <hr />
-<p>  输入数字 <code>n</code>，按顺序打印出从 <code>1</code> 到最大的 <code>n</code> 位十进制数。比如输入 <code>3</code>，则打印出 <code>1</code>、<code>2</code>、<code>3</code> 一直到最大的 <code>3</code> 位数 <code>999</code>。</p>
-<p><strong>示例 1:</strong></p>
-<p>  输入: <code>n = 1</code></p>
-<p>  输出: <code>[1,2,3,4,5,6,7,8,9]</code></p>
-<p>  说明：</p>
-<ul>
-<li>
-<p>用返回一个整数列表来代替打印</p>
-</li>
-<li>
-<p><code>n</code> 为正整数</p>
-</li>
-</ul>
-<h2 id="解法1回溯"><a class="markdownIt-Anchor" href="#解法1回溯"></a> 解法1：回溯</h2>
-<p>  这题正常来说思路是非常简单的，一个 <code>n</code> (<code>n</code>为正整数)位的数，最大值为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> ，且返回类型为 <code>int</code> ，因此不需要考虑超过 <code>MAX_INT</code> 的情况，只要一次遍历即可得出答案：</p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">printNumbers</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
-    <span class="hljs-keyword">int</span> max = <span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, n);
-    <span class="hljs-keyword">int</span> i;
-    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * max);
-    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; max; i++) &#123;
-        res[i<span class="hljs-number">-1</span>] = i;
-    &#125;
-
-    *returnSize = max - <span class="hljs-number">1</span>;
-
-    <span class="hljs-keyword">return</span> res;
-&#125;</code></pre>
-<p><strong>不过真正面试写这题时，这样的写法肯定是不行的！</strong></p>
-<p>  我们必须考虑大数的情况，而大数除了使用 <code>long long</code> 或 JAVA 中的 <code>BigInteger</code> ，不过这样仍是有范围限制，所以一般会使用数组或字符串来进行表示一个很大的数。</p>
-<p>  因此，以数组或字符串的方式来考虑，从 <code>1</code> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的这些数字，也可以看做数字是 <code>0 ~ 9</code> 的组合，而对于组合的获取，一般能使用回溯解决。</p>
-<p>  在递归函数中，我们以<strong>从高位向低位的顺序选取组合数字</strong>，如 <code>1024</code> ，我们先选取数字 <code>1</code> ，再选取数字 <code>0</code> ，再选取数字 <code>2</code> ，最后选取 <code>4</code> 这样。</p>
-<p>  不过，由于我们需要从 <code>0</code> 开始选取，因此结果中会有前缀 <code>0</code> ，如 <code>000</code>，<code>001</code>，… <code>099</code> 这样，因此我们还需要想办法<strong>去掉这些前缀 <code>0</code></strong>。</p>
-<p>  假设 <code>n = 3</code> 时，<strong>先不考虑</strong> <code>000</code> （全为 <code>0</code> ）的这种情况，观察数字组合，我们可以知道，最开始组合会有<code>n-1 = 2</code> 个前缀<code>0</code>，然后是 <code>1</code> 个，什么时候前缀 <code>0</code> 变少了呢？就是当数字组合从 <code>009</code> 变为 <code>010</code> 时，前缀 <code>0</code> 数量减少了，也就是<strong>当组合中除了 <code>0</code> 以外的数字都是 <code>9</code> 之后，前缀 <code>0</code> 数量会减少</strong> ，因此我们可以定义一个变量 <code>mine</code> 来计算<strong>当前</strong>组合中数字 <code>9</code>  的数量，假设我们前缀 <code>0</code> 的数量定义为 <code>start</code>，<strong>当 <code>n - start = mine</code> 时，这时候组合中除了 <code>0</code> 其他数字就都是 <code>9</code> 了</strong>（总共 <code>n</code> 位数，减去前缀 <code>0</code> 的数量 <code>start</code>，剩余个数和 <code>9</code> 的数量相同，因此剩余数字都为 <code>9</code>）。</p>
-<p>  最后，在获得所有数字组合后，去掉结果数组的第一位 <code>000</code> ，就得到了我们想要的结果了。</p>
-<p><strong>按照这种思路，JS 代码如下：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> printNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> res = [];
-    <span class="hljs-keyword">let</span> temp = [];
-    <span class="hljs-keyword">let</span> nums = [<span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&#x27;9&#x27;</span>];
-    <span class="hljs-keyword">let</span> start = n - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">let</span> mine = <span class="hljs-number">0</span>;
-
-    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (index === n) &#123;
-            <span class="hljs-comment">// 获取第 start - 结尾的数字组合，即去除前缀 0 </span>
-            res.push(temp.slice(start).join(<span class="hljs-string">&#x27;&#x27;</span>));
-            <span class="hljs-keyword">return</span>;
+<p>  如标题，实现二叉树的三序遍历。</p>
+<p><strong>例</strong></p>
+<p>  输入：<code>1, 2, 3</code></p>
+<p>  输出：<code>[[1, 2, 3], [2, 1, 3], [2, 3, 1]]</code></p>
+<p>  输出的数组就是<code>[前、中、后]</code> 序的遍历。</p>
+<h2 id="解法1morris-算法"><a class="markdownIt-Anchor" href="#解法1morris-算法"></a> 解法1：Morris 算法</h2>
+<p>  递归和非递归的三序遍历都比较简单，迭代版本的递归可看下面几个链接：</p>
+<p><a target="_blank" rel="noopener" href="https://yleave.top/2020/10/27/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/#%E8%A7%A3%E6%B3%951%E8%BF%AD%E4%BB%A3">前序遍历</a></p>
+<p><a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0/#%E8%A7%A3%E6%B3%951%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86">中序遍历</a></p>
+<p><a target="_blank" rel="noopener" href="https://yleave.top/2020/09/30/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/#%E8%A7%A3%E6%B3%951%E5%80%9F%E5%8A%A9%E6%A0%88%E8%BF%9B%E8%A1%8C%E5%90%8E%E5%BA%8F%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86">后序遍历</a></p>
+<p>  这里主要使用 <code>Morris</code> 算法进行三序遍历。</p>
+<p>  <a target="_blank" rel="noopener" href="https://yleave.top/2020/09/24/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/Morris%E7%AE%97%E6%B3%95/">Morris 算法</a>是一种迭代版本的遍历，使用了树中空闲的指针，因此不需要使用额外空间（<code>O(1)</code>），且 <strong><code>Morris</code> 算法能在一次遍历中同时完成三序遍历，三序的区别只是访问节点内容的时机不同。</strong></p>
+<p>  三序遍历各自的 <code>Morris</code> 算法实现也在上面的链接中，下面的代码是整合版本。</p>
+<p><strong>JS 代码如下：</strong></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threeOrders</span>(<span class="hljs-params"> root </span>) </span>&#123;
+    <span class="hljs-keyword">let</span> preOrder = [], inOrder = [], postOrder = [];
+    <span class="hljs-keyword">let</span> len = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> r = root;
+    
+    <span class="hljs-keyword">const</span> addPath = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (node) &#123;
+            postOrder[len++] = node.val;
+            count++;
+            node = node.right;
         &#125;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> nums) &#123;
-            <span class="hljs-comment">// 记录当前数字组合中 9 的个数</span>
-            <span class="hljs-keyword">if</span> (num === <span class="hljs-string">&#x27;9&#x27;</span>) &#123;
-                mine++;
-            &#125;
-            temp[index] = num;
-            dfs(index+<span class="hljs-number">1</span>);
-            <span class="hljs-comment">// 若全为 9 ，则之后的组合，前缀 0 的数量减少一个 </span>
-            <span class="hljs-keyword">if</span> (n - start === mine) &#123;
-                start--;
-            &#125;
-            <span class="hljs-comment">// 最后恢复 mine 的数量</span>
-            <span class="hljs-keyword">if</span> (num === <span class="hljs-string">&#x27;9&#x27;</span>) &#123;
-                mine--;
-            &#125;
+        
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = len-count, j = len<span class="hljs-number">-1</span>; i &lt; j; i++, j--) &#123;
+            <span class="hljs-keyword">let</span> temp = postOrder[i];
+            postOrder[i] = postOrder[j];
+            postOrder[j] = temp;
         &#125;
     &#125;;
+    
+    <span class="hljs-keyword">while</span> (root) &#123;
+        <span class="hljs-keyword">if</span> (root.left) &#123;
+            <span class="hljs-keyword">let</span> pre = root.left;
+            <span class="hljs-keyword">while</span> (pre.right &amp;&amp; pre.right !== root) &#123;
+                pre = pre.right;
+            &#125;
 
-    dfs(<span class="hljs-number">0</span>);
-	<span class="hljs-comment">// 去除全为 0 的数字组合</span>
-    res.shift();
-
-    <span class="hljs-keyword">return</span> res;
-&#125;;</code></pre>
+            <span class="hljs-keyword">if</span> (pre.right) &#123;
+                <span class="hljs-comment">// 1</span>
+                pre.right = <span class="hljs-literal">null</span>;
+                addPath(root.left);
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                preOrder.push(root.val);
+                pre.right = root;
+                root = root.left;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            preOrder.push(root.val);
+        &#125;
+        <span class="hljs-comment">// 此时可能是借助最右下节点返回父节点的过程，也可能是普通的向右子树遍历</span>
+        <span class="hljs-comment">// 还有可能是刚遍历完左子树，需要往右子树遍历，也就是从上面的 1 处执行下来的</span>
+        inOrder.push(root.val);
+        root = root.right;
+    &#125;
+    
+    addPath(r);
+    
+    <span class="hljs-keyword">return</span> [preOrder, inOrder, postOrder];
+&#125;</code></pre>
 
             </div>
             <hr>
@@ -323,7 +314,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E7%89%9B%E5%AE%A2%E7%BD%91/">牛客网</a>
                     
                   </div>
                 
@@ -331,9 +322,13 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
+                      <a class="hover-with-bg" href="/tags/%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">中序遍历</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%A4%A7%E6%95%B0/">大数</a>
+                      <a class="hover-with-bg" href="/tags/Morris/">Morris</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">前序遍历</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">后序遍历</a>
                     
                   </div>
                 
@@ -346,18 +341,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/29/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E7%89%9B%E5%AE%A2%E7%BD%91/NC93%E8%AE%BE%E8%AE%A1LRU%E7%BC%93%E5%AD%98%E7%BB%93%E6%9E%84/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">NC93设计LRU缓存结构</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/27/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">
-                        <span class="hidden-mobile">LeetCode 144. 二叉树的前序遍历</span>
+                      <a href="/2020/10/29/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E7%89%9B%E5%AE%A2%E7%BD%91/NC93%E8%AE%BE%E8%AE%A1LRU%E7%BC%93%E5%AD%98%E7%BB%93%E6%9E%84/">
+                        <span class="hidden-mobile">NC93设计LRU缓存结构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -626,7 +615,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "剑指 Offer 17. 打印从1到最大的n位数&nbsp;",
+        "NC45实现二叉树先序、中序和后序遍历&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

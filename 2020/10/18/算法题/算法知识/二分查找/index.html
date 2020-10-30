@@ -242,7 +242,7 @@
 <p>  则返回值为 <code>2</code></p>
 <p>  这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p>
 <p>代码如下：</p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;
+<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">upperBound</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;
     <span class="hljs-keyword">int</span> mid;
     <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
         mid = (left + right) / <span class="hljs-number">2</span>;
@@ -262,7 +262,7 @@
 <h2 id="返回第一个大于等于-x-的位置"><a class="markdownIt-Anchor" href="#返回第一个大于等于-x-的位置"></a> 返回第一个大于等于 x 的位置</h2>
 <p>  在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在大于等于 <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是恰好大于等于 <code>x</code> 的位置。</p>
 <p>  所以说，下面的代码作用和上面例子中的代码是完全一样的。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upperBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
     <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span> (left &lt; right) &#123;
         <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);
@@ -278,7 +278,7 @@
 <p>  如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>target = 5</code>，返回 <code>3</code></p>
 <h2 id="返回第一个大于-x-的位置"><a class="markdownIt-Anchor" href="#返回第一个大于-x-的位置"></a> 返回第一个大于 x 的位置</h2>
 <p>  这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upperBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
     <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
     <span class="hljs-keyword">while</span> (left &lt; right) &#123;
         <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);

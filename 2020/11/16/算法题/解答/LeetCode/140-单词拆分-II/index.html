@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>二分查找 - Ylea</title>
+  <title>LeetCode 140. 单词拆分 II - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/52.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-18 15:34" pubdate>
-        2020年10月18日 下午
+      <time datetime="2020-11-16 18:12" pubdate>
+        2020年11月16日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      16
        分钟
     </span>
   
@@ -232,132 +232,154 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">二分查找</h1>
+            <h1 style="display: none">LeetCode 140. 单词拆分 II</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>  所谓二分查找，就是从一个查找范围中每次取中间值，然后根据中间值来判断是否满足条件或是缩小查找范围的过程，且这个范围内的值需要是有规律的，比如是有序的。</p>
-<h1 id="引子"><a class="markdownIt-Anchor" href="#引子"></a> 引子</h1>
-<p>  以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-insert-position/">LeetCode</a> 的一道简单题为例：给定一个排序数组和一个目标值，返回目标值的索引，若不存在，则返回能够插入该目标值的索引。</p>
-<p>  如 ：<code>array = [1,5,7,10,12], target = 6</code></p>
-<p>  则返回值为 <code>2</code></p>
-<p>  这题就是经典的使用二分查找的场景，最开始的查找范围是 <code>[0, 4]</code>，中间值 <code>array[2] = 7</code>，根据这个中间值，我们知道 <code>6</code> 是小于中间值的，因此能够缩小查找范围，即 <code>[0, 1]</code>，继续判断中间值 <code>array[0] = 1</code>，缩小查找范围 <code>[1, 1]</code>，最后发现查找范围内只剩下一个值 <code>5</code>，且小于目标值 <code>6</code> ，因此最后就能知道需要插入的索引是 <code>2</code>。</p>
-<p>代码如下：</p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">upperBound</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r[],<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right,<span class="hljs-keyword">int</span> x)</span></span>&#123;
-    <span class="hljs-keyword">int</span> mid;
-    <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
-        mid = (left + right) / <span class="hljs-number">2</span>;
-        <span class="hljs-keyword">if</span>(r[mid] == x)&#123;
-            <span class="hljs-keyword">return</span> mid;
-        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r[mid] &gt; x)&#123;
-            right = mid - <span class="hljs-number">1</span>;
-        &#125;<span class="hljs-keyword">else</span>&#123;
-            left = mid + <span class="hljs-number">1</span>;
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-break-ii/">https://leetcode-cn.com/problems/word-break-ii/</a></p>
+<p>难度：困难</p>
+<hr />
+<p>  给定一个非空字符串 <code>s</code> 和一个包含非空单词列表的字典 <code>wordDict</code>，在字符串中增加空格来构建一个句子，使得句子中所有的单词都在词典中。返回所有这些可能的句子。</p>
+<p><strong>说明：</strong></p>
+<ul>
+<li>分隔时可以重复使用字典中的单词。</li>
+<li>你可以假设字典中没有重复的单词。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p>输入:</p>
+<pre><code class="hljs ini"><span class="hljs-attr">s</span> = <span class="hljs-string">&quot;catsanddog&quot;</span>
+
+<span class="hljs-attr">wordDict</span> = [<span class="hljs-string">&quot;cat&quot;</span>, <span class="hljs-string">&quot;cats&quot;</span>, <span class="hljs-string">&quot;and&quot;</span>, <span class="hljs-string">&quot;sand&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>]</code></pre>
+<p>输出:</p>
+<pre><code class="hljs json">[
+  <span class="hljs-string">&quot;cats and dog&quot;</span>,
+  <span class="hljs-string">&quot;cat sand dog&quot;</span>
+]</code></pre>
+<p><strong>示例 3：</strong></p>
+<p>输入:</p>
+<pre><code class="hljs ini"><span class="hljs-attr">s</span> = <span class="hljs-string">&quot;catsandog&quot;</span>
+
+<span class="hljs-attr">wordDict</span> = [<span class="hljs-string">&quot;cats&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>, <span class="hljs-string">&quot;sand&quot;</span>, <span class="hljs-string">&quot;and&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span>]</code></pre>
+<p>输出:<code>[]</code></p>
+<h2 id="解法1回溯-记忆数组记录当前字符串"><a class="markdownIt-Anchor" href="#解法1回溯-记忆数组记录当前字符串"></a> 解法1：回溯 + 记忆数组，记录当前字符串</h2>
+<p>  拆分单词，我们可以使用回溯法，遍历所有可能的组合。</p>
+<p>  对于一个字符串 <code>strs</code>，遍历词典 <code>wordDict</code> 中的所有单词 <code>word</code>，判断这个字符串 <code>strs</code> 是否是以 <code>word</code> 开头，若是，则保存当前单词，并将 <code>strs</code> 中开头的 <code>word</code> 给截去，递归获取单词组合，当 <code>strs</code> 为空时，我们就找到了一个组合。</p>
+<p>  如 <code>catsanddog</code>，先找到 <code>cat</code> ，截去后剩余 <code>sanddog</code> ，再找到 <code>sand</code> ，最后剩余 <code>dog</code>。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> wordBreak = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, wordDict</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> str = [];
+    <span class="hljs-keyword">let</span> len = wordDict.length;
+
+    <span class="hljs-keyword">const</span> helper = <span class="hljs-function">(<span class="hljs-params">strs</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (strs.length === <span class="hljs-number">0</span>) &#123;
+            res.push(str.slice().join(<span class="hljs-string">&#x27; &#x27;</span>));
         &#125;
-    &#125;
-    <span class="hljs-keyword">return</span> left;
-&#125;</code></pre>
-<p>  其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p>
-<h1 id="二分查找变形"><a class="markdownIt-Anchor" href="#二分查找变形"></a> 二分查找变形</h1>
-<p>  根据使用场景的不同，二分查找有一些变形算法。</p>
-<p>  同样，以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/">剑指Offer</a> 的一题为例，题目很简单，就是从一个有序数组中寻找数字 <code>target</code> 的出现次数，如 <code>nums = [5,7,7,8,8,10]</code> ，<code>target = 8</code>，程序输出 <code>2</code>，因为 <code>8</code> 出现了两次。</p>
-<p>  因为数组有序，我们可以考虑使用二分查找把时间复杂度降为 <code>log(n)</code>。</p>
-<p>  首先，使用二分查找找出<strong>第一个大于等于</strong> <code>target</code> 的位置 <code>lower</code> ，本例中就是 <code>3</code>，再使用二分查找找到<strong>第一个小于等于</strong> <code>target</code> 的位置 <code>l</code>，本例中就是 <code>4</code>，这样，数组中等于 <code>target</code> 的数字的出现次数就是 <code>l - lower + 1</code>，再考虑一些边界情况，即 <code>target</code> 未在数组中出现的情况，我们可以使用 <code>nums[l] === target</code>  来判断，若未出现过，返回 <code>0</code> 即可。</p>
-<p><strong>JS 代码如下：</strong></p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> search = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums, target</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>, r = nums.length - <span class="hljs-number">1</span>;
-	
-    <span class="hljs-comment">// 先找到第一个大于等于 target 的位置</span>
-    <span class="hljs-keyword">while</span> (l &lt; r) &#123;
-        <span class="hljs-keyword">let</span> mid = l + <span class="hljs-built_in">Math</span>.floor((r - l) / <span class="hljs-number">2</span>);
-        <span class="hljs-keyword">if</span> (nums[mid] &lt; target) &#123;
-            l = mid + <span class="hljs-number">1</span>;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            r = mid;
+
+        <span class="hljs-keyword">let</span> size = strs.length;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;
+            <span class="hljs-keyword">let</span> word = wordDict[i];
+            <span class="hljs-keyword">if</span> (strs.startsWith(word)) &#123;
+                str.push(word);
+                helper(strs.substring(word.length, size));
+                str.pop();
+            &#125;
         &#125;
+    &#125;;
+
+    helper(s);
+
+    <span class="hljs-keyword">return</span> res;
+&#125;;</code></pre>
+<p>  <strong>不过未优化的回溯相当于是暴力解法，效率很低</strong>，会在 <code>31 / 36</code> 的用例处超时。</p>
+<p>  因此需要使用记忆数组 <code>memo</code> 来优化，说是数组，这边其实是一个 <code>map</code>。</p>
+<p>  根据我们前面回溯法的思路，每次在递归函数中，我们是对一个字符串 <code>strs</code> 来判断这个字符串是否能被拆分为字典中的单词，这样，若当前字符串 <code>strs</code> 已经递归判断了一次，发现无法被拆分，那么我们下次再遇到这个字符串 <code>strs</code> 时，我们就能直接返回，而不用再继续对其回溯判断是否能被拆分。</p>
+<p>  因此对于每个遍历的字符串 <code>strs</code> ，若其在 <code>memo</code> 中的记录为 <code>false</code> ，那么就可以直接返回，节省了剩余的判断时间。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> wordBreak = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, wordDict</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> str = [];
+    <span class="hljs-keyword">let</span> memo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+    <span class="hljs-keyword">let</span> wordMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(wordDict);
+
+    <span class="hljs-keyword">const</span> helper = <span class="hljs-function">(<span class="hljs-params">strs</span>) =&gt;</span> &#123;
+        <span class="hljs-comment">// 若 strs 已被判断过是无法拆分的，那么直接返回 false</span>
+        <span class="hljs-keyword">if</span> (memo.get(strs) === <span class="hljs-literal">false</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+		
+        <span class="hljs-comment">// 若 strs 为空，表示我们的单词拆分成功，记录拆分结果且返回 true</span>
+        <span class="hljs-keyword">if</span> (strs.length === <span class="hljs-number">0</span>) &#123;
+            res.push(str.slice().join(<span class="hljs-string">&#x27; &#x27;</span>));
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+
+        <span class="hljs-keyword">let</span> size = strs.length;
+        <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= wordDict.length; i++) &#123;
+            <span class="hljs-keyword">let</span> word = wordDict[i];
+            <span class="hljs-keyword">if</span> (strs.startsWith(word)) &#123;
+                str.push(word);
+                <span class="hljs-comment">// 所有组合情况中，只要有一个能够正确拆分，memo 中的记录就为 true</span>
+                flag = helper(strs.substring(word.length, size)) || flag;
+                str.pop();
+            &#125;
+        &#125;
+        memo.set(strs, flag);
+
+        <span class="hljs-keyword">return</span> flag;
+    &#125;;
+    
+    helper(s);
+
+    <span class="hljs-keyword">return</span> res;
+&#125;;</code></pre>
+<h2 id="解法2回溯-记忆数组记录索引-i-到字符结尾的字符串能拆分的组合"><a class="markdownIt-Anchor" href="#解法2回溯-记忆数组记录索引-i-到字符结尾的字符串能拆分的组合"></a> 解法2：回溯 + 记忆数组，记录索引 <code>i</code> 到字符结尾的字符串能拆分的组合</h2>
+<p>  该思路来自<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-break-ii/solution/dan-ci-chai-fen-ii-by-leetcode-solution/">官方解答</a> 。</p>
+<p>  假设初始字符串为 <code>pineapplepenapple</code> ，我们已经拆分了一个 <code>pine</code> ，当前字符索引为 <code>4</code> 即 <code>a</code> ，那么从索引 <code>4</code> 到字符串结尾的子串能拆分的组合为 <code>apple pen apple</code> 和 <code>applepen apple</code>，此时只要再加上一个 <code>pine</code> ，即能获取以单词 <code>pine</code> 开头的所有组合：<code>pine apple pen apple</code> 和 <code>pine applepen apple</code> 。</p>
+<p>  <code>memo</code> 保存索引对应的所有组合，<code>memo[4]</code> 中保存的就是 <code>apple pen apple、applepen apple</code>，当第二次递归遍历到这个索引，那么直接返回这个组合就好了。</p>
+<p>  这边的字符拆分策略和上一个解法稍有不同，<strong>上一个解法</strong>中是遍历 <code>wordDict</code> 中的所有字符来判断字符是否在字符串中，<strong>这边</strong>是遍历整个字符串 <code>strs</code>，从当前索引<code>start</code> 开始先截取一个字符，再截取两个字符…来判断这个字符是否在 <code>wordDict</code> 中出现，若出现，则可以把当前字符与获取的所有拆分单词组合在一起。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> wordBreak = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, wordDict</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(wordDict);
+    <span class="hljs-keyword">let</span> len = s.length;
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">let</span> memo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+    <span class="hljs-keyword">const</span> getBreakWord = <span class="hljs-function">(<span class="hljs-params">start</span>) =&gt;</span> &#123;
+        <span class="hljs-comment">// 若前面已得到过已 start 开头到结尾的单词拆分组合，那么直接返回</span>
+        <span class="hljs-keyword">if</span> (memo.has(start)) &#123;
+            <span class="hljs-keyword">return</span> memo.get(start);
+        &#125;
+
+        <span class="hljs-keyword">let</span> words = [];
+        <span class="hljs-comment">// 若当前索引位置为字符串结尾，那么表示能正确拆分单词，因此往组合中加入一个空数组，供与最后一个单词组合</span>
+        <span class="hljs-keyword">if</span> (start === len) &#123;
+            words.push([]);
+        &#125;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start + <span class="hljs-number">1</span>; i &lt;= len; i++) &#123;
+            <span class="hljs-keyword">let</span> word = s.substring(start, i); <span class="hljs-comment">// 获取子串</span>
+            <span class="hljs-keyword">if</span> (map.has(word)) &#123;
+                <span class="hljs-keyword">let</span> nextWords = getBreakWord(i);
+                <span class="hljs-comment">// 将当前单词与所有拆分单词组合在一起</span>
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> nextWord <span class="hljs-keyword">of</span> nextWords) &#123;
+                    words.push([word, ...nextWord]);
+                &#125;
+            &#125;
+        &#125;
+        memo.set(start, words);
+
+        <span class="hljs-keyword">return</span> words;
+    &#125;;
+
+    <span class="hljs-keyword">let</span> wordBreaks = getBreakWord(<span class="hljs-number">0</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> arr <span class="hljs-keyword">of</span> wordBreaks) &#123;
+        res.push(arr.join(<span class="hljs-string">&#x27; &#x27;</span>));
     &#125;
 
-    <span class="hljs-keyword">let</span> lower = l;
-    l = <span class="hljs-number">0</span>, r = nums.length - <span class="hljs-number">1</span>;
-	
-    <span class="hljs-comment">// 再找到第一个小于等于 target 的位置</span>
-    <span class="hljs-keyword">while</span> (l &lt; r) &#123;
-        <span class="hljs-keyword">let</span> mid = l + <span class="hljs-built_in">Math</span>.ceil((r - l) / <span class="hljs-number">2</span>);
-        <span class="hljs-keyword">if</span> (nums[mid] &gt; target) &#123;
-            r = mid - <span class="hljs-number">1</span>;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            l = mid;
-        &#125;
-    &#125;
-    
-    <span class="hljs-keyword">if</span> (nums[l] === target) &#123;
-        <span class="hljs-keyword">return</span> l - lower + <span class="hljs-number">1</span>;
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    &#125;
+    <span class="hljs-keyword">return</span> res;
 &#125;;</code></pre>
-<h2 id="寻找第一个-大于等于-x-的位置"><a class="markdownIt-Anchor" href="#寻找第一个-大于等于-x-的位置"></a> 寻找第一个 《大于等于》  x 的位置</h2>
-<p>  在下面代码中，循环结束时，<code>left</code> 是会刚好等于 <code>right</code> 的，<code>right</code> 总是会在<strong>大于等于</strong> <code>x</code> 的地方停下来，一直压缩区间，<code>left</code> 最后的位置会是第一个大于等于 <code>x</code> 的位置。</p>
-<p>  如 <code>[5,7,7,8,8,10]</code> ，<code>x = 8</code>，那么当循环结束时， <code>l = r = 3</code>。</p>
-<p>  如 <code>arr = [1, 3, 4, 6, 7]</code> ，<code>x = 5</code>，返回 <code>3</code>。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upperBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
-        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);
-        <span class="hljs-keyword">let</span> num = arr[mid];
-        <span class="hljs-keyword">if</span> (tar &lt;= num) &#123;
-            right = mid;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            left = mid + <span class="hljs-number">1</span>;
-        &#125;
-    &#125;
-    <span class="hljs-keyword">return</span> left;
-&#125;</code></pre>
-<h2 id="寻找第一个-大于-x-的位置"><a class="markdownIt-Anchor" href="#寻找第一个-大于-x-的位置"></a> 寻找第一个 《大于》  x 的位置</h2>
-<p>  这个函数与上面一个函数的变化只是将 <code>if</code> 判断中的 <code>&lt;=</code> 改为 <code>&lt;</code>。</p>
-<p>  如 <code>[5,7,7,8,8,10]</code> ，<code>x = 8</code>，那么当循环结束时， <code>l = r = 5</code>。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upperBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
-        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left + right) / <span class="hljs-number">2</span>);
-        <span class="hljs-keyword">let</span> num = arr[mid];
-        <span class="hljs-keyword">if</span> (tar &lt; num) &#123;
-            right = mid;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            left = mid + <span class="hljs-number">1</span>;
-        &#125;
-    &#125;
-    <span class="hljs-keyword">return</span> left;
-&#125;</code></pre>
-<h2 id="寻找第一个-小于等于-x-的位置"><a class="markdownIt-Anchor" href="#寻找第一个-小于等于-x-的位置"></a> 寻找第一个 《小于等于》  x 的位置</h2>
-<p>  同理，在循环中稍加变动，就能实现另一个效果，不过这时候计算 <code>mid</code> 需要<strong>向上取整</strong>了（之前都是向上取整的），不然可能会出现无限循环，因为每次都向下取整的话可能会出现 <code>left</code> 不变的情况（如索引相邻情况 ）：</p>
-<p>  如 <code>[5,7,7,8,8,10]</code> ，<code>x = 8</code>，那么当循环结束时， <code>l = r = 4</code>。</p>
-<p>  如 <code>[1, 3, 4, 6, 7]</code> ，<code>x = 5</code>，那么当循环结束时， <code>l = r = 2</code>。</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowerBound</span>(<span class="hljs-params">arr, tar</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.length - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
-        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);
-        <span class="hljs-keyword">let</span> num = arr[mid];
-        <span class="hljs-keyword">if</span> (tar &gt;= num) &#123;
-            left = mid;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            right = mid - <span class="hljs-number">1</span>;
-        &#125;
-    &#125;
-	<span class="hljs-keyword">return</span> right;
-&#125;</code></pre>
-<h2 id="寻找第一个-小于-x-的位置"><a class="markdownIt-Anchor" href="#寻找第一个-小于-x-的位置"></a> 寻找第一个 《小于》 x 的位置</h2>
-<p>  同理，第一个小于 <code>x</code> 的位置：</p>
-<p>  如 <code>[5,7,7,8,8,10]</code> ，<code>x = 8</code>，那么当循环结束时， <code>l = r = 2</code>。</p>
-<p>  如 <code>[1, 3, 4, 6, 7]</code> ，<code>x = 5</code>，那么当循环结束时， <code>l = r = 2</code>。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">while</span> (left &lt; right) &#123;
-    <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.ceil((left + right) / <span class="hljs-number">2</span>);
-    <span class="hljs-keyword">let</span> num = arr[mid];
-    <span class="hljs-keyword">if</span> (tar &gt; num) &#123;
-        left = mid;
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        right = mid - <span class="hljs-number">1</span>;
-    &#125;
-&#125;</code></pre>
 
             </div>
             <hr>
@@ -369,7 +391,9 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">算法知识</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
                     
                   </div>
                 
@@ -377,7 +401,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%9F%A5%E6%89%BE/">查找</a>
+                      <a class="hover-with-bg" href="/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%B0%E5%BF%86%E4%BC%98%E5%8C%96/">记忆优化</a>
                     
                   </div>
                 
@@ -390,18 +416,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/18/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">牛顿迭代法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
-                        <span class="hidden-mobile">ThreeJS 坐标转换</span>
+                      <a href="/2020/11/14/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/">
+                        <span class="hidden-mobile">LeetCode 25. K 个一组翻转链表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -670,7 +690,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "二分查找&nbsp;",
+        "LeetCode 140. 单词拆分 II&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

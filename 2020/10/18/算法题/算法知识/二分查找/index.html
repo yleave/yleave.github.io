@@ -259,7 +259,7 @@
 <p>  其中， <code>(left + right) / 2</code> 有必要的话可以替换成 <code>left + (right - left) / 2</code>，以避免 <code>left + right</code> 超出整型范围的情况。</p>
 <h1 id="二分查找变形"><a class="markdownIt-Anchor" href="#二分查找变形"></a> 二分查找变形</h1>
 <p>  根据使用场景的不同，二分查找有一些变形算法。</p>
-<p>  同样，以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/">剑指Offer</a> 的一题为例，题目很简单，就是从一个有序数组中寻找数字 <code>target</code> 的出现次数，如 <code>nums = [5,7,7,8,8,10]</code> ，<code>target = 8</code>，程序输出 <code>2</code>，因为 <code>8</code> 出现了两次。</p>
+<p>  同样，以 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/">剑指Offer</a> （或 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/">LeetCode</a>）的一题为例，题目很简单，就是从一个有序数组中寻找数字 <code>target</code> 的出现次数，如 <code>nums = [5,7,7,8,8,10]</code> ，<code>target = 8</code>，程序输出 <code>2</code>，因为 <code>8</code> 出现了两次。</p>
 <p>  因为数组有序，我们可以考虑使用二分查找把时间复杂度降为 <code>log(n)</code>。</p>
 <p>  首先，使用二分查找找出<strong>第一个大于等于</strong> <code>target</code> 的位置 <code>lower</code> ，本例中就是 <code>3</code>，再使用二分查找找到<strong>第一个小于等于</strong> <code>target</code> 的位置 <code>l</code>，本例中就是 <code>4</code>，这样，数组中等于 <code>target</code> 的数字的出现次数就是 <code>l - lower + 1</code>，再考虑一些边界情况，即 <code>target</code> 未在数组中出现的情况，我们可以使用 <code>nums[l] === target</code>  来判断，若未出现过，返回 <code>0</code> 即可。</p>
 <p><strong>JS 代码如下：</strong></p>

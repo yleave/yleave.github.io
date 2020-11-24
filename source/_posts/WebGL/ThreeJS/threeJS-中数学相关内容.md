@@ -62,7 +62,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.projectionMatrix
   ```
 
-  <img src="three.js数学相关内容.assets/image-20200807170747954.png" alt="image-20200807170747954" style="zoom:80%;" />
+  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170747954.png" alt="image-20200807170747954" style="zoom:80%;" />
 
 ### 相机视图矩阵(CameraMatrixWorldInverse)
 
@@ -77,7 +77,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 &emsp;&emsp;这两种情况在相机眼中是一样的。
 
-<img src="three.js数学相关内容.assets/image-20200807170828153.png" alt="image-20200807170828153" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170828153.png" alt="image-20200807170828153" style="zoom:80%;" />
 
 &emsp;&emsp;在THREE中，我们一般通过设置`camera`的position和up，调用`lookAt`来改变相机的视图矩阵
 
@@ -131,7 +131,7 @@ REF: https://www.mrguo.link/article?id=12
 &emsp;&emsp;构造器参数`Box3( min : Vector3, max : Vector3 )`，其参数为两个三维向量，第一个向量为Box3在3D空间中各个维度的最小值，第二个参数为Box3在3D空间中各个维度的最大值，代码如下。
 
 ```js
-copyvar box = new THREE.Box3(new THREE.Vector3(-2,-2,-2), new THREE.Vector3(2,2,2));
+var box = new THREE.Box3(new THREE.Vector3(-2,-2,-2), new THREE.Vector3(2,2,2));
 js
 ```
 
@@ -160,7 +160,7 @@ REF: https://www.mrguo.link/article?id=14
 &emsp;&emsp;从变换矩阵（transformation matrix）`m`中， 设置该向量为其中与缩放相关的元素。
 
 ```js
-copyvar vec1 = new THREE.Vector3();
+var vec1 = new THREE.Vector3();
 var matrix = new THREE.Matrix4().makeScale(1,2,3);
 vec1.setFromMatrixScale(matrix);//返回Vector3 {x: 1, y: 2, z: 3}
 ```
@@ -170,7 +170,7 @@ vec1.setFromMatrixScale(matrix);//返回Vector3 {x: 1, y: 2, z: 3}
 &emsp;&emsp;将该向量乘以四阶矩阵`m`（第四个维度隐式地为`1`）
 
 ```js
-copyvar vec1 = new THREE.Vector3(1,0,0);
+var vec1 = new THREE.Vector3(1,0,0);
 var matrix = new THREE.Matrix4().makeRotationZ(-Math.PI/6);
 vec1.applyMatrix4(matrix);//返回值和上面相同
 ```

@@ -259,7 +259,7 @@
 <li>
 <p>获得 <code>ProjectionMatrix</code></p>
 <pre><code class="hljs js">camera.projectionMatrix</code></pre>
-<img src="three.js数学相关内容.assets/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" />
 </li>
 </ul>
 <h3 id="相机视图矩阵cameramatrixworldinverse"><a class="markdownIt-Anchor" href="#相机视图矩阵cameramatrixworldinverse"></a> 相机视图矩阵(CameraMatrixWorldInverse)</h3>
@@ -271,7 +271,7 @@
 <li>固定人，向右移动相机</li>
 </ul>
 <p>  这两种情况在相机眼中是一样的。</p>
-<img src="three.js数学相关内容.assets/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" />
 <p>  在THREE中，我们一般通过设置<code>camera</code>的position和up，调用<code>lookAt</code>来改变相机的视图矩阵</p>
 <pre><code class="hljs js">camera.position.set(x, y, z);
 camera.up.set(x, y, z);
@@ -300,7 +300,7 @@ camera.lookAt(x, y, z);</code></pre>
 <p>  在线案例点击<a target="_blank" rel="noopener" href="http://three.mrguo.link/box3">three.js Box3</a>。</p>
 <p>  Box3 在3D空间中表示一个包围盒。其主要用于表示物体在世界坐标中的边界框。它方便我们判断物体和物体、物体和平面、物体和点的关系等等。</p>
 <p>  构造器参数<code>Box3( min : Vector3, max : Vector3 )</code>，其参数为两个三维向量，第一个向量为Box3在3D空间中各个维度的最小值，第二个参数为Box3在3D空间中各个维度的最大值，代码如下。</p>
-<pre><code class="hljs js">copyvar box = <span class="hljs-keyword">new</span> THREE.Box3(<span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>), <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>));
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> box = <span class="hljs-keyword">new</span> THREE.Box3(<span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>), <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>));
 js</code></pre>
 <p>  这个box就表示3D空间中中心点在<code>(0,0,0)</code>，长宽高为<code>4</code>的包围盒。</p>
 <h1 id="vector3"><a class="markdownIt-Anchor" href="#vector3"></a> Vector3</h1>
@@ -309,12 +309,12 @@ js</code></pre>
 <h2 id="vector3-的方法"><a class="markdownIt-Anchor" href="#vector3-的方法"></a> Vector3 的方法</h2>
 <h3 id="setfrommatrixscale-m-matrix4-this"><a class="markdownIt-Anchor" href="#setfrommatrixscale-m-matrix4-this"></a> setFromMatrixScale( m: Matrix4 ): this</h3>
 <p>  从变换矩阵（transformation matrix）<code>m</code>中， 设置该向量为其中与缩放相关的元素。</p>
-<pre><code class="hljs js">copyvar vec1 = <span class="hljs-keyword">new</span> THREE.Vector3();
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> vec1 = <span class="hljs-keyword">new</span> THREE.Vector3();
 <span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix4().makeScale(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);
 vec1.setFromMatrixScale(matrix);<span class="hljs-comment">//返回Vector3 &#123;x: 1, y: 2, z: 3&#125;</span></code></pre>
 <h3 id="applymatrix4-m-matrix4-this"><a class="markdownIt-Anchor" href="#applymatrix4-m-matrix4-this"></a> applyMatrix4( m: Matrix4 ): this</h3>
 <p>  将该向量乘以四阶矩阵<code>m</code>（第四个维度隐式地为<code>1</code>）</p>
-<pre><code class="hljs js">copyvar vec1 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> vec1 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
 <span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix4().makeRotationZ(-<span class="hljs-built_in">Math</span>.PI/<span class="hljs-number">6</span>);
 vec1.applyMatrix4(matrix);<span class="hljs-comment">//返回值和上面相同</span></code></pre>
 <h1 id="matrix3"><a class="markdownIt-Anchor" href="#matrix3"></a> Matrix3</h1>

@@ -1,0 +1,959 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>JS 函数 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/62.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-27 16:16" pubdate>
+        2020年11月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">JS 函数</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h1>
+<h2 id="函数也是对象"><a class="markdownIt-Anchor" href="#函数也是对象"></a> 函数也是对象</h2>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bark</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Woof!&#x27;</span>);
+&#125;
+
+bark.animal = <span class="hljs-string">&#x27;dog&#x27;</span>;</code></pre>
+<p>  上面的代码在 JS 中是可行的，因为函数也是对象（<strong>除了基本类型之外其他都是对象</strong>）。</p>
+<h2 id="构造器函数"><a class="markdownIt-Anchor" href="#构造器函数"></a> 构造器函数</h2>
+<p>  在 JS 中，结合 <code>new</code> 前缀来调用的函数被称为构造器函数，<strong>构造器函数按约定命名的首字母必须大写。</strong></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">firstName, lastName</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.firstName = firstName;
+    <span class="hljs-built_in">this</span>.lastName = lastName;
+&#125;
+
+<span class="hljs-keyword">const</span> member = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;Lydia&#x27;</span>, <span class="hljs-string">&#x27;Hallie&#x27;</span>);</code></pre>
+<p>  对于构造器函数来说，<strong>不能</strong>像其他对象一样直接给它添加对象，<strong>应该</strong>使用 <code>prototype</code> 来添加，这样所有 <code>Person</code> 实例化的对象都会有这个属性了：</p>
+<pre><code class="hljs js">Person.getFullName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.firstName&#125;</span> <span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.lastName&#125;</span>`</span>;
+&#125;;
+<span class="hljs-built_in">console</span>.log(member.getFullName());  <span class="hljs-comment">// TypeError</span>
+
+Person.prototype.getFullName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.firstName&#125;</span> <span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.lastName&#125;</span>`</span>;
+&#125;;</code></pre>
+<h3 id="构造器函数实例化"><a class="markdownIt-Anchor" href="#构造器函数实例化"></a> 构造器函数实例化</h3>
+<p>  若对一个函数<strong>使用</strong> <code>new</code> 实例化的话，实例化对象会指向这个新创建的对象，而<strong>不使用</strong> <code>new</code>的话，则会指向全局对象 <code>global</code>。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">firstName, lastName</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.firstName = firstName;
+  <span class="hljs-built_in">this</span>.lastName = lastName;
+&#125;
+
+<span class="hljs-keyword">const</span> lydia = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&#x27;Lydia&#x27;</span>, <span class="hljs-string">&#x27;Hallie&#x27;</span>);
+<span class="hljs-keyword">const</span> sarah = Person(<span class="hljs-string">&#x27;Sarah&#x27;</span>, <span class="hljs-string">&#x27;Smith&#x27;</span>);
+
+<span class="hljs-built_in">console</span>.log(lydia);  <span class="hljs-comment">// Person &#123;firstName: &quot;Lydia&quot;, lastName: &quot;Hallie&quot;&#125;</span>
+<span class="hljs-built_in">console</span>.log(sarah);  <span class="hljs-comment">// undefined</span></code></pre>
+<p>  上面的代码中，对于 <code>sarah</code> 来说，相当于定义了 <code>global.firstName = 'Sarah'</code> 与 <code>global.lastName = 'Smith'</code>，并且调用了 <code>Person</code> 函数，可是它并没定义返回值，因此默认返回 <code>undefined</code>.</p>
+<p>  <strong>对于一个带返回对象的构造器函数来说，返回的对象的优先级更高.</strong></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Car</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.make = <span class="hljs-string">&quot;Lamborghini&quot;</span>;
+    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">make</span>: <span class="hljs-string">&quot;Maserati&quot;</span> &#125;;
+&#125;
+
+<span class="hljs-keyword">const</span> myCar = <span class="hljs-keyword">new</span> Car();
+<span class="hljs-built_in">console</span>.log(myCar);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416205516433.png" srcset="/img/loading.gif" alt="image-20200416205516433" style="zoom:80%;" /> 
+<p>  不过<strong>返回的不是对象的话，返回的是构造出的对象</strong>（数组也是对象，因此会优先返回数组）</p>
+<pre><code class="hljs js"></code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416205600285.png" srcset="/img/loading.gif" alt="image-20200416205600285" style="zoom:80%;" />
+<h2 id="参数"><a class="markdownIt-Anchor" href="#参数"></a> 参数</h2>
+<p>  <strong>普通参数是传值</strong>，而<strong>对象是传递引用</strong>，因此若在函数中对对象做出改动，原对象会跟着改动：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getInfo</span>(<span class="hljs-params">member, year</span>) </span>&#123;
+    member.name = <span class="hljs-string">&#x27;Lydia&#x27;</span>; <span class="hljs-comment">// 函数中改动对象的属性值</span>
+    year = <span class="hljs-string">&#x27;1998&#x27;</span>;
+&#125;
+
+<span class="hljs-keyword">const</span> person = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Sarah&#x27;</span> &#125;;
+<span class="hljs-keyword">const</span> birthYear = <span class="hljs-string">&#x27;1997&#x27;</span>;
+
+getInfo(person, birthYear);
+
+<span class="hljs-built_in">console</span>.log(person, birthYear);  <span class="hljs-comment">// &#123; name: &quot;Lydia&quot; &#125;, &quot;1997&quot;</span></code></pre>
+<h3 id="arguments"><a class="markdownIt-Anchor" href="#arguments"></a> arguments</h3>
+<p>  当函数被调用时，会被附上一个参数，那就是 <code>arguments</code> 数组。</p>
+<p>  函数可以通过此参数访问所有它被调用时传递给它的<strong>参数列表</strong>，包括那些没有被分配给函数声明时定义的形式参数的多余参数。</p>
+<pre><code class="hljs js"><span class="hljs-comment">//构造一个将大量的值相加的函数</span>
+<span class="hljs-comment">//该函数内部定义的 sum 不会与外部定义的 sum 产生冲突，因为该函数只会看到内部的那个变量</span>
+<span class="hljs-keyword">var</span> sum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">var</span> i,sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">arguments</span>.length; i++)&#123;
+        sum += <span class="hljs-built_in">arguments</span>[i];
+    &#125;
+    <span class="hljs-keyword">return</span> sum;
+&#125;;
+<span class="hljs-built_in">document</span>.write(sum(<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">15</span>,<span class="hljs-number">16</span>,<span class="hljs-number">23</span>,<span class="hljs-number">42</span>));   <span class="hljs-comment">//--&gt;108</span></code></pre>
+<p>  <mark>注意</mark>，<code>arguments</code> 并不是一个真正的数组。它只是一个 “类似数组的对象” 。<code>arguments</code> 拥有一个 <code>length</code> 属性，但它没有任何数组的方法。</p>
+<h2 id="函数中的默认参数"><a class="markdownIt-Anchor" href="#函数中的默认参数"></a> 函数中的默认参数</h2>
+<p>  下面的写法是正确的，若只传递一个参数，那么 <code>num2</code> 会是以已初始化的 <code>num1</code> 为值，不过若是 <code>num1</code> 在 <code>num2</code> 的右边的话，则会报错。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">num1, num2 = num1</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(num1 + num2);
+&#125;
+
+sum(<span class="hljs-number">10</span>);  <span class="hljs-comment">// 20</span></code></pre>
+<p>  <strong>默认参数可设为上下文内容中的变量</strong>：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compareMembers</span>(<span class="hljs-params">person1, person2 = person</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (person1 !== person2) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Not the same!&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;They are the same!&#x27;</span>);
+    &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> person = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Lydia&#x27;</span> &#125;;
+
+compareMembers(person); <span class="hljs-comment">// They are the same!</span></code></pre>
+<h3 id="展开语法作为函数的默认参数"><a class="markdownIt-Anchor" href="#展开语法作为函数的默认参数"></a> 展开语法作为函数的默认参数</h3>
+<p>  展开表达式可用于对象的复制，这种复制是<strong>浅复制</strong>，它们的指向是<strong>不一样</strong>的。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> person = &#123;
+    name: <span class="hljs-string">&#x27;Lydia&#x27;</span>,
+    age: <span class="hljs-number">21</span>,
+&#125;;
+
+<span class="hljs-keyword">let</span> p1 = &#123;...person&#125;;
+<span class="hljs-built_in">console</span>.log(p1 === person); <span class="hljs-comment">// false</span>
+
+<span class="hljs-keyword">const</span> changeAge = <span class="hljs-function">(<span class="hljs-params">x = &#123; ...person &#125;</span>) =&gt;</span> &#123;
+    x.age += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> (x === person) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;等于&#x27;</span>); <span class="hljs-comment">// 被打印</span>
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;不等于&#x27;</span>);
+    &#125;
+&#125;
+<span class="hljs-keyword">const</span> changeAgeAndName = <span class="hljs-function">(<span class="hljs-params">x = &#123; ...person &#125;</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (x === person) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;等于&#x27;</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;不等于&#x27;</span>);  <span class="hljs-comment">// 被打印</span>
+    &#125;
+    x.age += <span class="hljs-number">1</span>;
+    x.name = <span class="hljs-string">&quot;Sarah&quot;</span>;
+&#125;
+
+changeAge(person);	<span class="hljs-comment">// 等于  --&gt; 传递了 person，因此 x 与 person 的指向相同</span>
+changeAgeAndName();	<span class="hljs-comment">// 不等于  --&gt; 没传递 person ，因此 x 只是 person 的浅复制</span></code></pre>
+<h2 id="apply-call"><a class="markdownIt-Anchor" href="#apply-call"></a> Apply &amp; Call</h2>
+<h3 id="apply"><a class="markdownIt-Anchor" href="#apply"></a> apply</h3>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply NDM 文档</a></p>
+<p>  <code>Function.prototype.apply(obj, args)</code></p>
+<p>  <code>apply</code> 方法让我们构建一个参数数组传递给调用函数。它允许我们选择 <code>this</code> 的值。</p>
+<p>  <code>apply</code> 方法接收两个参数，第一个是要绑定给 <code>this</code> 的值，第二个就是一个<strong>参数数组</strong>。</p>
+<p>  当第一个参数为 <code>null</code> 或为 <code>undefined</code> 时，会自动替换为指向全局对象。</p>
+<h3 id="call"><a class="markdownIt-Anchor" href="#call"></a> call</h3>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call">MDN 文档</a></p>
+<p>  <code>Function.prototype.call(obj, arg1, arg2, ...)</code></p>
+<p>  <code>call</code> 方法的参数和 <code>apply</code> 类型，不过第二个参数开始是传入一个个的参数而不是整个的参数列表。</p>
+<p>  同样，当第一个参数为 <code>null</code> 或为 <code>undefined</code> 时，会自动替换为指向全局对象。</p>
+<h3 id="第一个例子"><a class="markdownIt-Anchor" href="#第一个例子"></a> 第一个例子</h3>
+<p>  构造一个包含两个数字的数组，并将它们相加：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 定义 add 函数</span>
+<span class="hljs-keyword">let</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>)</span>&#123;
+	<span class="hljs-keyword">return</span> a + b;
+&#125;;
+
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-comment">// 使用 apply</span>
+<span class="hljs-keyword">let</span> sum = add.apply(<span class="hljs-literal">null</span>, arr); <span class="hljs-comment">// sum = 7</span>
+
+<span class="hljs-comment">// 使用 call</span>
+sum = add.call(<span class="hljs-literal">null</span>, arr[<span class="hljs-number">0</span>], arr[<span class="hljs-number">1</span>]); <span class="hljs-comment">// sum = 7</span></code></pre>
+<p>  上面的代码中，<code>apply</code> 的第一个参数为 <code>null</code>，因此此时 <code>add</code> 中的 <code>this</code> 会指向全局对象，如：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">6</span>, b = <span class="hljs-number">7</span>;
+<span class="hljs-keyword">let</span> add = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.a + <span class="hljs-built_in">this</span>.b;
+&#125;;
+
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">let</span> sum = add.apply(<span class="hljs-literal">null</span>, arr); <span class="hljs-comment">// sum = 13 ，此时 add 中为 6 + 7 , call 也是一样的</span></code></pre>
+<h3 id="第二个例子"><a class="markdownIt-Anchor" href="#第二个例子"></a> 第二个例子</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> Person = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, age</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.name = name;
+    <span class="hljs-built_in">this</span>.age = age;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Student</span>(<span class="hljs-params">name, age, grade</span>) </span>&#123;
+    <span class="hljs-comment">// 使用 apply</span>
+    Person.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>); <span class="hljs-comment">// arguments 是函数中的参数列表</span>
+    
+    <span class="hljs-comment">// 使用 call</span>
+    Person.call(<span class="hljs-built_in">this</span>, name, age);
+    
+    <span class="hljs-built_in">this</span>.grade = grade;
+&#125;;
+
+<span class="hljs-keyword">let</span> stu = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;stu: &#x27;</span>, stu.name, stu.age, stu.grade); <span class="hljs-comment">// stu:  张三 18 2</span></code></pre>
+<p>  上面的代码中，<code>Student</code> 构造器中没有定义 <code>name</code> 和 <code>age</code> 属性，不过因为使用了 <code>apply/call</code> 函数，修改了 <code>Person</code> 中 <code>this</code> 的指向，因此 <code>Student</code> 对象中仍有 <code>name</code> 和 <code>age</code>。</p>
+<p>  其中，<code>arguments</code> 是一个参数列表，在上面就会是这样：<code>[&quot;张三&quot;, 18, 2]</code>，它虽然有 <code>length</code> 属性，但并不是一个数字，只是一个类似数组的存在。</p>
+<h3 id="apply-和-call-的使用选择"><a class="markdownIt-Anchor" href="#apply-和-call-的使用选择"></a> apply 和 call 的使用选择</h3>
+<p>  根据上面两个示例，我们可以知道，<code>apply</code> 和 <code>call</code> 的区别就是第一个参数后面的其他参数传递不同，<code>apply</code> 是传递一个参数数组，而 <code>call</code> 是传递一个个单独的参数，因此，若函数定义的参数顺序和我们的参数列表中的顺序一致，可以选择 <code>apply</code>，否则，我们可以使用 <code>call</code> 并一个个指定要传递的参数。</p>
+<p>  不过讲道理，使用 <code>call</code> 一个个指定传递的参数顺序的话其实将这些参数构造成数组并使用 <code>apply</code> 传递并没有什么区别。如 <code>call(null, 3, 4)</code> 和 <code>apply(null, [3, 4])</code>。</p>
+<h3 id="apply-的一些妙用"><a class="markdownIt-Anchor" href="#apply-的一些妙用"></a> apply 的一些妙用</h3>
+<p>  从上面两个例子中，我们可以知道，<code>apply</code> 的第二个参数是一个参数列表，但是在实际调用的时候这个参数列表会被拆解为一个个的参数，如上面 <code>add</code> 方法中传入 <code>[3, 4] -&gt; 3, 4</code> ，借助 <code>apply</code> 的这种特性，有一些奇妙的使用方法：</p>
+<h4 id="mathmax-min-apply"><a class="markdownIt-Anchor" href="#mathmax-min-apply"></a> Math.max / min + apply</h4>
+<p>  <code>Math.max/min</code> 不支持 <code>Math.max/min([param1, param2, ...])</code> 这样的数组参数，但它支持 <code>Math.max/min(param1, param2, ...)</code> 这样的参数，因此可以使用 <code>apply</code> 将数组拆分为一个个的参数：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Math</span>.max.apply(<span class="hljs-literal">null</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);</code></pre>
+<h4 id="arraypush"><a class="markdownIt-Anchor" href="#arraypush"></a> array.push</h4>
+<p>  <code>push</code> 也可以通过 <code>apply</code> 来便捷的合并数组：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], arr2 = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-built_in">Array</span>.prototype.push.apply(arr1, arr2);
+
+<span class="hljs-built_in">console</span>.log(arr1); <span class="hljs-comment">// [1, 2, 3, 4]</span></code></pre>
+<p>  <mark>不过</mark>  ES6 中的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax">展开语法</a> 可以更加简洁的实现这些功能：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], arr2 = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+arr1.push(...arr2); <span class="hljs-comment">// arr1 : [1, 2, 3, 4]</span>
+
+<span class="hljs-built_in">Math</span>.max(...arr1); <span class="hljs-comment">// 4</span></code></pre>
+<h2 id="bind-函数"><a class="markdownIt-Anchor" href="#bind-函数"></a> bind 函数</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">MDN 文档</a></p>
+<p><code>Function.prototype.bind(obj, arg1, arg2, ...)</code></p>
+<p>  简单来说，<code>bind</code> 主要用于绑定一个函数的 <code>this</code> 指向。</p>
+<h3 id="例1"><a class="markdownIt-Anchor" href="#例1"></a> 例1</h3>
+<p>  由于 Javascript 的变量域问题，有时会使用 <code>that = this</code> ：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> myObj = &#123;
+    func1: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; ... &#125;,
+    
+    func2: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; ... &#125;,
+
+    getAsyncData: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>&#123;
+        cb();
+    &#125;,
+
+    render: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">var</span> that = <span class="hljs-built_in">this</span>;
+        <span class="hljs-built_in">this</span>.getAsyncData(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+            that.func1();
+            that.func2();
+        &#125;);
+    &#125;
+&#125;;
+
+myObj.render();</code></pre>
+<p>  为了不改变 <code>myobj</code> 中的上下文关系，使用了 <code>that.fun()</code> 来调用函数。</p>
+<p>  这种方式可以使用 <code>Function.protype.bind()</code> 来简化：</p>
+<pre><code class="hljs js">render: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.getAsyncData(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-built_in">this</span>.func1();
+        <span class="hljs-built_in">this</span>.func2();
+    &#125;.bind(<span class="hljs-built_in">this</span>));
+&#125;</code></pre>
+<p>  关于 <code>bind()</code> 函数的内部逻辑可以用一个简单的小例子来解释：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.bind = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">scope</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> fn = <span class="hljs-built_in">this</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">return</span> fn.apply(scope);
+    &#125;;
+&#125;
+<span class="hljs-keyword">var</span> foo = &#123;
+    x: <span class="hljs-number">3</span>
+&#125;
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">10</span>;
+
+<span class="hljs-keyword">var</span> bar = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.x);
+&#125;
+bar(); <span class="hljs-comment">// 10 , 此时 this 指向全局作用域</span>
+
+<span class="hljs-keyword">var</span> boundFunc = bar.bind(foo);
+boundFunc(); <span class="hljs-comment">// 3</span></code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JS/">JS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JS-Function/">JS Function</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS 数组</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/">
+                        <span class="hidden-mobile">JS 对象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JS 函数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

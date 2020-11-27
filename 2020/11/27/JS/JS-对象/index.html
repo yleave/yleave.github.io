@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>JS 对象 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/63.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-27 16:16" pubdate>
+        2020年11月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">JS 对象</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="对象"><a class="markdownIt-Anchor" href="#对象"></a> 对象</h1>
+<h2 id="js-中对象的-key-都会被转为-string-类型"><a class="markdownIt-Anchor" href="#js-中对象的-key-都会被转为-string-类型"></a> <strong>JS 中，对象的 <code>key</code> 都会被转为 <code>string</code> 类型。</strong></h2>
+<p>  <strong>如：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">3</span>: <span class="hljs-string">&#x27;c&#x27;</span> &#125;;
+obj.hasOwnProperty(<span class="hljs-string">&#x27;1&#x27;</span>);  <span class="hljs-comment">// true</span>
+obj.hasOwnProperty(<span class="hljs-number">1</span>);  <span class="hljs-comment">// true</span></code></pre>
+<p>  <strong>再如</strong>，以一个对象为 <code>key</code>，同样会被转为 <code>string</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> a = &#123;&#125;;
+<span class="hljs-keyword">const</span> b = &#123; <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;b&#x27;</span> &#125;;
+<span class="hljs-keyword">const</span> c = &#123; &#125;;
+
+a[b] = <span class="hljs-number">123</span>;
+a[c] = <span class="hljs-number">456</span>;
+
+<span class="hljs-built_in">console</span>.log(a[b]); <span class="hljs-comment">// 456</span></code></pre>
+<p>  对象 <code>a</code>：<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416203843666.png" srcset="/img/loading.gif" alt="image-20200416203843666" style="zoom:80%;" /></p>
+<p>  上面的代码中， 对象 <code>b</code> 和对象<code>c</code> 都被当做一个 <code>key</code>，而对象的 <code>key</code> 会被转为字符串，因此 <code>b</code> 和 <code>c</code> 会被转为：<code>&quot;[object Object]&quot;</code>，所以，代码中表示 <code>a[&quot;object Object&quot;] = 123</code>，所以最后变成了 <code>456</code>。</p>
+<p>  当我们调用 <code>a[b]</code> 的时候，相当于调用了 <code>a[&quot;object Object&quot;]</code>。</p>
+<p>  不过若是用 <code>a.b</code> 的话，<code>b</code> 就是代表一个字符 <code>b</code> 。</p>
+<h2 id="判断对象是否为空"><a class="markdownIt-Anchor" href="#判断对象是否为空"></a> 判断对象是否为空</h2>
+<h3 id="1-objectkeys"><a class="markdownIt-Anchor" href="#1-objectkeys"></a> 1. object.keys()</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> data = &#123;&#125;;
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.keys(data);
+alert(arr.length == <span class="hljs-number">0</span>); <span class="hljs-comment">//true 为空， false 不为空</span></code></pre>
+<h3 id="2将对象转化为json字符串再判断该字符串是否为"><a class="markdownIt-Anchor" href="#2将对象转化为json字符串再判断该字符串是否为"></a> 2.将对象转化为json字符串，再判断该字符串是否为&quot;{}&quot;</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> data = &#123;&#125;;
+<span class="hljs-keyword">var</span> b = (<span class="hljs-built_in">JSON</span>.stringify(data) == <span class="hljs-string">&quot;&#123;&#125;&quot;</span>);
+alert(b);   <span class="hljs-comment">//true 为空， false 不为空</span></code></pre>
+<h3 id="3for-in-循环判断"><a class="markdownIt-Anchor" href="#3for-in-循环判断"></a> 3.for in 循环判断</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;&#125;;
+<span class="hljs-keyword">var</span> b = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
+<h3 id="4objectgetownpropertynames方法"><a class="markdownIt-Anchor" href="#4objectgetownpropertynames方法"></a> 4.Object.getOwnPropertyNames()方法</h3>
+<p>  此方法是使用 <code>Object</code> 对象的 <code>getOwnPropertyNames</code> 方法，获取到对象中的属性名，存到一个数组中，返回数组对象，我们可以通过判断数组的 <code>length</code> 来判断此对象是否为空。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> data = &#123;&#125;;
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.getOwnPropertyNames(data);
+alert(arr.length == <span class="hljs-number">0</span>);<span class="hljs-comment">//true</span></code></pre>
+<h2 id="比较对象中的内容是否相同编写-objectequals-函数"><a class="markdownIt-Anchor" href="#比较对象中的内容是否相同编写-objectequals-函数"></a> 比较对象中的内容是否相同，编写 Object.equals 函数</h2>
+<p>  注意，在 <code>equals</code> 中没有使用 <code>===</code> 进行比较，因为 <code>===</code> 会比较对象的引用是否相同，而我们只想比较内容是否相同：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.prototype.equals = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>&#123;
+    <span class="hljs-comment">// For first loop , we only check for types</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> propName <span class="hljs-keyword">in</span> <span class="hljs-built_in">this</span>) &#123;
+        <span class="hljs-comment">// Check for inherited methods and properties</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.hasOwnProperty(propName) != obj.hasOwnProperty(propName)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+
+        <span class="hljs-comment">// Check instance type</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span>[propName] != <span class="hljs-keyword">typeof</span> obj[propName]) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">// A deeper check using other objects property names</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> propName <span class="hljs-keyword">in</span> obj) &#123;
+        <span class="hljs-comment">// We must check instances anyway, there may be a property exits in obj</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.hasOwnProperty(propName) != obj.hasOwnProperty(propName)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span>[propName] != <span class="hljs-keyword">typeof</span> obj[propName]) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+
+        <span class="hljs-comment">// If the property is inherited, do not check any more (it must be equal if both objects inherit it)</span>
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.hasOwnProperty(propName)) &#123;
+            <span class="hljs-keyword">continue</span>;
+        &#125;
+
+        <span class="hljs-comment">// Now the detail check and recursion</span>
+
+        <span class="hljs-comment">// Requires Array.equals !!!</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[propName] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> &amp;&amp; obj[propName] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>) &#123;
+            <span class="hljs-comment">// recurse into the nested arrays</span>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>[propName].equals(obj[propName])) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[propName] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span> &amp;&amp; obj[propName] <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>) &#123;
+            <span class="hljs-comment">// recurse into other objects</span>
+            <span class="hljs-comment">// console.log(&quot;Recursing to compare &quot;, this[propName],&quot;with&quot;,obj[propName], &quot; both named \&quot;&quot;+propName+&quot;\&quot;&quot;);</span>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>[propName].equals(obj[propName])) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[propName] != obj[propName]) &#123;  <span class="hljs-comment">// Normal value comparsion for strings and numbers</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
+<p>  上面代码中还需要实现 <code>Array.prototype.equals</code> 方法，这边模拟时就先都返回 <code>true</code> ：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.equals = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;;
+
+<span class="hljs-keyword">let</span> obj1 = &#123;
+    name: <span class="hljs-string">&#x27;yy&#x27;</span>,
+    age: <span class="hljs-string">&#x27;15&#x27;</span>,
+    objs: &#123;
+        obj1: <span class="hljs-string">&#x27;教师&#x27;</span>,
+        obj2s: [<span class="hljs-string">&#x27;程序员&#x27;</span>, <span class="hljs-string">&#x27;码农&#x27;</span>],
+        obj3s: &#123;
+            obj3_1: <span class="hljs-string">&#x27;互联网员工&#x27;</span>,
+            obj3_2: <span class="hljs-string">&#x27;社畜&#x27;</span>
+        &#125;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">let</span> obj2 = &#123;
+    name: <span class="hljs-string">&#x27;yy&#x27;</span>,
+    age: <span class="hljs-string">&#x27;15&#x27;</span>,
+    objs: &#123;
+        obj1: <span class="hljs-string">&#x27;教师&#x27;</span>,
+        obj2s: [<span class="hljs-string">&#x27;程序员&#x27;</span>, <span class="hljs-string">&#x27;码农&#x27;</span>],
+        obj3s: &#123;
+            obj3_1: <span class="hljs-string">&#x27;互联网员工&#x27;</span>,
+            obj3_2: <span class="hljs-string">&#x27;社畜&#x27;</span>
+        &#125;
+    &#125;
+&#125;;
+
+<span class="hljs-built_in">console</span>.log(obj1.equals(obj2)); <span class="hljs-comment">// true</span></code></pre>
+<h2 id="对象的一些方法"><a class="markdownIt-Anchor" href="#对象的一些方法"></a> 对象的一些方法</h2>
+<h3 id="objectprototypehasownproperty"><a class="markdownIt-Anchor" href="#objectprototypehasownproperty"></a> Object.prototype.hasOwnProperty()</h3>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">MDN 文档</a></p>
+<p>  <code>hasOwnProperty</code> 方法可以检测某个属性是否是该对象自身的（不包括原型链上的属性），若是，返回 <code>true</code> ，否则返回 <code>false</code>。</p>
+<p>例：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Obj</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;obj&#x27;</span>;
+&#125;
+
+Obj.prototype = &#123;
+    age: <span class="hljs-number">12</span>
+&#125;;
+
+<span class="hljs-built_in">Object</span>.prototype.job = <span class="hljs-string">&#x27;new Job&#x27;</span>;
+
+<span class="hljs-keyword">let</span> o = <span class="hljs-keyword">new</span> Obj();
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v <span class="hljs-keyword">in</span> o) &#123;
+    <span class="hljs-built_in">console</span>.log(v, o.hasOwnProperty(v));
+&#125;</code></pre>
+<p>  程序输出：</p>
+<pre><code class="hljs yaml"><span class="hljs-string">name</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">age</span> <span class="hljs-literal">false</span>
+<span class="hljs-string">job</span> <span class="hljs-literal">false</span></code></pre>
+<h3 id="objectdefineproperty"><a class="markdownIt-Anchor" href="#objectdefineproperty"></a> Object.defineProperty()</h3>
+<p>  <code>Object.defineProperty()</code> 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并<strong>返回这个对象</strong>。</p>
+<p>  语法：<code>Object.defineProperty(obj, prop, descriptor)</code></p>
+<ul>
+<li><code>obj</code> : 要在其上定义属性的对象。</li>
+<li><code>prop</code> : 要定义或修改的属性的名称。</li>
+<li><code>descriptor</code> : 将被定义或修改的属性描述符。</li>
+</ul>
+<p>例：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> person = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Lydia&quot;</span> &#125;;
+
+<span class="hljs-built_in">Object</span>.defineProperty(person, <span class="hljs-string">&quot;age&quot;</span>, &#123; <span class="hljs-attr">value</span>: <span class="hljs-number">21</span> &#125;);
+
+<span class="hljs-built_in">console</span>.log(person); <span class="hljs-comment">// &#123; name: &quot;Lydia&quot;, age: 21 &#125;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(person)); <span class="hljs-comment">// [&quot;name&quot;]</span></code></pre>
+<p>  可修改 <code>descriptor</code> 来设置添加的属性。</p>
+<ul>
+<li><code>configurable</code> :  默认为 <code>false</code>，当设置为 <code>true</code> 时，<code>descriptor</code> 才可被修改，同时该属性也能从对应的对象上被删除。</li>
+<li><code>enumerabel</code> :  默认为 <code>false</code>，设置为 <code>true</code> 时，新添加的属性才能被枚举</li>
+<li><code>value</code> :  默认为 <code>undefined</code>，可以是任何有效的 JS 值（数值，对象，函数等）</li>
+<li><code>writable</code> :  默认为 <code>false</code>，设置为 <code>true</code> 时，<code>value</code> 才能被赋值运算符修改。</li>
+<li><code>get</code> :  默认为 <code>undefined</code>，一个给属性提供 <code>getter</code> 的方法，当访问该属性时，该方法会被执行，方法执行时没有参数传入，但是会传入 <code>this</code> 对象</li>
+<li><code>set</code> :  默认为 <code>undefined</code>，一个给属性提供 <code>setter</code> 的方法，当属性值修改时，触发执行该方法。该方法将接受唯一参数，即该属性新的参数值。</li>
+</ul>
+<h3 id="objectentries"><a class="markdownIt-Anchor" href="#objectentries"></a> Object.entries</h3>
+<p>  <code>Object.entries(obj)</code> 方法返回一个给定对象自身<strong>可枚举属性的键值对数组</strong>，其排列与使用 <code>for...in</code> 循环遍历该对象时返回的顺序一致，即属性的顺序与通过手动循环对象的属性值所给出的顺序相同。（<strong>区别在于 <code>for-in</code> 循环还会枚举原型链中的属性</strong>）。</p>
+<p>例：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> anObj = &#123; <span class="hljs-number">100</span>: <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">7</span>: <span class="hljs-string">&#x27;c&#x27;</span> &#125;;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(anObj)); <span class="hljs-comment">// [ [&#x27;2&#x27;, &#x27;b&#x27;], [&#x27;7&#x27;, &#x27;c&#x27;], [&#x27;100&#x27;, &#x27;a&#x27;] ]</span>
+
+<span class="hljs-comment">// 字符串</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(<span class="hljs-string">&#x27;foo&#x27;</span>)); <span class="hljs-comment">// [ [&#x27;0&#x27;, &#x27;f&#x27;], [&#x27;1&#x27;, &#x27;o&#x27;], [&#x27;2&#x27;, &#x27;o&#x27;] ]</span></code></pre>
+<p>  使用 <code>for ... of</code> 和解构赋值遍历：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 使用 for - of 和 解构赋值 遍历结果</span>
+<span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">7</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">9</span> &#125;;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.entries(obj)) &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span> <span class="hljs-subst">$&#123;value&#125;</span>`</span>); <span class="hljs-comment">// &quot;a 5&quot;, &quot;b 7&quot;, &quot;c 9&quot;</span>
+&#125;</code></pre>
+<p>  使用 <code>forEach</code> 遍历：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.entries(obj).forEach(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span> <span class="hljs-subst">$&#123;value&#125;</span>`</span>); <span class="hljs-comment">// &quot;a 5&quot;, &quot;b 7&quot;, &quot;c 9&quot;</span>
+&#125;);</code></pre>
+<p>  <code>new Map()</code> 构造函数接受一个可迭代的 <code>entries</code>。借助 <code>Object.entries</code> 方法你可以很容易的将 <code>Object</code> 转换为 <code>Map</code>:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-attr">baz</span>: <span class="hljs-number">42</span> &#125;; 
+<span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(<span class="hljs-built_in">Object</span>.entries(obj));
+<span class="hljs-built_in">console</span>.log(map); <span class="hljs-comment">// Map &#123; foo: &quot;bar&quot;, baz: 42 &#125;</span></code></pre>
+<h3 id="objectassign"><a class="markdownIt-Anchor" href="#objectassign"></a> Object.assign()</h3>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介绍</a></p>
+<p>  <code>Object.assign()</code> 方法用于将所有<strong>可枚举属性</strong>的值从一个或多个源对象复制到目标对象。它将<strong>返回目标对象</strong>。</p>
+<p>  如果目标对象中的属性具有<strong>相同的键</strong>，则属性将被源对象中的属性覆盖。后面的源对象的属性将类似地覆盖前面的源对象的属性。</p>
+<p>  语法：<code>Object.assign(target, ...sources)</code></p>
+<ul>
+<li><code>target</code>: 目标对象。</li>
+<li><code>sources</code>: 源对象。</li>
+</ul>
+<p>返回值：目标对象。</p>
+<p>  <mark>注意</mark>，<code>Object.assign</code> 不会在那些<code>source</code>对象值为 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/null">null</a> 或 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> 的时候抛出错误。</p>
+<p>例：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;
+<span class="hljs-keyword">const</span> source = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">5</span> &#125;;
+
+<span class="hljs-keyword">const</span> returnedTarget = <span class="hljs-built_in">Object</span>.assign(target, source);
+
+<span class="hljs-built_in">console</span>.log(target); <span class="hljs-comment">// Object &#123; a: 1, b: 4, c: 5 &#125;</span>
+<span class="hljs-built_in">console</span>.log(returnedTarget); <span class="hljs-comment">//Object &#123; a: 1, b: 4, c: 5 &#125;</span></code></pre>
+<p>  <strong>复制一个对象：</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;
+<span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj);
+<span class="hljs-built_in">console</span>.log(copy); <span class="hljs-comment">// &#123; a: 1 &#125;</span></code></pre>
+<p>  针对<strong>深拷贝</strong>，需要使用其他办法，因为  <code>Object.assign()</code>拷贝的是属性值。<strong>假如源对象的属性值是一个对象的引用，那么它也只指向那个引用</strong>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obj1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">0</span> , <span class="hljs-attr">b</span>: &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">0</span>&#125;&#125;; 
+<span class="hljs-keyword">let</span> obj2 = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj1); 
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// &#123; a: 0, b: &#123; c: 0&#125;&#125; </span>
+
+obj1.a = <span class="hljs-number">1</span>; 
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj1)); <span class="hljs-comment">// &#123; a: 1, b: &#123; c: 0&#125;&#125; </span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// &#123; a: 0, b: &#123; c: 0&#125;&#125; </span>
+
+obj2.a = <span class="hljs-number">2</span>; 
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj1)); <span class="hljs-comment">// &#123; a: 1, b: &#123; c: 0&#125;&#125; </span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// &#123; a: 2, b: &#123; c: 0&#125;&#125;</span>
+ 
+<span class="hljs-comment">// 改变源对象中的对象属性值，拷贝对象会跟着改变，因为只是拷贝了对象的引用</span>
+obj2.b.c = <span class="hljs-number">3</span>; 
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj1)); <span class="hljs-comment">// &#123; a: 1, b: &#123; c: 3&#125;&#125; </span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj2)); <span class="hljs-comment">// &#123; a: 2, b: &#123; c: 3&#125;&#125; </span></code></pre>
+<p>  <strong>深克隆：</strong></p>
+<pre><code class="hljs js"><span class="hljs-comment">// Deep Clone </span>
+obj1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">0</span> , <span class="hljs-attr">b</span>: &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">0</span>&#125;&#125;; 
+<span class="hljs-keyword">let</span> obj3 = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj1)); 
+obj1.a = <span class="hljs-number">4</span>; 
+obj1.b.c = <span class="hljs-number">4</span>; 
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj3)); <span class="hljs-comment">// &#123; a: 0, b: &#123; c: 0&#125;&#125;</span></code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JS/">JS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JS-Object/">JS Object</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/27/JS/JS-%E5%87%BD%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS 函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/19/%E7%AE%97%E6%B3%95%E9%A2%98/%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/%E5%A5%87%E5%A6%99%E7%9A%84%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">奇妙的算法知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JS 对象&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

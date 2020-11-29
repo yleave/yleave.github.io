@@ -145,6 +145,8 @@ Object.prototype.equals = function(obj) {
 }
 ```
 
+&emsp;&emsp;一个 [Array,prototype.equals](https://yleave.top/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/#%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AE%B9%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C) 的实现
+
 &emsp;&emsp;上面代码中还需要实现 `Array.prototype.equals` 方法，这边模拟时就先都返回 `true` ：
 
 ```js

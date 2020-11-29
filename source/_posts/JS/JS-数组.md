@@ -140,4 +140,5 @@ Array.prototype.equals = function(arr) {
 Object.defineProperty(Array.prototype, 'equals', {enumerable: false});
 ```
 
+上面代码中，`Objec` 的 `equals` 方法需要自己实现，一个 [Object.prototype.equals](https://yleave.top/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/#%E6%AF%94%E8%BE%83%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C%E7%BC%96%E5%86%99-objectequals-%E5%87%BD%E6%95%B0)
 

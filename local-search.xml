@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>5620.连续连接的二进制数字</title>
+    <link href="/2020/12/06/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/5620-%E8%BF%9E%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E5%AD%97/"/>
+    <url>/2020/12/06/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/5620-%E8%BF%9E%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<img src="https://pic.leetcode-cn.com/1607237469-ehWTvX-image.png" alt="image.png" style="zoom:80%;" /><p>  第一次 JS 双百，虽然是虚假的双百 😭</p><h1 id="写法1-耿直模拟"><a class="markdownIt-Anchor" href="#写法1-耿直模拟"></a> 写法1 ：耿直模拟</h1><p>  使用 JS 中的进制转换函数 <code>toString</code> 和 <code>parseInt</code> 实现模拟。</p><p>  <code>toString</code> 能将十进制数字转换为任意进制数字，如 <code>(5).toString(2) = 101</code></p><p>  <code>parseInt</code> 能将二进制数字转换为十进制数字，如 <code>parseInt('101', 2) = 5</code></p><p>  不过这种写法效率可能有点差，会超时…</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> concatenatedBinary = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;    <span class="hljs-keyword">let</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;    <span class="hljs-keyword">let</span> sum = <span class="hljs-string">&quot;&quot;</span>;        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;        sum += (i).toString(<span class="hljs-number">2</span>); <span class="hljs-comment">// 十进制转二进制然后字符串拼接</span>        <span class="hljs-keyword">let</span> t = <span class="hljs-built_in">parseInt</span>(sum, <span class="hljs-number">2</span>);   <span class="hljs-comment">// 二进制字符串转十进制判断是否需要取余</span>        <span class="hljs-keyword">if</span> (t &gt;= mod) &#123;            t %= mod;            sum = (t).toString(<span class="hljs-number">2</span>);        &#125;    &#125;        <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(sum, <span class="hljs-number">2</span>);&#125;;</code></pre><h1 id="写法2-二进制移位模拟"><a class="markdownIt-Anchor" href="#写法2-二进制移位模拟"></a> 写法2 ：二进制移位模拟</h1><p>  其实，我们稍微列一下二进制就能够比较直观的找到连接的规律：</p><p>  我们知道，对于二进制，<strong>每次向左移动一位就是乘上一个 <code>2</code></strong>，因此若当前要连接的数字的二进制位数是两位，我们每次移动就应该乘上一个 <code>4</code> ，三位二进制就乘上一个 <code>8</code>，移动完后末尾再加上当前的数字即可。</p><img src="https://pic.leetcode-cn.com/1607238962-caJQLh-image.png" alt="image.png" style="zoom:80%;" /><p>  若使用 JS ，需要使用 <code>BigInt</code> 类型，因为后面在进行移位的时候可能会过大导致算术溢出…</p><p>  如： <code>28399128732189371 &lt;&lt; 1 -&gt; -670661256</code></p><p>  关于 <code>BigInt</code> 的使用也很简单，普通数字后面加一个 <code>n</code> 就代表了 <code>BigInt</code> 类型，如 <code>1n</code>，或是使用构造器 <code>BigInt(1)</code>。</p><p>  使用 <code>BigInt</code> 时需要注意的是 <code>bigint</code> 类型只能与 <code>bigint</code> 类型进行运算，且 <code>Math</code> 中的方法也不能应用在 <code>bigint</code> 类型上。</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> concatenatedBinary = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;    <span class="hljs-keyword">let</span> mod = BigInt(<span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>);  <span class="hljs-comment">// JS 需要使用大数，不然会溢出</span>    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0n</span>;    <span class="hljs-keyword">let</span> p = <span class="hljs-number">1n</span>;    <span class="hljs-keyword">let</span> l = <span class="hljs-number">2n</span>;        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1n</span>; i &lt;= n; i++) &#123;        <span class="hljs-keyword">if</span> (i === l) &#123;  <span class="hljs-comment">// 若 i 为 2 的倍数，那么移位数 + 1</span>            p++;            l *= <span class="hljs-number">2n</span>;        &#125;        sum &lt;&lt;= p;  <span class="hljs-comment">// 累加的和每次移 p 位，然后再加上当前值</span>        sum += i;        <span class="hljs-keyword">if</span> (sum &gt;= mod) &#123;            sum %= mod;        &#125;    &#125;        <span class="hljs-keyword">return</span> sum;&#125;;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>解答</category>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>大数</tag>
+      
+      <tag>模拟</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JS 数组</title>
     <link href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/"/>
     <url>/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/</url>
@@ -190,9 +221,9 @@
       
       <tag>Morris</tag>
       
-      <tag>前序遍历</tag>
-      
       <tag>后序遍历</tag>
+      
+      <tag>前序遍历</tag>
       
     </tags>
     

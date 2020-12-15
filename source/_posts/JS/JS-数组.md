@@ -1,7 +1,7 @@
 ---
 title: JS 数组
 index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/65.jpg'
+banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/62.jpg'
 date: 2020-11-27 16:16:39
 categories:
     - JS
@@ -141,4 +141,86 @@ Object.defineProperty(Array.prototype, 'equals', {enumerable: false});
 ```
 
 上面代码中，`Objec` 的 `equals` 方法需要自己实现，一个 [Object.prototype.equals](https://yleave.top/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/#%E6%AF%94%E8%BE%83%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C%E7%BC%96%E5%86%99-objectequals-%E5%87%BD%E6%95%B0)
+
+
+
+## 数组扁平化
+
+已知如下数组：`var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];`
+
+编写一个程序将数组**扁平化**并**去除其中重复部分数据**，最终得到一个**升序**且不重复的数组
+
+### 1. 使用 flat 扁平化
+
+```js
+var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+
+let flatArr = arr.flat(4); // flat 的参数为扁平化的深度，默认为 1
+
+let uniArr = Array.from(new Set(flatArr));
+// uniArr = [...new Set(flatArr)];
+
+uniArr.sort((a, b) => a - b);
+```
+
+### 2. 循环遍历
+
+```js
+var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+let res = [];
+
+const flatArr = (arr) => {
+    for (let a of arr) {
+        if (a instanceof Array) {
+            flatArr(a);
+        } else {
+            res.push(a);
+        }
+    }
+};
+
+flatArr(arr);
+
+res = [...new Set(res)];
+
+res.sort((a, b) => a - b );
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

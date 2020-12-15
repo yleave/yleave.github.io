@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Set、Map、和WeakSet、WeakMap - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/76.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-09 20:17" pubdate>
+        2020年12月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Set、Map、和WeakSet、WeakMap</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>转载于 <a target="_blank" rel="noopener" href="https://github.com/sisterAn/blog/issues/24">sisterAn/blog</a></p>
+<h1 id="集合set"><a class="markdownIt-Anchor" href="#集合set"></a> 集合（Set）</h1>
+<p><code>Set</code> 是 ES6 新增的数据结构，类似于数组，但其成员是唯一无序的，没有重复的值。</p>
+<p><code>Set</code> 对象可根据 <code>iterable</code> 对象来创建：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-keyword">let</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr); <span class="hljs-comment">// Set(4) &#123;1, 2, 3, 4&#125;</span>
+
+<span class="hljs-comment">// 数组去重</span>
+<span class="hljs-keyword">let</span> uniArr = [...s];	<span class="hljs-comment">// [1, ,2, 3, 4]</span></code></pre>
+<p><code>Set</code> 对象允许存储任何类型的唯一值，<strong>无论是基本数据类型的值还是对象引用</strong>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]); <span class="hljs-comment">// 存储值 1 和 2</span>
+<span class="hljs-keyword">let</span> obj = &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;;
+<span class="hljs-keyword">let</span> obj2 = &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;;
+<span class="hljs-keyword">let</span> obj3 = obj;
+s.add(obj);
+s.add(obj2); <span class="hljs-comment">// 两个对象引用不同，因此能正常存储</span>
+s.add(obj3); <span class="hljs-comment">// 引用与 obj 相同，无法存储</span></code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201209203523436.png" srcset="/img/loading.gif" alt="image-20201209203523436" style="zoom:80%;" />
+<p>向  <code>Set</code> 中加入值时，不会发生类型转换，因此 <code>5</code> 和 <code>&quot;5&quot;</code> 是两个不同的值（ <code>Object</code> 中键 的存储都会转为字符串）</p>
+<p>Set 内部判断两个值是否不同，使用的算法叫做“Same-value-zero equality”，它类似于<strong>精确相等</strong>运算符（<code>===</code>），主要的区别是<strong>Set 认为<code>NaN</code>等于自身，而精确相等运算符认为<code>NaN</code>不等于自身。</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+<span class="hljs-keyword">let</span> a = <span class="hljs-literal">NaN</span>;
+<span class="hljs-keyword">let</span> b = <span class="hljs-literal">NaN</span>;
+set.add(a);
+set.add(b);
+set <span class="hljs-comment">// Set &#123;NaN&#125;</span>
+
+<span class="hljs-keyword">let</span> set1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+set1.add(<span class="hljs-number">5</span>)
+set1.add(<span class="hljs-string">&#x27;5&#x27;</span>)
+<span class="hljs-built_in">console</span>.log([...set1])	<span class="hljs-comment">// [5, &quot;5&quot;]</span></code></pre>
+<h2 id="set-实例属性"><a class="markdownIt-Anchor" href="#set-实例属性"></a> Set 实例属性</h2>
+<h3 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h3>
+<p>构造函数</p>
+<h3 id="size"><a class="markdownIt-Anchor" href="#size"></a> size</h3>
+<p>元素数量</p>
+<p>注意不是 <code>length</code></p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>])
+
+<span class="hljs-built_in">console</span>.log(set.length)	<span class="hljs-comment">// undefined</span>
+<span class="hljs-built_in">console</span>.log(set.size)	<span class="hljs-comment">// 3</span></code></pre>
+<h2 id="set-实例方法"><a class="markdownIt-Anchor" href="#set-实例方法"></a> Set 实例方法</h2>
+<h3 id="操作方法"><a class="markdownIt-Anchor" href="#操作方法"></a> 操作方法</h3>
+<ul>
+<li><code>add(value)</code>：向集合中添加新元素</li>
+<li><code>delete(value)</code>：从集合中移除元素</li>
+<li><code>has(value)</code>：判断集合中是否存在某个元素</li>
+<li><code>clear()</code>：情况集合</li>
+</ul>
+<h3 id="遍历方法"><a class="markdownIt-Anchor" href="#遍历方法"></a> 遍历方法</h3>
+<p>遍历属性为插入顺序。</p>
+<ul>
+<li>
+<p><code>keys()</code>：返回一个包含集合中所有键的迭代器</p>
+</li>
+<li>
+<p><code>values()</code>：返回一个包含集合中所有值的迭代器</p>
+</li>
+<li>
+<p><code>entries()</code>：返回一个包含集合中所有元素的键值对的迭代器</p>
+</li>
+<li>
+<p><code>forEach(callback, thisArg)</code>：对集合中的元素执行 <code>callback</code> 操作，若提供了 <code>thisArg</code> 参数，回调中的 <code>this</code> 会是这个值。</p>
+<p><code>Set</code> 中没有什么键值之分，键 和 值都是 <code>Set</code> 中的元素。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>, &#123;<span class="hljs-attr">i</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">j</span>: <span class="hljs-number">4</span>&#125;]);
+</li>
+</ul>
+<p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'keys: '</span>, s.keys());</p>
+<p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'values: '</span>, s.values());</p>
+<p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'entries: '</span>, s.entries());</code></pre>:hexoPostRenderEscape–&gt;</p>
+  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210140730077.png" srcset="/img/loading.gif" alt="image-20201210140730077" style="zoom:80%;" />
+<p>注意到这几个方法返回的都是一个迭代器，因此可以使用 <code>next</code> 方法来遍历：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> iter = s.keys();
+
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;
+    <span class="hljs-keyword">let</span> item = iter.next();
+    <span class="hljs-keyword">if</span> (item.done) &#123;
+        <span class="hljs-keyword">break</span>;
+    &#125;
+    <span class="hljs-built_in">console</span>.log(item);
+&#125;</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144517054.png" srcset="/img/loading.gif" alt="image-20201210144517054" style="zoom:80%;" />
+<p>还可使用 <code>for ··· of</code> 来遍历：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> s.keys()) &#123;
+    <span class="hljs-built_in">console</span>.log(item); 
+&#125;
+
+<span class="hljs-comment">// 返回结果相同</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> s) &#123;
+    <span class="hljs-built_in">console</span>.log(item);
+&#125;
+
+s.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span>  &#123;
+    <span class="hljs-built_in">console</span>.log(key + <span class="hljs-string">&#x27; : &#x27;</span> + value)
+&#125;)</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144632720.png" srcset="/img/loading.gif" alt="image-20201210144632720" style="zoom:80%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144803339.png" srcset="/img/loading.gif" alt="image-20201210144803339" style="zoom:80%;" /></p>
+<p><code>Set</code> 可使用 <code>map</code> 、<code>filter</code> 方法：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...set].map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item * <span class="hljs-number">2</span>))
+<span class="hljs-built_in">console</span>.log([...set])	<span class="hljs-comment">// [2, 4, 6]</span>
+
+set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...set].filter(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> (item &gt;= <span class="hljs-number">4</span>)))
+<span class="hljs-built_in">console</span>.log([...set])	<span class="hljs-comment">//[4, 6]</span></code></pre>
+<p>因此，Set 很容易实现<strong>交集</strong>（Intersect）、<strong>并集</strong>（Union）、<strong>差集</strong>（Difference）</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-keyword">let</span> s2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+
+<span class="hljs-keyword">let</span> union = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...s1, ...s2]);
+<span class="hljs-built_in">console</span>.log(union); <span class="hljs-comment">// Set(4) &#123;1, 2, 3, 4&#125;</span>
+
+<span class="hljs-keyword">let</span> intersect = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...s1].filter(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> s2.has(val)));
+<span class="hljs-built_in">console</span>.log(intersect); <span class="hljs-comment">// Set(2) &#123;2, 3&#125;</span>
+
+<span class="hljs-keyword">let</span> difference = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...s1].filter(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> !s2.has(val)));
+<span class="hljs-built_in">console</span>.log(difference); <span class="hljs-comment">// Set(1) &#123;1&#125;</span></code></pre>
+<h1 id="weakset"><a class="markdownIt-Anchor" href="#weakset"></a> WeakSet</h1>
+<p><code>WeakSet</code> 对象允许你将<strong>弱引用对象</strong>储存在一个集合中</p>
+<p><code>WeakSet</code> 与 <code>Set</code> 的区别：</p>
+<ul>
+<li><code>WeakSet</code> 只能储存对象引用，不能存放值，而 <code>Set</code> 对象都行。</li>
+<li><code>WeakSet</code> 对象中储存的对象值都是被弱引用的，即<strong>垃圾回收机制不考虑 <code>WeakSet</code> 对该对象的引用</strong>，如果没有其他变量或属性引用这个对象，那么这个对象会被回收掉。所以， <code>WeakSet</code> 对象中有多少个成员，取决于垃圾回收机制有没有进行回收，回收后成员个数可能不一样（被垃圾回收了），<code>WeakSet</code> 对象是无法被遍历的（ES6规定），也没有办法拿到它所包含的所有元素。</li>
+</ul>
+<p>成员都是弱引用，可以被垃圾回收机制回收，<strong>可以用来保存DOM节点，不容易造成内存泄漏</strong></p>
+<p><strong>weakSet</strong>可以用来保存DOM节点， 当节点被删除， <strong>weakSet</strong>里面的该节点如果不存在别的引用的话， 一段时间内会被内存回收；</p>
+<p>为了验证弱引用机制，先输出一次 <code>weakset</code>，然后在 <code>10</code> 秒后再输出一次，可以看到，为被其他变量引用的 <code>[1, 2]</code> 就被垃圾回收了：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">let</span> wks = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], a]);
+
+<span class="hljs-built_in">console</span>.log(wks);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(wks);
+&#125;, <span class="hljs-number">10000</span>)</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210150658051.png" srcset="/img/loading.gif" alt="image-20201210150658051" style="zoom:80%;" />
+<p>同时根据上图可看到 <code>WeakSet</code> 中的方法：<code>add(value)</code>、<code>has(value)</code>、<code>delete(value)</code> 和构造器方法 <code>constructor</code></p>
+<h1 id="字典-map"><a class="markdownIt-Anchor" href="#字典-map"></a> 字典 Map</h1>
+<p>集合<code>set</code> 与字典 <code>map</code> 的区别：</p>
+<ul>
+<li>共同点：都可以存储<strong>不重复</strong>的值</li>
+<li>不同点：集合是以 <code>[value, value]</code> 的方式存储，而字典是以 <code>[key, value]</code> 的方式存储，因此字典可以根据 <code>key</code> 来快速的获取其对应的 <code>value</code>。</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> mp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+mp.set(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;a&#x27;</span>);
+mp.set(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>);
+mp.set(&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>&#125;, <span class="hljs-number">3</span>);
+
+<span class="hljs-built_in">console</span>.log(mp);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210151834885.png" srcset="/img/loading.gif" alt="image-20201210151834885" style="zoom:80%;" />
+<p>如何具有 <code>Iterator</code> 接口，且每个成员都是一个双元素的数组的数据结构都可以当作 <code>Map</code> 构造函数的参数，如：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([[<span class="hljs-string">&#x27;foo&#x27;</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-number">2</span>]]);
+<span class="hljs-built_in">console</span>.log(set);
+
+<span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(set);
+<span class="hljs-built_in">console</span>.log(map);
+
+<span class="hljs-keyword">let</span> m1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&#x27;foo&#x27;</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-number">2</span>]]);
+<span class="hljs-keyword">let</span> m2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(m1);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210152321089.png" srcset="/img/loading.gif" alt="image-20201210152321089" style="zoom:80%;" />
+<p>若 <code>map</code> 的键是一个对象，那么会根据对象的引用来判断是否是同一个对象，且 <code>NaN</code> 虽然不严格相等于自身，但 <code>map</code> 将其视为同一个键。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+map.set([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-string">&#x27;a&#x27;</span>);
+map.set([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-string">&#x27;b&#x27;</span>);
+map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&#x27;c&#x27;</span>);
+map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&#x27;d&#x27;</span>);
+
+<span class="hljs-built_in">console</span>.log(map);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210153059720.png" srcset="/img/loading.gif" alt="image-20201210153059720" style="zoom:80%;" />
+<h2 id="map-的属性"><a class="markdownIt-Anchor" href="#map-的属性"></a> Map 的属性</h2>
+<h3 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h3>
+<h3 id="size-2"><a class="markdownIt-Anchor" href="#size-2"></a> size</h3>
+<p>字典中所包含元素的个数</p>
+<h2 id="操作方法-2"><a class="markdownIt-Anchor" href="#操作方法-2"></a> 操作方法</h2>
+<ul>
+<li><code>set(key, value)</code> ：向字典中添加元素</li>
+<li><code>get(key)</code>：通过键来查找对于的值</li>
+<li><code>has(key)</code>：判断字典中是否存在键值对</li>
+<li><code>delete(key)</code>：通过 <code>key</code> 从字典中移除对应键值对</li>
+<li><code>clear()</code>：将字典清空</li>
+</ul>
+<h2 id="遍历方法-2"><a class="markdownIt-Anchor" href="#遍历方法-2"></a> 遍历方法</h2>
+<ul>
+<li>
+<p><code>keys()</code>：将字典中的所有键以迭代器的形式返回</p>
+</li>
+<li>
+<p><code>values()</code>：将字典中的所有值以迭代器的形式返回</p>
+</li>
+<li>
+<p><code>entries()</code>：将字典中的所有键值对以迭代器的方式返回</p>
+</li>
+<li>
+<p><code>forEach()</code>：遍历字典中的所有成员</p>
+</li>
+<li>
+<p><code>for···of</code> ：遍历字典中的所有成员</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> map) &#123;
+    <span class="hljs-built_in">console</span>.log(item); <span class="hljs-comment">// item 是一个数组</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;key: &#x27;</span>, item[<span class="hljs-number">0</span>], <span class="hljs-string">&#x27;value: &#x27;</span>, item[<span class="hljs-number">1</span>]);
+&#125;</code></pre>
+<h2 id="与其他数据结构的相互转换"><a class="markdownIt-Anchor" href="#与其他数据结构的相互转换"></a> 与其他数据结构的相互转换</h2>
+<h3 id="map-转-array"><a class="markdownIt-Anchor" href="#map-转-array"></a> map 转 array</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">3</span>]])
+<span class="hljs-built_in">console</span>.log([...map])	<span class="hljs-comment">// [[1, 1], [2, 2], [3, 3]]</span></code></pre>
+<h3 id="array-转-map"><a class="markdownIt-Anchor" href="#array-转-map"></a> array 转 map</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">3</span>]])
+<span class="hljs-built_in">console</span>.log(map)	<span class="hljs-comment">// Map &#123;1 =&gt; 1, 2 =&gt; 2, 3 =&gt; 3&#125;</span></code></pre>
+<h3 id="map-转-object"><a class="markdownIt-Anchor" href="#map-转-object"></a> map 转 object</h3>
+<p>因为 <code>Object</code>的键名都为字符串，而<code>Map</code>的键名为对象，所以<strong>转换的时候会把非字符串键名转换为字符串键名</strong>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+map.set(<span class="hljs-string">&#x27;️⚽️&#x27;</span>, <span class="hljs-string">&#x27;soccer&#x27;</span>);
+map.set(<span class="hljs-string">&#x27;⚾️&#x27;</span>, <span class="hljs-string">&#x27;baseball&#x27;</span>);
+map.set(<span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string">&#x27;tennis&#x27;</span>);</code></pre>
+<h4 id="方法-1"><a class="markdownIt-Anchor" href="#方法-1"></a> 方法 1</h4>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Array</span>.from(map).reduce(<span class="hljs-function">(<span class="hljs-params">obj, [key, value]</span>) =&gt;</span> 
+	<span class="hljs-built_in">Object</span>.assign(obj, &#123; [key] : value &#125;)
+, &#123;&#125;);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210210723884.png" srcset="/img/loading.gif" alt="image-20201210210723884" style="zoom:80%;" />
+<p>首先，<code>Array.from(map)</code>，会变成这样：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210211724893.png" srcset="/img/loading.gif" alt="image-20201210211724893" style="zoom:80%;" />
+<p>然后，在 <code>reduce</code> 回调函数中每次将新的键值对加入到 <code>&#123;&#125;</code> 中。</p>
+<p>不过这种方式在数据量过大的时候，在每个迭代器中创建一个新对象（<code>Object.assign</code>）时，性能会受到影响。</p>
+<h4 id="方法-2"><a class="markdownIt-Anchor" href="#方法-2"></a> 方法 2</h4>
+<p>方法 2 优化了方法 1 中的性能影响：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Array</span>.from(map).reduce(<span class="hljs-function">(<span class="hljs-params">obj, [key, value]</span>) =&gt;</span> &#123;
+    obj[key] = value;
+    <span class="hljs-keyword">return</span> obj;
+&#125;, &#123;&#125;);</code></pre>
+<p>使用 <code>Array.from(map).reduce(fn, &#123;&#125;)</code>，可以安全的在累加器中操作 <code>object</code></p>
+<h4 id="方法-3"><a class="markdownIt-Anchor" href="#方法-3"></a> 方法 3</h4>
+<p>使用拓展运算符<code>...</code>来替换 <code>Array.from</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = [...map.entries()].reduce(<span class="hljs-function">(<span class="hljs-params">obj, [key, value]</span>) =&gt;</span> (obj[key] = value, obj), &#123;&#125;)</code></pre>
+<p><strong>经过测试，效率上：方法 3 &gt; 方法2 &gt; 方法1</strong></p>
+<h3 id="object-转-map"><a class="markdownIt-Anchor" href="#object-转-map"></a> object 转 map</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.entries(obj)) &#123;
+    map.set(key, value);
+&#125;</code></pre>
+<h3 id="map-转-json"><a class="markdownIt-Anchor" href="#map-转-json"></a> map 转 JSON</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> json = <span class="hljs-built_in">JSON</span>.stringify([...map]);
+
+<span class="hljs-comment">// [[&quot;️⚽️&quot;,&quot;soccer&quot;],[&quot;⚾️&quot;,&quot;baseball&quot;],[&quot;?&quot;,&quot;tennis&quot;]]</span>
+<span class="hljs-built_in">console</span>.log(json)</code></pre>
+<h3 id="json-转-map"><a class="markdownIt-Anchor" href="#json-转-map"></a> JSON 转 map</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> json = <span class="hljs-string">&#x27;[[&quot;️⚽️&quot;,&quot;soccer&quot;],[&quot;⚾️&quot;,&quot;baseball&quot;],[&quot;?&quot;,&quot;tennis&quot;]]&#x27;</span>;
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(<span class="hljs-built_in">JSON</span>.parse(json)); <span class="hljs-comment">//数组对象</span>
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(<span class="hljs-built_in">JSON</span>.parse(objectToMap(json))) <span class="hljs-comment">// 普通对象 &#123;&quot;a&quot;:1,&quot;b&quot;:2&#125;</span></code></pre>
+<h1 id="weakmap"><a class="markdownIt-Anchor" href="#weakmap"></a> WeakMap</h1>
+<p><code>WeakMap</code> 对象与 <code>Map</code> 对象类似，是一组键值对的集合，区别是其中的<strong>键是弱引用对象，而值可以是任意</strong></p>
+<p>与 <code>WeakSet</code> 中相同，<code>WeakMap</code> 中存在的键值对与垃圾回收机制有关，若存储在 <code>WeakMap</code> 中的键是一个对象且没有被其他变量或属性引用，那么会被垃圾回收机制回收。因此 <code>WeakMap</code> 中的 <code>key</code> 也是无法枚举的。</p>
+<h2 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h2>
+<ul>
+<li><code>has(key)</code></li>
+<li><code>get(key)</code></li>
+<li><code>set(key, value)</code></li>
+<li><code>delete(key)</code></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JS/">JS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Map/">Map</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WeakMap/">WeakMap</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Set/">Set</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WeakSet/">WeakSet</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E5%86%85%E5%AE%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS内容</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/09/JS/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9D%82%E8%AE%B0/">
+                        <span class="hidden-mobile">知识点杂记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Set、Map、和WeakSet、WeakMap&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

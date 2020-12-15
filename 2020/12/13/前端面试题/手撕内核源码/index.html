@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>5620.连续连接的二进制数字 - Ylea</title>
+  <title>手撕内核源码 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-06 15:40" pubdate>
-        2020年12月6日 下午
+      <time datetime="2020-12-13 22:16" pubdate>
+        2020年12月13日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      515 字
+      600 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -232,60 +232,79 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">5620.连续连接的二进制数字</h1>
+            <h1 style="display: none">手撕内核源码</h1>
             
             <div class="markdown-body" id="post-body">
-              <img src="https://pic.leetcode-cn.com/1607237469-ehWTvX-image.png" srcset="/img/loading.gif" alt="image.png" style="zoom:80%;" />
-<p>  第一次 JS 双百，虽然是虚假的双百 😭</p>
-<h1 id="写法1-耿直模拟"><a class="markdownIt-Anchor" href="#写法1-耿直模拟"></a> 写法1 ：耿直模拟</h1>
-<p>  使用 JS 中的进制转换函数 <code>toString</code> 和 <code>parseInt</code> 实现模拟。</p>
-<p>  <code>toString</code> 能将十进制数字转换为任意进制数字，如 <code>(5).toString(2) = 101</code></p>
-<p>  <code>parseInt</code> 能将二进制数字转换为十进制数字，如 <code>parseInt('101', 2) = 5</code></p>
-<p>  不过这种写法效率可能有点差，会超时…</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> concatenatedBinary = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;
-    <span class="hljs-keyword">let</span> sum = <span class="hljs-string">&quot;&quot;</span>;
-    
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
-        sum += (i).toString(<span class="hljs-number">2</span>); <span class="hljs-comment">// 十进制转二进制然后字符串拼接</span>
-        <span class="hljs-keyword">let</span> t = <span class="hljs-built_in">parseInt</span>(sum, <span class="hljs-number">2</span>);   <span class="hljs-comment">// 二进制字符串转十进制判断是否需要取余</span>
-        <span class="hljs-keyword">if</span> (t &gt;= mod) &#123;
-            t %= mod;
-            sum = (t).toString(<span class="hljs-number">2</span>);
-        &#125;
-    &#125;
-    
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(sum, <span class="hljs-number">2</span>);
-&#125;;</code></pre>
-<h1 id="写法2-二进制移位模拟"><a class="markdownIt-Anchor" href="#写法2-二进制移位模拟"></a> 写法2 ：二进制移位模拟</h1>
-<p>  其实，我们稍微列一下二进制就能够比较直观的找到连接的规律：</p>
-<p>  我们知道，对于二进制，<strong>每次向左移动一位就是乘上一个 <code>2</code></strong>，因此若当前要连接的数字的二进制位数是两位，我们每次移动就应该乘上一个 <code>4</code> ，三位二进制就乘上一个 <code>8</code>，移动完后末尾再加上当前的数字即可。</p>
-<img src="https://pic.leetcode-cn.com/1607238962-caJQLh-image.png" srcset="/img/loading.gif" alt="image.png" style="zoom:80%;" />
-<p>  若使用 JS ，需要使用 <code>BigInt</code> 类型，因为后面在进行移位的时候可能会过大导致算术溢出…</p>
-<p>  如： <code>28399128732189371 &lt;&lt; 1 -&gt; -670661256</code></p>
-<p>  关于 <code>BigInt</code> 的使用也很简单，普通数字后面加一个 <code>n</code> 就代表了 <code>BigInt</code> 类型，如 <code>1n</code>，或是使用构造器 <code>BigInt(1)</code>。</p>
-<p>  使用 <code>BigInt</code> 时需要注意的是 <code>bigint</code> 类型只能与 <code>bigint</code> 类型进行运算，且 <code>Math</code> 中的方法也不能应用在 <code>bigint</code> 类型上。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> concatenatedBinary = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> mod = BigInt(<span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>);  <span class="hljs-comment">// JS 需要使用大数，不然会溢出</span>
-    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0n</span>;
-    <span class="hljs-keyword">let</span> p = <span class="hljs-number">1n</span>;
-    <span class="hljs-keyword">let</span> l = <span class="hljs-number">2n</span>;
-    
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1n</span>; i &lt;= n; i++) &#123;
-        <span class="hljs-keyword">if</span> (i === l) &#123;  <span class="hljs-comment">// 若 i 为 2 的倍数，那么移位数 + 1</span>
-            p++;
-            l *= <span class="hljs-number">2n</span>;
-        &#125;
-        sum &lt;&lt;= p;  <span class="hljs-comment">// 累加的和每次移 p 位，然后再加上当前值</span>
-        sum += i;
+              <h1 id="array"><a class="markdownIt-Anchor" href="#array"></a> Array</h1>
+<h2 id="arrayprototypemap"><a class="markdownIt-Anchor" href="#arrayprototypemap"></a> Array.prototype.map</h2>
+<h3 id="map-概念"><a class="markdownIt-Anchor" href="#map-概念"></a> map 概念</h3>
+<p><code>map(callback(val, idx, arr), thisArg)</code> 方法将创建一个新数组，这个数组中的元素是原数组中的每个元素都调用 <code>callback</code> 后的结果，其中 <code>callback</code> 的三个参数分别是原数组中的元素、元素对应索引值和原数组，<code>thisArg</code> 是 <code>map</code> 函数的 <code>this</code> 指向。</p>
+<p>因此调用 <code>map</code> 函数后，原数组不会发生改变。</p>
+<p>且，调用的数组 <code>arr</code> 中的元素不一定是连续的（有的索引位置会为 <code>empty</code>），这点需要注意。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.prototype.mao) &#123;
+    <span class="hljs-built_in">Array</span>.prototype.mao = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback, thisArg</span>) </span>&#123;
+        <span class="hljs-keyword">let</span> A, T, k;
 
-        <span class="hljs-keyword">if</span> (sum &gt;= mod) &#123;
-            sum %= mod;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> == <span class="hljs-literal">null</span>) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;this is null or undefined!&quot;</span>);
         &#125;
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;this: &quot;</span>, <span class="hljs-built_in">this</span>);
+        <span class="hljs-comment">// 1. 将 O 赋值为调用 map 方法的数组.</span>
+        <span class="hljs-comment">// 使用 Object 是为了保证 o 为对象</span>
+        <span class="hljs-keyword">let</span> O = <span class="hljs-built_in">Object</span>(<span class="hljs-built_in">this</span>);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;O: &#x27;</span>, O);
+        <span class="hljs-comment">// 2. 将 len 赋值为数组 O 的长度.  </span>
+        <span class="hljs-comment">// 这边 &lt;&lt;&lt; 运算符为 零填充右移运算符，如 0101 &gt;&gt;&gt; 1 : 0010，猜测这么做是为了防止 len 为字符串</span>
+        <span class="hljs-keyword">let</span> len = O.length &gt;&gt;&gt; <span class="hljs-number">0</span>;
+
+        <span class="hljs-comment">// 3. 如果 callback 不是函数,则抛出 TypeError 异常.</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(callback) != <span class="hljs-string">&quot;[object Function]&quot;</span>) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(callback + <span class="hljs-string">&quot;is not a function!&quot;</span>);
+        &#125;
+
+        <span class="hljs-comment">// 4. 如果参数 thisArg 有值,则将 T 赋值为 thisArg; 否则T为 undefined.</span>
+        <span class="hljs-keyword">if</span> (thisArg) &#123;
+            T = thisArg;
+        &#125;
+
+        <span class="hljs-comment">// 5. 创建新数组 A,长度为原数组 O 长度 len</span>
+        A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len);
+
+        <span class="hljs-comment">// 6. 将 k 赋值为0</span>
+        k = <span class="hljs-number">0</span>;
+
+        <span class="hljs-comment">// 7. 当 k &lt; len 时,执行循环.</span>
+        <span class="hljs-keyword">while</span> (k &lt; len) &#123;
+
+            <span class="hljs-keyword">let</span> kVal, mappedVal;
+
+            <span class="hljs-comment">//遍历 O, k 为原数组索引 , 这边有个疑问，为什么不直接遍历 O，因为如果数组中的元素很松散的话 k++ 效率可能会很低</span>
+            <span class="hljs-keyword">if</span> (k <span class="hljs-keyword">in</span> O) &#123;
+
+                <span class="hljs-comment">// kVa为索引 k 对应的值.</span>
+                kVal = O[k];
+
+                <span class="hljs-comment">// 执行 callback,this 指向 T,参数有三个.分别是kVal:值, k:索引, O:原数组.</span>
+                mappedVal = callback.call(T, kVal, k, O);
+
+                <span class="hljs-comment">// 返回值添加到新数组 A 中.</span>
+                A[k] = mappedVal;
+            &#125;
+
+            k++;
+        &#125;
+
+        <span class="hljs-keyword">return</span> A;
     &#125;
-    
-    <span class="hljs-keyword">return</span> sum;
-&#125;;</code></pre>
+&#125;</code></pre>
+<p>上面代码中的 <code>1</code>：使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>  是为了保证 <code>o</code> 一定是一个对象：</p>
+<ul>
+<li>当给定值是 <code>null</code> 或 <code>undefined</code> 时，会创建并返回一个空对象</li>
+<li>若传进去的是一个基本类型的值，则会构造其包装类型的对象，如 <code>Object(3)</code> ，会返回 <code>Number &#123;3&#125;</code></li>
+<li>若传的是引用类型的值，仍会返回这个值，因此引用是相同的</li>
+</ul>
 
             </div>
             <hr>
@@ -295,11 +314,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">前端面试题</a>
                     
                   </div>
                 
@@ -307,9 +322,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%A4%A7%E6%95%B0/">大数</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%8B%9F/">模拟</a>
+                      <a class="hover-with-bg" href="/tags/%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/">内核源码</a>
                     
                   </div>
                 
@@ -322,18 +335,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/09/JS/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9D%82%E8%AE%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">知识点杂记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/">
-                        <span class="hidden-mobile">JS 数组</span>
+                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E5%86%85%E5%AE%B9/">
+                        <span class="hidden-mobile">JS内容</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -602,7 +609,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "5620.连续连接的二进制数字&nbsp;",
+        "手撕内核源码&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

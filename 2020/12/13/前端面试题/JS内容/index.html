@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.7k 字
+      3.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      47
+      49
        分钟
     </span>
   
@@ -448,6 +448,7 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
         <span class="hljs-comment">// 若没有剩余时间或因修改了系统时间导致剩余时间大于等待时间</span>
         <span class="hljs-comment">// 若非主动修改系统时间，此时会是第一次触发执行</span>
         <span class="hljs-keyword">if</span> (remain &lt;= <span class="hljs-number">0</span> || remain &gt; wait) &#123;
+            <span class="hljs-comment">// 若是调整了系统时间导致的立即执行，若前面有设置一个 timer，需要将其清除</span>
             <span class="hljs-keyword">if</span> (timer) &#123;
                 <span class="hljs-built_in">clearTimeout</span>(timer);
                 timer = <span class="hljs-literal">null</span>;
@@ -471,11 +472,8 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
 <li><code>trailing: false</code> ：表示禁用停止触发的回调</li>
 </ul>
 <pre><code class="hljs js"><span class="hljs-comment">// 当设置了 leading 为 false 时，表示禁用第一次执行，当 trailing 为 false，表示禁用停止后的回调</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle3</span>(<span class="hljs-params">fn, wait, options</span>) </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle3</span>(<span class="hljs-params">fn, wait, options=&#123;&#125;</span>) </span>&#123;
     <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>, previous = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">if</span> (!options) &#123;
-        options = &#123;&#125;;
-    &#125;
 
     <span class="hljs-keyword">let</span> later = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
         timer = <span class="hljs-literal">null</span>;
@@ -623,6 +621,28 @@ obj.show(fn);</code></pre>
 <li>然后开始下一轮的 <code>Event Loop</code>，执行宏任务中的异步代码</li>
 </ol>
 <p>  通过上面的执行步骤可知，<strong>如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中</strong>。</p>
+<h1 id="es5es6-的继承除了写法上还有什么差异"><a class="markdownIt-Anchor" href="#es5es6-的继承除了写法上还有什么差异"></a> ES5/ES6 的继承除了写法上还有什么差异</h1>
+<p>在 ES6 中，子类可以通过 <code>__proto_</code> 寻址到父类，而通过 ES5 的方式，<code>Sub.__proto__ === Function.prototype</code>。</p>
+<p><strong>ES6：</strong></p>
+<pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Super</span> </span>&#123;&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sub</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Super</span> </span>&#123;&#125;
+
+<span class="hljs-keyword">const</span> sub = <span class="hljs-keyword">new</span> Sub();
+
+<span class="hljs-built_in">console</span>.log(Sub.__proto__ === Super); <span class="hljs-comment">// true</span></code></pre>
+<p><strong>ES5：</strong></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Super</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Sub</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+
+Sub.prototype = <span class="hljs-keyword">new</span> Super();
+
+Sub.prototype.constructor = Sub;
+
+<span class="hljs-keyword">const</span> sub = <span class="hljs-keyword">new</span> Sub();
+
+<span class="hljs-built_in">console</span>.log(Sub.__proto__ === <span class="hljs-built_in">Function</span>.prototype); <span class="hljs-comment">// true</span></code></pre>
 
             </div>
             <hr>

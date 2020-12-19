@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>手撕内核源码 - Ylea</title>
+  <title>剑指 Offer 51. 数组中的逆序对 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-13 22:16" pubdate>
-        2020年12月13日 晚上
+      <time datetime="2020-12-19 15:39" pubdate>
+        2020年12月19日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      600 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      22
        分钟
     </span>
   
@@ -232,79 +232,159 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">手撕内核源码</h1>
+            <h1 style="display: none">剑指 Offer 51. 数组中的逆序对</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="array"><a class="markdownIt-Anchor" href="#array"></a> Array</h1>
-<h2 id="arrayprototypemap"><a class="markdownIt-Anchor" href="#arrayprototypemap"></a> Array.prototype.map</h2>
-<h3 id="map-概念"><a class="markdownIt-Anchor" href="#map-概念"></a> map 概念</h3>
-<p><code>map(callback(val, idx, arr), thisArg)</code> 方法将创建一个新数组，这个数组中的元素是原数组中的每个元素都调用 <code>callback</code> 后的结果，其中 <code>callback</code> 的三个参数分别是原数组中的元素、元素对应索引值和原数组，<code>thisArg</code> 是 <code>map</code> 函数的 <code>this</code> 指向。</p>
-<p>因此调用 <code>map</code> 函数后，原数组不会发生改变。</p>
-<p>且，调用的数组 <code>arr</code> 中的元素不一定是连续的（有的索引位置会为 <code>empty</code>），这点需要注意。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.prototype.mao) &#123;
-    <span class="hljs-built_in">Array</span>.prototype.mao = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback, thisArg</span>) </span>&#123;
-        <span class="hljs-keyword">let</span> A, T, k;
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/</a></p>
+<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p><strong>示例 1:</strong></p>
+<p>输入: <code>[7,5,6,4]</code></p>
+<p>输出: <code>5</code></p>
+<p><strong>限制：</strong></p>
+<p><code>0 &lt;= 数组长度 &lt;= 50000</code></p>
+<hr />
+<p>  在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<h1 id="解法1二叉搜索树"><a class="markdownIt-Anchor" href="#解法1二叉搜索树"></a> 解法1：二叉搜索树</h1>
+<p>  在一组数字中，如 <code>[7, 5, 6, 4]</code>，对于每个数字，能否组成逆序对就得看前面是否有出现过比当前数字大的数字，而这个数字的个数就是与当前数字构成的逆序对的个数。如 <code>4</code>，那么前面有 <code>3</code> 个比 <code>4</code> 大的数，因此与当前数字 <code>4</code> 组成的逆序对个数就是 <code>3</code>。</p>
+<p>  那么我们就需要一种办法来快速找到比当前数字大的出现过的数字的个数，想到效率问题，我们就可能会联想到<strong>二叉搜索树</strong>：<strong>左子树的节点值都比父节点值小，右子树的节点值都比当父节点值大</strong>。</p>
+<p>  我们一边顺序遍历数字一边建树，对于遍历到的数字 <code>x</code>，在建树的过程中，若当前比较的节点值 <code>y</code> 比 <code>x</code> 大，那么其右子树上的节点值一定都大于 <code>x</code>，因此这个节点值 <code>y</code> 和其右子树上的所有节点值都能与 <code>x</code> 组成一个逆序对，所以逆序对的数量就是：<strong>右子树节点的个数 + 1（节点 y）</strong>，不过考虑到输入的数组中会出现<strong>重复的数字</strong>，因此每个节点中还需要使用一个变量来保存当前节点值的出现次数 <code>n</code>，所以最终逆序对的个数就是：<strong>右子树节点的个数 + 当前节点的出现次数</strong>。</p>
+<p>  综上，二叉搜索树的构造为：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tree</span>(<span class="hljs-params">val</span>) </span>&#123;
+	<span class="hljs-built_in">this</span>.val = val;
+    <span class="hljs-built_in">this</span>.left = <span class="hljs-literal">null</span>;
+    <span class="hljs-built_in">this</span>.right = <span class="hljs-literal">null</span>;
+    <span class="hljs-built_in">this</span>.rightChildren = <span class="hljs-number">0</span>; <span class="hljs-comment">// 右子树的节点个数</span>
+    <span class="hljs-built_in">this</span>.n = <span class="hljs-number">1</span>;	<span class="hljs-comment">// 当前节点值的出现次数</span>
+&#125;</code></pre>
+<p>因此算法步骤就是：</p>
+<ol>
+<li>遍历输入数组，当前遍历到的值为 <code>x</code>，将 <code>x</code> 插入二叉搜索树中，二叉搜索树的根为 <code>nums[0]</code>。</li>
+<li>插入过程中会将 <code>x</code> 对树中的节点值进行比较，若当前节点的值大于 <code>x</code> ，那么将 <code>x</code> 插入其左子树中，并累计逆序对个数：<code>ans += node.rightChildren + node.n</code>。</li>
+<li>若当前节点值小于 <code>x</code>，那么将 <code>x</code> 插入其右子树中，且增加右子树节点个数：<code>node.rightChildren++</code></li>
+<li>若当前节点值等于 <code>x</code>，那么将 <code>x</code> 的出现次数加1：<code>node.n++</code>；且当前节点的右子树都能与 <code>x</code> 组成逆序对，因此 <code>ans += node.rightChildren</code>。</li>
+</ol>
+<p>用图来表示就是（下图中红色点代表当前插入的节点）：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201219162125669.png" srcset="/img/loading.gif" alt="image-20201219162125669" style="zoom:80%;" />
+<p><strong>想法很好但遇到了超时的 case</strong> 😭</p>
+<p>  因为有 <code>case</code> 是单调递增、递减的，因此二叉树退化成链表，然后插入操作时间复杂度就变成了 <code>O(n^2)</code>。</p>
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tree</span>(<span class="hljs-params">val, left, right</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.val = val;
+    <span class="hljs-built_in">this</span>.rightChildren = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">this</span>.n = <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">this</span>.left = left || <span class="hljs-literal">null</span>;
+    <span class="hljs-built_in">this</span>.right = right || <span class="hljs-literal">null</span>;
+&#125;
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> == <span class="hljs-literal">null</span>) &#123;
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;this is null or undefined!&quot;</span>);
+<span class="hljs-keyword">var</span> reversePairs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (nums.length === <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> Tree(nums[<span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">let</span> ans = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">const</span> insert = <span class="hljs-function">(<span class="hljs-params">root, val</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (val === root.val) &#123;
+            ans += root.rightChildren;
+            root.n++;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val &lt; root.val) &#123;
+            ans += root.rightChildren + root.n;
+            <span class="hljs-keyword">if</span> (!root.left) &#123;
+                root.left = <span class="hljs-keyword">new</span> Tree(val);
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                insert(root.left, val);
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            root.rightChildren++;
+            <span class="hljs-keyword">if</span> (!root.right) &#123;
+                root.right = <span class="hljs-keyword">new</span> Tree(val);
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                insert(root.right, val);
+            &#125;
+        &#125;
+    &#125;;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;
+        insert(root, nums[i]);
+    &#125;
+
+    <span class="hljs-keyword">return</span> ans;
+&#125;;</code></pre>
+<h1 id="解法二归并"><a class="markdownIt-Anchor" href="#解法二归并"></a> 解法二：归并</h1>
+<p>  归并的思想是将一个序列分为两份，如 <code>L = [8, 12, 16, 22, 100]</code>， <code>R = [9, 26, 55, 64, 91]</code>；</p>
+<p>  那么<strong>左边的部分 <code>L</code> 中的值的索引一定是小于右边部分 <code>R</code> 中的值的索引的。</strong> 因此<strong>若 <code>L</code> 中有值比 <code>R</code> 中的值大</strong>，那么一定是能组成逆序对的。</p>
+<p>  且基于归并排序，这两个序列都是有序的，因此就可以使用双指针来辅助计算逆序对个数 <code>ans</code>，我们按顺序比较 <code>L</code> 和 <code>R</code> 中的值，假设 <code>L</code> 的索引是从 <code>l</code> 到 <code>mid</code> ，<code>R</code> 的索引是从 <code>mid+1</code> 到 <code>r</code>，那么：</p>
+<ul>
+<li>初始时设置两个指针，指针 <code>i</code> 指向 <code>L</code> 中的第一个元素 <code>8</code>，<code>j</code> 指向 <code>R</code> 中的第一个元素 <code>9</code></li>
+<li>若 <code>nums[i] &gt; nums[j]</code>，那么 <code>nums[i]</code> 能与 <code>nums[mid+1] ~ nums[j]</code> 的所有数字构成逆序对（因为序列 <code>R</code> 是递增的，因此 <code>nums[j]</code> 之前的数一定会小于 <code>nums[j]</code>，也就是会小于 <code>nums[i]</code>），但此时我们先不计算逆序对个数（后面再一起计算），将 <code>j</code> 向后移一位：<code>j++</code></li>
+<li>若 <code>nums[i] &lt;= nums[j]</code>，那么这两个数无法构成逆序对，此时计算 <code>nums[i]</code> 能与 <code>R</code> 中元素组成的逆序对个数：<code>ans += j - mid - 1</code>（<code>mid + 1 ~ j - 1</code> 的元素个数），指针 <code>i</code> 向后移一位：<code>i++</code></li>
+<li>当 <code>i &gt; mid</code> 或 <code>j &gt; r</code> 时，退出循环，此时：
+<ul>
+<li>若 <code>i &lt;= mid</code>，那么说明 <code>i</code> 及 <code>i</code> 之后的数都会<strong>大于</strong> <code>nums[mid + 1] ~ nums[r]</code>（因为循环中是当 <code>nums[i] &gt; nums[j]</code> 时 <code>j</code> 才向后移一位），因此这些数字都能与 <code>R</code> 中的所有数字组成逆序对，所以能够组成的逆序对的个数是 <code>L 中剩余的元素个数 * R 中的元素个数</code>，也就是：<code>ans += (mid - i + 1) * (r - mid)</code></li>
+</ul>
+</li>
+</ul>
+<p>JS 代码为：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> reversePairs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> ans = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// 合并操作，将 [l, mid] 和 [mid+1, r] 位置的元素从小到大合并</span>
+    <span class="hljs-keyword">const</span> merge = <span class="hljs-function">(<span class="hljs-params">l, mid, r</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">let</span> res = [];
+        <span class="hljs-keyword">let</span> i = l, j = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r) &#123;
+            <span class="hljs-keyword">if</span> (nums[i] &lt;= nums[j]) &#123;
+                res.push(nums[i]);
+                i++;
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                res.push(nums[j]);
+                j++;
+            &#125;
         &#125;
 
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;this: &quot;</span>, <span class="hljs-built_in">this</span>);
-        <span class="hljs-comment">// 1. 将 O 赋值为调用 map 方法的数组.</span>
-        <span class="hljs-comment">// 使用 Object 是为了保证 o 为对象</span>
-        <span class="hljs-keyword">let</span> O = <span class="hljs-built_in">Object</span>(<span class="hljs-built_in">this</span>);
-
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;O: &#x27;</span>, O);
-        <span class="hljs-comment">// 2. 将 len 赋值为数组 O 的长度.  </span>
-        <span class="hljs-comment">// 这边 &lt;&lt;&lt; 运算符为 零填充右移运算符，如 0101 &gt;&gt;&gt; 1 : 0010，猜测这么做是为了防止 len 为字符串</span>
-        <span class="hljs-keyword">let</span> len = O.length &gt;&gt;&gt; <span class="hljs-number">0</span>;
-
-        <span class="hljs-comment">// 3. 如果 callback 不是函数,则抛出 TypeError 异常.</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(callback) != <span class="hljs-string">&quot;[object Function]&quot;</span>) &#123;
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(callback + <span class="hljs-string">&quot;is not a function!&quot;</span>);
+        <span class="hljs-keyword">while</span>(i &lt;= mid) &#123;
+            res.push(nums[i++]);
+        &#125;
+        <span class="hljs-keyword">while</span> (j &lt;= r) &#123;
+            res.push(nums[j++]);
         &#125;
 
-        <span class="hljs-comment">// 4. 如果参数 thisArg 有值,则将 T 赋值为 thisArg; 否则T为 undefined.</span>
-        <span class="hljs-keyword">if</span> (thisArg) &#123;
-            T = thisArg;
+        i = l;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> res) &#123;
+            nums[i++] = n;
         &#125;
+    &#125;;
 
-        <span class="hljs-comment">// 5. 创建新数组 A,长度为原数组 O 长度 len</span>
-        A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len);
+    <span class="hljs-keyword">const</span> mergeSort = <span class="hljs-function">(<span class="hljs-params">l, r</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (l &lt; r) &#123;
+            <span class="hljs-keyword">let</span> mid = l + <span class="hljs-built_in">Math</span>.floor((r - l) / <span class="hljs-number">2</span>);
+            mergeSort(l, mid);
+            mergeSort(mid + <span class="hljs-number">1</span>, r);
 
-        <span class="hljs-comment">// 6. 将 k 赋值为0</span>
-        k = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">let</span> i = l, j = mid + <span class="hljs-number">1</span>;
 
-        <span class="hljs-comment">// 7. 当 k &lt; len 时,执行循环.</span>
-        <span class="hljs-keyword">while</span> (k &lt; len) &#123;
-
-            <span class="hljs-keyword">let</span> kVal, mappedVal;
-
-            <span class="hljs-comment">//遍历 O, k 为原数组索引 , 这边有个疑问，为什么不直接遍历 O，因为如果数组中的元素很松散的话 k++ 效率可能会很低</span>
-            <span class="hljs-keyword">if</span> (k <span class="hljs-keyword">in</span> O) &#123;
-
-                <span class="hljs-comment">// kVa为索引 k 对应的值.</span>
-                kVal = O[k];
-
-                <span class="hljs-comment">// 执行 callback,this 指向 T,参数有三个.分别是kVal:值, k:索引, O:原数组.</span>
-                mappedVal = callback.call(T, kVal, k, O);
-
-                <span class="hljs-comment">// 返回值添加到新数组 A 中.</span>
-                A[k] = mappedVal;
+            <span class="hljs-keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r) &#123;
+                <span class="hljs-comment">// 当 nums[i] &lt;= nums[j] 时，计算 nums[i] 能与 nums[mid + 1 ~ j - 1] 组成逆序对</span>
+                <span class="hljs-keyword">if</span> (nums[i] &lt;= nums[j]) &#123;
+                    i++;
+                    ans += j - mid - <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    j++;
+                &#125;
+            &#125;
+            <span class="hljs-comment">// 若出循环后 R 已经遍历完了，那么 L 中的剩余数字都能与 R 中的数字组成逆序对</span>
+            <span class="hljs-keyword">if</span> (i &lt;= mid) &#123;
+                ans += (mid + <span class="hljs-number">1</span> - i) * (r - mid);
             &#125;
 
-            k++;
+            merge(l, mid, r);
         &#125;
+    &#125;;
 
-        <span class="hljs-keyword">return</span> A;
-    &#125;
-&#125;</code></pre>
-<p>上面代码中的 <code>1</code>：使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>  是为了保证 <code>o</code> 一定是一个对象：</p>
-<ul>
-<li>当给定值是 <code>null</code> 或 <code>undefined</code> 时，会创建并返回一个空对象</li>
-<li>若传进去的是一个基本类型的值，则会构造其包装类型的对象，如 <code>Object(3)</code> ，会返回 <code>Number &#123;3&#125;</code></li>
-<li>若传的是引用类型的值，仍会返回这个值，因此引用是相同的</li>
-</ul>
+    mergeSort(<span class="hljs-number">0</span>, nums.length<span class="hljs-number">-1</span>);
+
+    <span class="hljs-keyword">return</span> ans;
+&#125;;</code></pre>
 
             </div>
             <hr>
@@ -314,7 +394,11 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">前端面试题</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
                     
                   </div>
                 
@@ -322,7 +406,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/">内核源码</a>
+                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%88%86%E6%B2%BB/">分治</a>
                     
                   </div>
                 
@@ -335,18 +421,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/19/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E5%89%91%E6%8C%87Offer/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">剑指 Offer 51. 数组中的逆序对</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E5%86%85%E5%AE%B9/">
-                        <span class="hidden-mobile">JS内容</span>
+                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%89%8B%E6%92%95%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/">
+                        <span class="hidden-mobile">手撕内核源码</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -615,7 +695,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "手撕内核源码&nbsp;",
+        "剑指 Offer 51. 数组中的逆序对&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

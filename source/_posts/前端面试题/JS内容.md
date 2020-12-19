@@ -330,6 +330,7 @@ function throttle2(fn, wait) {
         // 若没有剩余时间或因修改了系统时间导致剩余时间大于等待时间
         // 若非主动修改系统时间，此时会是第一次触发执行
         if (remain <= 0 || remain > wait) {
+            // 若是调整了系统时间导致的立即执行，若前面有设置一个 timer，需要将其清除
             if (timer) {
                 clearTimeout(timer);
                 timer = null;
@@ -358,11 +359,8 @@ function throttle2(fn, wait) {
 
 ```js
 // 当设置了 leading 为 false 时，表示禁用第一次执行，当 trailing 为 false，表示禁用停止后的回调
-function throttle3(fn, wait, options) {
+function throttle3(fn, wait, options={}) {
     let timer = null, previous = 0;
-    if (!options) {
-        options = {};
-    }
 
     let later = function() {
         timer = null;
@@ -582,11 +580,37 @@ console.log(3);
 
 
 
+# ES5/ES6 的继承除了写法上还有什么差异
 
+在 ES6 中，子类可以通过 `__proto_` 寻址到父类，而通过 ES5 的方式，`Sub.__proto__ === Function.prototype`。
 
+**ES6：**
 
+```js
+class Super {}
 
+class Sub extends Super {}
 
+const sub = new Sub();
+
+console.log(Sub.__proto__ === Super); // true
+```
+
+**ES5：**
+
+```js
+function Super() {}
+
+function Sub() {}
+
+Sub.prototype = new Super();
+
+Sub.prototype.constructor = Sub;
+
+const sub = new Sub();
+
+console.log(Sub.__proto__ === Function.prototype); // true
+```
 
 
 

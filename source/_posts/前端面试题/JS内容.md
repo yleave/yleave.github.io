@@ -558,31 +558,76 @@ console.log(3);
 
 因此打印顺序为：`0 -> 3 -> 2 -> 1`。
 
+# 微任务和宏任务
 
+[REF1](https://www.cnblogs.com/wangziye/p/9566454.html)
+
+[REF2](https://www.jianshu.com/p/bfc3e319a96b)
+
+
+
+## Event Loop
+
+事件循环中，每一次循环称为 `tick`，每一次 `tick` 的任务如下：
+
+- 执行栈选择最先进入队列的宏任务（一般都是 `script`），执行其同步代码直至结束
+- 检查是否存在微任务，若存在，则执行微任务至微任务队列为空
+- 若为浏览器环境中，可能会渲染 UI
+- 开始下一轮 `tick`，执行宏任务中的异步代码（`setTimeout` 等回调）
+
+&emsp;&emsp;通过上面的执行步骤可知，**如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中**。
+
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221141223934.png" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221142300760.png" alt="image-20201221142300760" style="zoom:80%;" />
 
 ## 微任务和宏任务
 
-&emsp;&emsp;微任务包括 `process.nextTick`、`promise`、`Object.observe`、`MutationObserver`
+ES6 规范中，microtask(微任务) 称为 `jobs`，macrotask(宏任务) 称为 `task`
+
+**宏任务**是由宿主发起的，而**微任务**由JavaScript自身发起。
+
+|                       | 宏任务（macrotask)                                           | 微任务（microtask）                                          |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 谁发起的              | 宿主（Node、浏览器）                                         | JS 引擎                                                      |
+| 具体事件              | 1. script（外层的同步代码）                                                      2.setTimeout/setInterval                                                                                                 3.UI rendering/UI 事件                                                                                     4.postMessage，MessageChannel                                                                                      5.setImmediate，I/O （Node.js） | 1.Promise                       2.[MutaionObserver](https://javascript.ruanyifeng.com/dom/mutationobserver.html)          3.Proxy 对象                                        4.process.nextTick（Node.js） |
+| 谁先运行              | 后运行                                                       | 先运行                                                       |
+| 是否会触发新一轮 Tick | 会                                                           |                                                              |
 
 &emsp;&emsp;宏任务包括 `script`、`setTimeout`、`setInterval`、`setImmediate`、`I/O`、`UI rendering`
 
-&emsp;&emsp;并不是所有的微任务都快于宏任务，因为宏任务中包括了 `script`，浏览器会先执行一个宏任务，接下来有异步代码的话再执行微任务。
+&emsp;&emsp;微任务包括 `process.nextTick`、`promise`、`Object.observe`、`MutationObserver` 
 
-&emsp;&emsp;所以一次正确的 `Event Loop` 是这样的：
 
-1. 执行同步代码，这属于宏任务
-2. 执行栈为空，查询是否有微任务需要执行
-3. 执行所有的微任务
-4. 必要的话渲染 UI
-5. 然后开始下一轮的 `Event Loop`，执行宏任务中的异步代码
 
-&emsp;&emsp;通过上面的执行步骤可知，**如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中**。
+而 `async、await` 相当于是对 `Promise` 的封装，因此执行顺序和 `Promise` 相似：
+
+```js
+async function async1() {
+  await async2()
+  console.log('async1 end')
+}
+async function async2() {
+  console.log('async2 end')
+}
+async1()
+// 使用 Promise 的写法
+new Promise((resolve, reject) => {
+  console.log('async2 end')
+  resolve()
+}).then(() => {
+ // 执行async1()函数await之后的语句
+  console.log('async1 end')
+})
+```
+
+
+
+
 
 
 
 # ES5/ES6 的继承除了写法上还有什么差异
 
-在 ES6 中，子类可以通过 `__proto_` 寻址到父类，而通过 ES5 的方式，`Sub.__proto__ === Function.prototype`。
+在 ES6 中，子类可以通过 `__proto__` 寻址到父类，而通过 ES5 的方式，`Sub.__proto__ === Function.prototype`。
 
 **ES6：**
 

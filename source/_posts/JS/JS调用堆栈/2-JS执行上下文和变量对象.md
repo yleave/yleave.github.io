@@ -84,7 +84,7 @@ foo();  // foo1
 
 &emsp;&emsp;JS 使用了执行上下文栈（Execution context stack，ESC）来管理执行上下文。
 
-&emsp;&emsp;这个在 `1-JS执行上下文和执行栈` 中就有提到
+&emsp;&emsp;这个在 [1-JS执行上下文和执行栈](https://yleave.top/2020/12/29/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/1.JS-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88/) 中就有提到
 
 
 

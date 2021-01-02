@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.8k 字
+      4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      49
+      52
        分钟
     </span>
   
@@ -608,21 +608,74 @@ obj.show(fn);</code></pre>
 <p>  首先，对于 <code>setTimeout</code> 任务来说，它会被排到执行队列的尾部，同步任务执行完后立即执行这个任务；</p>
 <p>  而 <code>promise</code> 一旦建立，其中的任务就会立即执行，因此会<strong>先输出 <code>0</code></strong>，然后是最外层的 <code>console.log(3)</code> 为同步任务，会按顺序执行，因此<strong>第二个输出 <code>3</code></strong>，然后再执行 <code>promise.then</code> ，即打印 <code>2</code>。</p>
 <p>因此打印顺序为：<code>0 -&gt; 3 -&gt; 2 -&gt; 1</code>。</p>
-<h2 id="微任务和宏任务"><a class="markdownIt-Anchor" href="#微任务和宏任务"></a> 微任务和宏任务</h2>
-<p>  微任务包括 <code>process.nextTick</code>、<code>promise</code>、<code>Object.observe</code>、<code>MutationObserver</code></p>
-<p>  宏任务包括 <code>script</code>、<code>setTimeout</code>、<code>setInterval</code>、<code>setImmediate</code>、<code>I/O</code>、<code>UI rendering</code></p>
-<p>  并不是所有的微任务都快于宏任务，因为宏任务中包括了 <code>script</code>，浏览器会先执行一个宏任务，接下来有异步代码的话再执行微任务。</p>
-<p>  所以一次正确的 <code>Event Loop</code> 是这样的：</p>
-<ol>
-<li>执行同步代码，这属于宏任务</li>
-<li>执行栈为空，查询是否有微任务需要执行</li>
-<li>执行所有的微任务</li>
-<li>必要的话渲染 UI</li>
-<li>然后开始下一轮的 <code>Event Loop</code>，执行宏任务中的异步代码</li>
-</ol>
+<h1 id="微任务和宏任务"><a class="markdownIt-Anchor" href="#微任务和宏任务"></a> 微任务和宏任务</h1>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangziye/p/9566454.html">REF1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bfc3e319a96b">REF2</a></p>
+<h2 id="event-loop"><a class="markdownIt-Anchor" href="#event-loop"></a> Event Loop</h2>
+<p>事件循环中，每一次循环称为 <code>tick</code>，每一次 <code>tick</code> 的任务如下：</p>
+<ul>
+<li>执行栈选择最先进入队列的宏任务（一般都是 <code>script</code>），执行其同步代码直至结束</li>
+<li>检查是否存在微任务，若存在，则执行微任务至微任务队列为空</li>
+<li>若为浏览器环境中，可能会渲染 UI</li>
+<li>开始下一轮 <code>tick</code>，执行宏任务中的异步代码（<code>setTimeout</code> 等回调）</li>
+</ul>
 <p>  通过上面的执行步骤可知，<strong>如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221141223934.png" srcset="/img/loading.gif" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221142300760.png" srcset="/img/loading.gif" alt="image-20201221142300760" style="zoom:80%;" /></p>
+<h2 id="微任务和宏任务-2"><a class="markdownIt-Anchor" href="#微任务和宏任务-2"></a> 微任务和宏任务</h2>
+<p>ES6 规范中，microtask(微任务) 称为 <code>jobs</code>，macrotask(宏任务) 称为 <code>task</code></p>
+<p><strong>宏任务</strong>是由宿主发起的，而<strong>微任务</strong>由JavaScript自身发起。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>宏任务（macrotask)</th>
+<th>微任务（microtask）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>谁发起的</td>
+<td>宿主（Node、浏览器）</td>
+<td>JS 引擎</td>
+</tr>
+<tr>
+<td>具体事件</td>
+<td>1. script（外层的同步代码）                                                      2.setTimeout/setInterval                                                                                                 3.UI rendering/UI 事件                                                                                     4.postMessage，MessageChannel                                                                                      5.setImmediate，I/O （Node.js）</td>
+<td>1.Promise                       2.<a target="_blank" rel="noopener" href="https://javascript.ruanyifeng.com/dom/mutationobserver.html">MutaionObserver</a>          3.Proxy 对象                                        4.process.nextTick（Node.js）</td>
+</tr>
+<tr>
+<td>谁先运行</td>
+<td>后运行</td>
+<td>先运行</td>
+</tr>
+<tr>
+<td>是否会触发新一轮 Tick</td>
+<td>会</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>  宏任务包括 <code>script</code>、<code>setTimeout</code>、<code>setInterval</code>、<code>setImmediate</code>、<code>I/O</code>、<code>UI rendering</code></p>
+<p>  微任务包括 <code>process.nextTick</code>、<code>promise</code>、<code>Object.observe</code>、<code>MutationObserver</code></p>
+<p>而 <code>async、await</code> 相当于是对 <code>Promise</code> 的封装，因此执行顺序和 <code>Promise</code> 相似：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">await</span> async2()
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>)
+&#125;
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async2 end&#x27;</span>)
+&#125;
+async1()
+<span class="hljs-comment">// 使用 Promise 的写法</span>
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async2 end&#x27;</span>)
+  resolve()
+&#125;).then(<span class="hljs-function">() =&gt;</span> &#123;
+ <span class="hljs-comment">// 执行async1()函数await之后的语句</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>)
+&#125;)</code></pre>
 <h1 id="es5es6-的继承除了写法上还有什么差异"><a class="markdownIt-Anchor" href="#es5es6-的继承除了写法上还有什么差异"></a> ES5/ES6 的继承除了写法上还有什么差异</h1>
-<p>在 ES6 中，子类可以通过 <code>__proto_</code> 寻址到父类，而通过 ES5 的方式，<code>Sub.__proto__ === Function.prototype</code>。</p>
+<p>在 ES6 中，子类可以通过 <code>__proto__</code> 寻址到父类，而通过 ES5 的方式，<code>Sub.__proto__ === Function.prototype</code>。</p>
 <p><strong>ES6：</strong></p>
 <pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Super</span> </span>&#123;&#125;
 

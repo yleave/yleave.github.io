@@ -222,6 +222,190 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/01/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/2-JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="2.JS执行上下文和变量对象">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2021/01/01/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/2-JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">2.JS执行上下文和变量对象</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/01/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/2-JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">
+          
+          
+            
+          
+            JS 是单线程语言，因此执行顺序是顺序执行，不过 JS 引擎在执行 JS 代码的时候并不是逐行执行，而是一段一段地分析执行，先是编译阶段，然后才是执行阶段。
+  具体的体现可看例子：
+例一  变量提升
+  我们在未定义 foo 之前就使用了它，结果不会报错，而是会为 undefined，随后， foo 会像我们定义的那样先是输出 foo1 ，后输出 foo2。
+console.log(foo)
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-01 20:40" pubdate>
+              2021-01-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JS/">JS</a>
+            
+              <a href="/categories/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/">JS调用堆栈</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">执行上下文</a>
+            
+              <a href="/tags/%E6%89%A7%E8%A1%8C%E6%A0%88/">执行栈</a>
+            
+              <a href="/tags/%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/">变量对象</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/12/29/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/1.JS-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="1.JS 执行上下文和执行栈">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/12/29/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/1.JS-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88/">1.JS 执行上下文和执行栈</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/29/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/1.JS-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88/">
+          
+          
+            
+          
+            执行上下文就是当前 JS 代码被解析和执行时所在的环境的抽象概念，JS 中运行的代码都是在执行上下文中进行的。
+ 执行上下文的类型
+ 全局执行上下文
+  默认的执行上下文，一个程序中只有一个全局执行上下文。不在任何函数中的代码都位于全局执行上下文中。它会：1. 创建一个全局对象，浏览器中这个全局对象就是 window 对象；2. 将 this 指向这个全局对象。
+ 函数执行上下文
+  每个函数
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-29 15:52" pubdate>
+              2020-12-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JS/">JS</a>
+            
+              <a href="/categories/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/">JS调用堆栈</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">执行上下文</a>
+            
+              <a href="/tags/%E6%89%A7%E8%A1%8C%E6%A0%88/">执行栈</a>
+            
+              <a href="/tags/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">变量提升</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/12/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E7%8E%AF%E5%A2%83/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/v8.jpg" srcset="/img/loading.gif" alt="运行环境">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/12/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E7%8E%AF%E5%A2%83/">运行环境</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/20/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E7%8E%AF%E5%A2%83/">
+          
+          
+            
+          
+           V8 执行 JS 大致流程
+  编程语言有两种类别：静态类型和动态类型。
+  静态类型语言如 C++、GO 等，需要提前编译（AOT）成机器码然后执行，这个过程主要使用编译器来完成。
+  动态类型语言如 JS、Python 等，只在运行时进行编译执行（JIT），这个过程通过解释器来完成。
+  而 V8 采用了混合编译执行和解释执行的方式，我们称为 JIT（Just-In-Time-Compila
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-20 11:39" pubdate>
+              2020-12-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">前端面试题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/V8/">V8</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/12/19/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E5%89%91%E6%8C%87Offer/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/" target="_self">
           <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/offer.jpg" srcset="/img/loading.gif" alt="剑指 Offer 51. 数组中的逆序对">
         </a>
@@ -586,187 +770,6 @@ ES5 引入了 bind 方法来设置函数的 this 的值，ES2015 引入了箭头
               <a href="/tags/%E5%A4%A7%E6%95%B0/">大数</a>
             
               <a href="/tags/%E6%A8%A1%E6%8B%9F/">模拟</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="JS 数组">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/">JS 数组</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/27/JS/JS-%E6%95%B0%E7%BB%84/">
-          
-          
-            
-          
-           数组
- 获取数组中的最大、最小值
-let arr = [3, 5, 1, 7, 4];
-console.log(Math.max(...arr)); // 7
-console.log(Math.min(...arr)); // 1
- 创建多维数组
-  以创建 5x5 的二维数组为例：
-let arr = new Array(5).fill(0).map(_ =&gt; new Array(5).
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-27 16:16" pubdate>
-              2020-11-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JS/">JS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JS-Array/">JS Array</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/27/JS/JS-%E5%87%BD%E6%95%B0/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="JS 函数">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/11/27/JS/JS-%E5%87%BD%E6%95%B0/">JS 函数</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/27/JS/JS-%E5%87%BD%E6%95%B0/">
-          
-          
-            
-          
-           函数
- 函数也是对象
-function bark() &#123;
-  console.log(&#x27;Woof!&#x27;);
-&#125;
-
-bark.animal = &#x27;dog&#x27;;
-  上面的代码在 JS 中是可行的，因为函数也是对象（除了基本类型之外其他都是对象）。
- 构造器函数
-  在 JS 中，结合 new 前缀来调用的函数被称为构造器函数，构造器函数按约定
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-27 16:16" pubdate>
-              2020-11-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JS/">JS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JS-Function/">JS Function</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="JS 对象">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/">JS 对象</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/">
-          
-          
-            
-          
-           对象
- JS 中，对象的 key 都会被转为 string 类型。
-  如：
-const obj = &#123; 1: &#x27;a&#x27;, 2: &#x27;b&#x27;, 3: &#x27;c&#x27; &#125;;
-obj.hasOwnProperty(&#x27;1&#x27;);  // true
-obj.hasOwnProperty(1);  // true
-  再如
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-27 16:16" pubdate>
-              2020-11-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JS/">JS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JS-Object/">JS Object</a>
             
           </div>
         

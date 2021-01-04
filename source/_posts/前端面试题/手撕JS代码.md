@@ -22,20 +22,18 @@ tags:
 且，调用的数组 `arr` 中的元素不一定是连续的（有的索引位置会为 `empty`），这点需要注意。
 
 ```js
-if (!Array.prototype.mao) {
-    Array.prototype.mao = function(callback, thisArg) {
+if (!Array.prototype.map) {
+    Array.prototype.map = function(callback, thisArg) {
         let A, T, k;
 
         if (this == null) {
             throw new TypeError("this is null or undefined!");
         }
 
-        console.log("this: ", this);
         // 1. 将 O 赋值为调用 map 方法的数组.
         // 使用 Object 是为了保证 o 为对象
         let O = Object(this);
 
-        console.log('O: ', O);
         // 2. 将 len 赋值为数组 O 的长度.  
         // 这边 <<< 运算符为 零填充右移运算符，如 0101 >>> 1 : 0010，猜测这么做是为了防止 len 为字符串
         let len = O.length >>> 0;

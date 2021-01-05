@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>LeetCode 399.除法求值</title>
+    <link href="/2021/01/05/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"/>
+    <url>/2021/01/05/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/evaluate-division/">https://leetcode-cn.com/problems/evaluate-division/</a></p><hr /><p>  给出方程式 <code>A / B = k</code>, 其中 <code>A</code> 和 <code>B</code> 均为用字符串表示的变量， <code>k</code> 是一个浮点型数字。根据已知方程式求解问题，并返回计算结果。如果结果不存在，则返回 <code>-1.0</code>。</p><p>  输入总是有效的。你可以假设除法运算中不会出现除数为 <code>0</code> 的情况，且不存在任何矛盾的结果。</p><p><strong>示例 1：</strong></p><p>输入：<code>equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;]], values = [2.0,3.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;b&quot;,&quot;a&quot;],[&quot;a&quot;,&quot;e&quot;],[&quot;a&quot;,&quot;a&quot;],[&quot;x&quot;,&quot;x&quot;]]</code></p><p>输出：<code>[6.00000,0.50000,-1.00000,1.00000,-1.00000]</code></p><p><strong>解释：</strong></p><p>给定：<code>a / b = 2.0, b / c = 3.0</code></p><p>问题：<code>a / c = ?</code>, <code>b / a = ?</code>, <code>a / e = ?</code>, <code>a / a = ?</code>, <code>x / x = ?</code></p><p>返回：<code>[6.0, 0.5, -1.0, 1.0, -1.0 ]</code></p><p><strong>示例 2：</strong></p><p>输入：<code>equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;],[&quot;bc&quot;,&quot;cd&quot;]], values = [1.5,2.5,5.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;c&quot;,&quot;b&quot;],[&quot;bc&quot;,&quot;cd&quot;],[&quot;cd&quot;,&quot;bc&quot;]]</code></p><p>输出：<code>[3.75000,0.40000,5.00000,0.20000]</code></p><hr /><p>  开始，刚看完题目后，直觉就是需要找到每个变量之间的关系，然后计算出各个变量的值，最后根据 <code>queries</code> 来求值（暴力想法）。</p><p>  比如 <strong>示例1</strong> 中，<code>a / b = 2.0</code>，<code>b / c = 3.0</code>，这样我们可以利用这个关系找到同时满足这两个等式的解。首先我们处理 <code>a / b = 2.0</code>，由于 <code>a</code> 和 <code>b</code> 都是第一次遇到，因此为了方便计算，设 <code>b = 1.0</code>，那么 <code>a = 2.0</code>，然后再处理 <code>b / c = 3.0</code>，此时 <code>b</code> 我们已经设置了值 <code>1.0</code>，因此 <code>c = 1.0 / 3.0</code>。</p><p>  然后我们就能愉快的计算结果了。</p><p>  <strong>但是</strong>，这种处理方法只能计算那些比较简单的 <code>case</code>，有些复杂的情况，如 <code>[[&quot;a&quot;,&quot;b&quot;],[&quot;e&quot;,&quot;f&quot;],[&quot;b&quot;,&quot;e&quot;]]</code>，这种情况下，我们的 <code>b</code> 和 <code>e</code> 即要满足等式 <code>a / b = x</code> 也需要满足 <code>b / e = y</code>，这样就得综合这两个等式来求得结果，处理起来太麻烦了。因此 <code>pass</code>！</p><h1 id="解法1邻接表-dfs"><a class="markdownIt-Anchor" href="#解法1邻接表-dfs"></a> 解法1：邻接表 + dfs</h1><p>  其实我们再仔细观察，可以发现：<strong>对于 <code>queries</code> 中能得到结果的等式，它的除号两边的变量都能直接找到关联或能通过一些中间变量来找到关联</strong>，这样我们可以使用一种数据结构来保存这种关联，那就是 <strong>图</strong>！</p><p>  对 <strong>示例1</strong>，我们创建一张图来观察，我们使用边权来表示这两个数的商，如 <code>a / b = 2.0</code> ，<code>b / a = 1 / 2.0</code></p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210105165911118.png" alt="image-20210105165911118" style="zoom:80%;" /><p>  这样，我们要求图上任意两点的商，我们只需要乘上这两点之间的路径权值即可，如 <code>a / c = a-&gt;b-&gt;c = 2.0 * 3.0</code></p><p>  图常用的存储结构有两种，邻接矩阵和邻接表，这里我选择使用<strong>邻接表</strong>。</p><p>  不过好久没写图算法了，邻接表的定义方式有些模糊，依靠对邻接表的回忆使用了一个 <code>map + array</code> 来完成邻接表的创建。</p><p>  即使用 <code>map</code> 作为顶点表存储所有顶点，对一个顶点，使用一个数组 <code>array</code> 来存储与其相连的所有边。</p><p>  因此对于 <strong>示例1</strong>，存储的邻接表就是这样的：</p><pre><code class="hljs js"><span class="hljs-built_in">Map</span>(<span class="hljs-number">3</span>) &#123;  <span class="hljs-string">&#x27;a&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">2</span> ] ],  <span class="hljs-string">&#x27;b&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">0.5</span> ], [ <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">3</span> ] ],  <span class="hljs-string">&#x27;c&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">0.3333333333333333</span> ] ]&#125;</code></pre><p>  创建完邻接表后，遍历 <code>queries</code> 数组，若这两个变量均为邻接表中的顶点，我们就对其使用深度优先遍历计算它们的路径积，否则填入 <code>-1.0</code>：</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> calcEquation = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">equations, values, queries</span>) </span>&#123;    <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(), res = [];    <span class="hljs-keyword">let</span> visit = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();  <span class="hljs-comment">// visit 数组标记在搜索过程中是否访问过</span>    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">src, dst</span>) =&gt;</span> &#123;        <span class="hljs-comment">// 若可达，且找到了目的节点，返回 1.0 表示成功到达</span>        <span class="hljs-keyword">if</span> (src === dst) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;        &#125;        <span class="hljs-keyword">let</span> adjs = map.get(src);        <span class="hljs-comment">// 遍历 src 的所有边，若未访问过，则对其调用 dfs 获取路径积</span>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; adjs.length; ++i) &#123;            <span class="hljs-keyword">let</span> next = adjs[i];            <span class="hljs-keyword">if</span> (!visit.get(next[<span class="hljs-number">0</span>])) &#123;                visit.set(next[<span class="hljs-number">0</span>], <span class="hljs-literal">true</span>);                <span class="hljs-keyword">let</span> ret = dfs(next[<span class="hljs-number">0</span>], dst);                visit.set(next[<span class="hljs-number">0</span>], <span class="hljs-literal">false</span>);                <span class="hljs-comment">// 若可达 dst，则返回当前边权与后续的边权积 ret 的乘积</span>                <span class="hljs-keyword">if</span> (ret !== <span class="hljs-number">-1.0</span>) &#123;                    <span class="hljs-keyword">return</span> next[<span class="hljs-number">1</span>] * ret;                &#125;            &#125;        &#125;        <span class="hljs-comment">// 否则，不可达，返回 -1.0</span>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1.0</span>;    &#125;;    <span class="hljs-comment">// 创建邻接表</span>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; equations.length; ++i) &#123;        <span class="hljs-keyword">let</span> e = equations[i], v = values[i];        <span class="hljs-keyword">if</span> (!map.has(e[<span class="hljs-number">0</span>])) &#123;            map.set(e[<span class="hljs-number">0</span>], []);            visit.set(e[<span class="hljs-number">0</span>], <span class="hljs-literal">false</span>);        &#125;        <span class="hljs-keyword">if</span> (!map.has(e[<span class="hljs-number">1</span>])) &#123;            map.set(e[<span class="hljs-number">1</span>], []);            visit.set(e[<span class="hljs-number">1</span>], <span class="hljs-literal">false</span>);        &#125;        <span class="hljs-keyword">let</span> adj1 = map.get(e[<span class="hljs-number">0</span>]);        <span class="hljs-keyword">let</span> adj2 = map.get(e[<span class="hljs-number">1</span>]);        adj1.push([e[<span class="hljs-number">1</span>], v]);        adj2.push([e[<span class="hljs-number">0</span>], <span class="hljs-number">1</span> / v]);    &#125;    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> q <span class="hljs-keyword">of</span> queries) &#123;        <span class="hljs-keyword">let</span> n0 = q[<span class="hljs-number">0</span>], n1 = q[<span class="hljs-number">1</span>];        <span class="hljs-keyword">if</span> (map.has(n0) &amp;&amp; map.has(n1)) &#123;            visit.set(n0, <span class="hljs-literal">true</span>);            res.push(dfs(n0, n1));            visit.set(n0, <span class="hljs-literal">false</span>);        &#125; <span class="hljs-keyword">else</span> &#123;            res.push(<span class="hljs-number">-1.0</span>);        &#125;    &#125;    <span class="hljs-keyword">return</span> res;    &#125;;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+      <category>解答</category>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>二叉树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode 279. 完全平方数</title>
     <link href="/2021/01/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
     <url>/2021/01/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0/</url>
@@ -476,9 +505,9 @@
       
       <tag>Morris</tag>
       
-      <tag>后序遍历</tag>
-      
       <tag>前序遍历</tag>
+      
+      <tag>后序遍历</tag>
       
     </tags>
     

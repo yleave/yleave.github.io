@@ -126,11 +126,15 @@ function checkScope() {
 console.log(checkScope()());
 ```
 
+&emsp;&emsp;这两段代码的输出都为  <font color="white">local scope</font>。(选中看答案)
 
+&emsp;&emsp;原因很简单，是因为 JS 采用的是词法作用域，函数的作用域基于函数创建的位置。
 
-&emsp;&emsp;**这两段代码的输出都为 `local scope`。**
+&emsp;&emsp;用 《JS 权威指南》的回答就是：
 
-
+> JS 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。
+>
+> 嵌套的函数 `f()` 定义在这个作用域链里，其中的变量 `scope` 一定是局部变量，不管何时何地执行函数 `f()` 这种绑定在执行 `f()` 时依然有效。
 
 &emsp;&emsp;**而这两段代码的不同之处在于其执行上下栈的变化不一样：**
 
@@ -152,15 +156,11 @@ ECStack.push(<f> functionContext);
 ECStack.pop();
 ```
 
-
-
-&emsp;&emsp;不过为什么这两段代码的执行结果是一样的呢？这就要说到 JS 的具体执行过程了。
-
 # 函数上下文
 
 ## 变量对象
 
-&emsp;&emsp;**变量对象（variable object，VO）**是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。
+&emsp;&emsp;**变量对象(variable object，VO)**是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。
 
 
 
@@ -173,7 +173,7 @@ ECStack.pop();
 
 &emsp;&emsp;在调用函数时，会为其创建一个 `Arguments` 对象，并自动初始化剧本变量 `arugments`，指代 `Arguments` 对象。这个对象中存储了所有传入函数的参数。
 
-
+&emsp;&emsp;因此 **AO = VO + function parameters + arguments**
 
 # 执行过程
 
@@ -250,6 +250,15 @@ AO = {
     d: reference to FunctionExpression "d"
 }
 ```
+
+
+
+## 小结
+
+1. 全局上下文的变量对象初始化是全局对象
+2. 函数上下文的变量对象初始化只包括 `Arguments` 对象
+3. 在进入执行上下文时会给变量对象添加形参、函数声明、变量声明等初始的属性值
+4. 在代码执行阶段，会再次修改变量对象的属性值
 
 
 

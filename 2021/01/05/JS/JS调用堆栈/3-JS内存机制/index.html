@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>3.JS内存机制 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/70.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-05 19:10" pubdate>
+        2021年1月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">3.JS内存机制</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>  JS 内存空间分为 <strong>栈</strong>、<strong>堆</strong>、<strong>池（一般归类为栈中）</strong>。其中<strong>栈</strong>存放变量，<strong>堆</strong>存放复杂对象，<strong>池存放常量</strong>，因此也叫常量池。</p>
+<h1 id="变量的存放"><a class="markdownIt-Anchor" href="#变量的存放"></a> 变量的存放</h1>
+<p>  JS 使用了传统的<strong>堆栈</strong>来保存变量：</p>
+<ul>
+<li><strong>基本类型</strong>：保存在<strong>栈</strong>内存中，这些类型在内存中有<strong>固定的大小</strong>，通过按值来访问。基本数据类型一共有 6 种：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code>（ES6）</li>
+<li><strong>引用类型</strong>：保存在<strong>堆</strong>内存中，因为其<strong>大小不固定</strong>，因此不能将它们保存在栈中，但其保存的位置的地址大小是固定，因此其<strong>访问地址保存在栈中</strong>。当查询引用类型时，先从栈中读取内存地址，然后再通过这个内存地址找到堆中的值。这种访问方式我们称为<strong>按引用访问</strong>。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/2019-07-24-060214.png" srcset="/img/loading.gif" alt="img" style="zoom:80%;" />
+<p>  在计算机中，栈的运算效率比堆高，而 <code>Object</code> 是一种复杂的结构且可以拓展：数组可扩充、对象属性可添加，可增删改。为了不影响栈的效率，因此将它放到堆中并以引用的方式查找到堆中的实际对象再进行操作。</p>
+<p>  所以查找引用类型值的时候回先去栈中查找再去堆中查找。</p>
+<p><mark>鼠标选中查看答案</mark></p>
+<p><strong>问题1</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> a = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;前端开发&#x27;</span> &#125;
+<span class="hljs-keyword">var</span> b = a;
+b.name = <span class="hljs-string">&#x27;进阶&#x27;</span>;
+
+<span class="hljs-comment">// 这时a.name的值是多少</span></code></pre>
+<p>  答： <code>a.name</code> 的值是：<font color="white"> 进阶 </font>。</p>
+<p>  问题中 <code>a</code> 是引用类型，它在栈中保存了一个对象的地址，<code>b</code> 对 <code>a</code> 进行复制的时候，复制的就是这个对象的地址，所以它们指向的对象是同一个对象，因此 <code>b</code> 的修改也会反映到 <code>a</code> 中。</p>
+<p><strong>问题2</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> a = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;前端开发&#x27;</span> &#125;
+<span class="hljs-keyword">var</span> b = a;
+a = <span class="hljs-literal">null</span>;
+
+<span class="hljs-comment">// 这时b的值是多少</span></code></pre>
+<p>  答：<code>b</code> 的值是：<font color="white"> {name: ‘前端开发’} </font> 。</p>
+<p>  同样的，<code>b</code> 对 <code>a</code> 的复制只是复制了指向堆中的对象的内存地址。然后 <code>a</code> 被修改为 <code>null</code>，也就是把 <code>a</code> 存储在栈中的内存地址变成了基本类型 <code>null</code>，并不影响 <code>b</code> 和堆内存中的对象，因此 <code>b</code> 还是该对象。</p>
+<p><strong>问题3</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> a = &#123;<span class="hljs-attr">n</span>: <span class="hljs-number">1</span>&#125;;
+<span class="hljs-keyword">var</span> b = a;
+a.x = a = &#123;<span class="hljs-attr">n</span>: <span class="hljs-number">2</span>&#125;;
+
+a.x 	<span class="hljs-comment">// 这时 a.x 的值是多少</span>
+b.x 	<span class="hljs-comment">// 这时 b.x 的值是多少</span></code></pre>
+<p>  答：<code>a.x =</code> <font color="white">undefined</font>，<code>b.x =</code> <font color="white">{n : 2}</font> （鼠标选中空白处查看答案）</p>
+<p>  这道题的关键在于：</p>
+<ol>
+<li>运算符的优先级：<code>.</code> 运算符的优先级高于 <code>=</code>，因此先执行 <code>a.x</code>，堆中内存的 <code>&#123;n: 1&#125;</code> 就变成了 <code>&#123;n: 1，x: undefined&#125;</code>，<code>b</code> 和 <code>a</code> 的指向是相同的，因此 <code>b.x</code> 也发生了变化。</li>
+<li>运算符的结合性：<strong>赋值操作</strong>的结合性是<strong>从右到左</strong>的，因此会先执行 <code>a = &#123;n: 2&#125;</code>，<code>a</code> 的引用就被改变了，但是在这一步中 <code>a.x</code> 还是第一步中的 <code>&#123;n: 1, x: undefined&#125;</code> 对象，也就相当于 <code>b.x</code>，因此就是 <code>b.x = &#123;n: 2&#125;</code>。</li>
+</ol>
+<p>  <strong>但是</strong>，<strong>闭包</strong>中的变量并不保存在栈内存中，而是<strong>保存在堆中</strong>，这也就解释了为什么函数使用完后闭包还能引用到函数内的变量。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">B</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-built_in">console</span>.log(a)
+    &#125;
+    <span class="hljs-keyword">return</span> B
+&#125;</code></pre>
+<p>  上面代码中，函数 <code>B</code> 就被称为闭包。</p>
+<p>  函数 A 弹出调用栈后，函数 A 中的变量是存储在堆上的，因此函数 B 依旧能够引用到函数 A 中你的变量。JS 引擎可以通过逃逸分析辨别出哪些变量需要存储在堆上，哪些变量需要存储在栈中。</p>
+<p><strong>问题4</strong> ：从内存来看， <code>null</code> 和 <code>undefined</code> 的区别是什么？</p>
+<p>  答：给一个<strong>全局变量</strong>赋值为 <code>null</code>，相当于将这个变量的指针对象及值清空；如果是给<strong>对象的属性</strong>或<strong>局部变量</strong>赋值为 <code>null</code>，相当于给这个属性分配了一块空的内存，然后值为 <code>null</code>，JS 会回收全局变量为 <code>null</code> 的对象。</p>
+<p>  给一个全局变量赋值为 <code>undefined</code> ，相当于将这个对象的值清空，但是这个对象依然存在；如果是给对象的属性赋值为 <code>undefined</code>，说明这个值为空值。</p>
+<h1 id="内存回收"><a class="markdownIt-Anchor" href="#内存回收"></a> 内存回收</h1>
+<p>  JS 有自动垃圾回收机制，垃圾收集器每隔一段时间就执行一次，找出那些不再继续使用的值，然后释放其占用的内存。</p>
+<ul>
+<li>局部变量和全局变量的回收
+<ul>
+<li><strong>局部变量</strong>：局部作用域中，当函数执行完毕，局部变量也就没有存在的必要了，因此垃圾收集器很容易做出判断并回收</li>
+<li><strong>全局变量</strong>：全局变量什么时候需要自动释放内存空间很难判断，因此在开发中尽量避免使用全局变量。</li>
+</ul>
+</li>
+<li>以 V8 为例，V8 中所有的 JS 对象都是通过<strong>堆</strong>来分配内存的：
+<ul>
+<li><strong>初始分配</strong>：当变量声明并赋值时，V8 就会在堆中给这个遍历分配内存。</li>
+<li><strong>继续申请</strong>：当已申请的内存不足以存储这个变量时，V8 就会继续申请内存，直到堆的大小达到了 V8 内存上限为止。</li>
+</ul>
+</li>
+<li>V8 对堆内存中的对象进行<strong>分代</strong>管理
+<ul>
+<li><strong>新生代</strong>：存活周期较短的 JS 对象，如临时变量、字符串等。</li>
+<li><strong>老生代</strong>：经过多次垃圾回收仍存活、存活周期较长的对象，如主控制器、服务器对象等。</li>
+</ul>
+</li>
+</ul>
+<h1 id="垃圾回收算法"><a class="markdownIt-Anchor" href="#垃圾回收算法"></a> 垃圾回收算法</h1>
+<p>  常用的垃圾回收算法有两种：</p>
+<ol>
+<li><strong>引用计数</strong>（现代浏览器已不再使用）</li>
+<li><strong>标记清除</strong>（常用）</li>
+</ol>
+<h2 id="引用计数"><a class="markdownIt-Anchor" href="#引用计数"></a> 引用计数</h2>
+<p>  引用计数的内存使用判断标准很简单，就是看一个对象是否有指向它的引用，若没有其他对象指向它，说明这个对象不会再被使用到了。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 创建一个对象person，他有两个指向属性age和name的引用</span>
+<span class="hljs-keyword">var</span> person = &#123;
+    age: <span class="hljs-number">12</span>,
+    name: <span class="hljs-string">&#x27;aaaa&#x27;</span>
+&#125;;
+
+person.name = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 虽然name设置为null，但因为person对象还有指向name的引用，因此name不会回收</span>
+
+<span class="hljs-keyword">var</span> p = person; 
+person = <span class="hljs-number">1</span>;    <span class="hljs-comment">//原来的person对象被赋值为1，但因为有新引用p指向原person对象，因此它不会被回收</span>
+
+p = <span class="hljs-literal">null</span>;   <span class="hljs-comment">//原person对象已经没有引用，很快会被回收</span></code></pre>
+<p>  引用计数有一个致命的问题，那就是<strong>循环引用</strong>。</p>
+<p>  如果两个对象相互引用，尽管他们已不再使用，但垃圾回收器不会进行回收，最终可能会导致<strong>内存泄露</strong>。如：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cycle</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">var</span> o1 = &#123;&#125;;
+    <span class="hljs-keyword">var</span> o2 = &#123;&#125;;
+    o1.a = o2;
+    o2.a = o1;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;cycle reference&#x27;</span>;
+&#125;
+
+cycle();</code></pre>
+<p>  上面的代码中，<code>cycle</code> 函数执行完后，对象 <code>o1</code> 和 <code>o2</code> 实际上已经不再需要了，但是根据引用计数规则，它们之间的相互引用仍然存在，因此这部分内存不会被回收。</p>
+<h2 id="标记清除"><a class="markdownIt-Anchor" href="#标记清除"></a> 标记清除</h2>
+<p>  **标记清除（Mark-and-sweep）**算法将 “不再使用的对象” 定义为 “<strong>无法到达的对象</strong>”。即从根部（JS中是全局对象）出发定时扫描内存中的对象，<strong>凡是能从根部到达的对象都保留</strong>，无法从根部到达的对象被标记为不再使用，稍后会进行回收。</p>
+<p>  标记清除算法由以下几步组成：</p>
+<ol>
+<li>垃圾回收器创建一个 <code>roots</code> 列表。<code>roots</code> 通常是代码中全局变量的引用。JS 中， <code>window</code> 对象是一个 <code>root</code>，因为 <code>window</code> 对象总是存在，因此垃圾回收器可以检查它和它的所有子对象是否存在（即不是垃圾）；</li>
+<li>所有的 <code>roots</code> 被检查和标记为激活（不是垃圾）。所有的子对象也被递归地检查。从 <code>root</code> 开始的所有对象如果是可达的，它就不会被当做垃圾。</li>
+<li>所有未被标记的内存会被当做垃圾，收集器会释放它们的内存，归还给操作系统。</li>
+</ol>
+<h1 id="内存泄漏"><a class="markdownIt-Anchor" href="#内存泄漏"></a> 内存泄漏</h1>
+<p><a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2017/04/memory-leak.html">阮一峰内存泄漏教程</a></p>
+<p>  对于持续运行的服务进程（daemon），必须及时释放不再用到的内存。否则，内存占用越来越高，轻则影响系统性能，重则导致进程崩溃。</p>
+<p>  <strong>对于不再用到的内存，没有及时释放，就叫做内存泄漏（memory leak）</strong></p>
+<h2 id="内存泄漏的识别方法"><a class="markdownIt-Anchor" href="#内存泄漏的识别方法"></a> 内存泄漏的识别方法</h2>
+<p>  <a target="_blank" rel="noopener" href="https://www.toptal.com/nodejs/debugging-memory-leaks-node-js-applications">经验法则</a>是，如果连续五次垃圾回收之后，内存占用一次比一次大，就有内存泄漏。这就要求实时查看内存占用。</p>
+<h3 id="1-浏览器方法"><a class="markdownIt-Anchor" href="#1-浏览器方法"></a> 1 浏览器方法</h3>
+<ol>
+<li>打开开发者工具，选择 Memory</li>
+<li>在右侧的 Select profiling type 字段里勾选 timeline</li>
+<li>点击左上角的录制按钮</li>
+<li>在页面上进行各种操作，模拟正常的使用情况</li>
+<li>一段时间后，点击左上角的 stop 按钮，面板上就会显示这段时间的内存占用情况</li>
+</ol>
+<h3 id="2-命令行方法"><a class="markdownIt-Anchor" href="#2-命令行方法"></a> 2 命令行方法</h3>
+<p>  使用 Node 提供的 <code>process.memoryUsage</code> 方法。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(process.memoryUsage());
+
+<span class="hljs-comment">// 输出</span>
+&#123; 
+  rss: <span class="hljs-number">27709440</span>,		<span class="hljs-comment">// resident set size，所有内存占用，包括指令区和堆栈</span>
+  heapTotal: <span class="hljs-number">5685248</span>,   <span class="hljs-comment">// &quot;堆&quot;占用的内存，包括用到的和没用到的</span>
+  heapUsed: <span class="hljs-number">3449392</span>,	<span class="hljs-comment">// 用到的堆的部分</span>
+  external: <span class="hljs-number">8772</span> 		<span class="hljs-comment">// V8 引擎内部的 C++ 对象占用的内存</span>
+&#125;</code></pre>
+<p>  判断内存泄漏，以<code>heapUsed</code>字段为准。</p>
+<p>  ES6 新增的两种数据结构 <a target="_blank" rel="noopener" href="https://yleave.top/2020/12/09/JS/Set%E3%80%81Map%E3%80%81%E5%92%8CWeakSet%E3%80%81WeakMap/#weakset">WeakSet 和 WeakMap</a> ，使用了一种弱引用机制，可以有效解决常见的 DOM 节点泄漏问题。</p>
+<h1 id="四种常见的-js-内存泄漏"><a class="markdownIt-Anchor" href="#四种常见的-js-内存泄漏"></a> 四种常见的 JS 内存泄漏</h1>
+<h2 id="1意外的全局变量"><a class="markdownIt-Anchor" href="#1意外的全局变量"></a> 1.意外的全局变量</h2>
+<p>  未定义的变量会在全局对象下创建一个新变量，如：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">arg</span>) </span>&#123;
+    bar = <span class="hljs-string">&quot;this is a hidden global variable&quot;</span>; <span class="hljs-comment">// window.bar = &quot;...&quot;</span>
+&#125;</code></pre>
+<p>  函数 <code>foo</code> 内未使用 <code>var</code> 等关键字声明变量，JS 会将其挂载到全局对象上，意外的创建一个全局变量。</p>
+<p>  另一个意外的全局变量可能由 <code>this</code> 创建：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.variable = <span class="hljs-string">&quot;potentail accidental global&quot;</span>;
+&#125;
+
+<span class="hljs-comment">// 此时 foo 中的 this 指向了全局对象，因此 this.variable 变成了全局变量</span>
+foo();</code></pre>
+<p>  <strong>解决方法</strong>：在 JS 文件头部加上 <code>use strict</code>，使用严格模式避免意外的全局变量，此时上例中的 <code>this</code> 指向 <code>undefined</code>。</p>
+<p>  若需要使用全局变量存储大量数据时，确保用完后将它设置为 <code>null</code> 或重新定义以保证能够被回收。</p>
+<h2 id="2-被遗忘的计时器或回调函数"><a class="markdownIt-Anchor" href="#2-被遗忘的计时器或回调函数"></a> 2. 被遗忘的计时器或回调函数</h2>
+<p>计时器 <code>setInterval</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> someResource = getData();
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">var</span> node = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;Node&#x27;</span>);
+    <span class="hljs-keyword">if</span>(node) &#123;
+        <span class="hljs-comment">// 处理 node 和 someResource</span>
+        node.innerHTML = <span class="hljs-built_in">JSON</span>.stringify(someResource));
+    &#125;
+&#125;, <span class="hljs-number">1000</span>);</code></pre>
+<p>  在上面的例子中，在节点 <code>node</code> 不再需要时，定时器仍然指向这些数据，因此即使 <code>node</code> 节点被移除， <code>interval</code> 仍然存活且垃圾回收器没办法回收，它的依赖也没办法被回收，除非终止定时器。</p>
+<h2 id="3-脱离-dom-的引用"><a class="markdownIt-Anchor" href="#3-脱离-dom-的引用"></a> 3. 脱离 DOM 的引用</h2>
+<p>  如果把 DOM 保存到字典或数组中，这样 DOM 元素会存在两个引用：一个在 DOM 树中，另一个在字典中，那么当不需要的时候需要把这两个引用都清除：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> elements = &#123;
+    button: <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>),
+    image: <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;image&#x27;</span>),
+    text: <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;text&#x27;</span>)
+&#125;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doStuff</span>(<span class="hljs-params"></span>) </span>&#123;
+    image.src = <span class="hljs-string">&#x27;http://some.url/image&#x27;</span>;
+    button.click();
+    <span class="hljs-built_in">console</span>.log(text.innerHTML);
+    <span class="hljs-comment">// 更多逻辑</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeButton</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-comment">// 按钮是 body 的后代元素</span>
+    <span class="hljs-built_in">document</span>.body.removeChild(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>));
+    <span class="hljs-comment">// 此时，仍旧存在一个全局的 #button 的引用</span>
+    <span class="hljs-comment">// elements 字典。button 元素仍旧在内存中，不能被 GC 回收。</span>
+&#125;</code></pre>
+<p>  此外，<strong>如果代码中保存了表格中某一个 <code>&lt;td&gt;</code> 的引用</strong>，将来决定删除表格后，直觉会认为 GC 会回收除了已保存的 <code>&lt;td&gt;</code> 之外的其他节点。</p>
+<p>  但实际情况并非如此：<strong>这个 <code>&lt;td&gt;</code> 是表格的子节点，子元素与父元素是引用关系</strong>。由于代码中保存了子元素 <code>&lt;td&gt;</code> 的引用，导致整个表格仍保存在内存中。</p>
+<h2 id="4-闭包"><a class="markdownIt-Anchor" href="#4-闭包"></a> 4. 闭包</h2>
+<p>  闭包的关键是匿名函数可以访问父级作用域的变量。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> theThing = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">var</span> replaceThing = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">var</span> originalThing = theThing;
+    
+    <span class="hljs-keyword">var</span> unused = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">if</span> (originalThing)
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;hi&quot;</span>);
+    &#125;;
+
+    theThing = &#123;
+        longStr: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">1000000</span>).join(<span class="hljs-string">&#x27;*&#x27;</span>),
+        someMethod: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+            <span class="hljs-built_in">console</span>.log(someMessage);
+        &#125;
+    &#125;;
+&#125;;
+
+<span class="hljs-built_in">setInterval</span>(replaceThing, <span class="hljs-number">1000</span>);</code></pre>
+<p>  在上面的代码中，每次调用 <code>replaceThing</code>，<code>theThing</code> 得到一个包含一个大数组和一个新闭包（<code>someMethod</code>）的新对象。同时，变量 <code>unused</code> 是一个引用 <code>originalThing</code> 的闭包。</p>
+<p>  <code>someMethod</code> 可以通过 <code>theThing</code> 使用，<code>someMethod</code> 与 <code>unused</code> 分享闭包的作用域，尽管 <code>unused</code> 从未使用，它引用的 <code>originalThing</code> 迫使它保留在内存中（防止被回收）。</p>
+<p>  <strong>解决方法</strong>：在 <code>replaceThing</code> 函数的最后面添加 <code>originalThing = null</code>。</p>
+<hr />
+<p>REF:</p>
+<p><a target="_blank" rel="noopener" href="https://muyiy.cn/blog/1/1.3.html">https://muyiy.cn/blog/1/1.3.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://muyiy.cn/blog/1/1.4.html">https://muyiy.cn/blog/1/1.4.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://muyiy.cn/blog/1/1.5.html">https://muyiy.cn/blog/1/1.5.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/categories/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/">JS调用堆栈</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JS%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6/">JS内存回收</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/08/JS/%E5%8E%9F%E5%9E%8BPrototype/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">原型和原型链</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/05/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
+                        <span class="hidden-mobile">LeetCode 399.除法求值</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "3.JS内存机制&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      834 字
+      1.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      15
        分钟
     </span>
   
@@ -235,9 +235,53 @@
             <h1 style="display: none">知识点杂记</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="闭包"><a class="markdownIt-Anchor" href="#闭包"></a> 闭包</h1>
+              <h1 id="null-和-undefined"><a class="markdownIt-Anchor" href="#null-和-undefined"></a> null 和 undefined</h1>
+<p>在 JS 中，将一个变量赋值为 <code>null</code> 和 <code>undefined</code> 几乎没有什么区别，它们都是虚值（falsy），在判断语句中都会被转为 <code>false</code>。</p>
+<p>虽然它们非常类似，但是还是有一些区别的：</p>
+<h2 id="null"><a class="markdownIt-Anchor" href="#null"></a> null</h2>
+<p><code>null</code> 表示 <strong>没有对象</strong>，即该处没有值。典型的用法是：</p>
+<ol>
+<li>
+<p>作为函数的参数，表示该函数的参数不是对象。</p>
+</li>
+<li>
+<p>作为对象原型链的终点</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.getPrototype(<span class="hljs-built_in">Object</span>.prototype); <span class="hljs-comment">// null</span></code></pre>
+</li>
+</ol>
+<h2 id="undefined"><a class="markdownIt-Anchor" href="#undefined"></a> undefined</h2>
+<p><code>undefined</code> 表示 <strong>缺少值</strong>，即是此处可能会有一个值，但是还没有定义。典型语法是：</p>
+<ol>
+<li>变量被声明了，但是没有复制时，就等于 <code>undefined</code></li>
+<li>调用函数时，应该提供的参数没有提供，该参数就等于 <code>undefined</code></li>
+<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
+<li>函数没有返回值时，默认返回 <code>undefined</code></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> i;
+i <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x</span>)</span>&#123;<span class="hljs-built_in">console</span>.log(x)&#125;
+f() <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-keyword">var</span>  o = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
+o.p <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-keyword">var</span> x = f();
+x <span class="hljs-comment">// undefined</span></code></pre>
+<h2 id="综合讨论"><a class="markdownIt-Anchor" href="#综合讨论"></a> 综合讨论</h2>
+<p>综上，我们可以知道：</p>
+<ul>
+<li><strong><code>null</code> 表示一个值被定义了，定义为 &quot;空值&quot;</strong></li>
+<li><strong><code>undefined</code> 表示一个不存在的定义</strong></li>
+</ul>
+<p>因此设置一个值为 <code>null</code> 是合理的，如：<code>obj.val = null;</code></p>
+<p>但是设置一个值为 <code>undefined</code> 是不合理的，如 <code>obj.val = undefined;</code>，因为在我们定义 <code>obj.val</code> 之前，我们调用 <code>obj.val</code> 同样能够得到 <code>undefined</code>，这样做不是多此一举了吗。</p>
+<p>因此，任何一个<strong>存在引用</strong>的变量值为 <code>undefined</code> 都是一件错误的事。</p>
+<p>这样，判断一个值是否存在，就可以使用 <code>obj.val === undefined</code>。</p>
+<p>在一些使用广泛的库（比如jQuery）中的深度拷贝函数会忽略 <code>undefined</code> 而不会忽略 <code>null</code> ，也是针对这个语义的理解。</p>
+<hr />
+<p>REF：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html">阮一峰博客</a></p>
 <h1 id="this-指向"><a class="markdownIt-Anchor" href="#this-指向"></a> this 指向</h1>
-<p>REF: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this">MDN</a></p>
 <p>函数的调用方式决定了 <code>this</code> 的值（<strong>运行时绑定</strong>）。</p>
 <p>ES5 引入了 <code>bind</code> 方法来设置函数的 <code>this</code> 的值，ES2015 引入了箭头函数，箭头函数不提供自身的 <code>this</code> 绑定，<code>this</code> 的值将保持为闭合词法上下文的值。</p>
 <p>可以使用 <code>globalThis</code> 来获取全局对象，无论代码是否在当前上下文中运行。</p>
@@ -322,6 +366,8 @@ fn2() === <span class="hljs-built_in">window</span>; <span class="hljs-comment">
 <pre><code class="hljs js">&lt;button onclick=<span class="hljs-string">&quot;alert((function()&#123;return this&#125;).bind(this)());&quot;</span>&gt;
     Show inner <span class="hljs-built_in">this</span>
 &lt;/button&gt;</code></pre>
+<hr />
+<p>REF: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this">MDN</a></p>
 
             </div>
             <hr>

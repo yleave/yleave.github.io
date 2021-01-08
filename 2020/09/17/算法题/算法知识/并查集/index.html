@@ -283,7 +283,7 @@
     &#125;
     
     <span class="hljs-keyword">while</span> (tmp !== father[tmp]) &#123;
-        <span class="hljs-keyword">let</span> a = x;
+        <span class="hljs-keyword">let</span> a = tmp;
         tmp = father[tmp];
         father[a] = x; <span class="hljs-comment">// 将原先节点的父节点直接改为根结点。</span>
     &#125;

@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      19
        分钟
     </span>
   
@@ -314,7 +314,13 @@ foo();  <span class="hljs-comment">// foo1</span></code></pre>
 &#125;
 
 <span class="hljs-built_in">console</span>.log(checkScope()());</code></pre>
-<p>  <strong>这两段代码的输出都为 <code>local scope</code>。</strong></p>
+<p>  这两段代码的输出都为  <font color="white">local scope</font>。(选中看答案)</p>
+<p>  原因很简单，是因为 JS 采用的是词法作用域，函数的作用域基于函数创建的位置。</p>
+<p>  用 《JS 权威指南》的回答就是：</p>
+<blockquote>
+<p>JS 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。</p>
+<p>嵌套的函数 <code>f()</code> 定义在这个作用域链里，其中的变量 <code>scope</code> 一定是局部变量，不管何时何地执行函数 <code>f()</code> 这种绑定在执行 <code>f()</code> 时依然有效。</p>
+</blockquote>
 <p>  <strong>而这两段代码的不同之处在于其执行上下栈的变化不一样：</strong></p>
 <p>  使用伪代码表示，<strong>第一段</strong>代码的执行上下文栈是这样的：</p>
 <pre><code class="hljs js">ECStack.push(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">checkscope</span>&gt;</span> functionContext);</span>
@@ -326,10 +332,9 @@ ECStack.pop();</code></pre>
 <span class="xml">ECStack.pop();</span>
 ECStack.push(&lt;f&gt; functionContext);
 ECStack.pop();</code></pre>
-<p>  不过为什么这两段代码的执行结果是一样的呢？这就要说到 JS 的具体执行过程了。</p>
 <h1 id="函数上下文"><a class="markdownIt-Anchor" href="#函数上下文"></a> 函数上下文</h1>
 <h2 id="变量对象"><a class="markdownIt-Anchor" href="#变量对象"></a> 变量对象</h2>
-<p>  **变量对象（variable object，VO）**是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。</p>
+<p>  **变量对象(variable object，VO)**是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。</p>
 <p>  在函数上下文中，使用<strong>活动对象（activation object，AO）<strong>来表示</strong>变量对象</strong>。</p>
 <p>  变量对象和活动对象实际上是一个东西，它们的区别在于：</p>
 <ul>
@@ -337,6 +342,7 @@ ECStack.pop();</code></pre>
 <li>当进入到一个执行上下文后，这个变量对象才会被激活，所以叫活动对象（<strong>AO</strong>），这时候活动对象上的各种属性才能被访问。</li>
 </ul>
 <p>  在调用函数时，会为其创建一个 <code>Arguments</code> 对象，并自动初始化剧本变量 <code>arugments</code>，指代 <code>Arguments</code> 对象。这个对象中存储了所有传入函数的参数。</p>
+<p>  因此 <strong>AO = VO + function parameters + arguments</strong></p>
 <h1 id="执行过程"><a class="markdownIt-Anchor" href="#执行过程"></a> 执行过程</h1>
 <p>  执行上下文中的代码会分为两个阶段进行处理：</p>
 <ol>
@@ -413,6 +419,13 @@ foo(<span class="hljs-number">1</span>);</code></pre>
     c: reference to <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>&#123;&#125;,
     d: reference to FunctionExpression <span class="hljs-string">&quot;d&quot;</span>
 &#125;</code></pre>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+<ol>
+<li>全局上下文的变量对象初始化是全局对象</li>
+<li>函数上下文的变量对象初始化只包括 <code>Arguments</code> 对象</li>
+<li>在进入执行上下文时会给变量对象添加形参、函数声明、变量声明等初始的属性值</li>
+<li>在代码执行阶段，会再次修改变量对象的属性值</li>
+</ol>
 <h2 id="两个例子"><a class="markdownIt-Anchor" href="#两个例子"></a> 两个例子</h2>
 <h3 id="1"><a class="markdownIt-Anchor" href="#1"></a> 1</h3>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;

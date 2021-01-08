@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode 399.除法求值 - Ylea</title>
+  <title>原型和原型链 - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-05 16:34" pubdate>
-        2021年1月5日 下午
+      <time datetime="2021-01-08 14:53" pubdate>
+        2021年1月8日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      966 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      11
        分钟
     </span>
   
@@ -232,107 +232,98 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode 399.除法求值</h1>
+            <h1 style="display: none">原型和原型链</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/evaluate-division/">https://leetcode-cn.com/problems/evaluate-division/</a></p>
+              <p>  首先，在 JS 中可以使用类或构造函数来创建一个实例：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+<span class="hljs-comment">// or</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;&#125;
+
+Person.prototype.name = <span class="hljs-string">&#x27;Kevin&#x27;</span>;
+
+<span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> Person();
+<span class="hljs-keyword">let</span> p2 = <span class="hljs-keyword">new</span> Person();
+<span class="hljs-comment">// p1.name === p2.name = &#x27;Kevin&#x27;;</span></code></pre>
+<h2 id="prototype"><a class="markdownIt-Anchor" href="#prototype"></a> prototype</h2>
+<p>  每个函数/类都有一个 <code>prototype</code> 属性，它指向了一个对象，这个对象就是我们调用这个构造函数/类而创建的实例的原型，即上面代码中 <code>p1</code> 和 <code>p2</code> 的原型。</p>
+<p>  而<strong>原型</strong>可以这样理解：<strong>每一个 JS 对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型中 “继承” 属性</strong>。</p>
+<p>  用一张图来表示构造函数和实例原型之间的关系：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype1.png" srcset="/img/loading.gif" alt="构造函数和实例原型的关系图" style="zoom:80%;" />
+<h2 id="__proto__"><a class="markdownIt-Anchor" href="#__proto__"></a> <code>__proto__</code></h2>
+<p>  每一个 JS 对象（除了 null）都具有 <code>__proto__</code> 这个属性，它指向该对象的原型。</p>
+<p>如：</p>
+<pre><code class="hljs js">p1.__proto__ === Person.prototype;
+
+<span class="hljs-keyword">let</span> n = <span class="hljs-number">3</span>;
+n.__proto__ === <span class="hljs-built_in">Number</span>.prototype;</code></pre>
+<p>  因此关系图更新为：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype2.png" srcset="/img/loading.gif" alt="实例与实例原型的关系图" style="zoom:80%;" />
+<p>  除了可以使用 <code>__proto_</code> 属性来获取实例的原型之外，还能使用 <code>Object.getPrototypeOf(p1)</code> （ES5 的方法）来获取对象原型：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.getPrototypeOf(p1) === Person.prototype;</code></pre>
+<h2 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h2>
+<p>  每个原型都有一个 <code>constructor</code> 属性来指向与其关联的构造函数/类。</p>
+<p>如：</p>
+<pre><code class="hljs js">Person.prototype.constructor === Person;
+
+<span class="hljs-built_in">Number</span>.prototype.constructor === <span class="hljs-built_in">Number</span>;</code></pre>
+<p>  因此再次更新关系图：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype3.png" srcset="/img/loading.gif" alt="实例原型与构造函数的关系图" style="zoom:80%;" />
+<h2 id="原型的原型"><a class="markdownIt-Anchor" href="#原型的原型"></a> 原型的原型</h2>
+<p>  前面原型理解中有提到，<strong>原型也是一个对象</strong>，因此我们可以使用最原始的方式创建它：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();</code></pre>
+<p>  其实原型对象也就是通过 <code>Object</code> 构造函数生成的，因此原型对象的 <code>__proto__</code> 属性会指向构造函数的 <code>prototype</code> ，也就是：</p>
+<pre><code class="hljs js">p1.__proto__.__proto__ === <span class="hljs-built_in">Object</span>.prototype;
+<span class="hljs-comment">// 即</span>
+Person.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype;</code></pre>
+<p>  那么 <code>Object.prototype</code> 的原型是什么呢？</p>
+<p>  答案是 <code>null</code>：<code>Object.prototype.__proto__ === null</code></p>
+<p>  代表了原型链的尽头。</p>
+<p>  因此关系图可以更新为：其中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype5.png" srcset="/img/loading.gif" alt="原型链示意图" style="zoom:80%;" />
+<h2 id="实例与原型链"><a class="markdownIt-Anchor" href="#实例与原型链"></a> 实例与原型链</h2>
+<p>  当读取实例的属性时，如果找不到，就会查找与其相关的原型中的属性，如果还找不到，就会去找原型的原型，直到最顶层的 <code>null</code> 为止。</p>
+<p>如：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Object</span>.prototype.name = <span class="hljs-string">&#x27;End&#x27;</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+Person.prototype.name = <span class="hljs-string">&#x27;Kevin&#x27;</span>;
+
+<span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> Person();
+p.name = <span class="hljs-string">&#x27;Daisy&#x27;</span>;
+
+<span class="hljs-comment">// 首先会在当前对象中查找</span>
+<span class="hljs-built_in">console</span>.log(p.name); <span class="hljs-comment">// Daisy</span>
+
+<span class="hljs-comment">// 若找不到，则去与其关联的原型中查找</span>
+<span class="hljs-keyword">delete</span> p.name;
+<span class="hljs-built_in">console</span>.log(p.name); <span class="hljs-comment">// Kevin</span>
+
+<span class="hljs-comment">// 若其原型中也没有，则去原型的原型中查找</span>
+<span class="hljs-keyword">delete</span> Person.prototype.name;
+<span class="hljs-built_in">console</span>.log(p.name); <span class="hljs-comment">// End</span></code></pre>
+<h2 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h2>
+<h3 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h3>
+<p>  先看个例子：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+
+<span class="hljs-keyword">let</span> person = <span class="hljs-keyword">new</span> Person();
+person.constructor === Person; <span class="hljs-comment">//true</span></code></pre>
+<p>  根据我们前面的描述，<code>constructor</code> 是 <code>person</code> 对象的原型中的属性，<code>person</code> 中并没有这个属性；但当我们获取 <code>person.constructor</code> 时，会从 <code>person</code> 的原型中读取，而原型中正好有这个属性，因此还是能够正确读取。</p>
+<p>  因此：</p>
+<pre><code class="hljs js">person.constructor === Person.prototype.constructor;</code></pre>
+<h3 id="__proto__"><a class="markdownIt-Anchor" href="#__proto__"></a> <code>__proto__</code></h3>
+<p>  绝大部分浏览器都支持这个非标准的方法来访问原型，然而它并不存在于 <code>Person.prototype</code> 中，<strong>实际上，它是来自于 <code>Object.prototype</code></strong>，与其说是一个属性，不如说是一个 <code>getter/setter</code>，当使用 <code>obj.__proto__</code> 时，可以理解为返回了 <code>Object.getPrototypeOf(obj)</code>。</p>
+<h3 id="属性-继承"><a class="markdownIt-Anchor" href="#属性-继承"></a> 属性 “继承”</h3>
+<p>  前面有说到，每一个对象都会从原型中 “继承” 属性。实际上，继承是一个比较迷惑的说法，在 《你不知道的 JS》 中有这样一段话：</p>
+<blockquote>
+<p>继承意味着复制操作，然而 JS 默认并不会复制对象中的属性，相反，JS 只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数。</p>
+<p>所以与其叫继承，<strong>委托</strong>的说法反而更准确些。</p>
+</blockquote>
 <hr />
-<p>  给出方程式 <code>A / B = k</code>, 其中 <code>A</code> 和 <code>B</code> 均为用字符串表示的变量， <code>k</code> 是一个浮点型数字。根据已知方程式求解问题，并返回计算结果。如果结果不存在，则返回 <code>-1.0</code>。</p>
-<p>  输入总是有效的。你可以假设除法运算中不会出现除数为 <code>0</code> 的情况，且不存在任何矛盾的结果。</p>
-<p><strong>示例 1：</strong></p>
-<p>输入：<code>equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;]], values = [2.0,3.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;b&quot;,&quot;a&quot;],[&quot;a&quot;,&quot;e&quot;],[&quot;a&quot;,&quot;a&quot;],[&quot;x&quot;,&quot;x&quot;]]</code></p>
-<p>输出：<code>[6.00000,0.50000,-1.00000,1.00000,-1.00000]</code></p>
-<p><strong>解释：</strong></p>
-<p>给定：<code>a / b = 2.0, b / c = 3.0</code></p>
-<p>问题：<code>a / c = ?</code>, <code>b / a = ?</code>, <code>a / e = ?</code>, <code>a / a = ?</code>, <code>x / x = ?</code></p>
-<p>返回：<code>[6.0, 0.5, -1.0, 1.0, -1.0 ]</code></p>
-<p><strong>示例 2：</strong></p>
-<p>输入：<code>equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;],[&quot;bc&quot;,&quot;cd&quot;]], values = [1.5,2.5,5.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;c&quot;,&quot;b&quot;],[&quot;bc&quot;,&quot;cd&quot;],[&quot;cd&quot;,&quot;bc&quot;]]</code></p>
-<p>输出：<code>[3.75000,0.40000,5.00000,0.20000]</code></p>
-<hr />
-<p>  开始，刚看完题目后，直觉就是需要找到每个变量之间的关系，然后计算出各个变量的值，最后根据 <code>queries</code> 来求值（暴力想法）。</p>
-<p>  比如 <strong>示例1</strong> 中，<code>a / b = 2.0</code>，<code>b / c = 3.0</code>，这样我们可以利用这个关系找到同时满足这两个等式的解。首先我们处理 <code>a / b = 2.0</code>，由于 <code>a</code> 和 <code>b</code> 都是第一次遇到，因此为了方便计算，设 <code>b = 1.0</code>，那么 <code>a = 2.0</code>，然后再处理 <code>b / c = 3.0</code>，此时 <code>b</code> 我们已经设置了值 <code>1.0</code>，因此 <code>c = 1.0 / 3.0</code>。</p>
-<p>  然后我们就能愉快的计算结果了。</p>
-<p>  <strong>但是</strong>，这种处理方法只能计算那些比较简单的 <code>case</code>，有些复杂的情况，如 <code>[[&quot;a&quot;,&quot;b&quot;],[&quot;e&quot;,&quot;f&quot;],[&quot;b&quot;,&quot;e&quot;]]</code>，这种情况下，我们的 <code>b</code> 和 <code>e</code> 即要满足等式 <code>a / b = x</code> 也需要满足 <code>b / e = y</code>，这样就得综合这两个等式来求得结果，处理起来太麻烦了。因此 <code>pass</code>！</p>
-<h1 id="解法1邻接表-dfs"><a class="markdownIt-Anchor" href="#解法1邻接表-dfs"></a> 解法1：邻接表 + dfs</h1>
-<p>  其实我们再仔细观察，可以发现：<strong>对于 <code>queries</code> 中能得到结果的等式，它的除号两边的变量都能直接找到关联或能通过一些中间变量来找到关联</strong>，这样我们可以使用一种数据结构来保存这种关联，那就是 <strong>图</strong>！</p>
-<p>  对 <strong>示例1</strong>，我们创建一张图来观察，我们使用边权来表示这两个数的商，如 <code>a / b = 2.0</code> ，<code>b / a = 1 / 2.0</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210105165911118.png" srcset="/img/loading.gif" alt="image-20210105165911118" style="zoom:80%;" />
-<p>  这样，我们要求图上任意两点的商，我们只需要乘上这两点之间的路径权值即可，如 <code>a / c = a-&gt;b-&gt;c = 2.0 * 3.0</code></p>
-<p>  图常用的存储结构有两种，邻接矩阵和邻接表，这里我选择使用<strong>邻接表</strong>。</p>
-<p>  不过好久没写图算法了，邻接表的定义方式有些模糊，依靠对邻接表的回忆使用了一个 <code>map + array</code> 来完成邻接表的创建。</p>
-<p>  即使用 <code>map</code> 作为顶点表存储所有顶点，对一个顶点，使用一个数组 <code>array</code> 来存储与其相连的所有边。</p>
-<p>  因此对于 <strong>示例1</strong>，存储的邻接表就是这样的：</p>
-<pre><code class="hljs js"><span class="hljs-built_in">Map</span>(<span class="hljs-number">3</span>) &#123;
-  <span class="hljs-string">&#x27;a&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">2</span> ] ],
-  <span class="hljs-string">&#x27;b&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">0.5</span> ], [ <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-number">3</span> ] ],
-  <span class="hljs-string">&#x27;c&#x27;</span> =&gt; [ [ <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-number">0.3333333333333333</span> ] ]
-&#125;</code></pre>
-<p>  创建完邻接表后，遍历 <code>queries</code> 数组，若这两个变量均为邻接表中的顶点，我们就对其使用深度优先遍历计算它们的路径积，否则填入 <code>-1.0</code>：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> calcEquation = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">equations, values, queries</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(), res = [];
-    <span class="hljs-keyword">let</span> visit = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();  <span class="hljs-comment">// visit 数组标记在搜索过程中是否访问过</span>
+<p>REF：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/2">https://github.com/mqyqingfeng/Blog/issues/2</a></p>
 
-    <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">src, dst</span>) =&gt;</span> &#123;
-        <span class="hljs-comment">// 若可达，且找到了目的节点，返回 1.0 表示成功到达</span>
-        <span class="hljs-keyword">if</span> (src === dst) &#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
-        &#125;
-
-        <span class="hljs-keyword">let</span> adjs = map.get(src);
-
-        <span class="hljs-comment">// 遍历 src 的所有边，若未访问过，则对其调用 dfs 获取路径积</span>
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; adjs.length; ++i) &#123;
-            <span class="hljs-keyword">let</span> next = adjs[i];
-            <span class="hljs-keyword">if</span> (!visit.get(next[<span class="hljs-number">0</span>])) &#123;
-                visit.set(next[<span class="hljs-number">0</span>], <span class="hljs-literal">true</span>);
-
-                <span class="hljs-keyword">let</span> ret = dfs(next[<span class="hljs-number">0</span>], dst);
-
-                visit.set(next[<span class="hljs-number">0</span>], <span class="hljs-literal">false</span>);
-                <span class="hljs-comment">// 若可达 dst，则返回当前边权与后续的边权积 ret 的乘积</span>
-                <span class="hljs-keyword">if</span> (ret !== <span class="hljs-number">-1.0</span>) &#123;
-                    <span class="hljs-keyword">return</span> next[<span class="hljs-number">1</span>] * ret;
-                &#125;
-            &#125;
-        &#125;
-
-        <span class="hljs-comment">// 否则，不可达，返回 -1.0</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">-1.0</span>;
-    &#125;;
-
-    <span class="hljs-comment">// 创建邻接表</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; equations.length; ++i) &#123;
-        <span class="hljs-keyword">let</span> e = equations[i], v = values[i];
-
-        <span class="hljs-keyword">if</span> (!map.has(e[<span class="hljs-number">0</span>])) &#123;
-            map.set(e[<span class="hljs-number">0</span>], []);
-            visit.set(e[<span class="hljs-number">0</span>], <span class="hljs-literal">false</span>);
-        &#125;
-        <span class="hljs-keyword">if</span> (!map.has(e[<span class="hljs-number">1</span>])) &#123;
-            map.set(e[<span class="hljs-number">1</span>], []);
-            visit.set(e[<span class="hljs-number">1</span>], <span class="hljs-literal">false</span>);
-        &#125;
-
-        <span class="hljs-keyword">let</span> adj1 = map.get(e[<span class="hljs-number">0</span>]);
-        <span class="hljs-keyword">let</span> adj2 = map.get(e[<span class="hljs-number">1</span>]);
-        adj1.push([e[<span class="hljs-number">1</span>], v]);
-        adj2.push([e[<span class="hljs-number">0</span>], <span class="hljs-number">1</span> / v]);
-    &#125;
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> q <span class="hljs-keyword">of</span> queries) &#123;
-        <span class="hljs-keyword">let</span> n0 = q[<span class="hljs-number">0</span>], n1 = q[<span class="hljs-number">1</span>];
-        <span class="hljs-keyword">if</span> (map.has(n0) &amp;&amp; map.has(n1)) &#123;
-            visit.set(n0, <span class="hljs-literal">true</span>);
-            res.push(dfs(n0, n1));
-            visit.set(n0, <span class="hljs-literal">false</span>);
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            res.push(<span class="hljs-number">-1.0</span>);
-        &#125;
-    &#125;
-
-    <span class="hljs-keyword">return</span> res;    
-&#125;;</code></pre>
             </div>
             <hr>
             <div>
@@ -341,11 +332,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                      <a class="hover-with-bg" href="/categories/JS/">JS</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
+                      <a class="hover-with-bg" href="/categories/JS/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型和原型链</a>
                     
                   </div>
                 
@@ -353,7 +342,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%9E%8B/">原型</a>
                     
                   </div>
                 
@@ -366,9 +355,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/05/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/3-JS%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/">
+                      <a href="/2021/01/08/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">3.JS内存机制</span>
+                        <span class="hidden-mobile">词法作用域和动态作用域</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -376,8 +365,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/04/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0/">
-                        <span class="hidden-mobile">LeetCode 279. 完全平方数</span>
+                      <a href="/2021/01/05/JS/JS%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/3-JS%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/">
+                        <span class="hidden-mobile">3.JS内存机制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -646,7 +635,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode 399.除法求值&nbsp;",
+        "原型和原型链&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

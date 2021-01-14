@@ -174,12 +174,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2021</p>
+    
+    <a href="/2021/01/12/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">函数作用域和闭包</span>
+      <time style="float: right;">01-12</time>
+    </a>
+  
     
     <a href="/2021/01/08/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">词法作用域和动态作用域</span>
@@ -237,13 +243,19 @@
       <time style="float: right;">11-27</time>
     </a>
   
-    
-    <a href="/2020/11/27/JS/JS-%E5%AF%B9%E8%B1%A1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS 对象</span>
-      <time style="float: right;">11-27</time>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/categories/JS/page/2/">2</a><a class="extend next" rel="next" href="/categories/JS/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

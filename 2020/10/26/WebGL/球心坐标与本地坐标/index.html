@@ -235,8 +235,7 @@
             <h1 style="display: none">球心坐标与本地坐标</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>转载自 ： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/fuckgiser/p/6688531.html">https://www.cnblogs.com/fuckgiser/p/6688531.html</a></p>
-<h1 id="1-球心坐标ecef与本地坐标neu"><a class="markdownIt-Anchor" href="#1-球心坐标ecef与本地坐标neu"></a> 1 <strong>球心坐标(ECEF)与本地坐标(NEU)</strong></h1>
+              <h1 id="1-球心坐标ecef与本地坐标neu"><a class="markdownIt-Anchor" href="#1-球心坐标ecef与本地坐标neu"></a> 1 <strong>球心坐标(ECEF)与本地坐标(NEU)</strong></h1>
 <p>  假如你来到一个陌生城市，你很可能需要问路、通常会告诉你向北走100米，右转，向东走100米，理解起来很直观。</p>
 <p>  你给儿子买了一个地球仪，你从北京(39,115)转到伦敦 (51,0)，这个动作就可以分解为两步：先转到同一个经度(39,0)，在转到同一个维度(51,0)</p>
 <p>  这个例子体现了一个问题：不同的地理范围下会使用更适合的坐标系。比如前者是局部的平面坐标，而后者是球面坐标。</p>
@@ -285,6 +284,8 @@
 <li>叉乘求出<code>North</code>向量</li>
 </ul>
 <p>这正是 Cesium 中提供的思路，对应<a target="_blank" rel="noopener" href="https://cesium.com/docs/cesiumjs-ref-doc/Transforms.html?classFilter=Tra#.eastNorthUpToFixedFrame">Transforms.eastNorthUpToFixedFrame</a>方法</p>
+<hr />
+<p>转载自 ： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/fuckgiser/p/6688531.html">https://www.cnblogs.com/fuckgiser/p/6688531.html</a></p>
 
             </div>
             <hr>

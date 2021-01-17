@@ -236,8 +236,6 @@
             
             <div class="markdown-body" id="post-body">
               <h1 id="three-中的矩阵关系"><a class="markdownIt-Anchor" href="#three-中的矩阵关系"></a> Three 中的矩阵关系</h1>
-<p>REF: <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903510769664014">https://juejin.im/post/6844903510769664014</a></p>
-<hr />
 <p>  我们将相机的位置方向, 相机的类型, 物体的位置和形变能转换为 <strong>矩阵</strong>, 将这些矩阵进行一系列计算后, 最终得到<strong>三维投影矩阵</strong>: <code>u_matrix</code></p>
 <p>  基于它, 任意给定三维坐标<code>[x, y, z]</code>, 我们都能算出相机视平面上的位置:</p>
 <p>  <strong>[x, y] = u_matrix * [x, y, z, 1]</strong></p>
@@ -295,17 +293,18 @@ camera.lookAt(x, y, z);</code></pre>
 </li>
 </ul>
 <p>  前面提到，THREE中的物体是有层级关系的，所以THREE中物体的<code>matrixWorld</code>是通过<code>local matrix</code>（<code>object.matrix</code>）与父亲的<code>matrixWorld</code>递归相乘得到的， 其中的原理可以查阅webglfundamentals中的<a target="_blank" rel="noopener" href="https://webglfundamentals.org/webgl/lessons/zh_cn/webgl-scene-graph.html">这篇教程</a></p>
+<hr />
+<p>REF: <a target="_blank" rel="noopener" href="https://juejin.im/post/6844903510769664014">https://juejin.im/post/6844903510769664014</a></p>
 <h1 id="box3"><a class="markdownIt-Anchor" href="#box3"></a> Box3</h1>
-<h2 id="ref-httpswwwmrguolinkarticleid12"><a class="markdownIt-Anchor" href="#ref-httpswwwmrguolinkarticleid12"></a> REF: <a target="_blank" rel="noopener" href="https://www.mrguo.link/article?id=12">https://www.mrguo.link/article?id=12</a></h2>
 <p>  在线案例点击<a target="_blank" rel="noopener" href="http://three.mrguo.link/box3">three.js Box3</a>。</p>
 <p>  Box3 在3D空间中表示一个包围盒。其主要用于表示物体在世界坐标中的边界框。它方便我们判断物体和物体、物体和平面、物体和点的关系等等。</p>
 <p>  构造器参数<code>Box3( min : Vector3, max : Vector3 )</code>，其参数为两个三维向量，第一个向量为Box3在3D空间中各个维度的最小值，第二个参数为Box3在3D空间中各个维度的最大值，代码如下。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> box = <span class="hljs-keyword">new</span> THREE.Box3(<span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>), <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>));
 js</code></pre>
 <p>  这个box就表示3D空间中中心点在<code>(0,0,0)</code>，长宽高为<code>4</code>的包围盒。</p>
-<h1 id="vector3"><a class="markdownIt-Anchor" href="#vector3"></a> Vector3</h1>
-<p>REF: <a target="_blank" rel="noopener" href="https://www.mrguo.link/article?id=14">https://www.mrguo.link/article?id=14</a></p>
 <hr />
+<p>REF: <a target="_blank" rel="noopener" href="https://www.mrguo.link/article?id=12">https://www.mrguo.link/article?id=12</a></p>
+<h1 id="vector3"><a class="markdownIt-Anchor" href="#vector3"></a> Vector3</h1>
 <h2 id="vector3-的方法"><a class="markdownIt-Anchor" href="#vector3-的方法"></a> Vector3 的方法</h2>
 <h3 id="setfrommatrixscale-m-matrix4-this"><a class="markdownIt-Anchor" href="#setfrommatrixscale-m-matrix4-this"></a> setFromMatrixScale( m: Matrix4 ): this</h3>
 <p>  从变换矩阵（transformation matrix）<code>m</code>中， 设置该向量为其中与缩放相关的元素。</p>
@@ -317,6 +316,8 @@ vec1.setFromMatrixScale(matrix);<span class="hljs-comment">//返回Vector3 &#123
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> vec1 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
 <span class="hljs-keyword">var</span> matrix = <span class="hljs-keyword">new</span> THREE.Matrix4().makeRotationZ(-<span class="hljs-built_in">Math</span>.PI/<span class="hljs-number">6</span>);
 vec1.applyMatrix4(matrix);<span class="hljs-comment">//返回值和上面相同</span></code></pre>
+<hr />
+<p>REF: <a target="_blank" rel="noopener" href="https://www.mrguo.link/article?id=14">https://www.mrguo.link/article?id=14</a></p>
 <h1 id="matrix3"><a class="markdownIt-Anchor" href="#matrix3"></a> Matrix3</h1>
 <p>  three.js文档中以行为主的顺序显示矩阵。 但是，如果您正在阅读源代码，您必须对这里列出的任何矩阵进行转置<code>transpose</code>，以理解计算。例如：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> matrix3 = <span class="hljs-keyword">new</span> THREE.Matrix3().set( <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>); 
@@ -431,7 +432,6 @@ matrix1.set(<span class="hljs-number">1</span>,<span class="hljs-number">2</span
 <span class="hljs-keyword">var</span> vector3 = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>); 
 matrix1.multiplyVector3(vector3);<span class="hljs-comment">//返回Vector3 &#123;x: 14, y: 32, z: 50&#125;</span></code></pre>
 <h1 id="分离轴定理separating-axis-theorem"><a class="markdownIt-Anchor" href="#分离轴定理separating-axis-theorem"></a> 分离轴定理（Separating Axis Theorem）</h1>
-<p><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/02/16/2d-collision-detection/">https://aotu.io/notes/2017/02/16/2d-collision-detection/</a></p>
 <p>  <strong>概念</strong>：通过判断任意两个 <code>凸多边形</code> 在任意角度下的投影是否均存在重叠，来判断是否发生碰撞。若在某一角度光源下，两物体的投影存在间隙，则为不碰撞，否则为发生碰撞。</p>
 <p><strong>图例：</strong></p>
 <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121724065-2000235824.png" srcset="/img/loading.gif" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
@@ -444,6 +444,8 @@ matrix1.multiplyVector3(vector3);<span class="hljs-comment">//返回Vector3 &#12
 <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706122010112-1512221308.png" srcset="/img/loading.gif" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
 <p>  因此，该投影轴和多边形自身的投影轴就组成了一组待检测的投影轴了。另外，圆的投影可以先投影圆心那一点，然后再在两边加上半径即可。</p>
 <p>  而对于圆形与圆形之间的碰撞检测依然是最初的两圆心距离是否小于两半径之和。</p>
+<hr />
+<p>REF: <a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/02/16/2d-collision-detection/">https://aotu.io/notes/2017/02/16/2d-collision-detection/</a></p>
 
             </div>
             <hr>

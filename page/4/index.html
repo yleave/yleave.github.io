@@ -198,10 +198,10 @@
           
             
           
-          转载自 ： https://www.cnblogs.com/fuckgiser/p/6688531.html
- 1 球心坐标(ECEF)与本地坐标(NEU)
+           1 球心坐标(ECEF)与本地坐标(NEU)
   假如你来到一个陌生城市，你很可能需要问路、通常会告诉你向北走100米，右转，向东走100米，理解起来很直观。
-  你给儿子买了一个地球仪，你从北京(39,115)转到伦敦 (51,0)，这个动作就可以分解为两步：先转到同一个经度(39,0
+  你给儿子买了一个地球仪，你从北京(39,115)转到伦敦 (51,0)，这个动作就可以分解为两步：先转到同一个经度(39,0)，在转到同一个维度(51,0)
+  这个例子体现了一个问题：不同的地理范围下会使用更适合的坐标系。比如前者是
         </a>
       </p>
 
@@ -629,12 +629,16 @@ https://leetcode-cn.com/problems/video-stitching/
           
             
           
-          REF ：https://learnopengl-cn.github.io/01 Getting started/08 Coordinate Systems/
-WebGL的一些词汇表：https://learnopengl-cn.github.io/01 Getting started/10 Review/
+            比较重要的主要有五个坐标系统：
 
-  比较重要的主要有五个坐标系统：
+局部空间（Local Space，或称为物体空间（Object Space））
+世界空间（World Space）
+观察空间（View Space，或称为眼空间（Eye Space））
+裁剪空间（Clip Space）
+屏幕空间（Screen Space）
 
-局部空间（Local Space，或称为物体空间（
+ 坐标空间
+  为了将坐标从一个坐标系变换到另一个坐标系，我们需要用到几个变换矩阵，最重要的几个分别是
         </a>
       </p>
 
@@ -692,11 +696,11 @@ WebGL的一些词汇表：https://learnopengl-cn.github.io/01 Getting started/10
             
           
            Three 中的矩阵关系
-REF: https://juejin.im/post/6844903510769664014
-
   我们将相机的位置方向, 相机的类型, 物体的位置和形变能转换为 矩阵, 将这些矩阵进行一系列计算后, 最终得到三维投影矩阵: u_matrix
   基于它, 任意给定三维坐标[x, y, z], 我们都能算出相机视平面上的位置:
-  [x, y] = u_matrix 
+  [x, y] = u_matrix * [x, y, z, 1]
+ THREE 中的矩阵
+  THREE定义了场景(Scene)和相机
         </a>
       </p>
 

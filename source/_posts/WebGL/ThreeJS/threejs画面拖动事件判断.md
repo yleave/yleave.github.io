@@ -1,6 +1,6 @@
 ---
 title: threejs画面拖动事件判断
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/three.jpg'
+index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg
 banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg'
 date: 2021-01-13 20:42:53
 categories:

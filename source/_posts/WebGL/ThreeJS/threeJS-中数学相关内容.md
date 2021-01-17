@@ -18,9 +18,6 @@ tags:
 
 # Three 中的矩阵关系
 
-REF: https://juejin.im/post/6844903510769664014
-
----
 
 &emsp;&emsp;我们将相机的位置方向, 相机的类型, 物体的位置和形变能转换为 **矩阵**, 将这些矩阵进行一系列计算后, 最终得到**三维投影矩阵**: `u_matrix`
 
@@ -113,16 +110,13 @@ camera.lookAt(x, y, z);
 
 
 
+---
 
-
-
-
+REF: https://juejin.im/post/6844903510769664014
 
 
 # Box3
 
-REF: https://www.mrguo.link/article?id=12
----
 
 &emsp;&emsp;在线案例点击[three.js Box3](http://three.mrguo.link/box3)。
 
@@ -138,7 +132,8 @@ js
 &emsp;&emsp;这个box就表示3D空间中中心点在`(0,0,0)`，长宽高为`4`的包围盒。
 
 
-
+---
+REF: https://www.mrguo.link/article?id=12
 
 
 
@@ -146,10 +141,6 @@ js
 
 
 # Vector3
-
-REF: https://www.mrguo.link/article?id=14
-
----
 
 
 
@@ -175,7 +166,8 @@ var matrix = new THREE.Matrix4().makeRotationZ(-Math.PI/6);
 vec1.applyMatrix4(matrix);//返回值和上面相同
 ```
 
-
+---
+REF: https://www.mrguo.link/article?id=14
 
 
 
@@ -407,8 +399,6 @@ matrix1.multiplyVector3(vector3);//返回Vector3 {x: 14, y: 32, z: 50}
 
 # 分离轴定理（Separating Axis Theorem）
 
-**原文**：https://aotu.io/notes/2017/02/16/2d-collision-detection/
-
 &emsp;&emsp;**概念**：通过判断任意两个 `凸多边形` 在任意角度下的投影是否均存在重叠，来判断是否发生碰撞。若在某一角度光源下，两物体的投影存在间隙，则为不碰撞，否则为发生碰撞。
 
 **图例：**
@@ -435,5 +425,8 @@ matrix1.multiplyVector3(vector3);//返回Vector3 {x: 14, y: 32, z: 50}
 
 &emsp;&emsp;而对于圆形与圆形之间的碰撞检测依然是最初的两圆心距离是否小于两半径之和。
 
+
+---
+REF: https://aotu.io/notes/2017/02/16/2d-collision-detection/
 
 

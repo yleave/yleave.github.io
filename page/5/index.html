@@ -242,26 +242,31 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg" srcset="/img/loading.gif" alt="ThreeJS 坐标转换">
+        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E4%B8%8E%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E4%BA%92%E8%BD%AC/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg" srcset="/img/loading.gif" alt="ThreeJS 屏幕坐标与世界坐标互转">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">ThreeJS 坐标转换</a>
+        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E4%B8%8E%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E4%BA%92%E8%BD%AC/">ThreeJS 屏幕坐标与世界坐标互转</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+        <a href="/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E4%B8%8E%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E4%BA%92%E8%BD%AC/">
           
           
             
           
-           物体坐标转屏幕坐标
-  在 ThreeJS 中，一个物体可看作一个 Mesh，Mesh 的坐标是用一个 Vector3 来表示的，Vector3 中包含了 x、y、z 坐标。
- project 方法
-  通过 Vector3对象的方法 project，方法的参数是相机对象，语句 worldVector.project(camera);返回的结果是世界坐标 worldVector在 camera相
+            要理解坐标系间的转换过程，需要提前了解：
+
+ThreeJS 中的几种坐标系
+屏幕坐标系和标准设备坐标系
+
+  不想看链接中的内容这边也有不规范的简述：
+  物体的坐标转换过程大致为：局部坐标 -&gt; 世界坐标 -&gt; 观察空间坐标 -&gt; 裁剪空间坐标 -&gt; 屏幕空间坐标
+  我们将 观察空间坐标系 和 裁剪空间坐标系 之间的转换统一处理，最终得到 标准设备坐标系
+  因此坐
         </a>
       </p>
 

@@ -13,10 +13,6 @@ tags:
 	- WeakSet
 ---
 
-
-
-转载于 [sisterAn/blog](https://github.com/sisterAn/blog/issues/24)
-
 # 集合（Set）
 
 `Set` 是 ES6 新增的数据结构，类似于数组，但其成员是唯一无序的，没有重复的值。
@@ -409,43 +405,8 @@ const map = new Map(JSON.parse(objectToMap(json))) // 普通对象 {"a":1,"b":2}
 
 
 
+# REF
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ [sisterAn/blog](https://github.com/sisterAn/blog/issues/24)
 
 

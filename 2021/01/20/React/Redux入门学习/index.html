@@ -1,0 +1,1619 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Redux入门学习 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/redux.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-20 21:02" pubdate>
+        2021年1月20日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      89
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Redux入门学习</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：几秒前
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>参考资源：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">阮一峰博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.redux.org.cn/">中文文档</a></p>
+<p>Demo 仓库：<a target="_blank" rel="noopener" href="https://github.com/yleave/redux-demo">https://github.com/yleave/redux-demo</a></p>
+<h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
+<p>  有几个图片可以帮助理解 <code>redux</code>:</p>
+<p>  这张图片说明了 <code>reudx</code> 的作用：组件间的信息传递不用再只能通过相邻的父子组件进行传递了，而是统一由一个仓库 <code>store</code> 来管理这些 <code>state</code>：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/%E4%B8%8B%E8%BD%BD.jpg" srcset="/img/loading.gif" alt="下载" style="zoom: 150%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP.jpg" srcset="/img/loading.gif" alt="OIP" style="zoom:150%;" />
+<p>有两个：</p>
+<p><code>redux</code> ： js 的状态管理  如 <code>createStore</code></p>
+<p><code>react-redux</code> : 为了在 react 中更容易的使用 ，如 <code>connect</code> 、 <code>provider</code></p>
+<p>安装：</p>
+<ul>
+<li><code>cnpm install --save redux</code></li>
+<li><code>cnpm i --save react-redux</code></li>
+</ul>
+<p>  <strong>核心概念：</strong><code>redux</code> 的核心概念就是使用一个个的<strong>可嵌套</strong>的 <code>reducer</code> 函数来管理所有的 <code>state</code>。</p>
+<h2 id="三大原则"><a class="markdownIt-Anchor" href="#三大原则"></a> 三大原则</h2>
+<ul>
+<li>
+<p><strong>单一数据源</strong></p>
+<p>整个应用的 <a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/Glossary.html#state">state</a> 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 <a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/Glossary.html#store">store</a> 中。</p>
+</li>
+<li>
+<p><strong><code>state</code> 是只读的</strong></p>
+<p>唯一改变 state 的方法就是触发 <a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/Glossary.html#action">action</a>，action 是一个用于描述已发生事件的普通对象。</p>
+</li>
+<li>
+<p><strong>使用纯函数来执行修改</strong></p>
+<p>为了描述 action 如何改变 state tree ，你需要编写 <a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/Glossary.html#reducer">reducers</a>。</p>
+<p><code>Reducer</code>只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
+</li>
+</ul>
+<h1 id="使用-redux-最简单的示例计数器"><a class="markdownIt-Anchor" href="#使用-redux-最简单的示例计数器"></a> 使用 Redux 最简单的示例：计数器</h1>
+<p>  这个示例实现的效果就是：点击 <code>increasment</code> 和 <code>decreasment</code> 按钮，分别增加、减少界面上显示的数字</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213539985.png" srcset="/img/loading.gif" alt="image-20200722213539985" style="zoom:80%;" />
+<p><strong>1.</strong> 首先，在 App.js 中先编写一个简单的界面（使用了 bootstrap）：</p>
+<pre><code class="hljs jsx">render() &#123;
+    <span class="hljs-keyword">return</span> (
+        &lt;div className=<span class="hljs-string">&quot;App&quot;</span>&gt;
+            &lt;h1 className=<span class="hljs-string">&quot;jumbotron-heading text-center&quot;</span>&gt;<span class="hljs-number">0</span>&lt;/h1&gt;
+            &lt;p className=<span class="hljs-string">&quot;text-center&quot;</span>&gt;
+                &lt;button  className=<span class="hljs-string">&#x27;btn btn-primary&#x27;</span>&gt;increasment&lt;/button&gt;  
+                &lt;button  className=<span class="hljs-string">&#x27;btn btn-success&#x27;</span>&gt;decreasment&lt;/button&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    );
+&#125;</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213401691.png" srcset="/img/loading.gif" alt="image-20200722213401691" style="zoom:80%;" />
+<p><strong>2.</strong> 在 <code>src/reducers</code> 路径下创建文件 <code>counter.js</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> counter = <span class="hljs-function">(<span class="hljs-params"> state = <span class="hljs-number">0</span>, action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;INCREASMENT&#x27;</span>:
+            <span class="hljs-keyword">return</span> state + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;DECREASMENT&#x27;</span>:
+            <span class="hljs-keyword">return</span> state - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> counter;</code></pre>
+<p><strong>3.</strong> 在 <code>index.js</code> 中根据这个 <code>reducer</code> 创建 <code>store</code>，并将更新 <code>state</code> 的方法作为参数传递到 App 组件中，且注册监听器监听 <code>state</code> 的状态：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span>;
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+<span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers/counter&#x27;</span>;
+
+<span class="hljs-comment">// 创建 store 仓库</span>
+<span class="hljs-keyword">const</span> store = createStore(reducer);
+<span class="hljs-comment">// store.subscribe( () =&gt; console.log(&#x27;state: &#x27;, store.getState()));</span>
+
+<span class="hljs-keyword">const</span> render = <span class="hljs-function">() =&gt;</span> &#123;
+    ReactDOM.render(
+        &lt;App 
+            onIncreasment=&#123; <span class="hljs-function">() =&gt;</span> store.dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;INCREASMENT&#x27;</span>&#125;)&#125;
+            onDecreasment=&#123; <span class="hljs-function">() =&gt;</span> store.dispatch(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;DECREASMENT&#x27;</span>&#125;)&#125;
+            value=&#123; store.getState() &#125;
+        /&gt;,
+        <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>)
+    );
+&#125;; 
+
+<span class="hljs-comment">// 先运行一次渲染</span>
+render();
+store.subscribe(render);
+</code></pre>
+<p><strong>4.</strong> 最后，在 App.js 中调用传入的这些参数来更新显示的数字：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/js/bootstrap&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;
+    
+    render() &#123;
+        <span class="hljs-keyword">return</span> (
+            &lt;div className=<span class="hljs-string">&quot;App&quot;</span>&gt;
+                
+                &lt;h1 className=<span class="hljs-string">&quot;jumbotron-heading text-center&quot;</span>&gt;&#123;<span class="hljs-built_in">this</span>.props.value&#125;&lt;/h1&gt;
+                &lt;p className=<span class="hljs-string">&quot;text-center&quot;</span>&gt;
+                    &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.props.onIncreasment&#125; className=<span class="hljs-string">&#x27;btn btn-primary&#x27;</span>&gt;increasment&lt;/button&gt;  
+                    &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.props.onDecreasment&#125; className=<span class="hljs-string">&#x27;btn btn-success&#x27;</span>&gt;decreasment&lt;/button&gt;
+                &lt;/p&gt;
+                
+            &lt;/div&gt;
+        );
+    &#125;
+&#125;</code></pre>
+<h2 id="梳理"><a class="markdownIt-Anchor" href="#梳理"></a> 梳理</h2>
+<p><strong>梳理一下 Redux 的使用方法：</strong></p>
+<ol>
+<li>先编写 <code>reducer</code> ，用于管理状态，且 <code>reducer</code> 是唯一能够修改状态的地方。</li>
+<li>使用 <code>createStore(reducer)</code>（还有其他参数，不过目前就用到这一个参数）来创建 <code>store</code>。</li>
+<li>使用 <code>store.dispatch(action)</code> 方法来更新 <code>state</code>，这个 <code>action</code> 可以是多种数据类型，不过本例中是一个对象，然后  <code>reducer</code> 中根据 <code>action.type</code> 来选择如何更新 <code>state</code>。</li>
+<li>可使用 <code>store.getState()</code> 方法来获取 <code>state</code>，这个 <code>state</code> 是包含了所有 <code>state</code> 的一个对象，本例中只定义了一个数字作为 <code>state</code>。</li>
+<li>使用 <code>store.subscribe(listener)</code> 来注册监听器，监听 <code>state</code> 的变化</li>
+</ol>
+<h1 id="使用-react-redux-的示例计数器"><a class="markdownIt-Anchor" href="#使用-react-redux-的示例计数器"></a> 使用 react-redux 的示例：计数器</h1>
+<p>  使用 <code>react-redux</code> 来重写之前的计数器的例子。</p>
+<p><strong>1.</strong> 首先，更改 <code>index.js</code> 中的代码，使用 <code>Provider</code> 组件来包裹 <code>App</code> 组件：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span>;
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+<span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers/counter&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; Provider &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>;
+
+<span class="hljs-comment">// 创建 store 仓库</span>
+<span class="hljs-keyword">const</span> store = createStore(reducer);
+
+ReactDOM.render(
+    &lt;Provider store=&#123; store &#125;&gt;
+        &lt;App /&gt;
+    &lt;/Provider&gt;,
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>)
+);</code></pre>
+<p><strong>2.</strong> 更改 <code>App.js</code> 中的代码，使用高阶组件 <code>connect</code> 来关联 <code>App</code> 组件和其状态映射函数：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/js/bootstrap&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;
+    
+    render() &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this.props: &#x27;</span>, <span class="hljs-built_in">this</span>.props);
+      <span class="hljs-keyword">return</span> (
+          &lt;div className=<span class="hljs-string">&quot;App&quot;</span>&gt;
+              &lt;h1 className=<span class="hljs-string">&quot;jumbotron-heading text-center&quot;</span>&gt;&#123;<span class="hljs-built_in">this</span>.props.counter&#125;&lt;/h1&gt;
+              &lt;p className=<span class="hljs-string">&quot;text-center&quot;</span>&gt;
+                  &lt;button className=<span class="hljs-string">&#x27;btn btn-primary&#x27;</span>&gt;increasment&lt;/button&gt;  
+                  &lt;button className=<span class="hljs-string">&#x27;btn btn-success&#x27;</span>&gt;decreasment&lt;/button&gt;
+              &lt;/p&gt;
+              
+          &lt;/div&gt;
+      );
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counter: state
+    &#125;;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(App);</code></pre>
+<p>  可以观察到页面上输出的 <code>this.props</code> 信息，因此可以将 <code>this.props.counter</code> 作为显示的数字：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722222339428.png" srcset="/img/loading.gif" alt="image-20200722222339428" style="zoom:80%;" />
+<p><strong>3.</strong> 创建一个 js 文件来封装这个 <code>reducer</code> 对应的 <code>actions</code>。在 <code>src/actions/</code> 下创建文件 <code>counter.js</code>：调用这些方法返回对应的 <code>action</code></p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: <span class="hljs-string">&#x27;INCREMENT&#x27;</span>
+    &#125;;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: <span class="hljs-string">&#x27;DECREMENT&#x27;</span>
+    &#125;;
+&#125;</code></pre>
+<p><strong>4.</strong> 在 App.js 中定义 <code>action</code> 分发到 <code>props</code> 的映射，并在按钮中使用这些分发的函数：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/css/bootstrap.min.css&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;bootstrap/dist/js/bootstrap&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; increment, decrement &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./actions/counter&#x27;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;
+    
+    render() &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this.props: &#x27;</span>, <span class="hljs-built_in">this</span>.props);
+      <span class="hljs-keyword">const</span> &#123; increment, decrement &#125; = <span class="hljs-built_in">this</span>.props;
+      <span class="hljs-keyword">return</span> (
+          &lt;div className=<span class="hljs-string">&quot;App&quot;</span>&gt;
+              &lt;h1 className=<span class="hljs-string">&quot;jumbotron-heading text-center&quot;</span>&gt;&#123;<span class="hljs-built_in">this</span>.props.counter&#125;&lt;/h1&gt;
+              &lt;p className=<span class="hljs-string">&quot;text-center&quot;</span>&gt;
+                  <span class="hljs-comment">// increment 和 decrement 是 props 中的属性</span>
+                  &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; increment(); &#125;&#125; className=<span class="hljs-string">&#x27;btn btn-primary&#x27;</span>&gt;increment&lt;/button&gt;  
+                  &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; decrement(); &#125;&#125; className=<span class="hljs-string">&#x27;btn btn-success&#x27;</span>&gt;decrement&lt;/button&gt;
+              &lt;/p&gt;
+              
+          &lt;/div&gt;
+      );
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counter: state
+    &#125;;
+&#125;;
+
+<span class="hljs-keyword">const</span> mapDispatchToPorps = <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        increment: <span class="hljs-function">() =&gt;</span> &#123; dispatch(increment()) &#125;,
+        decrement: <span class="hljs-function">() =&gt;</span> &#123; dispatch(decrement()) &#125;
+    &#125;;
+&#125;;
+<span class="hljs-comment">// 将 action 分发的映射也绑定到 App 中，参数的顺序不能改变</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToPorps)(App);</code></pre>
+<p>  这样，<code>react-redux</code> 就自动的帮我们完成 <code>state</code> 和 <code>dispatch</code> 到 <code>App</code> 组件的绑定，并能够正确的相应 <code>actions</code> ，更新 <code>state</code>。</p>
+<p>  从 打印的 <code>props</code> 可以观察到 <code>state</code> 的变化：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722224349311.png" srcset="/img/loading.gif" alt="image-20200722224349311" style="zoom:80%;" />
+<p>  第 4 步的另外一种写法：（推荐用这种</p>
+<p>  使用 <code>reudx</code> 的 <code>bindActionCreators</code> 方法来将自定义的 <code>actions</code> 和 <code>dispatch</code> 绑定：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> counterActions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./actions/counter&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; bindActionCreators &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+
+<span class="hljs-keyword">const</span> mapDispatchToPorps = <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counterActions: bindActionCreators(counterActions, dispatch)
+    &#125;;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToPorps)(App);
+
+<span class="hljs-comment">// render() 中</span>
+<span class="hljs-keyword">const</span> &#123; counterActions &#125; = <span class="hljs-built_in">this</span>.props;
+<span class="hljs-keyword">return</span> (
+    &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.increment(); &#125;&#125;&gt;increment&lt;/button&gt; 
+    &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.decrement(); &#125;&#125;&gt;decrement&lt;/button&gt;
+);</code></pre>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723100226347.png" srcset="/img/loading.gif" alt="image-20200723100226347" style="zoom:80%;" />
+<h2 id="梳理-2"><a class="markdownIt-Anchor" href="#梳理-2"></a> 梳理</h2>
+<p><strong><code>react-redux</code> 使用流程梳理：</strong></p>
+<ol>
+<li>
+<p>使用 <code>Provider</code> 来包裹需要管理 <code>state</code> 的组件，并传入创建好的 <code>store</code>：</p>
+<pre><code class="hljs jsx">ReactDOM.render(
+ &lt;Provider store=&#123; store &#125;&gt;
+     &lt;App /&gt;
+ &lt;/Provider&gt;,
+ <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>)
+</li>
+</ol>
+<p>);</code></pre>:hexoPostRenderEscape–&gt;</p>
+<ol start="2">
+<li>
+<p>创建 <code>state</code> 到 组件<code>props</code> 的映射，并使用高阶组件 <code>connect</code> 将其与组件绑定：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+ <span class="hljs-keyword">return</span> &#123;
+     counter: state
+ &#125;;
+</li>
+</ol>
+<p>&#125;;</p>
+<p><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(App);</code></pre>:hexoPostRenderEscape–&gt;</p>
+<ol start="3">
+<li>
+<p>封装<code>reducer</code> 中的对应 <code>actions</code> ：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;
+ <span class="hljs-keyword">return</span> &#123;
+     type: <span class="hljs-string">&#x27;INCREMENT&#x27;</span>
+ &#125;;
+</li>
+</ol>
+<p>&#125;</p>
+<p><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params"></span>) </span>&#123;<br />
+<span class="hljs-keyword">return</span> &#123;<br />
+type: <span class="hljs-string">‘DECREMENT’</span><br />
+&#125;;<br />
+&#125;</code></pre>:hexoPostRenderEscape–&gt;</p>
+<ol start="4">
+<li>
+<p>和 <code>state</code> 一样，创建 <code>actions</code> 和 <code>props</code> 的映射，将其传入 <code>connect</code> 中与组件进行绑定：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">const</span> mapDispatchToPorps = <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
+ <span class="hljs-keyword">return</span> &#123;
+     increment: <span class="hljs-function">() =&gt;</span> &#123; dispatch(increment()) &#125;,
+     decrement: <span class="hljs-function">() =&gt;</span> &#123; dispatch(decrement()) &#125;
+ &#125;;
+</li>
+</ol>
+<p>&#125;;</p>
+<p><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToPorps)(App);</code></pre>:hexoPostRenderEscape–&gt;</p>
+<p>或使用 <code>redux</code> 的 <code>bindActionCreators</code> 来帮助创建映射，这种方法在很多 <code>actions</code> 的时候用起来会比较方便：</p>
+   <pre><code class="hljs jsx"><span class="hljs-keyword">const</span> mapDispatchToPorps = <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counterActions: bindActionCreators(counterActions, dispatch)
+    &#125;;
+&#125;;</code></pre>
+<ol start="5">
+<li>
+<p><code>state</code>和 <code>actions</code> 都已经与组件的<code>props</code>进行绑定了，因此可以在需要使用 <code>state</code> 及更新 <code>state</code> 的地方使用 <code>props</code> 中的这些属性：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; increment, decrement &#125; = <span class="hljs-built_in">this</span>.props;
+</li>
+</ol>
+<p><span class="hljs-keyword">const</span> &#123; counterActions &#125; = <span class="hljs-built_in">this</span>.props;<br />
+<span class="hljs-keyword">return</span> (<br />
+&lt;div className=<span class="hljs-string">“App”</span>&gt;<br />
+&lt;h1&gt;&#123;<span class="hljs-built_in">this</span>.props.counter&#125;&lt;/h1&gt;<br />
+&lt;p className=<span class="hljs-string">“text-center”</span>&gt;<br />
+<span class="hljs-comment">// 未使用 bindActionCreators</span><br />
+&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; increment(); &#125;&#125; &gt;increment&lt;/button&gt;<br />
+&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; decrement(); &#125;&#125; &gt;decrement&lt;/button&gt;<br />
+<span class="hljs-comment">// 使用 bindActionCreators</span><br />
+&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.increment(); &#125;&#125;&gt;increment&lt;/button&gt;<br />
+&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.decrement(); &#125;&#125;&gt;decrement&lt;/button&gt;<br />
+&lt;/p&gt;<br />
+&lt;/div&gt;<br />
+);</code></pre>:hexoPostRenderEscape–&gt;</p>
+<p>  此外，代码中的 <code>action</code> 的 <code>type</code> 还可以专门创建一个文件来管理常量：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// src/constants/index.js</span>
+<span class="hljs-comment">// counter</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> INCREMENT = <span class="hljs-string">&#x27;INCREMENT&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DECREMENT = <span class="hljs-string">&#x27;DECREMENT&#x27;</span>;</code></pre>
+<p>  这样的话，有两个地方可以修改：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// src/reducers/counter.js</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-function">(<span class="hljs-params"> state = <span class="hljs-number">0</span>, action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> actions.INCREMENT:
+            <span class="hljs-keyword">return</span> state + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">case</span> actions.DECREMENT:
+            <span class="hljs-keyword">return</span> state - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> counter;
+
+<span class="hljs-comment">// src/actions/counter.js</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.INCREMENT
+    &#125;;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.DECREMENT
+    &#125;;
+&#125;</code></pre>
+<p>  且，页面中增加减少按钮处可设置进行参数传递，来设置一次增加/减少的值：</p>
+<pre><code class="hljs js">&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.increment(<span class="hljs-number">10</span>); &#125;&#125;&gt;increment&lt;/button&gt;  
+&lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.decrement(<span class="hljs-number">5</span>); &#125;&#125; &gt;decrement&lt;/button&gt;</code></pre>
+<ol>
+<li>先在 <code>actions</code> 中接收这个参数，并设置：</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params">num</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.INCREMENT,
+        num
+    &#125;;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params">num</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.DECREMENT,
+        num
+    &#125;;
+&#125;</code></pre>
+<ol start="2">
+<li>在 <code>reducer</code> 中设置每次更新的值：（注意 <code>actions</code> 和参数 <code>action</code> 的区分</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-function">(<span class="hljs-params"> state = <span class="hljs-number">0</span>, action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> actions.INCREMENT:
+            <span class="hljs-keyword">return</span> state + action.num;
+        <span class="hljs-keyword">case</span> actions.DECREMENT:
+            <span class="hljs-keyword">return</span> state - action.num;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> counter;</code></pre>
+<h1 id="使用-combinereducers-合并-reducer"><a class="markdownIt-Anchor" href="#使用-combinereducers-合并-reducer"></a> 使用 combineReducers 合并 reducer</h1>
+<p>  在应用中，可能会有非常多的数据需要管理，这时就需要多个 <code>reducer</code> 来管理，使用 <code>combineReducers</code> 来合并这些 <code>reducers</code> 可以更加方便的使用这些 <code>reducers</code>。</p>
+<p>  在页面上再添加一个 <code>User</code> 组件，组件中有一个文本标签和一个按钮，目标是点击按钮能后够添加一个字符串并显示在文本中：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723120654431.png" srcset="/img/loading.gif" alt="image-20200723120654431" style="zoom:80%;" />
+<p>  按照上个例子依葫芦画瓢的添加这个功能：</p>
+<ol>
+<li>
+<p>在 <code>src/constants/index.js</code> 中新添加一个常量，作为 <code>action.type</code>。</p>
+</li>
+<li>
+<p>在 <code>src/actions/</code> 中新增一个 <code>action</code>，<code>action</code> 中定义了 <code>type</code> 来帮助 <code>reducer</code> 中判断执行哪个 操作，也可以定义一些参数在 <code>reducer</code> 中使用。</p>
+</li>
+<li>
+<p>在<code>src/reducers/</code> 中新增一个 <code>reducer</code> ，来管理这个新功能的 <code>state</code>。</p>
+</li>
+<li>
+<p>在<code>src/App.js</code> 中，也就是主组件中的 <code>mapStateToProps</code> 和 <code>mapDispatchToProps</code> 中添加这个新功能的 <code>state</code> 和 <code>action</code></p>
+</li>
+<li>
+<p>先忽略使用 <code>reducer</code> 创建 <code>store</code> 这一步，有了之前的步骤后，现在就能在 <code>render</code> 中使用 <code>props</code> 里的 <code>state</code> 和 <code>action</code> 了。</p>
+</li>
+</ol>
+<p>  现在来看创建 <code>store</code> 这步，现在有了两个 <code>reducer</code> 来管理各自的 <code>state</code>，需要将它们合并成一个 <code>reducer</code> 来创建 <code>store</code>。</p>
+<ol>
+<li>在 <code>src/reducers/</code> 中新建一个 <code>index.js</code> 来封装合并后的 <code>reducer</code>：</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; combineReducers &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+<span class="hljs-keyword">import</span> user <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./user&#x27;</span>;
+<span class="hljs-keyword">import</span> counter <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./counter&#x27;</span>;
+
+<span class="hljs-keyword">const</span> rootReducer = combineReducers(&#123;
+    user, 
+    counter,
+&#125;);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> rootReducer;</code></pre>
+<p>  代码中的 <code>combineReducers</code> 方法中，<code>user</code> 其实是<code>user:user</code>，所以说，这个<code>reducer</code> 维护的 <code>state</code> 其实是一个对象。</p>
+<ol start="2">
+<li>在 <code>src/index.js</code> 中使用这个合并的 <code>reducer</code> 创建 <code>store</code>：</li>
+</ol>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers&#x27;</span>;
+<span class="hljs-comment">// 创建 store 仓库</span>
+<span class="hljs-keyword">const</span> store = createStore(rootReducer);</code></pre>
+<ol start="3">
+<li>这样的话，需要返回 <code>src/App.js</code> 中修改一下之前的<code>state</code> 的映射 <code>mapStateToProps</code> :</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counter: state.counter,
+        user: state.user,
+    &#125;;
+&#125;;</code></pre>
+<p>这样就完成了。</p>
+<p><mark>有一个需要非常注意的地方</mark></p>
+<p>  在测试时发现，<code>reducer</code> 中，<strong>对于 <code>state</code> 的更新操作需要返回一个新的 <code>state</code> 才会触发 <code>dispatch</code> 中监听的<code>state</code> 变化然后进行元素渲染。</strong></p>
+<blockquote>
+<p>这个和三大原则的 <code>State 是只读的</code> 原则有关，若想改变 <code>state</code> 的话只能返回一个新的 <code>state</code>。</p>
+</blockquote>
+<p>如：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-function">(<span class="hljs-params"> state = [], action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> actions.ADD_USER:
+            <span class="hljs-comment">// state.push(action.user);</span>
+            <span class="hljs-keyword">return</span> state.concat(action.user);
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> user;</code></pre>
+<p>  <code>array</code> 的 <code>concat</code> 方法是浅复制，并会返回一个<strong>新</strong>数组，因此能够正常的渲染：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125100275.png" srcset="/img/loading.gif" alt="image-20200723125100275" style="zoom:80%;" />
+<p>  否则，若代码是这样的：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">case</span> actions.ADD_USER:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;before state: &#x27;</span>, state);
+    state.push(action.user);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;after state: &#x27;</span>, state);
+    <span class="hljs-comment">// return state.concat(action.user);</span>
+    <span class="hljs-keyword">return</span> state;</code></pre>
+<p>  点击 <code>addUser</code> 按钮，虽然在输出中发现<code>state</code> 是变化的，但是这些变化的 <code>state</code> 并不会及时渲染到页面上</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125358933.png" srcset="/img/loading.gif" alt="image-20200723125358933" style="zoom:80%;" />
+<p>  然后要点击一次 <code>increment</code> 或 <code>decrement</code> 按钮才会触发渲染：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125639079.png" srcset="/img/loading.gif" alt="image-20200723125639079" style="zoom:80%;" />
+<p>  因此要特别注意需要返回一个 <strong>“新”</strong> 的 <code>state</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">case</span> actions.ADD_USER:
+    <span class="hljs-keyword">let</span> newState = state.concat(action.user);
+    <span class="hljs-keyword">return</span> newState;</code></pre>
+<h1 id="中间件"><a class="markdownIt-Anchor" href="#中间件"></a> 中间件</h1>
+<p>  官方文档：<a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/advanced/Middleware.html">https://www.redux.org.cn/docs/advanced/Middleware.html</a></p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<p>  从图中可以看到 <code>redux</code> 的工作流，在触发 <code>actions</code> 后，到达 <code>store</code> 时，最开始会先经过一个 <code>minddleware</code>(中间件)，然后才通过 <code>reducer</code> 来更新状态。</p>
+<blockquote>
+<p><strong>它提供的是位于 action 被发起之后，到达 reducer 之前的扩展点。</strong> 你可以利用 Redux middleware 来进行日志记录、创建崩溃报告、调用异步接口或者路由等等。</p>
+</blockquote>
+<p>  中间件通常可以用来打印日志、错误等。<code>redux</code> 的中间件可以自定义也可以使用别人开源的。</p>
+<h2 id="自定义中间件"><a class="markdownIt-Anchor" href="#自定义中间件"></a> 自定义中间件</h2>
+<p>  代码中需要注意的是，中间件需要在创建 <code>store</code> 前编写，并在 <code>createStore</code> 中使用，如代码所示，中间件可以有多个，在<code>applyMiddleware</code> 中用逗号隔开即可。</p>
+<p>  <code>createStore</code> 中的第二个参数不知道是什么，先不用管它。</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+
+<span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;dispatch -&gt; &#x27;</span>, action);
+    <span class="hljs-keyword">let</span> result = next(action); <span class="hljs-comment">// 加载下一个中间件</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;next state -&gt; &#x27;</span>, store.getState());
+    <span class="hljs-keyword">return</span> result;
+&#125;;
+
+<span class="hljs-keyword">const</span> error = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">try</span> &#123;
+        next(action);
+    &#125; <span class="hljs-keyword">catch</span>(e) &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error -&gt; &#x27;</span>, e);
+    &#125;
+&#125;;
+
+<span class="hljs-comment">// 创建 store 仓库</span>
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, applyMiddleware(logger, error));</code></pre>
+<p>  上面代码中的中间件定义使用了多重嵌套箭头函数的写法，其实本质是函数的嵌套，想象着用括号分隔可能会好理解一些：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span>(<span class="hljs-params">store</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">next</span>) </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">action</span>) </span>&#123;
+            
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> logger = (<span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> (<span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> (<span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;&#125;)));</code></pre>
+<h2 id="使用第三方中间件"><a class="markdownIt-Anchor" href="#使用第三方中间件"></a> 使用第三方中间件</h2>
+<p>  日志的第三方中间件有：<code>redux-logger</code></p>
+<p><code>cnpm i --save redux-logger</code></p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> logger <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-logger&#x27;</span>;
+
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, applyMiddleware(logger));</code></pre>
+<p>  效果比自定义的好看多了：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723165643383.png" srcset="/img/loading.gif" alt="image-20200723165643383" style="zoom:80%;" />
+<h2 id="异步中间件"><a class="markdownIt-Anchor" href="#异步中间件"></a> 异步中间件</h2>
+<p><code>cnpm i --save redux-thunk</code></p>
+<p>目标：在点击 <code>increment</code> 按钮时，延时一秒获取数据：</p>
+<p>  在 <code>src/actions/counter.js</code> 中修改 <code>increment</code> 代码如下：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params">num</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> &#123;
+        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+            dispatch(&#123;
+                type: actions.INCREMENT,
+                num
+            &#125;);
+        &#125;, <span class="hljs-number">1000</span>);
+    &#125;;
+&#125;
+<span class="hljs-comment">// src/index.js</span>
+<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-thunk&#x27;</span>;
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, applyMiddleware(logger, thunk));</code></pre>
+<p>  若未传入 <code>thunk</code> 中间件，会报这样的错：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182830470.png" srcset="/img/loading.gif" alt="image-20200723182830470" style="zoom:80%;" />
+<p>  传入中间件 <code>thunk</code>并点击 <code>increment</code> 后：过一秒页面上的数字会变成 10</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182007956.png" srcset="/img/loading.gif" alt="image-20200723182007956" style="zoom:80%;" />
+<p>  对于 <code>decrement</code>，也修改代码，不过代码中没有异步操作：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params">num</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> &#123;
+        dispatch(&#123;
+            type: actions.INCREMENT,
+            num
+        &#125;);
+    &#125;;
+&#125;</code></pre>
+<p>  点击按钮后，也会显示：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723183655255.png" srcset="/img/loading.gif" alt="image-20200723183655255" style="zoom:80%;" />
+<p>  不过，若没有传入 <code>redux-thunk</code>，上面的两个代码都会报错。</p>
+<p><strong>感觉下面的猜想有点问题，不过当看着玩帮助理解：</strong></p>
+<p>  结合下面的源码，<strong>自己的猜想</strong>：在触发 <code>action</code> 后，会先进入中间件，若有传入处理<code>action</code> 的中间件，则会先处理，最后再调用 <code>dispatch</code> 方法，再返回这个 <code>action</code> 的对象。</p>
+<p>  若未定义中间件，可能也会使用 <code>dispatch</code> 方法检测这个 <code>action</code> 是不是一个 <code>plain object</code>，若是，就返回这个 <code>action</code> 的对象，否则会报错。</p>
+<p>  <code>redux</code> 中关于 <code>dispatch</code> 的源码部分：</p>
+<pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Dispatches an action. It is the only way to trigger a state change.</span>
+<span class="hljs-comment">   *</span>
+<span class="hljs-comment">   * The `reducer` function, used to create the store, will be called with the</span>
+<span class="hljs-comment">   * current state tree and the given `action`. Its return value will</span>
+<span class="hljs-comment">   * be considered the **next** state of the tree, and the change listeners</span>
+<span class="hljs-comment">   * will be notified.</span>
+<span class="hljs-comment">   *</span>
+<span class="hljs-comment">   * The base implementation only supports plain object actions. If you want to</span>
+<span class="hljs-comment">   * dispatch a Promise, an Observable, a thunk, or something else, you need to</span>
+<span class="hljs-comment">   * wrap your store creating function into the corresponding middleware. For</span>
+<span class="hljs-comment">   * example, see the documentation for the `redux-thunk` package. Even the</span>
+<span class="hljs-comment">   * middleware will eventually dispatch plain object actions using this method.</span>
+<span class="hljs-comment">   *</span>
+<span class="hljs-comment">   * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Object&#125;</span> </span>action A plain object representing “what changed”. It is</span>
+<span class="hljs-comment">   * a good idea to keep actions serializable so you can record and replay user</span>
+<span class="hljs-comment">   * sessions, or use the time travelling `redux-devtools`. An action must have</span>
+<span class="hljs-comment">   * a `type` property which may not be `undefined`. It is a good idea to use</span>
+<span class="hljs-comment">   * string constants for action types.</span>
+<span class="hljs-comment">   *</span>
+<span class="hljs-comment">   * <span class="hljs-doctag">@returns <span class="hljs-type">&#123;Object&#125;</span> </span>For convenience, the same action object you dispatched.</span>
+<span class="hljs-comment">   *</span>
+<span class="hljs-comment">   * Note that, if you use a custom middleware, it may wrap `dispatch()` to</span>
+<span class="hljs-comment">   * return something else (for example, a Promise you can await).</span>
+<span class="hljs-comment">   */</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dispatch</span>(<span class="hljs-params">action</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!isPlainObject(action)) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Actions must be plain objects. &#x27;</span> + <span class="hljs-string">&#x27;Use custom middleware for async actions.&#x27;</span>);
+    &#125;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> action.type === <span class="hljs-string">&#x27;undefined&#x27;</span>) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Actions may not have an undefined &quot;type&quot; property. &#x27;</span> + <span class="hljs-string">&#x27;Have you misspelled a constant?&#x27;</span>);
+    &#125;
+
+    <span class="hljs-keyword">if</span> (isDispatching) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Reducers may not dispatch actions.&#x27;</span>);
+    &#125;
+
+    <span class="hljs-keyword">try</span> &#123;
+        isDispatching = <span class="hljs-literal">true</span>;
+        currentState = currentReducer(currentState, action);
+    &#125; <span class="hljs-keyword">finally</span> &#123;
+        isDispatching = <span class="hljs-literal">false</span>;
+    &#125;
+
+    <span class="hljs-keyword">var</span> listeners = currentListeners = nextListeners;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+        <span class="hljs-keyword">var</span> listener = listeners[i];
+        listener();
+    &#125;
+
+    <span class="hljs-keyword">return</span> action;
+&#125;</code></pre>
+<h1 id="使用-redux-thunk-的示例"><a class="markdownIt-Anchor" href="#使用-redux-thunk-的示例"></a> 使用 redux-thunk 的示例</h1>
+<p><strong>目标</strong>：在原有基础上使用异步操作获取测试 API <code>http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php</code> 中的某些内容：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723204950304.png" srcset="/img/loading.gif" alt="image-20200723204950304" style="zoom:80%;" />
+<p>  根据下面的图，要实现这个功能，可以在触发 <code>action</code> 后，进入 <code>reducer</code> 更新状态之前获取数据，然后再<code>dispatch</code> 到 <code>reducer</code> 中进行更新，最后可以从 <code>store</code> 中获取 <code>state</code>。</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<p><strong>1.</strong> 首先，为 <code>user</code> 再定义一个常量来表示 <code>action.type</code>：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// user</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ADD_USER = <span class="hljs-string">&#x27;ADD_USER&#x27;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA = <span class="hljs-string">&#x27;FETCH_USER_DATA&#x27;</span>; <span class="hljs-comment">// 新添加的</span></code></pre>
+<p><strong>2.</strong> 在<code>src/actions/user.js</code> 中新增 <code>user</code> 的 <code>action</code>：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addUser</span>(<span class="hljs-params">user</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.ADD_USER,
+        user
+    &#125;;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user_data</span>(<span class="hljs-params">userData</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.FETCH_USER_DATA,
+        userData
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> &#123;
+        fetch(<span class="hljs-string">&#x27;http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php&#x27;</span>)
+        .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+        .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
+            dispatch(fetch_user_data(data.chengpinDetails[<span class="hljs-number">0</span>]));
+        &#125;)
+        .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error: &#x27;</span>, error);
+        &#125;);
+    &#125;;
+&#125;</code></pre>
+<p>  需要注意的是，最后导出的是 <code>fetch_user</code>，在获取的数据后，需要将 <code>fetch_user_data</code> 方法中返回的 <code>action</code> 传递给 <code>dispatch</code>，这样才能正常的使用 <code>reducer</code> 来更新状态。</p>
+<p><strong>3.</strong> 在 <code>src/reducers/user</code> 中重新定义 <code>state</code>：</p>
+<p>  代码中定义了一个 <code>initUserInfo</code> 对象来作为 <code>user</code> 的 <code>state</code>。</p>
+<p>  注意到，两个<code>case</code>的返回结果都是一个新对象，而这个对象只会更新对应的数据，其他的使用原本的<code>state</code> 里的数据。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../constants&#x27;</span>;
+
+<span class="hljs-keyword">const</span> initUserInfo = &#123;
+    user: [],
+    userData: &#123;&#125;
+&#125;;
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-function">(<span class="hljs-params"> state = initUserInfo, action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> actions.ADD_USER:
+            <span class="hljs-keyword">let</span> user = state.user.concat(action.user);
+            <span class="hljs-keyword">return</span> &#123;
+                user: user,
+                userData: state.userData
+            &#125;;
+        <span class="hljs-keyword">case</span> actions.FETCH_USER_DATA:
+            <span class="hljs-keyword">return</span> &#123;
+                user: state.user,
+                userData: action.userData
+            &#125;;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> user;</code></pre>
+<p><strong>4.</strong> 在 <code>App.js</code> 中进行修改：</p>
+<p>  在 <code>mapStateToProps</code> 中新增 <code>userData</code> 的映射，且注意到，现在的 <code>state</code> 里的 <code>user</code> 变成了一个对象了，可以按照下面的代码来与 <code>props</code> 进行映射，也可以直接用这个 <code>user</code> 对象来进行映射。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        counter: state.counter,
+        user: state.user.user,
+        userData: state.user.userData,
+    &#125;;
+&#125;;
+</code></pre>
+<p>  然后，在 <code>User</code> 组件中多传入两个参数，一个参数是新增的获取到的数据，另一个是触发获取数据的方法：</p>
+<pre><code class="hljs jsx">&lt;User 
+    users=&#123;<span class="hljs-built_in">this</span>.props.user&#125;
+    userData=&#123;<span class="hljs-built_in">this</span>.props.userData&#125;
+    addUser=&#123;<span class="hljs-function">() =&gt;</span> &#123; userActions.addUser(<span class="hljs-string">&#x27;ye&#x27;</span>); &#125;&#125;
+    fetchUserData=&#123;<span class="hljs-function">() =&gt;</span> (userActions.fetch_user())&#125; 
+    /&gt;</code></pre>
+<p><strong>5.</strong> 最后在 <code>/src/component/User.jsx</code> 组件中使用这两个新增的属性：</p>
+<pre><code class="hljs jsx">&lt;div className=<span class="hljs-string">&#x27;text-center&#x27;</span>&gt;
+    &lt;br /&gt;
+    &lt;h1&gt;&#123;<span class="hljs-built_in">this</span>.props.users&#125;&lt;/h1&gt;
+    &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.props.addUser&#125;&gt;addUser&lt;/button&gt;
+    &lt;br /&gt;
+    &lt;h3&gt;&#123;<span class="hljs-built_in">this</span>.props.userData.title&#125;&lt;/h3&gt;
+    &lt;button onClick=&#123;<span class="hljs-built_in">this</span>.props.fetchUserData&#125;&gt;fetcuUserData&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<p>  其实，不使用 <code>User</code> 组件传递 <code>props</code> 而是直接在 <code>User</code> 组件中进行与 <code>state</code> 和 <code>dispatch</code> 的绑定会更好些，因为 <code>redux</code> 的本意就是状态只由一个 <code>sotre</code> 来管理，因此修改一下 <code>User</code> 组件，当然在使用 <code>User</code> 组件的地方也需要修改，不过这边就不贴修改的代码了：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> userActions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../actions/user&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; bindActionCreators &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+    
+    render() &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.props);
+        <span class="hljs-keyword">const</span> &#123; userActions &#125; = <span class="hljs-built_in">this</span>.props;
+        <span class="hljs-keyword">return</span> (
+            &lt;div className=<span class="hljs-string">&#x27;text-center&#x27;</span>&gt;
+                &lt;br /&gt;
+                &lt;h1&gt;&#123;<span class="hljs-built_in">this</span>.props.user&#125;&lt;/h1&gt;
+                &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> userActions.addUser(<span class="hljs-string">&#x27;ye&#x27;</span>)&#125;&gt;addUser&lt;/button&gt;
+                &lt;br /&gt;
+                &lt;h3&gt;&#123;<span class="hljs-built_in">this</span>.props.userData.title&#125;&lt;/h3&gt;
+                &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> userActions.fetch_user()&#125;&gt;fetcuUserData&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        user: state.user.user,
+        userData: state.user.userData
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">const</span> mapDispatchToProps = <span class="hljs-function">(<span class="hljs-params">dispatch</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        userActions: bindActionCreators(userActions, dispatch)
+    &#125;;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(User);</code></pre>
+<h2 id="redux-示例优化"><a class="markdownIt-Anchor" href="#redux-示例优化"></a> Redux 示例优化</h2>
+<p>  在上个示例中，有使用异步操作来获取数据，由于有网络请求，因此若网速不好的话获取数据可能会有延时，因此在未获取到数据时应该要显示加载提示，等获取到数据后再显示数据：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/2020-07-24-21-10-35.gif" srcset="/img/loading.gif" alt="2020-07-24-21-10-35" style="zoom:80%;" />
+<p><strong>1.</strong> 在常量中添加几个 <code>action.type</code> ：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA_SUCCESS = <span class="hljs-string">&#x27;FETCH_USER_DATA_SUCCESS&#x27;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA_REQUEST = <span class="hljs-string">&#x27;FETCH_USER_DATA_REQUEST&#x27;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA_FALIURE = <span class="hljs-string">&#x27;FETCH_USER_DATA_FALIURE&#x27;</span>;</code></pre>
+<p><strong>2.</strong> 在 <code>src/actions/user.js</code> 中定义几个 <code>action</code> ，在<code>fetch</code> 数据之前，触发 <code>request</code>动作，当获取到数据后，触发 <code>success</code>动作，若遇到错误，则触发<code>faliure</code> 动作。</p>
+<p>  需要注意的是，在返回值是非纯对象的情况下，要想触发 <code>action</code> ，需要使用 <code>dispatch()</code> 方法：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user_data_success</span>(<span class="hljs-params">userData</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.FETCH_USER_DATA_SUCCESS,
+        userData
+    &#125;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user_data_request</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.FETCH_USER_DATA_REQUEST,
+    &#125;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user_data_faliure</span>(<span class="hljs-params">error</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> &#123;
+        type: actions.FETCH_USER_DATA_FALIURE,
+        error
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch_user</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> &#123;
+        dispatch(fetch_user_data_request());
+        fetch(<span class="hljs-string">&#x27;http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php&#x27;</span>)
+        .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+        .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
+            dispatch(fetch_user_data_success(data.chengpinDetails[<span class="hljs-number">0</span>]));
+        &#125;)
+        .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+            dispatch(fetch_user_data_faliure(error));
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error: &#x27;</span>, error);
+        &#125;);
+    &#125;;
+&#125;</code></pre>
+<p><strong>3.</strong> 在 <code>src/reducers/user.js</code> 中新增几个 <code>action</code> 的对应操作：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> initUserInfo = &#123;
+    user: [],
+    userData: &#123;&#125;,
+    isFetching: <span class="hljs-literal">false</span>,
+    error: <span class="hljs-literal">null</span>
+&#125;;
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-function">(<span class="hljs-params"> state = initUserInfo, action </span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">switch</span>(action.type) &#123;
+        <span class="hljs-keyword">case</span> actions.ADD_USER:
+            <span class="hljs-keyword">let</span> user = state.user.concat(action.user);
+            <span class="hljs-keyword">return</span> &#123;
+                user: user,
+                userData: state.userData,
+                isFetching: <span class="hljs-literal">false</span>,
+                error: <span class="hljs-literal">null</span>
+            &#125;;
+        <span class="hljs-keyword">case</span> actions.FETCH_USER_DATA_SUCCESS:
+            <span class="hljs-keyword">return</span> &#123;
+                user: state.user,
+                userData: action.userData,
+                isFetching: <span class="hljs-literal">false</span>,
+                error: <span class="hljs-literal">null</span>
+            &#125;;
+        <span class="hljs-keyword">case</span> actions.FETCH_USER_DATA_REQUEST:
+            <span class="hljs-keyword">return</span> &#123;
+                user: state.user,
+                userData: &#123;&#125;,
+                isFetching: <span class="hljs-literal">true</span>,
+                error: <span class="hljs-literal">null</span>
+            &#125;;
+        <span class="hljs-keyword">case</span> actions.FETCH_USER_DATA_FALIURE:
+            <span class="hljs-keyword">return</span> &#123;
+                user: state.user,
+                userData: &#123;&#125;,
+                isFetching: <span class="hljs-literal">false</span>,
+                error: action.error
+            &#125;;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    &#125;
+&#125;;</code></pre>
+<p><strong>4.</strong> 最后，在 <code>User.jsx</code> 中将 <code>reducer</code> 中定义的 <code>state</code> 里的数据映射到 <code>props</code> 上，然后再根据 <code>error</code> 和 <code>isFetching</code> 的值来选择屏幕上需要展示的数据：</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        user: state.user.user,
+        userData: state.user.userData,
+        isFetching: state.user.isFetching,
+        error: state.user.error
+    &#125;
+&#125;;
+
+render() &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.props);
+        <span class="hljs-keyword">const</span> &#123; userActions &#125; = <span class="hljs-built_in">this</span>.props;
+        <span class="hljs-keyword">const</span> &#123; user, userData, isFetching, error &#125; = <span class="hljs-built_in">this</span>.props;
+        <span class="hljs-keyword">let</span> data = <span class="hljs-string">&#x27;&#x27;</span>;
+        <span class="hljs-keyword">if</span> (error) &#123;
+            data = error;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isFetching) &#123;
+            data = <span class="hljs-string">&#x27;Loading...&#x27;</span>;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            data = userData.title;
+        &#125;
+
+        <span class="hljs-keyword">return</span> (
+            &lt;div className=<span class="hljs-string">&#x27;text-center&#x27;</span>&gt;
+                &lt;br /&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span>
+                &lt;h1&gt;&#123; user &#125;&lt;/h1&gt;
+                &lt;button  onClick=&#123;<span class="hljs-function">() =&gt;</span> userActions.addUser(<span class="hljs-string">&#x27;ye&#x27;</span>)&#125;&gt;addUser&lt;/button&gt;
+                &lt;br /&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span></span>
+                &lt;h3&gt;&#123; data &#125;&lt;<span class="hljs-regexp">/h3&gt;&lt;br /</span>&gt;
+                &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> userActions.fetch_user()&#125;&gt;fetcuUserData&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    &#125;</code></pre>
+<p>  还有一个就是，若想要有网速慢的效果，可以在 Chrome 开发者工具那选择 3G 网速：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212108502.png" srcset="/img/loading.gif" alt="image-20200724212108502" style="zoom:80%;" />
+<h1 id="redux-调试工具"><a class="markdownIt-Anchor" href="#redux-调试工具"></a> Redux 调试工具</h1>
+<p>  安装 <code>Redux</code> 的调试工具需要几个步骤：</p>
+<ol>
+<li>chrome 中需要安装插件： Redux DevTools</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212817540.png" srcset="/img/loading.gif" alt="image-20200724212817540" style="zoom:80%;" /> 
+<p>刚开始是这样的：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213017200.png" srcset="/img/loading.gif" alt="image-20200724213017200" style="zoom:80%;" />
+<p>也能在拓展栏中显示：</p>
+<img src="Redux.assets/image-20200724214013320.png" srcset="/img/loading.gif" alt="image-20200724214013320" style="zoom:80%;" />
+<ol start="2">
+<li>
+<p>安装插件的对应依赖：<code>cnpm i --save redux-devtools-extension</code></p>
+</li>
+<li>
+<p>在 主文件入口中使用（即创建 <code>store</code> 的文件中）：</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 引入依赖方法</span>
+</li>
+</ol>
+<p><span class="hljs-keyword">import</span> &#123; composeWithDevTools &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">‘redux-devtools-extension’</span>;</p>
+<p><span class="hljs-comment">// 包裹在原先中间件的位置：</span><br />
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, composeWithDevTools(applyMiddleware(logger, thunk)));</code></pre>:hexoPostRenderEscape–&gt;</p>
+<p>  然后就可以在页面中查看效果了：原先插件的图标会变亮，右键中也会有插件的图标</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213644211.png" srcset="/img/loading.gif" alt="image-20200724213644211" style="zoom:80%;" />
+<p>  最底部的按钮能够一步步还原 <code>action</code> 的触发步骤，且效果也能在页面上实时显示：</p>
+<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213817938.png" srcset="/img/loading.gif" alt="image-20200724213817938" style="zoom: 67%;" />
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/React/">React</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/redux/">redux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react-redux/">react-redux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/redux-thunk/">redux-thunk</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/19/%E5%B7%A5%E5%85%B7/webpack/webpack%E9%85%8D%E7%BD%AE%E5%AF%BC%E5%85%A5css/">
+                        <span class="hidden-mobile">webpack配置导入css</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Redux入门学习&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -14,11 +14,11 @@ tags:
 
 
 
-测距功能，也就是选择两点，计算它们的距离，实现效果大致如下：
+&emsp;&emsp;测距功能，也就是选择两点，计算它们的距离，实现效果大致如下：
 
 <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/ranging.gif" alt="ranging" style="zoom:80%;" />
 
-上图中主要涉及几个操作：
+&emsp;&emsp;上图中主要涉及几个操作：
 
 - 点击鼠标左键选点，点击鼠标右键停止选点，若选择点数超过两点，则两点绘制一条线段
 - 动态绘制线段
@@ -30,7 +30,7 @@ tags:
 
 ## 选点绘线
 
-首先，我们需要通过鼠标在三维空间中选点，但是我们的屏幕是二维的，还有一维不知道，因此没办法直接凭空选点，因此目前的选点都是基于某个物体来的，即在物体上选点。
+&emsp;&emsp;首先，我们需要通过鼠标在三维空间中选点，但是我们的屏幕是二维的，还有一维不知道，因此没办法直接凭空选点，因此目前的选点都是基于某个物体来的，即在物体上选点。
 
 那么要如何获取鼠标点击的位置呢，首先需要知道[标准设备坐标转空间坐标](https://yleave.top/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E4%B8%8E%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E4%BA%92%E8%BD%AC/)，然后使用 [Raycaster](https://threejs.org/docs/index.html#api/zh/core/Raycaster) 根据这个点从相机位置发出一条射线，并检测与这条射线相交的物体，即可获得鼠标点击的位置：
 
@@ -50,7 +50,7 @@ if(intersects.length > 0) {
 }
 ```
 
-选了点后，需要在该点位置绘制一个圆点表示，这边使用了[SphereGeometry](https://threejs.org/docs/index.html#api/zh/geometries/SphereGeometry：) 来绘制圆点：
+&emsp;&emsp;选了点后，需要在该点位置绘制一个圆点表示，这边使用了[SphereGeometry](https://threejs.org/docs/index.html#api/zh/geometries/SphereGeometry：) 来绘制圆点：
 
 ```js
 createPoint = (pos) => {
@@ -62,7 +62,7 @@ createPoint = (pos) => {
 };
 ```
 
-两点之间绘制一条线段：
+&emsp;&emsp;两点之间绘制一条线段：
 
 ```js
 createLine = (p1, p2) => {
@@ -77,9 +77,9 @@ createLine = (p1, p2) => {
 
 ## 动态绘制线段和显示距离
 
-在选完起始点后，鼠标移动过程中需要动态绘制线段并显示当前位置和起始点的距离，距离计算使用 `Vector3.distanceTo(vec)` 即可，而动态效果则是不断重复的往场景中添加新的线段和文字移除旧的线段和文字。
+&emsp;&emsp;在选完起始点后，鼠标移动过程中需要动态绘制线段并显示当前位置和起始点的距离，距离计算使用 `Vector3.distanceTo(vec)` 即可，而动态效果则是不断重复的往场景中添加新的线段和文字移除旧的线段和文字。
 
-拆分一下，绘制线段已经有了，现在是创建 `label` 显示距离，`label` 的创建需要先使用 [FontLoader](https://threejs.org/docs/index.html#api/zh/loaders/FontLoader) 来制指定字体，再使用 [TextBufferGeometry](https://threejs.org/docs/index.html#api/zh/geometries/TextGeometry) 来生成标签，下面是一些关键代码：
+&emsp;&emsp;拆分一下，绘制线段已经有了，现在是创建 `label` 显示距离，`label` 的创建需要先使用 [FontLoader](https://threejs.org/docs/index.html#api/zh/loaders/FontLoader) 来制指定字体，再使用 [TextBufferGeometry](https://threejs.org/docs/index.html#api/zh/geometries/TextGeometry) 来生成标签，下面是一些关键代码：
 
 ```js
 const loader = new THREE.FontLoader();
@@ -107,7 +107,7 @@ createLabel = (name, location) => {
 };
 ```
 
-在鼠标移动过程中绘制：
+&emsp;&emsp;在鼠标移动过程中绘制：
 
 ```js
 const p1 = points[points.length-1];
@@ -142,7 +142,7 @@ if (obj) {
 
 ## 文字居中
 
-知道了如何创建标签后，文字居中其实就很简单了，根据两个点的位置计算他们的中点，再在中点处添加标签即可：
+&emsp;&emsp;知道了如何创建标签后，文字居中其实就很简单了，根据两个点的位置计算他们的中点，再在中点处添加标签即可：
 
 ```js
 let start = points[points.length-1];
@@ -158,5 +158,5 @@ scene.add(label);
 
 ## 撤销操作
 
-使用 `keydown` 对键盘事件进行监听，当 `event.key === Escape` 时我们就撤销前面绘制的点和线和距离 label （如果有这些对象的话），也就是我们之前要使用一个数据结构，比如数组来保存我们添加到场景中的这些对象，然后根据添加顺序再一个个移除即可，因为主要就使用了 `scene.remove` 和顺序逻辑判断，这边就不贴代码了。
+&emsp;&emsp;使用 `keydown` 对键盘事件进行监听，当 `event.key === Escape` 时我们就撤销前面绘制的点和线和距离 label （如果有这些对象的话），也就是我们之前要使用一个数据结构，比如数组来保存我们添加到场景中的这些对象，然后根据添加顺序再一个个移除即可，因为主要就使用了 `scene.remove` 和顺序逻辑判断，这边就不贴代码了。
 

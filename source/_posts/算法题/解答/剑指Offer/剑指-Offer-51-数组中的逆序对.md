@@ -1,7 +1,7 @@
 ---
 title: 剑指 Offer 51. 数组中的逆序对
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/offer.jpg
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
+index_img: https://gitee.com/ylea/imagehost/raw/master/index_img/offer.jpg
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-12-19 15:39:31
 categories:
     - 算法题
@@ -68,7 +68,7 @@ function Tree(val) {
 
 用图来表示就是（下图中红色点代表当前插入的节点）：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201219162125669.png" alt="image-20201219162125669" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201219162125669.png" alt="image-20201219162125669" style="zoom:80%;" />
 
 
 **想法很好但遇到了超时的 case** 😭

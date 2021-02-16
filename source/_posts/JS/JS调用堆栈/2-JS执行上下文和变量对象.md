@@ -1,7 +1,7 @@
 ---
 title: 2.JS执行上下文和变量对象
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/10.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/10.jpg'
 date: 2021-01-01 20:40:14
 categories:
     - JS

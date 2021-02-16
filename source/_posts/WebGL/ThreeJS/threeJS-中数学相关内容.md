@@ -1,7 +1,7 @@
 ---
 title: threeJS 中数学相关内容
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/three.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg
 date: 2020-10-18 20:09:04
 categories:
     - WebGL
@@ -59,7 +59,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.projectionMatrix
   ```
 
-  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170747954.png" alt="image-20200807170747954" style="zoom:80%;" />
+  <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200807170747954.png" alt="image-20200807170747954" style="zoom:80%;" />
 
 ### 相机视图矩阵(CameraMatrixWorldInverse)
 
@@ -74,7 +74,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 &emsp;&emsp;这两种情况在相机眼中是一样的。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170828153.png" alt="image-20200807170828153" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200807170828153.png" alt="image-20200807170828153" style="zoom:80%;" />
 
 &emsp;&emsp;在THREE中，我们一般通过设置`camera`的position和up，调用`lookAt`来改变相机的视图矩阵
 
@@ -403,21 +403,21 @@ matrix1.multiplyVector3(vector3);//返回Vector3 {x: 14, y: 32, z: 50}
 
 **图例：**
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121724065-2000235824.png" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706121724065-2000235824.png" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
 
 &emsp;&emsp;在程序中，遍历所有角度是不现实的。那如何确定 `投影轴` 呢？其实只需对多边形的每一条边都判断一遍即可。且在判断过程中，若提前发现间隙，则不用进行剩下的判断了。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121734284-438000124.png" alt="83792-20170706121734284-438000124" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706121734284-438000124.png" alt="83792-20170706121734284-438000124" style="zoom:80%;" />
 
 &emsp;&emsp;每个投影轴其实就是对应边的法向量：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200808212950411.png" alt="image-20200808212950411" style="zoom: 50%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200808212950411.png" alt="image-20200808212950411" style="zoom: 50%;" />
 
 **圆形与多边形之间的碰撞检测**
 
 &emsp;&emsp;由于圆形可近似地看成一个有无数条边的正多边形，而我们不可能按照这些边一一进行投影与测试。我们只需将圆形投射到一条投影轴上即可，这条轴就是圆心与多边形顶点中最近的一点的连线，如图所示：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706122010112-1512221308.png" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706122010112-1512221308.png" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
 
 &emsp;&emsp;因此，该投影轴和多边形自身的投影轴就组成了一组待检测的投影轴了。另外，圆的投影可以先投影圆心那一点，然后再在两边加上半径即可。
 

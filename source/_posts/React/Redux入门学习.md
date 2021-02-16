@@ -1,7 +1,7 @@
 ---
 title: Redux入门学习
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/redux1.png'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/redux.png'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/redux1.png'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/redux.png'
 date: 2021-01-20 21:02:36
 categories:
     - React
@@ -29,10 +29,10 @@ Demo 仓库：https://github.com/yleave/redux-demo
 
 &emsp;&emsp;这张图片说明了 `reudx` 的作用：组件间的信息传递不用再只能通过相邻的父子组件进行传递了，而是统一由一个仓库 `store` 来管理这些 `state`：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/%E4%B8%8B%E8%BD%BD.jpg" alt="下载" style="zoom: 150%;" /> 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/%E4%B8%8B%E8%BD%BD.jpg" alt="下载" style="zoom: 150%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP.jpg" alt="OIP" style="zoom:150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP.jpg" alt="OIP" style="zoom:150%;" />
 
  
 
@@ -75,7 +75,7 @@ Demo 仓库：https://github.com/yleave/redux-demo
 
 &emsp;&emsp;这个示例实现的效果就是：点击 `increasment` 和 `decreasment` 按钮，分别增加、减少界面上显示的数字
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213539985.png" alt="image-20200722213539985" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722213539985.png" alt="image-20200722213539985" style="zoom:80%;" />
 
 **1.** 首先，在 App.js 中先编写一个简单的界面（使用了 bootstrap）：
 
@@ -93,7 +93,7 @@ render() {
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213401691.png" alt="image-20200722213401691" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722213401691.png" alt="image-20200722213401691" style="zoom:80%;" />
 
 **2.** 在 `src/reducers` 路径下创建文件 `counter.js`：
 
@@ -240,7 +240,7 @@ export default connect(mapStateToProps)(App);
 
 &emsp;&emsp;可以观察到页面上输出的 `this.props` 信息，因此可以将 `this.props.counter` 作为显示的数字：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722222339428.png" alt="image-20200722222339428" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722222339428.png" alt="image-20200722222339428" style="zoom:80%;" />
 
 **3.** 创建一个 js 文件来封装这个 `reducer` 对应的 `actions`。在 `src/actions/` 下创建文件 `counter.js`：调用这些方法返回对应的 `action`
 
@@ -306,7 +306,7 @@ export default connect(mapStateToProps, mapDispatchToPorps)(App);
 
 &emsp;&emsp;从 打印的 `props` 可以观察到 `state` 的变化：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722224349311.png" alt="image-20200722224349311" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722224349311.png" alt="image-20200722224349311" style="zoom:80%;" />
 
 &emsp;&emsp;第 4 步的另外一种写法：（推荐用这种
 
@@ -332,7 +332,7 @@ return (
 );
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723100226347.png" alt="image-20200723100226347" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723100226347.png" alt="image-20200723100226347" style="zoom:80%;" />
 
 
 
@@ -526,7 +526,7 @@ export default counter;
 
 &emsp;&emsp;在页面上再添加一个 `User` 组件，组件中有一个文本标签和一个按钮，目标是点击按钮能后够添加一个字符串并显示在文本中：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723120654431.png" alt="image-20200723120654431" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723120654431.png" alt="image-20200723120654431" style="zoom:80%;" />
 
 &emsp;&emsp;按照上个例子依葫芦画瓢的添加这个功能：
 
@@ -610,7 +610,7 @@ export default user;
 
 &emsp;&emsp;`array` 的 `concat` 方法是浅复制，并会返回一个**新**数组，因此能够正常的渲染：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125100275.png" alt="image-20200723125100275" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125100275.png" alt="image-20200723125100275" style="zoom:80%;" />
 
 &emsp;&emsp;否则，若代码是这样的：
 
@@ -625,11 +625,11 @@ case actions.ADD_USER:
 
 &emsp;&emsp;点击 `addUser` 按钮，虽然在输出中发现`state` 是变化的，但是这些变化的 `state` 并不会及时渲染到页面上
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125358933.png" alt="image-20200723125358933" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125358933.png" alt="image-20200723125358933" style="zoom:80%;" />
 
 &emsp;&emsp;然后要点击一次 `increment` 或 `decrement` 按钮才会触发渲染：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125639079.png" alt="image-20200723125639079" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125639079.png" alt="image-20200723125639079" style="zoom:80%;" />
 
 &emsp;&emsp;因此要特别注意需要返回一个 **“新”** 的 `state`：
 
@@ -643,7 +643,7 @@ case actions.ADD_USER:
 
 &emsp;&emsp;官方文档：https://www.redux.org.cn/docs/advanced/Middleware.html
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
 
 &emsp;&emsp;从图中可以看到 `redux` 的工作流，在触发 `actions` 后，到达 `store` 时，最开始会先经过一个 `minddleware`(中间件)，然后才通过 `reducer` 来更新状态。
 
@@ -711,7 +711,7 @@ const store = createStore(rootReducer, {}, applyMiddleware(logger));
 
 &emsp;&emsp;效果比自定义的好看多了：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723165643383.png" alt="image-20200723165643383" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723165643383.png" alt="image-20200723165643383" style="zoom:80%;" />
 
 ## 异步中间件
 
@@ -739,11 +739,11 @@ const store = createStore(rootReducer, {}, applyMiddleware(logger, thunk));
 
 &emsp;&emsp;若未传入 `thunk` 中间件，会报这样的错：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182830470.png" alt="image-20200723182830470" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723182830470.png" alt="image-20200723182830470" style="zoom:80%;" />
 
 &emsp;&emsp;传入中间件 `thunk`并点击 `increment` 后：过一秒页面上的数字会变成 10
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182007956.png" alt="image-20200723182007956" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723182007956.png" alt="image-20200723182007956" style="zoom:80%;" />
 
 &emsp;&emsp;对于 `decrement`，也修改代码，不过代码中没有异步操作：
 
@@ -760,7 +760,7 @@ export function decrement(num) {
 
 &emsp;&emsp;点击按钮后，也会显示：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723183655255.png" alt="image-20200723183655255" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723183655255.png" alt="image-20200723183655255" style="zoom:80%;" />
 
 &emsp;&emsp;不过，若没有传入 `redux-thunk`，上面的两个代码都会报错。
 
@@ -839,13 +839,13 @@ function dispatch(action) {
 
 **目标**：在原有基础上使用异步操作获取测试 API `http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php` 中的某些内容：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723204950304.png" alt="image-20200723204950304" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723204950304.png" alt="image-20200723204950304" style="zoom:80%;" />
 
 
 
 &emsp;&emsp;根据下面的图，要实现这个功能，可以在触发 `action` 后，进入 `reducer` 更新状态之前获取数据，然后再`dispatch` 到 `reducer` 中进行更新，最后可以从 `store` 中获取 `state`。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" alt="OIP (1)" style="zoom: 150%;" />
 
 **1.** 首先，为 `user` 再定义一个常量来表示 `action.type`：
 
@@ -1012,7 +1012,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(User);
 
 &emsp;&emsp;在上个示例中，有使用异步操作来获取数据，由于有网络请求，因此若网速不好的话获取数据可能会有延时，因此在未获取到数据时应该要显示加载提示，等获取到数据后再显示数据：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/2020-07-24-21-10-35.gif" alt="2020-07-24-21-10-35" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/2020-07-24-21-10-35.gif" alt="2020-07-24-21-10-35" style="zoom:80%;" />
 
 **1.** 在常量中添加几个 `action.type` ：
 
@@ -1152,7 +1152,7 @@ render() {
 
 &emsp;&emsp;还有一个就是，若想要有网速慢的效果，可以在 Chrome 开发者工具那选择 3G 网速：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212108502.png" alt="image-20200724212108502" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724212108502.png" alt="image-20200724212108502" style="zoom:80%;" />
 
 # Redux 调试工具
 
@@ -1160,13 +1160,13 @@ render() {
 
 1.  chrome 中需要安装插件： Redux DevTools
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212817540.png" alt="image-20200724212817540" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724212817540.png" alt="image-20200724212817540" style="zoom:80%;" /> 
 
 
 
 刚开始是这样的：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213017200.png" alt="image-20200724213017200" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213017200.png" alt="image-20200724213017200" style="zoom:80%;" />
 
 也能在拓展栏中显示：
 
@@ -1188,11 +1188,11 @@ render() {
 
 &emsp;&emsp;然后就可以在页面中查看效果了：原先插件的图标会变亮，右键中也会有插件的图标
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213644211.png" alt="image-20200724213644211" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213644211.png" alt="image-20200724213644211" style="zoom:80%;" />
 
 &emsp;&emsp;最底部的按钮能够一步步还原 `action` 的触发步骤，且效果也能在页面上实时显示：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213817938.png" alt="image-20200724213817938" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213817938.png" alt="image-20200724213817938" style="zoom: 67%;" />
 
 
 

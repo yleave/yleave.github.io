@@ -1,7 +1,7 @@
 ---
 title: ThreeJS 屏幕坐标与世界坐标互转
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/21.jpg
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/three.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/21.jpg
 date: 2020-10-17 12:14:06
 categories:
     - WebGL

@@ -1,7 +1,7 @@
 ---
 title: 'webpack基础1:使用webpack打包js代码'
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/webpack.png'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/webpack.png'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/webpack.png'
 date: 2021-01-14 13:34:05
 categories:
     - 工具
@@ -26,7 +26,7 @@ tags:
 
 &emsp;&emsp;一个简单的项目，目录如下：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615191631329.png" alt="image-20200615191631329" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615191631329.png" alt="image-20200615191631329" style="zoom:80%;" /> 
 
 `index.html` :
 
@@ -52,7 +52,7 @@ hello();
 
 &emsp;&emsp;就这样运行 HTML 页面，会出错：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615191853433.png" alt="image-20200615191853433" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615191853433.png" alt="image-20200615191853433" style="zoom:80%;" /> 
 
 
 
@@ -76,7 +76,7 @@ hello();
 
 &emsp;&emsp;然后，程序会在 `dist` 目录下生成打包好的入口文件：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615213634589.png" alt="image-20200615213634589" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615213634589.png" alt="image-20200615213634589" style="zoom:80%;" />
 
 &emsp;&emsp;接着，只要在 `index.html` 中替换 JS 入口文件即可：
 
@@ -84,11 +84,11 @@ hello();
 <script src="./dist/main.js"></script>
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-202006152139244.png" alt="image-202006152139244" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-202006152139244.png" alt="image-202006152139244" style="zoom:80%;" />
 
 &emsp;&emsp;`main.js` 中生成的打包文件如下：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-2020061521373750.png" alt="image-2020061521373750" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-2020061521373750.png" alt="image-2020061521373750" style="zoom:80%;" />
 
 &emsp;&emsp;**再看看使用配置文件的方式：**
 
@@ -109,13 +109,13 @@ module.exports = {
 
 &emsp;&emsp;然后在命令行中输入 `webpack` 即可：
 
- <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615214345212.png" alt="image-20200615214345212" style="zoom: 67%;" />
+ <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615214345212.png" alt="image-20200615214345212" style="zoom: 67%;" />
 
 &emsp;&emsp;这时候命令行的输出没有黄色字体了，这是因为我们指定了项目文件为开发环境（development)。而之前的打包文件是因为没指定环境，默认为生产环境（production)。
 
 &emsp;&emsp;这时， `bundle.js` 的内容为：与生产环境的`main.js`有很大区别。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615214603773.png" alt="image-20200615214603773" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615214603773.png" alt="image-20200615214603773" style="zoom:67%;" />
 
 
 
@@ -153,5 +153,5 @@ module.exports = {
 
 &emsp;&emsp;这时候，运行 `npm run build` 命令也能执行 `webpack`：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615220311315.png" alt="image-20200615220311315" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615220311315.png" alt="image-20200615220311315" style="zoom:67%;" />
 

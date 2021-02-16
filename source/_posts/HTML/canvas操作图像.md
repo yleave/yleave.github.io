@@ -1,7 +1,7 @@
 ---
 title: canvas操作图像
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/canvas.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/19.jpg
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/canvas.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/19.jpg
 date: 2020-09-20 12:12:47
 categories:
     - HTML

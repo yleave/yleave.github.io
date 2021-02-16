@@ -1,7 +1,7 @@
 ---
 title: 剑指 Offer 17. 打印从1到最大的n位数
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/offer.jpg
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
+index_img: https://gitee.com/ylea/imagehost/raw/master/index_img/offer.jpg
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-10-28 21:46:53
 categories:
     - 算法题

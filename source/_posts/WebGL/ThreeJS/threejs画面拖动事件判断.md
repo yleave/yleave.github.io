@@ -1,7 +1,7 @@
 ---
 title: threejs画面拖动事件判断
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg'
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/three.jpg
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg'
 date: 2021-01-13 20:42:53
 categories:
     - WebGL
@@ -59,7 +59,7 @@ function unlock(e) {
 
 &emsp;&emsp;不过，对于这种实现方式，当我们**使用滚轮拉近和拉远相机时也会触发** `start` 和 `end` 事件，这个不是我们想要的效果：（`lockTiles` 的设置会反映到右上角的勾选框中，不过在滚轮滚动时，因为触发的太快因此看上去都是一直未被勾选的）
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/flash1.gif" alt="flash1" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/flash1.gif" alt="flash1" style="zoom:80%;" />
 
 # 2.设置鼠标监听事件
 
@@ -161,7 +161,7 @@ if (track) {
 
 &emsp;&emsp;这样实现的话，只有画面在进行拖拽时能触发回调，而滚轮滚动时则不会触发：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/flash2.gif" alt="flash2" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/flash2.gif" alt="flash2" style="zoom:80%;" />
 
 
 

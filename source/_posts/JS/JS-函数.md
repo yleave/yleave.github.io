@@ -1,7 +1,7 @@
 ---
 title: JS 函数
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/62.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/62.jpg'
 date: 2020-11-27 16:16:34
 categories:
     - JS
@@ -83,7 +83,7 @@ const myCar = new Car();
 console.log(myCar);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416205516433.png" alt="image-20200416205516433" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200416205516433.png" alt="image-20200416205516433" style="zoom:80%;" /> 
 
 &emsp;&emsp;不过**返回的不是对象的话，返回的是构造出的对象**（数组也是对象，因此会优先返回数组）
 
@@ -91,7 +91,7 @@ console.log(myCar);
 
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416205600285.png" alt="image-20200416205600285" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200416205600285.png" alt="image-20200416205600285" style="zoom:80%;" />
 
 ## 参数
 

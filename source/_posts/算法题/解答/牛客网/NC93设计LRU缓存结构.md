@@ -1,7 +1,7 @@
 ---
 title: NC93设计LRU缓存结构
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/NK.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/NK.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-10-29 14:00:33
 categories:
     - 算法题

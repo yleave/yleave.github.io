@@ -1,7 +1,7 @@
 ---
 title: Morris算法
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/38.png
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/52.jpg
+index_img: https://gitee.com/ylea/imagehost/raw/master/index_img/38.png
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/52.jpg
 date: 2020-09-24 14:37:32
 categories:
     - 算法题

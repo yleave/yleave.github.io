@@ -1,7 +1,7 @@
 ---
 title: Set、Map、和WeakSet、WeakMap
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/48.png'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/76.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/48.png'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/76.jpg'
 date: 2020-12-09 20:17:41
 categories:
 	- JS
@@ -40,7 +40,7 @@ s.add(obj2); // 两个对象引用不同，因此能正常存储
 s.add(obj3); // 引用与 obj 相同，无法存储
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201209203523436.png" alt="image-20201209203523436" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201209203523436.png" alt="image-20201209203523436" style="zoom:80%;" />
 
 向  `Set` 中加入值时，不会发生类型转换，因此 `5` 和 `"5" ` 是两个不同的值（ `Object` 中键 的存储都会转为字符串）
 
@@ -112,7 +112,7 @@ console.log(set.size)	// 3
   console.log('entries: ', s.entries());
   ```
 
-  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210140730077.png" alt="image-20201210140730077" style="zoom:80%;" />
+  <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210140730077.png" alt="image-20201210140730077" style="zoom:80%;" />
 
 注意到这几个方法返回的都是一个迭代器，因此可以使用 `next` 方法来遍历：
 
@@ -128,7 +128,7 @@ while (true) {
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144517054.png" alt="image-20201210144517054" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144517054.png" alt="image-20201210144517054" style="zoom:80%;" />
 
 
 
@@ -149,7 +149,7 @@ s.forEach((value, key) =>  {
 })
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144632720.png" alt="image-20201210144632720" style="zoom:80%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144803339.png" alt="image-20201210144803339" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144632720.png" alt="image-20201210144632720" style="zoom:80%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144803339.png" alt="image-20201210144803339" style="zoom:80%;" />
 
 `Set` 可使用 `map` 、`filter` 方法：
 
@@ -208,7 +208,7 @@ setTimeout(() => {
 }, 10000)
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210150658051.png" alt="image-20201210150658051" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210150658051.png" alt="image-20201210150658051" style="zoom:80%;" />
 
 同时根据上图可看到 `WeakSet` 中的方法：`add(value)`、`has(value)`、`delete(value)` 和构造器方法 `constructor`
 
@@ -228,7 +228,7 @@ mp.set({a: 1}, 3);
 console.log(mp);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210151834885.png" alt="image-20201210151834885" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210151834885.png" alt="image-20201210151834885" style="zoom:80%;" />
 
 如何具有 `Iterator` 接口，且每个成员都是一个双元素的数组的数据结构都可以当作 `Map` 构造函数的参数，如：
 
@@ -243,7 +243,7 @@ let m1 = new Map([['foo', 1], ['bar', 2]]);
 let m2 = new Map(m1);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210152321089.png" alt="image-20201210152321089" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210152321089.png" alt="image-20201210152321089" style="zoom:80%;" />
 
 
 
@@ -260,7 +260,7 @@ map.set(NaN, 'd');
 console.log(map);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210153059720.png" alt="image-20201210153059720" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210153059720.png" alt="image-20201210153059720" style="zoom:80%;" />
 
 ## Map 的属性
 
@@ -329,11 +329,11 @@ const obj = Array.from(map).reduce((obj, [key, value]) =>
 , {});
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210210723884.png" alt="image-20201210210723884" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210210723884.png" alt="image-20201210210723884" style="zoom:80%;" />
 
 首先，`Array.from(map)`，会变成这样：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210211724893.png" alt="image-20201210211724893" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210211724893.png" alt="image-20201210211724893" style="zoom:80%;" />
 
 然后，在 `reduce` 回调函数中每次将新的键值对加入到 `{}` 中。
 

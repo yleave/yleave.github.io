@@ -1,7 +1,7 @@
 ---
 title: github+picGo+jsDelivr构建图床
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/jsDelivr.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/11.png
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/jsDelivr.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/11.png
 date: 2020-09-19 01:12:35
 categories:
     - 博客搭建
@@ -78,7 +78,7 @@ tags:
 
 &emsp;&emsp;然后打开 [PicGo](https://github.com/Molunerfinn/picgo/releases) 进行配置 （PicGo 是图床管理工具，能配合种图床使用，typora 中也支持使用 PicGo 自动上传图片，使用起来不要太方便了~
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918174221758.png" alt="image-20200918174221758" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200918174221758.png" alt="image-20200918174221758" style="zoom: 67%;" />
 
 &emsp;&emsp;配置如上。
 
@@ -94,7 +94,7 @@ tags:
 
 &emsp;&emsp;规定的路径格式就是上面提到的：`https://cdn.jsdelivr.net/gh/用户名/图床仓库名/图片路径`。
 
-&emsp;&emsp;如我在 `imagehost` 仓库的 `img` 文件夹下有一张图片 `default.png` ，这样就能通过：https://cdn.jsdelivr.net/gh/yleave/imagehost/img/default.png 来访问它了。
+&emsp;&emsp;如我在 `imagehost` 仓库的 `img` 文件夹下有一张图片 `default.png` ，这样就能通过：https://gitee.com/ylea/imagehost/raw/master/img/default.png 来访问它了。
 
 
 
@@ -108,9 +108,9 @@ tags:
 
 &emsp;&emsp;jsDelivr 限制了仓库大小，因此图片的压缩很重要，这里再推荐一个图片压缩工具 [Imagine](https://github.com/meowtec/Imagine) ，非常好用，压缩效果很好，1M多的图片压缩成不到 100k 的图片也基本上看不出什么差别：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175722716.png" alt="image-20200918175722716" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200918175722716.png" alt="image-20200918175722716" style="zoom: 67%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200918175745739.png" alt="image-20200918175745739" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200918175745739.png" alt="image-20200918175745739" style="zoom:67%;" />
 
 
 
@@ -130,7 +130,7 @@ tags:
 
 &emsp;&emsp;`staticaly` 的用法：进入网站，将你的资源链接贴上去就会有了可用的链接：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005010468.png" alt="image-20200919005010468" style="zoom: 50%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200919005010468.png" alt="image-20200919005010468" style="zoom: 50%;" />
 
 ### githack
 
@@ -142,7 +142,7 @@ tags:
 
 &emsp;&emsp;同样，在网站中输入资源链接，如：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200919005149597.png" alt="image-20200919005149597" style="zoom: 80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200919005149597.png" alt="image-20200919005149597" style="zoom: 80%;" />
 
 &emsp;&emsp;有两个 URL 版本：生产模式和开发模式，亲测生产模式速度会更快些，开发模式的 URL 会更“工整” 些，以便测试。不过别看生产模式的 URL 是有一长串字符，这些只要你前面的路径没变，这些字符都是一样的，因此同样比较方便统一路径。
 

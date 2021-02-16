@@ -1,7 +1,7 @@
 ---
 title: LeetCode 52. N皇后 II
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/LeetCode.jpg
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
+index_img: https://gitee.com/ylea/imagehost/raw/master/index_img/LeetCode.jpg
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-10-17 12:05:48
 categories:
     - 算法题
@@ -21,7 +21,7 @@ https://leetcode-cn.com/problems/n-queens-ii/
 
 &emsp;&emsp;*n* 皇后问题研究的是如何将 *n* 个皇后放置在 *n*×*n* 的棋盘上，并且使皇后彼此之间不能相互攻击。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" alt="image-20201017095826142" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017095826142.png" alt="image-20201017095826142" style="zoom:80%;" />
 
 &emsp;&emsp;上图为 8 皇后问题的一种解法。
 
@@ -111,15 +111,15 @@ var totalNQueens = function(n) {
 
 &emsp;&emsp;直行判断是否有皇后很简单，只要使用列下标即可。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017104019691.png" alt="image-20201017104019691" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017104019691.png" alt="image-20201017104019691" style="zoom:67%;" />
 
 &emsp;&emsp;对于其中一个方向的斜线，棋盘中的每条这个方向的斜线都能使用一个下标来表示，即 **行下标 - 列下标**：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110155747.png" alt="image-20201017110155747" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017110155747.png" alt="image-20201017110155747" style="zoom:67%;" />
 
 &emsp;&emsp;另一个方向的斜线能使用 **行下标 + 列下标** 来表示：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110328469.png" alt="image-20201017110328469" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017110328469.png" alt="image-20201017110328469" style="zoom:67%;" />
 
 &emsp;&emsp;因此，对于棋盘中的一个位置，只需借助这三个列表来判断位置是否合法即可（三个列表中都不含当前位置）
 

@@ -1,19 +1,17 @@
 ---
 title: 手撕内核源码
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/眼镜.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/眼镜.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-12-13 22:16:40
 categories:
     - 前端面试题
 tags:
-    - 内核源码
+    - 手撕代码
 ---
 
-# Array
+# 手写 Array.prototype.map
 
-## Array.prototype.map
-
-### map 概念
+## map 概念
 
 `map(callback(val, idx, arr), thisArg)` 方法将创建一个新数组，这个数组中的元素是原数组中的每个元素都调用 `callback` 后的结果，其中 `callback` 的三个参数分别是原数组中的元素、元素对应索引值和原数组，`thisArg` 是 `map` 函数的 `this` 指向。
 
@@ -90,27 +88,309 @@ if (!Array.prototype.map) {
 
 
 
+# 数组扁平化
+
+## flat 函数
+
+ `flat `[MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/flat) 
+
+> `flat(deep)` 方法会根据指定的递归深度遍历数组，并将遍历到的元素合并为一个**新数组**返回
+
+```js
+const test = ["a", ["b", "c"], ["d", ["e", ["f"]], "g"]]
+```
+
+**`flag` 不传参数时，默认扁平化一层**
+
+```js
+test.flat()
+// ["a", "b", "c", "d", ["e", ["f"]], "g"]
+```
+
+**传入的参数即扁平化的深度**
+
+```js
+test.flat(2)
+// ["a", "b", "c", "d", "e", ["f"], "g"]
+```
+
+**当使用 `Infinity` 作为参数时，无论多少层嵌套，都会扁平化为一维数组**
+
+```js
+test.flat(Infinity)
+// ["a", "b", "c", "d", "e", "f", "g"]
+```
+
+**传入小于等于 `0` 的参数，不进行扁平化**
+
+```js
+test.flat(0)
+test.flat(-1)
+// ["a", ["b", "c"], ["d", ["e", ["f"]], "g"]]
+```
+
+**若数组不是连续的，会跳过那些空位**
+
+```js
+["a", , "b", "c", ,].flat()
+// ["a", "b", "c"]
+```
+
+
+
+## 手写扁平化函数
+
+### 1 使用 reduce 方法
+
+一次性扁平化所有：
+
+```js
+function flattenDeep(arr) {
+    return Array.isArray(arr) ?
+        arr.reduce((acc, cur) => [...acc, ...flattenDeep(cur)], [])
+    	: [arr];
+}
+```
+
+在 `flattenDeep` 的基础上实现 `flat` ：
+
+```js
+if (!Array.prototype.flat) {
+    Array.prototype.flat = function(deep=1) {
+        return deep > 0 ?
+            this.reduce((acc, cur) => {
+                if (Array.isArray(cur)) {	// 若是数组且 deep 大于 0，继续递归
+                    return [...acc, ...cur.flat(deep-1)];
+                }
+                return [...acc, cur];	// 否则将当前值加入累加器中
+            }, [])
+            : this;
+    };
+}
+```
+
+### 2 使用栈
+
+先将 `arr` 中的数据存入栈 `stack` 中，然后从后到前，遍历栈中的每一个元素，若是数组，则将其展开一层再压入栈中，若不是数组则使用 `unshift` 存入结果数组中。
+
+
+
+一次性扁平化所有：
+
+```js
+function flattenDeep(arr) {
+    let result = [];
+
+    let stack = [...arr];
+
+    while (stack.length) {
+        let val = stack.pop();
+
+        if (Array.isArray(val)) {
+            stack.push(...val);
+        } else if (val) {   // 去除空位
+            result.unshift(val);
+        }
+    }
+
+    return result;
+}
+```
+
+根据 `deep` 扁平化：
+
+```js
+function flattenDeep(arr, deep=1) {
+    let result = [];
+
+    let stack = [...arr];
+
+    while (stack.length) {
+        let val = stack.pop();
+
+        if (Array.isArray(val) && deep > 0) {
+            result.unshift(...flattenDeep(val, deep-1));
+        } else if (val) {   // 去除空位
+            result.unshift(val);
+        }
+    }
+
+    return result;
+}
+```
+
+
+
+# Array.prototype.equals
+
+不能使用 `===` 来判断，因为数组也是对象，而对象会根据其引用来判断是否相等。
+
+
+
+```js
+const arr1 = ["a", , ["b", "c"], ["d", ["e", ["f"]], "g"], {'h': 1, 'i': 2}]
+const arr2 = ["a", ["d", ["e", ["f"]], "g"], , ["b", "c"], {'h': 1, 'i': 2}]
+```
+
+## 先转为字符串，再判断字符串是否相等
+
+**若进行了排序，则表示不考虑数组顺序**
+
+字符串的转换方法有：`arr.toString()` 和 `JSON.stringfy(arr)` 和 `arr.join()`
+
+在转为字符串前需要对数组进行排序
+
+```js
+function isEqual(arr1, arr2) {
+    return JSON.stringify(arr1.sort()) == JSON.stringify(arr2.sort());
+}
+```
+
+
+
+## 手写 equals 方法
+
+若要**将数组顺序考虑在内**，可使用以下方法，不过下面没有将数组元素是 `object` 实例的情况：
+
+```js
+if (!Array.prototype.equals) {
+    Array.prototype.equals = function(array) {
+        // 若 array 是虚值，直接返回
+        if (!array) {
+            return false;
+        }
+
+        // 先判断数组长度是否相等，若不相等返回 false
+        if (this.length != array.length) {
+            return false;
+        }
+
+        for (let i = 0, l = this.length; i < l; ++i) {
+            // 判断是否有循环嵌套
+            if (this[i] instanceof Array && array[i] instanceof Array) {
+                if (!this[i].equals(array[i])) {
+                    return false;
+                }
+            } else if (this[i] != array[i]) {
+                return false;
+            }
+            // 这边没有考虑数组元素是 object 的情况
+        }
+
+        return true;
+    };
+}
+```
+
+
+
+# Object.prototype.euqals
+
+## 手写 equals 方法
+
+```js
+Object.prototype.equals = function(obj) {
+    // 第一次循环，检查 this 中的属性名和属性值类别是否相同
+    for (let propName in this) {
+        if (this.hasOwnProperty(propName) != obj.hasOwnProperty(propName)) {
+            return false;
+        } else if (typeof this[propName] != typeof obj[propName]) {
+            return false;
+        }
+    }
+
+    // 第二次循环，检查 obj 中的属性名和属性值类别是否和 this 中的相同
+    // 并递归进行检查
+    for (let propName in obj) {
+        // 因为可能有的属性只存在与 obj 中
+        if (this.hasOwnProperty(propName) != obj.hasOwnProperty(propName)) {
+            return false;
+        } else if (typeof this[propName] != typeof obj[propName]) {
+            return false;
+        }
+
+        // 若该属性是继承自原型链的，那么肯定相等，不需要检查
+        if (!this.hasOwnProperty(propName)) {
+            continue;
+        }
+
+        // 进行递归检查
+
+        // 首先检查是否是一个数组类型，需要实现数组的检查方法 Array.prototype.equals
+        if (this[propName] instanceof Array && obj[propName] instanceof Array) {
+            if (!this[propName].equals(obj[propName])) {
+                return false;
+            }
+        } else if (this[propName] instanceof Object && obj[propName] instanceof Object) {
+            if (!this[propName].equals(obj[propName])) {
+                return false;
+            }
+        } else if (this[propName] != obj[propName]) {
+            return false;
+        }
+    }
+
+    return true;
+};
+```
+
+
+
+# 防抖和节流
 
 
 
 
 
+# 深拷贝和浅拷贝
 
 
 
 
 
+# 单例模式
 
 
 
 
 
+# 数组去重
+
+
+
+# 手写 promise.all 和 promise.race
 
 
 
 
 
+# 模拟实现 new
 
+
+
+
+
+# 实现 call/apply/bind
+
+
+
+# 模拟实现 Object.create
+
+
+
+# 千分位分隔符
+
+数字（考虑数字是否合法，正负号、小数点）、字符串
+
+
+
+
+
+# 实现三角形
+
+
+
+# 实现三栏布局/双栏布局
 
 
 

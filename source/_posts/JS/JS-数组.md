@@ -1,7 +1,7 @@
 ---
 title: JS 数组
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/62.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/62.jpg'
 date: 2020-11-27 16:16:39
 categories:
     - JS

@@ -1,8 +1,8 @@
 ---
 title: 使用Netlify部署博客
 date: 2020-09-12 11:54:47
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Netlify.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/15.png
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/Netlify.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/15.png
 categories:
     - 博客搭建
 tags:

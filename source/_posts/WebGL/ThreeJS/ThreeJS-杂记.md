@@ -1,7 +1,7 @@
 ---
 title: ThreeJS 杂记
-index_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg
-banner_img: https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg
+index_img: https://gitee.com/ylea/imagehost/raw/master/img/three.jpg
+banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg
 date: 2021-01-18 16:20:27
 categories:
     - WebGL
@@ -50,11 +50,11 @@ C.multiplyMatrices (A, B);
 console.log('A · B:',C);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118163104957.png" alt="image-20210118163104957" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118163104957.png" alt="image-20210118163104957" style="zoom:80%;" />
 
 &emsp;&emsp;在网上找一个在线矩阵计算器，相对应的计算结果如下：
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/oepd9g9ip6.jpeg" alt="oepd9g9ip6" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/oepd9g9ip6.jpeg" alt="oepd9g9ip6" style="zoom:80%;" />
 
 # ThreeJS 前乘与后乘 
 
@@ -78,7 +78,7 @@ console.log('A:',A);
 console.log('B:',B);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118163927855.png" alt="image-20210118163927855" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118163927855.png" alt="image-20210118163927855" style="zoom:80%;" />
 
 &emsp;&emsp;**前乘**方法是：`premultiply()`，即 `A.premultiply(B) = B * A`，同样结果保存在 `A` 中：
 
@@ -100,9 +100,9 @@ console.log('A:',A);
 console.log('B:',B);
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118164228142.png" alt="image-20210118164228142" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118164228142.png" alt="image-20210118164228142" style="zoom:80%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/n3nfz0wsrn.jpeg" alt="n3nfz0wsrn" style="zoom: 80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/n3nfz0wsrn.jpeg" alt="n3nfz0wsrn" style="zoom: 80%;" />
 
 ---
 

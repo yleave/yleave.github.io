@@ -1,13 +1,15 @@
 ---
 title: JS内容
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/63.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/63.jpg'
 date: 2020-12-13 22:16:24
 categories:
     - 前端面试题
 tags:
     - JS 面试题
 ---
+
+<img src="JS考题.assets/image-20210208145304152.png" alt="image-20210208145304152" style="zoom:80%;" />
 
 # 1. ['1', '2', '3'].map(parseInt)
 
@@ -577,7 +579,7 @@ console.log(3);
 
 &emsp;&emsp;通过上面的执行步骤可知，**如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中**。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221141223934.png" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221142300760.png" alt="image-20201221142300760" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221141223934.png" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221142300760.png" alt="image-20201221142300760" style="zoom:80%;" />
 
 ## 微任务和宏任务
 

@@ -1,7 +1,7 @@
 ---
 title: 3.JS内存机制
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/70.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/70.jpg'
 date: 2021-01-05 19:10:30
 categories:
     - JS
@@ -24,7 +24,7 @@ tags:
 - **基本类型**：保存在**栈**内存中，这些类型在内存中有**固定的大小**，通过按值来访问。基本数据类型一共有 6 种：`Undefined`、`Null`、`Boolean`、`Number`、`String`、`Symbol`（ES6）
 - **引用类型**：保存在**堆**内存中，因为其**大小不固定**，因此不能将它们保存在栈中，但其保存的位置的地址大小是固定，因此其**访问地址保存在栈中**。当查询引用类型时，先从栈中读取内存地址，然后再通过这个内存地址找到堆中的值。这种访问方式我们称为**按引用访问**。
 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/2019-07-24-060214.png" alt="img" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/2019-07-24-060214.png" alt="img" style="zoom:80%;" />
 
 &emsp;&emsp;在计算机中，栈的运算效率比堆高，而 `Object` 是一种复杂的结构且可以拓展：数组可扩充、对象属性可添加，可增删改。为了不影响栈的效率，因此将它放到堆中并以引用的方式查找到堆中的实际对象再进行操作。
 

@@ -1,7 +1,7 @@
 ---
 title: JS 对象
-index_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg'
-banner_img: 'https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/63.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
+banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/63.jpg'
 date: 2020-11-27 16:16:26
 categories:
     - JS
@@ -36,7 +36,7 @@ a[c] = 456;
 console.log(a[b]); // 456
 ```
 
-&emsp;&emsp;对象 `a`：<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200416203843666.png" alt="image-20200416203843666" style="zoom:80%;" />
+&emsp;&emsp;对象 `a`：<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200416203843666.png" alt="image-20200416203843666" style="zoom:80%;" />
 
 &emsp;&emsp;上面的代码中， 对象 `b` 和对象`c` 都被当做一个 `key`，而对象的 `key` 会被转为字符串，因此 `b` 和 `c` 会被转为：`"[object Object]"`，所以，代码中表示 `a["object Object"] = 123`，所以最后变成了 `456`。
 

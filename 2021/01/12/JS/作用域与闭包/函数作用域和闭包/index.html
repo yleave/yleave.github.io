@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -301,7 +301,7 @@ counter(<span class="hljs-number">113</span>);   <span class="hljs-comment">// c
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">var</span> bar = <span class="hljs-number">2</span>;</code></pre>
 <p>  执行这段代码，会在全局环境中创建两个变量，此时的变量对象就是全局环境：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f312e706e67" srcset="/img/loading.gif" alt="js_closure_1" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f312e706e67" srcset="/img/loading.gif" alt="js_closure_1" style="zoom:80%;" />
 <h2 id="非嵌套的函数"><a class="markdownIt-Anchor" href="#非嵌套的函数"></a> 非嵌套的函数</h2>
 <p>  修改 <code>my_script.js</code> 中的代码如下：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1</span>;
@@ -317,10 +317,10 @@ counter(<span class="hljs-number">113</span>);   <span class="hljs-comment">// c
 myFunc();</code></pre>
 <p>  上面的代码中，当 <code>myFunc</code> 被定义时，<code>myFunc</code> 的<strong>标识符</strong>就被加到了当前的作用域对象中（在这边就是全局对象），这个标识符所引用的是一个函数对象（function object)。</p>
 <p>  <strong>函数对象</strong>中包含的是这个函数的源代码和其他的相关属性。其中，有一个内部属性 <code>[[scope]]</code> 指向的就是<strong>当前的作用域对象</strong>。也就是当函数标识符被创建时我们能够直接访问的那个作用域对象（这边就是全局对象）。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f322e706e67" srcset="/img/loading.gif" alt="js_closure_2.png" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f322e706e67" srcset="/img/loading.gif" alt="js_closure_2.png" style="zoom:80%;" />
 <p>  当 <code>myFunc</code> <strong>被调用时</strong>，会创建对应的执行上下文，执行上下文中包含着其作用域对象，这个作用域对象中又包含了 <code>myFunc</code> 函数所定义的局部变量已经参数列表（<code>arguments</code>）。它的父级作用域对象就是在运行 <code>myFunc</code> 函数时我们能直接访问的那个作用域对象。</p>
 <p>  因此，当 <code>myFunc</code> <strong>运行</strong>时，对象之间的关系如下图所示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/scope1.png" srcset="/img/loading.gif" alt="scope1" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/scope1.png" srcset="/img/loading.gif" alt="scope1" style="zoom:80%;" />
 <h2 id="嵌套的函数"><a class="markdownIt-Anchor" href="#嵌套的函数"></a> 嵌套的函数</h2>
 <p>  当函数运行结束时，若其没有被其他对象引用，就会被垃圾回收器回收。不过若生成了<strong>闭包</strong>，即使外表函数调用结束了，<strong>函数对象</strong>仍会引用它被创建时的<strong>作用域对象</strong>。</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createCounter</span>(<span class="hljs-params">initial</span>) </span>&#123;
@@ -345,15 +345,15 @@ myFunc();</code></pre>
 myCounter.increment(<span class="hljs-number">5</span>);
 <span class="hljs-built_in">console</span>.log(myCounter.get());   <span class="hljs-comment">// 105</span></code></pre>
 <p>  当调用了 <code>createCounter(100)</code> 后，对象之间的关系如下（省略了前面蓝色的函数对象，函数对象的标识符指向当前作用域相当于是函数标识符指向的函数对象的 <code>[[scope]]</code> 指向了这个作用域对象）：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f342e706e67" srcset="/img/loading.gif" alt="js_closure_4" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f342e706e67" srcset="/img/loading.gif" alt="js_closure_4" style="zoom:80%;" />
 <p>  内嵌函数 <code>increment</code> 和 <code>get</code> 都有指向 <code>createCount(100) scope</code> 的引用，如果 <code>createCounter(100)</code> 没有任何返回值，那么 <code>createCounter(100) scope</code> 不再被引用，就会被垃圾回收器回收。不过由于我们代码中 <code>createCounter(100)</code> 是有返回值的，且我们使用了 <code>myCounter</code> 变量保存了这个返回值，因此对象之间的引用关系变成了下面这样：</p>
-  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f626c6f672e6c6561706f61686561642e636f6d2f323031352f30392f31352f6a732d636c6f737572652f6a735f636c6f737572655f352e706e67" srcset="/img/loading.gif" alt="js_closure_5" style="zoom:80%;" />
+  <img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f626c6f672e6c6561706f61686561642e636f6d2f323031352f30392f31352f6a732d636c6f737572652f6a735f636c6f737572655f352e706e67" srcset="/img/loading.gif" alt="js_closure_5" style="zoom:80%;" />
 <p>  因此即使 <code>createCounter(100)</code> 已经返回，其作用域仍在，并且只能通过调用 <code>myCounter.increment()</code> 和 <code>myCounter.get()</code> 来直接访问 <code>createCounter(100)</code> 的作用域。</p>
 <p>  当 <code>increment()</code> 或 <code>get()</code> 被调用时，新的作用域会被创建，且该作用域的父级作用域对象会是当前可以直接访问的作用域对象。如当调用 <code>myCounter.get()</code> 时，引用关系如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f362e706e67" srcset="/img/loading.gif" alt="js_closure_6" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f362e706e67" srcset="/img/loading.gif" alt="js_closure_6" style="zoom:80%;" />
 <p>  当执行到 <code>get</code> 函数中的 <code>return counter;</code> 时，在 <code>get() scope</code> 中没有找到对应的标识符，就会沿着作用域链往上找，直到找到变量 <code>counter</code> ，然后返回该变量。</p>
 <p>  而若调用了 <code>increment(5)</code>，引用关系与 <code>get()</code> 相似，不过因为 <code>increment</code> 带有参数 <code>value</code>，因此引用关系会像这样：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f365f696e632e706e67" srcset="/img/loading.gif" alt="js_closure_6" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f365f696e632e706e67" srcset="/img/loading.gif" alt="js_closure_6" style="zoom:80%;" />
 <p>  当访问 <code>value</code> 时，能在当前作用域中马上找到，但当要访问 <code>counter</code> 时，当前作用域中没找到，于是沿着作用域链往上找，在 <code>createCounter(100)</code> 这个作用域中找到了对应的标识符，然后 <code>increment()</code> 就会修改 <code>counter</code> 的值。</p>
 <p>  <strong>除此之外，没有其他方式能够修改这个变量。闭包的强大也在于此，能够贮存私有变量。</strong></p>
 <h2 id="多个闭包"><a class="markdownIt-Anchor" href="#多个闭包"></a> 多个闭包</h2>
@@ -378,7 +378,7 @@ myCounter.increment(<span class="hljs-number">5</span>);
 <span class="hljs-keyword">var</span> myCounter1 = createCounter(<span class="hljs-number">100</span>);
 <span class="hljs-keyword">var</span> myCounter2 = createCounter(<span class="hljs-number">200</span>);	<span class="hljs-comment">// 新增代码</span></code></pre>
 <p>  我们使用了同样的函数 <code>createCounter()</code> 创建了<strong>两个</strong>闭包，这两个闭包的作用域是<strong>不同</strong>的：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f372e706e67" srcset="/img/loading.gif" alt="js_closure_7" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f372e706e67" srcset="/img/loading.gif" alt="js_closure_7" style="zoom:80%;" />
 <p>  这才有了下面的结果：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> a, b;
 a = myCounter1.get();   <span class="hljs-comment">// a 等于 100</span>
@@ -547,7 +547,7 @@ b = myCounter2.get();   <span class="hljs-comment">// b 等于 205</span></code>
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

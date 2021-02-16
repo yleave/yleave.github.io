@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/45.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -263,7 +263,7 @@
 <h1 id="解法1邻接表-dfs"><a class="markdownIt-Anchor" href="#解法1邻接表-dfs"></a> 解法1：邻接表 + dfs</h1>
 <p>  其实我们再仔细观察，可以发现：<strong>对于 <code>queries</code> 中能得到结果的等式，它的除号两边的变量都能直接找到关联或能通过一些中间变量来找到关联</strong>，这样我们可以使用一种数据结构来保存这种关联，那就是 <strong>图</strong>！</p>
 <p>  对 <strong>示例1</strong>，我们创建一张图来观察，我们使用边权来表示这两个数的商，如 <code>a / b = 2.0</code> ，<code>b / a = 1 / 2.0</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210105165911118.png" srcset="/img/loading.gif" alt="image-20210105165911118" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210105165911118.png" srcset="/img/loading.gif" alt="image-20210105165911118" style="zoom:80%;" />
 <p>  这样，我们要求图上任意两点的商，我们只需要乘上这两点之间的路径权值即可，如 <code>a / c = a-&gt;b-&gt;c = 2.0 * 3.0</code></p>
 <p>  图常用的存储结构有两种，邻接矩阵和邻接表，这里我选择使用<strong>邻接表</strong>。</p>
 <p>  不过好久没写图算法了，邻接表的定义方式有些模糊，依靠对邻接表的回忆使用了一个 <code>map + array</code> 来完成邻接表的创建。</p>
@@ -497,7 +497,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

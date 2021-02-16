@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -267,9 +267,9 @@ B.set(<span class="hljs-number">16</span>, <span class="hljs-number">15</span>, 
 <span class="hljs-keyword">var</span> C = <span class="hljs-keyword">new</span> THREE.Matrix4();
 C.multiplyMatrices (A, B);    
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A · B:&#x27;</span>,C);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118163104957.png" srcset="/img/loading.gif" alt="image-20210118163104957" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118163104957.png" srcset="/img/loading.gif" alt="image-20210118163104957" style="zoom:80%;" />
 <p>  在网上找一个在线矩阵计算器，相对应的计算结果如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/oepd9g9ip6.jpeg" srcset="/img/loading.gif" alt="oepd9g9ip6" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/oepd9g9ip6.jpeg" srcset="/img/loading.gif" alt="oepd9g9ip6" style="zoom:80%;" />
 <h1 id="threejs-前乘与后乘"><a class="markdownIt-Anchor" href="#threejs-前乘与后乘"></a> ThreeJS 前乘与后乘</h1>
 <p>  在 ThreeJS 中，<strong>后乘</strong>的方法是 <code>multiply()</code> ，也就是 <code>A.multiply(B) = A * B</code> ，结果会保存在 <code>A</code> 中：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> THREE.Matrix4();
@@ -287,7 +287,7 @@ B.set(<span class="hljs-number">16</span>, <span class="hljs-number">15</span>, 
 A.multiply(B);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A:&#x27;</span>,A);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;B:&#x27;</span>,B);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118163927855.png" srcset="/img/loading.gif" alt="image-20210118163927855" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118163927855.png" srcset="/img/loading.gif" alt="image-20210118163927855" style="zoom:80%;" />
 <p>  <strong>前乘</strong>方法是：<code>premultiply()</code>，即 <code>A.premultiply(B) = B * A</code>，同样结果保存在 <code>A</code> 中：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> THREE.Matrix4();
 A.set(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>,
@@ -304,8 +304,8 @@ B.set(<span class="hljs-number">16</span>, <span class="hljs-number">15</span>, 
 A.premultiply(B);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;A:&#x27;</span>,A);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;B:&#x27;</span>,B);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210118164228142.png" srcset="/img/loading.gif" alt="image-20210118164228142" style="zoom:80%;" />
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/n3nfz0wsrn.jpeg" srcset="/img/loading.gif" alt="n3nfz0wsrn" style="zoom: 80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210118164228142.png" srcset="/img/loading.gif" alt="image-20210118164228142" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/n3nfz0wsrn.jpeg" srcset="/img/loading.gif" alt="n3nfz0wsrn" style="zoom: 80%;" />
 <hr />
 <p>REF ：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1694841">https://cloud.tencent.com/developer/article/1694841</a></p>
 
@@ -465,7 +465,7 @@ A.premultiply(B);
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

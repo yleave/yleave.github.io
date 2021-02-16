@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>ThreeJS 测距功能 - Ylea</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atelier-seaside-light.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/custom/custom_css.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2138234_h0gvk1u4g3q.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ylea</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-27 23:32" pubdate>
+        2021年1月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">ThreeJS 测距功能</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：几秒前
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>  测距功能，也就是选择两点，计算它们的距离，实现效果大致如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210216173934792.gif" srcset="/img/loading.gif" alt="" /></p>
+<p>  上图中主要涉及几个操作：</p>
+<ul>
+<li>点击鼠标左键选点，点击鼠标右键停止选点，若选择点数超过两点，则两点绘制一条线段，两点中心添加一个距离标签</li>
+<li>动态绘制点和线段</li>
+<li>动态绘制距离标签</li>
+<li>确定两点后添加 xyz 辅助线</li>
+<li>按下 ESC 键撤销上一步操作</li>
+</ul>
+<h2 id="选点绘线"><a class="markdownIt-Anchor" href="#选点绘线"></a> 选点绘线</h2>
+<p>  首先，我们需要通过鼠标在三维空间中选点，但是我们的屏幕是二维的，还有一维不知道，因此没办法直接凭空选点，因此目前的选点都是基于某个物体来的，即在物体上选点。</p>
+<p>  那么要如何获取鼠标点击的位置呢，首先需要知道<a target="_blank" rel="noopener" href="https://yleave.top/2020/10/17/WebGL/ThreeJS/ThreeJS-%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87%E4%B8%8E%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E4%BA%92%E8%BD%AC/">标准设备坐标转空间坐标</a>，然后使用 <a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#api/zh/core/Raycaster">Raycaster</a> 根据这个点从相机位置发出一条射线，并检测与这条射线相交的物体，即可获得鼠标点击的位置：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> mouse = <span class="hljs-keyword">new</span> THREE.Vector2();
+
+<span class="hljs-comment">// 标准设备坐标转空间坐标</span>
+mouse.x = (e.clientX / width) * <span class="hljs-number">2</span> - <span class="hljs-number">1</span>;
+mouse.y = -(e.clientY / height) * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">let</span> raycaster = <span class="hljs-keyword">new</span> THREE.Raycaster();
+raycaster.setFromCamera(mouse, camera);
+
+<span class="hljs-keyword">let</span> intersects = raycaster.intersectObjects(scene.children);
+<span class="hljs-keyword">if</span>(intersects.length &gt; <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">return</span> intersects[<span class="hljs-number">0</span>].point;	<span class="hljs-comment">// point 即点击坐标</span>
+&#125;</code></pre>
+<p>  选了点后，需要在该点位置绘制一个圆点表示，这边使用了<a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#api/zh/geometries/SphereGeometry%EF%BC%9A">SphereGeometry</a> 来绘制圆点：</p>
+<pre><code class="hljs js">createPoint = <span class="hljs-function">(<span class="hljs-params">pos, config=&#123;color:<span class="hljs-number">0x009bea</span>, size:<span class="hljs-number">0.3</span>&#125;</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">let</span> mat = <span class="hljs-keyword">new</span> THREE.MeshBasicMaterial(&#123;<span class="hljs-attr">color</span>: config.color || <span class="hljs-number">0x009bea</span>&#125;);
+    <span class="hljs-keyword">let</span> sphereGeometry = <span class="hljs-keyword">new</span> THREE.SphereGeometry(config.size || <span class="hljs-number">0.3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>);
+    <span class="hljs-keyword">let</span> sphere = <span class="hljs-keyword">new</span> THREE.Mesh(sphereGeometry, mat);
+    sphere.position.set(pos.x, pos.y, pos.z);
+    <span class="hljs-keyword">return</span> sphere;
+&#125;;</code></pre>
+<p>  两点之间绘制一条线段：</p>
+<pre><code class="hljs js">createLine = <span class="hljs-function">(<span class="hljs-params">p1, p2, config=&#123;color:<span class="hljs-number">0x009bea</span>&#125;</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">let</span> lineGeometry = <span class="hljs-keyword">new</span> THREE.Geometry();
+    <span class="hljs-keyword">let</span> lineMaterial = <span class="hljs-keyword">new</span> THREE.LineBasicMaterial(&#123; <span class="hljs-attr">color</span>: config.color &#125;);
+
+    lineGeometry.vertices.push(<span class="hljs-keyword">new</span> THREE.Vector3().copy(p1), <span class="hljs-keyword">new</span> THREE.Vector3().copy(p2));
+
+    <span class="hljs-keyword">let</span> line = <span class="hljs-keyword">new</span> THREE.Line(lineGeometry, lineMaterial);
+    <span class="hljs-keyword">return</span> line;
+&#125;;</code></pre>
+<h2 id="绘制标签"><a class="markdownIt-Anchor" href="#绘制标签"></a> 绘制标签</h2>
+<p>  绘制标签也就是在屏幕上绘制文字，有两种方法可以生成文字，一种是使用 <a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#api/zh/geometries/TextGeometry">TextBufferGeometry</a> 来创建 3d 文字，另一种是使用 <a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#examples/zh/renderers/CSS2DRenderer">CSS2DRenderer</a> 和 <code>CSS2DObject</code> 来自定义 2d 标签。<br />
+  作为标签，肯定是选择后者更为合适，前者就是单纯的 3d 文字，而后者因为是使用 <code>div</code> 元素创建的，因此可以更自由的定义标签的样式、且标签的大小和朝向会跟随相机，并且不会被模型遮挡。</p>
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210216193101313.png" srcset="/img/loading.gif" alt="image-20210216193101313" style="zoom:80%;" />
+<p>  不过不同场景实现方案的选择也会不同，因此这边都记录一下。</p>
+<h3 id="1使用-textgeometry-创建标签文字"><a class="markdownIt-Anchor" href="#1使用-textgeometry-创建标签文字"></a> 1.使用 TextGeometry 创建标签文字</h3>
+<p>  <code>label</code> 的创建需要先使用 <a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#api/zh/loaders/FontLoader">FontLoader</a> 来制指定字体，再使用 <a target="_blank" rel="noopener" href="https://threejs.org/docs/index.html#api/zh/geometries/TextGeometry">TextBufferGeometry</a> 来生成标签，下面是一些关键代码：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> loader = <span class="hljs-keyword">new</span> THREE.FontLoader();
+loader.load(<span class="hljs-string">&#x27;https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/gentilis_regular.typeface.json&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">font</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.font = font;
+&#125;.bind(<span class="hljs-built_in">this</span>));
+
+
+createLabel = <span class="hljs-function">(<span class="hljs-params">name, location</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> textGeo = <span class="hljs-keyword">new</span> THREE.TextBufferGeometry(name, &#123;
+        font: <span class="hljs-built_in">this</span>.font,
+        size: <span class="hljs-number">0.8</span>,
+        height: <span class="hljs-number">0.1</span>,
+        curveSegments: <span class="hljs-number">1</span>
+    &#125;);
+
+    <span class="hljs-keyword">const</span> textMaterial = <span class="hljs-keyword">new</span> THREE.MeshBasicMaterial(&#123; <span class="hljs-attr">color</span>: <span class="hljs-number">0xffffff</span> &#125;);
+    <span class="hljs-keyword">const</span> textMesh = <span class="hljs-keyword">new</span> THREE.Mesh(textGeo, textMaterial);
+    textMesh.position.copy(location);
+    <span class="hljs-comment">// 根据自己的坐标系设置进行旋转将文字水平显示</span>
+    textMesh.rotation.x = <span class="hljs-number">0.5</span> * <span class="hljs-built_in">Math</span>.PI;
+    textMesh.rotation.y = <span class="hljs-built_in">Math</span>.PI;
+
+    <span class="hljs-keyword">return</span> textMesh;
+&#125;;</code></pre>
+<h3 id="2-使用-css2dobject-创建标签"><a class="markdownIt-Anchor" href="#2-使用-css2dobject-创建标签"></a> 2. 使用 CSS2DObject 创建标签</h3>
+<p>  首先，要让 <code>CSS2DObject</code> 创建的标签起效果，需要使用 <code>CSS2DRenderer</code> 来渲染，因此场景中的 <code>renderer</code> 会有两个，一个 <code>WebGLRenderer</code> 用来渲染模型，一个 <code>CSS2DRenderer</code> 用来渲染标签，需要注意的是要使用 <code>css2drenderer</code> 来创建 <code>controls</code> ：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; CSS2DRenderer, CSS2DObject &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;three/examples/jsm/renderers/CSS2DRenderer&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; OrbitControls &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;three/examples/jsm/controls/OrbitControls&#x27;</span>;
+
+renderer = <span class="hljs-keyword">new</span> WebGLRenderer( &#123; <span class="hljs-attr">antialias</span>: <span class="hljs-literal">true</span> &#125; );
+renderer.setPixelRatio( <span class="hljs-built_in">window</span>.devicePixelRatio );
+renderer.setSize( canvas.width, canvas.height );
+canvas.appendChild(renderer.domElement);
+
+labelRenderer = <span class="hljs-keyword">new</span> CSS2DRenderer();
+labelRenderer.setSize(canvas.width, canvas.height);
+labelRenderer.domElement.style.position = <span class="hljs-string">&#x27;absolute&#x27;</span>;
+labelRenderer.domElement.style.top = <span class="hljs-string">&#x27;0px&#x27;</span>;
+canvas.appendChild(labelRenderer.domElement);
+
+controls = <span class="hljs-keyword">new</span> OrbitControls( camera, labelRenderer.domElement );</code></pre>
+<p>  然后就可以使用 <code>CSS2DObject</code> 来生成标签了：</p>
+<pre><code class="hljs js">createLabel = <span class="hljs-function">(<span class="hljs-params">text, pos</span>) =&gt;</span> &#123;
+   <span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>);
+    div.className = <span class="hljs-string">&#x27;label&#x27;</span>;
+    div.textContent = text;
+    
+    <span class="hljs-keyword">const</span> divLabel = <span class="hljs-keyword">new</span> CSS2DObject(div);
+    divLabel.position.set(pos.x, pos.y, pos.z);
+
+    <span class="hljs-keyword">return</span> divLabel;
+&#125;</code></pre>
+<p>  可以根据设置的 <code>className</code> 来设置标签样式：</p>
+<pre><code class="hljs css"><span class="hljs-selector-class">.label</span> &#123;
+    <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">1em</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">10px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">85px</span>;
+    <span class="hljs-attribute">text-align</span>: center;
+    <span class="hljs-attribute">cursor</span>: pointer;
+    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span>, <span class="hljs-number">155</span>, <span class="hljs-number">234</span>);
+    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.2</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">244</span>, <span class="hljs-number">244</span>, <span class="hljs-number">244</span>);
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">3px</span> <span class="hljs-number">1px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.25</span>);
+&#125;
+
+<span class="hljs-selector-class">.label</span><span class="hljs-selector-pseudo">:hover</span> &#123;
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0px</span> <span class="hljs-number">0px</span> <span class="hljs-number">20px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">155</span>, <span class="hljs-number">234</span>, <span class="hljs-number">0.8</span>);
+&#125;</code></pre>
+<h2 id="动态绘制点-线和标签"><a class="markdownIt-Anchor" href="#动态绘制点-线和标签"></a> 动态绘制点、线和标签</h2>
+<p>  在选点过程中(鼠标移动过程中)，若鼠标在模型之上，鼠标位置处会显示一个圆点，表示此处可点选，在选完一个点后，鼠标移动过程中鼠标位置和选点之间会有连线，且线段的距离会动态变化。</p>
+<p>  这些动态效果主要都是通过自定义的名称来查找修改的，即使用了 <code>scene.getObejctByName()</code> 来找到这些动态的物体，然后再通过修改其位置和文字信息来产生动态效果（原本是通过 <code>scene.add</code> 和 <code>scene.remove</code> 来实现，后面做了优化，通过 <code>geometry.vertices</code> 和 <code>position</code> 来实现），以动态的线段为例：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> activeLine = scene.getObjectByName(<span class="hljs-string">&#x27;active-line&#x27;</span>);
+<span class="hljs-keyword">if</span> (activeLine) &#123;
+    activeLine.geometry.vertices[<span class="hljs-number">1</span>].set(obj.point.x, obj.point.y, obj.point.z);
+    activeLine.geometry.verticesNeedUpdate = <span class="hljs-literal">true</span>;
+&#125; <span class="hljs-keyword">else</span> &#123;
+    activeLine = <span class="hljs-built_in">this</span>.createLine(p1.position, obj.point);
+    activeLine.name = <span class="hljs-string">&#x27;active-line&#x27;</span>;
+    scene.add(activeLine);
+&#125;</code></pre>
+<p>  动态点：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = <span class="hljs-built_in">this</span>.getIntersects(mouse);
+
+<span class="hljs-keyword">let</span> activePoint = scene.getObjectByName(<span class="hljs-string">&#x27;active-point&#x27;</span>);
+
+<span class="hljs-comment">// 若点击位置不为空且场景中不存在活动的点，那么创建活动的点</span>
+<span class="hljs-keyword">if</span> (obj &amp;&amp; !activePoint) &#123;
+    activePoint = <span class="hljs-built_in">this</span>.createPoint(obj.point);
+    activePoint.material.transparent = <span class="hljs-literal">true</span>;
+    activePoint.material.opacity = <span class="hljs-number">0.6</span>;
+    activePoint.name = <span class="hljs-string">&#x27;active-point&#x27;</span>;
+    scene.add(activePoint);
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (obj) &#123;   <span class="hljs-comment">// 否则若点击位置不为空且存在活动的点，更新这个点的位置</span>
+    activePoint.position.set(obj.point.x, obj.point.y, obj.point.z);
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (activePoint) &#123;    <span class="hljs-comment">// 否则点击位置为空且存在活动的点，清除活动的点</span>
+    scene.remove(activePoint);
+&#125;</code></pre>
+<p>  动态标签：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> dis = p1.position.distanceTo(obj.point).toFixed(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">let</span> pos = <span class="hljs-keyword">new</span> THREE.Vector3().copy(p1.position);
+pos.add(obj.point);
+pos.multiplyScalar(<span class="hljs-number">0.5</span>);
+
+<span class="hljs-keyword">let</span> label = scene.getObjectByName(<span class="hljs-string">&#x27;active-label&#x27;</span>);
+<span class="hljs-keyword">if</span> (label) &#123;
+    label.element.textContent = <span class="hljs-string">&#x27;~&#x27;</span> + dis;
+    label.position.set(pos.x, pos.y, pos.z);
+&#125; <span class="hljs-keyword">else</span> &#123;
+    label = <span class="hljs-built_in">this</span>.createLabel(<span class="hljs-string">&#x27;~&#x27;</span> + dis, pos);
+    label.name = <span class="hljs-string">&#x27;active-label&#x27;</span>;
+    scene.add(label);
+&#125;</code></pre>
+<h2 id="绘制辅助线"><a class="markdownIt-Anchor" href="#绘制辅助线"></a> 绘制辅助线</h2>
+<p>  有了前面绘制线段的方法，绘制辅助线就比较简单了，只要再确定两个中间点，加上线段起始点和终点四个点就能绘制三条线。</p>
+<p>  设线段起始点是 <code>start</code>，终点是 <code>p</code> ，每两点间变化一个坐标轴的值就能达到我们的目的。我们从起始点开始，首先，绘制 <code>y</code> 轴的线段，那么就使用起始点 <code>start</code> 和新的点<code>py : Vector3(start.x, p.y, start.z)</code> 绘制线段，再使用 <code>py</code> 和新的中间点 <code>pz: Vector3(start.x, p.y, p.z)</code> 来绘制 <code>z</code> 轴线段，最后使用 <code>pz</code> 和终点 <code>p</code> 来绘制 <code>x</code> 轴线段。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> py = <span class="hljs-keyword">new</span> THREE.Vector3(start.position.x, p.position.y, start.position.z);
+<span class="hljs-keyword">let</span> pz = <span class="hljs-keyword">new</span> THREE.Vector3(start.position.x, p.position.y, p.position.z);
+
+<span class="hljs-keyword">let</span> liney = <span class="hljs-built_in">this</span>.createLine(start.position, py, &#123;<span class="hljs-attr">color</span>: <span class="hljs-number">0xff0000</span>&#125;);
+<span class="hljs-keyword">let</span> linez = <span class="hljs-built_in">this</span>.createLine(py, pz, &#123;<span class="hljs-attr">color</span>: <span class="hljs-number">0x00ff00</span>&#125;);
+<span class="hljs-keyword">let</span> linex = <span class="hljs-built_in">this</span>.createLine(pz, p.position, &#123;<span class="hljs-attr">color</span>: <span class="hljs-number">0x0000ff</span>&#125;);</code></pre>
+<h2 id="撤销操作"><a class="markdownIt-Anchor" href="#撤销操作"></a> 撤销操作</h2>
+<p>  使用 <code>keydown</code> 对键盘事件进行监听，当 <code>event.key === Escape</code> 时我们就撤销前面绘制的点和线和距离 label （如果有这些对象的话），也就是我们之前要使用一个数据结构，比如数组来保存我们添加到场景中的这些对象，然后根据添加顺序再一个个移除即可，因为主要就使用了 <code>scene.remove</code> 和顺序逻辑判断，这边就不贴代码了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/WebGL/">WebGL</a>
+                    
+                      <a class="hover-with-bg" href="/categories/WebGL/ThreeJS/">ThreeJS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%8B%E8%B7%9D/">测距</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Three%E7%BB%98%E5%88%B6%E6%A0%87%E7%AD%BE/">Three绘制标签</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Three%E5%8A%A8%E6%80%81%E7%BB%98%E5%88%B6%E7%BA%BF%E6%AE%B5/">Three动态绘制线段</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/23/React/react%E7%AE%80%E4%BE%8B/">
+                        <span class="hidden-mobile">react简例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'yleave/yleave.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+      fetch('https://v1.hitokoto.cn', {'c': 'd'})
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+    </script>
+
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("08/14/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "ThreeJS 测距功能&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a36acf7cd4515f99cd4742abbfcf11c3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

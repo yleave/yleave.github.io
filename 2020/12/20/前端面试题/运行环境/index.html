@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/2.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/2.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -253,12 +253,12 @@
 <p>源代码	<code>-&gt;</code>	词法、语法分析	<code>-&gt;</code>	AST	<code>-&gt;</code>	语义分析	<code>-&gt;</code>	字节码	<code>-&gt;</code>	执行</p>
 <h2 id="v8-工作流程"><a class="markdownIt-Anchor" href="#v8-工作流程"></a> V8 工作流程</h2>
 <p>  首先将 JS <strong>源码</strong>通过解析器解析成<strong>抽象语法树 AST</strong>。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200802170037793.png" srcset="/img/loading.gif" alt="image-20200802170037793" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200802170037793.png" srcset="/img/loading.gif" alt="image-20200802170037793" style="zoom:80%;" />
 <p>  接着再通过解释器将 <strong>AST</strong> 编译成<strong>字节码</strong> bytecode</p>
 <p>  字节码是跨平台的一种中间表示，不同于最终的机器代码，字节码与平台无关，能够在不同操作系统上运行：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200802170115022.png" srcset="/img/loading.gif" alt="image-20200802170115022" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200802170115022.png" srcset="/img/loading.gif" alt="image-20200802170115022" style="zoom:80%;" />
 <p>  字节码最后通过编译器生成机器代码：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200802170225783.png" srcset="/img/loading.gif" alt="image-20200802170225783" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200802170225783.png" srcset="/img/loading.gif" alt="image-20200802170225783" style="zoom:80%;" />
 <h3 id="基础准备"><a class="markdownIt-Anchor" href="#基础准备"></a> 基础准备</h3>
 <p>  V8 在启动执行 JS 之前，还需要准备一些执行 JS 需要的基础环境，包括 <strong>堆空间</strong>，<strong>栈空间</strong>，<strong>全局执行上下文</strong>，<strong>全局作用域</strong>，<strong>消息循环系统</strong>，<strong>内置函数</strong> 等。</p>
 <h2 id="执行步骤"><a class="markdownIt-Anchor" href="#执行步骤"></a> 执行步骤</h2>
@@ -436,7 +436,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -245,7 +245,7 @@
 <p>难度：困难</p>
 <hr />
 <p>  <em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017095826142.png" srcset="/img/loading.gif" alt="image-20201017095826142" style="zoom:80%;" />
 <p>  上图为 8 皇后问题的一种解法。</p>
 <p>  给定一个整数 <em>n</em>，返回 <em>n</em> 皇后<strong>不同的解决方案的数量</strong>。</p>
 <p><strong>示例:</strong></p>
@@ -312,11 +312,11 @@
 <p>  对于解法1，使用了 <code>n * n</code> 的棋盘来帮助判断某个位置是否满足安置皇后的要求，但是，对于每种 N皇后的安置策略，我们仅使用了棋盘中的一部分来帮助判断（即每个位置的两条斜线和直线），因此，我们可以缩小空间，仅使用三个列表来分别表示直行、和两条斜行上是否有皇后。</p>
 <p>  例如，对于直行，若第三列上有皇后，则 <code>cols[3] = 1</code>，否则，<code>cols[3] = 0</code></p>
 <p>  直行判断是否有皇后很简单，只要使用列下标即可。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017104019691.png" srcset="/img/loading.gif" alt="image-20201017104019691" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017104019691.png" srcset="/img/loading.gif" alt="image-20201017104019691" style="zoom:67%;" />
 <p>  对于其中一个方向的斜线，棋盘中的每条这个方向的斜线都能使用一个下标来表示，即 <strong>行下标 - 列下标</strong>：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110155747.png" srcset="/img/loading.gif" alt="image-20201017110155747" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017110155747.png" srcset="/img/loading.gif" alt="image-20201017110155747" style="zoom:67%;" />
 <p>  另一个方向的斜线能使用 <strong>行下标 + 列下标</strong> 来表示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201017110328469.png" srcset="/img/loading.gif" alt="image-20201017110328469" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201017110328469.png" srcset="/img/loading.gif" alt="image-20201017110328469" style="zoom:67%;" />
 <p>  因此，对于棋盘中的一个位置，只需借助这三个列表来判断位置是否合法即可（三个列表中都不含当前位置）</p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> totalNQueens = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>&#123;
     <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
@@ -518,7 +518,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

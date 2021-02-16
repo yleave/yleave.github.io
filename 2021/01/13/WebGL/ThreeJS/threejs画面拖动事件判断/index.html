@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -276,7 +276,7 @@ controls.addEventListener(<span class="hljs-string">&#x27;end&#x27;</span>, unlo
     &#125;
 &#125;</code></pre>
 <p>  不过，对于这种实现方式，当我们<strong>使用滚轮拉近和拉远相机时也会触发</strong> <code>start</code> 和 <code>end</code> 事件，这个不是我们想要的效果：（<code>lockTiles</code> 的设置会反映到右上角的勾选框中，不过在滚轮滚动时，因为触发的太快因此看上去都是一直未被勾选的）</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/flash1.gif" srcset="/img/loading.gif" alt="flash1" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/flash1.gif" srcset="/img/loading.gif" alt="flash1" style="zoom:80%;" />
 <h1 id="2设置鼠标监听事件"><a class="markdownIt-Anchor" href="#2设置鼠标监听事件"></a> 2.设置鼠标监听事件</h1>
 <p>  拖拽操作可以分解为几个步骤：</p>
 <ol>
@@ -357,7 +357,7 @@ controls.addEventListener(<span class="hljs-string">&#x27;end&#x27;</span>, unlo
     dragCheck.removeEventListeners();
 &#125;</code></pre>
 <p>  这样实现的话，只有画面在进行拖拽时能触发回调，而滚轮滚动时则不会触发：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/flash2.gif" srcset="/img/loading.gif" alt="flash2" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/flash2.gif" srcset="/img/loading.gif" alt="flash2" style="zoom:80%;" />
 <h1 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h1>
 <p>  在 ThreeJS 中对画面的拖拽判断可以使用 <code>OrbitControls</code> 中的事件 <code>start</code>、<code>end</code> 来判断，也可以使用 DOM 中的 <code>pointerdown</code>、<code>pointermove</code> 和 <code>pointerup</code> 来判断，而使用 <code>mousedown</code>、<code>mouseup</code> 事件是没有效果的。</p>
 
@@ -519,7 +519,7 @@ controls.addEventListener(<span class="hljs-string">&#x27;end&#x27;</span>, unlo
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

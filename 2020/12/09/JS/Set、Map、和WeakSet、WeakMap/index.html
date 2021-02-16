@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/76.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/76.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -258,7 +258,7 @@
 s.add(obj);
 s.add(obj2); <span class="hljs-comment">// 两个对象引用不同，因此能正常存储</span>
 s.add(obj3); <span class="hljs-comment">// 引用与 obj 相同，无法存储</span></code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201209203523436.png" srcset="/img/loading.gif" alt="image-20201209203523436" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201209203523436.png" srcset="/img/loading.gif" alt="image-20201209203523436" style="zoom:80%;" />
 <p>向  <code>Set</code> 中加入值时，不会发生类型转换，因此 <code>5</code> 和 <code>&quot;5&quot;</code> 是两个不同的值（ <code>Object</code> 中键 的存储都会转为字符串）</p>
 <p>Set 内部判断两个值是否不同，使用的算法叫做“Same-value-zero equality”，它类似于<strong>精确相等</strong>运算符（<code>===</code>），主要的区别是<strong>Set 认为<code>NaN</code>等于自身，而精确相等运算符认为<code>NaN</code>不等于自身。</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
@@ -311,7 +311,7 @@ set1.add(<span class="hljs-string">&#x27;5&#x27;</span>)
 <p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'keys: '</span>, s.keys());</p>
 <p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'values: '</span>, s.values());</p>
 <p><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'entries: '</span>, s.entries());</code></pre>:hexoPostRenderEscape–&gt;</p>
-  <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210140730077.png" srcset="/img/loading.gif" alt="image-20201210140730077" style="zoom:80%;" />
+  <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210140730077.png" srcset="/img/loading.gif" alt="image-20201210140730077" style="zoom:80%;" />
 <p>注意到这几个方法返回的都是一个迭代器，因此可以使用 <code>next</code> 方法来遍历：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> iter = s.keys();
 
@@ -322,7 +322,7 @@ set1.add(<span class="hljs-string">&#x27;5&#x27;</span>)
     &#125;
     <span class="hljs-built_in">console</span>.log(item);
 &#125;</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144517054.png" srcset="/img/loading.gif" alt="image-20201210144517054" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144517054.png" srcset="/img/loading.gif" alt="image-20201210144517054" style="zoom:80%;" />
 <p>还可使用 <code>for ··· of</code> 来遍历：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> s.keys()) &#123;
     <span class="hljs-built_in">console</span>.log(item); 
@@ -336,7 +336,7 @@ set1.add(<span class="hljs-string">&#x27;5&#x27;</span>)
 s.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span>  &#123;
     <span class="hljs-built_in">console</span>.log(key + <span class="hljs-string">&#x27; : &#x27;</span> + value)
 &#125;)</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144632720.png" srcset="/img/loading.gif" alt="image-20201210144632720" style="zoom:80%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210144803339.png" srcset="/img/loading.gif" alt="image-20201210144803339" style="zoom:80%;" /></p>
+<p><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144632720.png" srcset="/img/loading.gif" alt="image-20201210144632720" style="zoom:80%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210144803339.png" srcset="/img/loading.gif" alt="image-20201210144803339" style="zoom:80%;" /></p>
 <p><code>Set</code> 可使用 <code>map</code> 、<code>filter</code> 方法：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([...set].map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item * <span class="hljs-number">2</span>))
@@ -374,7 +374,7 @@ set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</spa
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-built_in">console</span>.log(wks);
 &#125;, <span class="hljs-number">10000</span>)</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210150658051.png" srcset="/img/loading.gif" alt="image-20201210150658051" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210150658051.png" srcset="/img/loading.gif" alt="image-20201210150658051" style="zoom:80%;" />
 <p>同时根据上图可看到 <code>WeakSet</code> 中的方法：<code>add(value)</code>、<code>has(value)</code>、<code>delete(value)</code> 和构造器方法 <code>constructor</code></p>
 <h1 id="字典-map"><a class="markdownIt-Anchor" href="#字典-map"></a> 字典 Map</h1>
 <p>集合<code>set</code> 与字典 <code>map</code> 的区别：</p>
@@ -388,7 +388,7 @@ mp.set(<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string"
 mp.set(&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>&#125;, <span class="hljs-number">3</span>);
 
 <span class="hljs-built_in">console</span>.log(mp);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210151834885.png" srcset="/img/loading.gif" alt="image-20201210151834885" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210151834885.png" srcset="/img/loading.gif" alt="image-20201210151834885" style="zoom:80%;" />
 <p>如何具有 <code>Iterator</code> 接口，且每个成员都是一个双元素的数组的数据结构都可以当作 <code>Map</code> 构造函数的参数，如：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([[<span class="hljs-string">&#x27;foo&#x27;</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-number">2</span>]]);
 <span class="hljs-built_in">console</span>.log(set);
@@ -398,7 +398,7 @@ mp.set(&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span
 
 <span class="hljs-keyword">let</span> m1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&#x27;foo&#x27;</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-number">2</span>]]);
 <span class="hljs-keyword">let</span> m2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(m1);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210152321089.png" srcset="/img/loading.gif" alt="image-20201210152321089" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210152321089.png" srcset="/img/loading.gif" alt="image-20201210152321089" style="zoom:80%;" />
 <p>若 <code>map</code> 的键是一个对象，那么会根据对象的引用来判断是否是同一个对象，且 <code>NaN</code> 虽然不严格相等于自身，但 <code>map</code> 将其视为同一个键。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 
@@ -408,7 +408,7 @@ map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&#x27;c
 map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&#x27;d&#x27;</span>);
 
 <span class="hljs-built_in">console</span>.log(map);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210153059720.png" srcset="/img/loading.gif" alt="image-20201210153059720" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210153059720.png" srcset="/img/loading.gif" alt="image-20201210153059720" style="zoom:80%;" />
 <h2 id="map-的属性"><a class="markdownIt-Anchor" href="#map-的属性"></a> Map 的属性</h2>
 <h3 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h3>
 <h3 id="size-2"><a class="markdownIt-Anchor" href="#size-2"></a> size</h3>
@@ -460,9 +460,9 @@ map.set(<span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Array</span>.from(map).reduce(<span class="hljs-function">(<span class="hljs-params">obj, [key, value]</span>) =&gt;</span> 
 	<span class="hljs-built_in">Object</span>.assign(obj, &#123; [key] : value &#125;)
 , &#123;&#125;);</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210210723884.png" srcset="/img/loading.gif" alt="image-20201210210723884" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210210723884.png" srcset="/img/loading.gif" alt="image-20201210210723884" style="zoom:80%;" />
 <p>首先，<code>Array.from(map)</code>，会变成这样：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201210211724893.png" srcset="/img/loading.gif" alt="image-20201210211724893" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210211724893.png" srcset="/img/loading.gif" alt="image-20201210211724893" style="zoom:80%;" />
 <p>然后，在 <code>reduce</code> 回调函数中每次将新的键值对加入到 <code>&#123;&#125;</code> 中。</p>
 <p>不过这种方式在数据量过大的时候，在每个迭代器中创建一个新对象（<code>Object.assign</code>）时，性能会受到影响。</p>
 <h4 id="方法-2"><a class="markdownIt-Anchor" href="#方法-2"></a> 方法 2</h4>
@@ -540,7 +540,7 @@ map.set(<span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E5%86%85%E5%AE%B9/">
+                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/JS%E8%80%83%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">JS内容</span>
                         <span class="visible-mobile">上一篇</span>
@@ -665,7 +665,7 @@ map.set(<span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

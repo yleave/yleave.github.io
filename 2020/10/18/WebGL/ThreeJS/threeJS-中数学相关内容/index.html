@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -263,7 +263,7 @@
 <li>
 <p>获得 <code>ProjectionMatrix</code></p>
 <pre><code class="hljs js">camera.projectionMatrix</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200807170747954.png" srcset="/img/loading.gif" alt="image-20200807170747954" style="zoom:80%;" />
 </li>
 </ul>
 <h3 id="相机视图矩阵cameramatrixworldinverse"><a class="markdownIt-Anchor" href="#相机视图矩阵cameramatrixworldinverse"></a> 相机视图矩阵(CameraMatrixWorldInverse)</h3>
@@ -275,7 +275,7 @@
 <li>固定人，向右移动相机</li>
 </ul>
 <p>  这两种情况在相机眼中是一样的。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200807170828153.png" srcset="/img/loading.gif" alt="image-20200807170828153" style="zoom:80%;" />
 <p>  在THREE中，我们一般通过设置<code>camera</code>的position和up，调用<code>lookAt</code>来改变相机的视图矩阵</p>
 <pre><code class="hljs js">camera.position.set(x, y, z);
 camera.up.set(x, y, z);
@@ -440,14 +440,14 @@ matrix1.multiplyVector3(vector3);<span class="hljs-comment">//返回Vector3 &#12
 <h1 id="分离轴定理separating-axis-theorem"><a class="markdownIt-Anchor" href="#分离轴定理separating-axis-theorem"></a> 分离轴定理（Separating Axis Theorem）</h1>
 <p>  <strong>概念</strong>：通过判断任意两个 <code>凸多边形</code> 在任意角度下的投影是否均存在重叠，来判断是否发生碰撞。若在某一角度光源下，两物体的投影存在间隙，则为不碰撞，否则为发生碰撞。</p>
 <p><strong>图例：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121724065-2000235824.png" srcset="/img/loading.gif" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706121724065-2000235824.png" srcset="/img/loading.gif" alt="83792-20170706121724065-2000235824" style="zoom:80%;" />
 <p>  在程序中，遍历所有角度是不现实的。那如何确定 <code>投影轴</code> 呢？其实只需对多边形的每一条边都判断一遍即可。且在判断过程中，若提前发现间隙，则不用进行剩下的判断了。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706121734284-438000124.png" srcset="/img/loading.gif" alt="83792-20170706121734284-438000124" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706121734284-438000124.png" srcset="/img/loading.gif" alt="83792-20170706121734284-438000124" style="zoom:80%;" />
 <p>  每个投影轴其实就是对应边的法向量：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200808212950411.png" srcset="/img/loading.gif" alt="image-20200808212950411" style="zoom: 50%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200808212950411.png" srcset="/img/loading.gif" alt="image-20200808212950411" style="zoom: 50%;" />
 <p><strong>圆形与多边形之间的碰撞检测</strong></p>
 <p>  由于圆形可近似地看成一个有无数条边的正多边形，而我们不可能按照这些边一一进行投影与测试。我们只需将圆形投射到一条投影轴上即可，这条轴就是圆心与多边形顶点中最近的一点的连线，如图所示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/83792-20170706122010112-1512221308.png" srcset="/img/loading.gif" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/83792-20170706122010112-1512221308.png" srcset="/img/loading.gif" alt="83792-20170706122010112-1512221308" style="zoom:80%;" />
 <p>  因此，该投影轴和多边形自身的投影轴就组成了一组待检测的投影轴了。另外，圆的投影可以先投影圆心那一点，然后再在两边加上半径即可。</p>
 <p>  而对于圆形与圆形之间的碰撞检测依然是最初的两圆心距离是否小于两半径之和。</p>
 <hr />
@@ -615,7 +615,7 @@ matrix1.multiplyVector3(vector3);<span class="hljs-comment">//返回Vector3 &#12
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/45.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/45.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -248,12 +248,12 @@
 <p>  节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象。</strong></p>
 <p>  计算监控树的所有节点所需的最小摄像头数量。</p>
 <p><strong>示例 1：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200922220425128.png" srcset="/img/loading.gif" alt="image-20200922220425128" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200922220425128.png" srcset="/img/loading.gif" alt="image-20200922220425128" style="zoom:80%;" /> 
 <p>  输入：<code>[0,0,null,0,0]</code></p>
 <p>  输出：<code>1</code></p>
 <p>  解释：如图所示，一台摄像头足以监控所有节点。</p>
 <p><strong>示例 2：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200922220447483.png" srcset="/img/loading.gif" alt="image-20200922220447483" style="zoom:67%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200922220447483.png" srcset="/img/loading.gif" alt="image-20200922220447483" style="zoom:67%;" /> 
 <p>  输入：<code>[0,0,null,0,null,0,null,null,0]</code></p>
 <p>  输出：<code>2</code></p>
 <p>  解释：需要至少两个摄像头来监视树的所有节点。 上图显示了摄像头放置的有效位置之一。</p>
@@ -268,15 +268,15 @@
 <li>
 <p><code>node</code> 任意一个孩子结点已安装监视器，那么当前 <code>node</code> 节点也会被监控到，这种状态记为 <code>1</code>；</p>
 <p>关于下面<strong>右孩子的蓝色</strong>，这边解释一下，因为我们是从下往上遍历的，且因为一些条件判断，我们会保证遇到这种情况时，孩子结点会处于监控状态，具体可看代码。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200922213305179.png" srcset="/img/loading.gif" alt="image-20200922213305179" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200922213305179.png" srcset="/img/loading.gif" alt="image-20200922213305179" style="zoom:80%;" />
 </li>
 <li>
 <p><code>node</code> 任意一个孩子节点未安装监视器，且该孩子节点也未被监控到，那么当前节点必须安装监视器，这种状态我们记为 <code>2</code>；</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200922214339811.png" srcset="/img/loading.gif" alt="image-20200922214339811" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200922214339811.png" srcset="/img/loading.gif" alt="image-20200922214339811" style="zoom:80%;" />
 </li>
 <li>
 <p><code>node</code> 的孩子节点都没安装监视器，但是都被监控到了，那么当前节点可以安装监视器，也可以不安装监视器，但是本着节省资源的目的，需要将这种情况返回给父节点，让父节点做裁断（到底是父节点安装，还是当前节点安装）。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20200922214438620.png" srcset="/img/loading.gif" alt="image-20200922214438620" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200922214438620.png" srcset="/img/loading.gif" alt="image-20200922214438620" style="zoom:80%;" />
 <p>​	<strong>JS 代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> minCameraCover = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
   <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
@@ -505,7 +505,7 @@ res++;<br />
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

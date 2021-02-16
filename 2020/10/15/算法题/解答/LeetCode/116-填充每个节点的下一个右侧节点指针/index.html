@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -254,7 +254,7 @@
 <p>  填充它的每个 <code>next</code>指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 <code>next</code>指针设置为 <code>NULL</code>。</p>
 <p>  初始状态下，所有 <code>next</code>指针都被设置为 <code>NULL</code>。</p>
 <p><strong>示例：</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201015114937533.png" srcset="/img/loading.gif" alt="image-20201015114937533" style="zoom:80%;" />
 <hr />
 <p>  首先，给定的树是一棵<strong>完美二叉树</strong>，因此对于所有非叶子节点的节点，都会有左右孩子。</p>
 <h2 id="解法1层次优先遍历"><a class="markdownIt-Anchor" href="#解法1层次优先遍历"></a> 解法1：层次优先遍历</h2>
@@ -311,9 +311,9 @@
 &#125;;</code></pre>
 <h2 id="解法2使用父节点-next-指针"><a class="markdownIt-Anchor" href="#解法2使用父节点-next-指针"></a> 解法2：使用父节点 next 指针</h2>
 <p>  首先，如下图，对于当前遍历到的节点 <code>2</code>，我们能够很容易的找到其左孩子的 <code>next</code> 指针所指向的节点（即其右孩子）：<code>root.left.next = root.right;</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201015122151393.png" srcset="/img/loading.gif" alt="image-20201015122151393" style="zoom: 67%;" />
 <p>  而对于其右孩子 <code>5</code>，由于我们在遍历根结点 <code>1</code> 时就设置了节点 <code>2</code> 的 <code>next</code> 指针，因此我们能够使用节点 <code>2</code> 的 <code>next</code> 来找到节点 <code>5</code> 的 <code>next</code> 所要指向的右侧节点：<code>root.right.next = root.next.left;</code></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201015122450657.png" srcset="/img/loading.gif" alt="image-20201015122450657" style="zoom: 67%;" />
 <p>  根据这种思路，我们能够写出递归版本和迭代版本的代码：</p>
 <h3 id="递归"><a class="markdownIt-Anchor" href="#递归"></a> 递归</h3>
 <p>  递归版本很直观，就是按照上面的两种情况来的：</p>
@@ -345,7 +345,7 @@
 &#125;;</code></pre>
 <h3 id="迭代"><a class="markdownIt-Anchor" href="#迭代"></a> 迭代</h3>
 <p>  对于迭代法，我们可以从每一层最左边的节点出发，对每一个遍历到的节点的左右孩子，按照上面的两种情况来获取 <code>next</code> 的指向：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201015143519577.png" srcset="/img/loading.gif" alt="image-20201015143519577" style="zoom: 67%;" />
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> connect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>&#123;
     <span class="hljs-keyword">if</span> (!root) &#123;
         <span class="hljs-keyword">return</span> root;
@@ -527,7 +527,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

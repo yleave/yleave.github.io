@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/63.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/63.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -241,7 +241,8 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-1-2-3mapparseint"><a class="markdownIt-Anchor" href="#1-1-2-3mapparseint"></a> 1. [‘1’, ‘2’, ‘3’].map(parseInt)</h1>
+              <img src="JS考题.assets/image-20210208145304152.png" srcset="/img/loading.gif" alt="image-20210208145304152" style="zoom:80%;" />
+<h1 id="1-1-2-3mapparseint"><a class="markdownIt-Anchor" href="#1-1-2-3mapparseint"></a> 1. [‘1’, ‘2’, ‘3’].map(parseInt)</h1>
 <p>  这题涉及到两个函数，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map</a> 和 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">parseInt</a></p>
 <p>说点题外话，首先，<code>map</code> 函数的调用不会改变原数组，它会返回一个新数组，其次，map 函数在调用回调时的处理元素的范围已经确定了，过程中再追加的数组元素不会被访问到。</p>
 <p>  回到本题，<code>map</code> 函数的第一个参数是一个回调函数，第二个参数是可选的 <code>this</code> 指向，回调函数会被<strong>自动传入三个参数</strong>：<strong>数组元素</strong>、<strong>元素索引</strong>、原数组本身。</p>
@@ -626,7 +627,7 @@ obj.show(fn);</code></pre>
 <li>开始下一轮 <code>tick</code>，执行宏任务中的异步代码（<code>setTimeout</code> 等回调）</li>
 </ul>
 <p>  通过上面的执行步骤可知，<strong>如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中</strong>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221141223934.png" srcset="/img/loading.gif" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201221142300760.png" srcset="/img/loading.gif" alt="image-20201221142300760" style="zoom:80%;" /></p>
+<p><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221141223934.png" srcset="/img/loading.gif" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221142300760.png" srcset="/img/loading.gif" alt="image-20201221142300760" style="zoom:80%;" /></p>
 <h2 id="微任务和宏任务-2"><a class="markdownIt-Anchor" href="#微任务和宏任务-2"></a> 微任务和宏任务</h2>
 <p>ES6 规范中，microtask(微任务) 称为 <code>jobs</code>，macrotask(宏任务) 称为 <code>task</code></p>
 <p><strong>宏任务</strong>是由宿主发起的，而<strong>微任务</strong>由JavaScript自身发起。</p>
@@ -857,7 +858,7 @@ Sub.prototype.constructor = Sub;
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

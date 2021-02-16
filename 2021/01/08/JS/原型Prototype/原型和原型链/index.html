@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -255,7 +255,7 @@ Person.prototype.name = <span class="hljs-string">&#x27;Kevin&#x27;</span>;
 <p>  每个函数/类都有一个 <code>prototype</code> 属性，它指向了一个对象，这个对象就是我们调用这个构造函数/类而创建的实例的原型，即上面代码中 <code>p1</code> 和 <code>p2</code> 的原型。</p>
 <p>  而<strong>原型</strong>可以这样理解：<strong>每一个 JS 对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型中 “继承” 属性</strong>。</p>
 <p>  用一张图来表示构造函数和实例原型之间的关系：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype1.png" srcset="/img/loading.gif" alt="构造函数和实例原型的关系图" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/prototype1.png" srcset="/img/loading.gif" alt="构造函数和实例原型的关系图" style="zoom:80%;" />
 <h2 id="__proto__"><a class="markdownIt-Anchor" href="#__proto__"></a> <code>__proto__</code></h2>
 <p>  每一个 JS 对象（除了 null）都具有 <code>__proto__</code> 这个属性，它指向该对象的原型。</p>
 <p>如：</p>
@@ -264,7 +264,7 @@ Person.prototype.name = <span class="hljs-string">&#x27;Kevin&#x27;</span>;
 <span class="hljs-keyword">let</span> n = <span class="hljs-number">3</span>;
 n.__proto__ === <span class="hljs-built_in">Number</span>.prototype;</code></pre>
 <p>  因此关系图更新为：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype2.png" srcset="/img/loading.gif" alt="实例与实例原型的关系图" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/prototype2.png" srcset="/img/loading.gif" alt="实例与实例原型的关系图" style="zoom:80%;" />
 <p>  除了可以使用 <code>__proto_</code> 属性来获取实例的原型之外，还能使用 <code>Object.getPrototypeOf(p1)</code> （ES5 的方法）来获取对象原型：</p>
 <pre><code class="hljs js"><span class="hljs-built_in">Object</span>.getPrototypeOf(p1) === Person.prototype;</code></pre>
 <h2 id="constructor"><a class="markdownIt-Anchor" href="#constructor"></a> constructor</h2>
@@ -274,7 +274,7 @@ n.__proto__ === <span class="hljs-built_in">Number</span>.prototype;</code></pre
 
 <span class="hljs-built_in">Number</span>.prototype.constructor === <span class="hljs-built_in">Number</span>;</code></pre>
 <p>  因此再次更新关系图：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype3.png" srcset="/img/loading.gif" alt="实例原型与构造函数的关系图" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/prototype3.png" srcset="/img/loading.gif" alt="实例原型与构造函数的关系图" style="zoom:80%;" />
 <h2 id="原型的原型"><a class="markdownIt-Anchor" href="#原型的原型"></a> 原型的原型</h2>
 <p>  前面原型理解中有提到，<strong>原型也是一个对象</strong>，因此我们可以使用最原始的方式创建它：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();</code></pre>
@@ -286,7 +286,7 @@ Person.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototy
 <p>  答案是 <code>null</code>：<code>Object.prototype.__proto__ === null</code></p>
 <p>  代表了原型链的尽头。</p>
 <p>  因此关系图可以更新为：其中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/prototype5.png" srcset="/img/loading.gif" alt="原型链示意图" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/prototype5.png" srcset="/img/loading.gif" alt="原型链示意图" style="zoom:80%;" />
 <h2 id="实例与原型链"><a class="markdownIt-Anchor" href="#实例与原型链"></a> 实例与原型链</h2>
 <p>  当读取实例的属性时，如果找不到，就会查找与其相关的原型中的属性，如果还找不到，就会去找原型的原型，直到最顶层的 <code>null</code> 为止。</p>
 <p>如：</p>
@@ -486,7 +486,7 @@ person.constructor === Person; <span class="hljs-comment">//true</span></code></
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

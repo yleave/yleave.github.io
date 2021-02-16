@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/5.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/5.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -260,9 +260,9 @@
 <p>  首先我们需要知道单次链表翻转是如何操作的，以链表 <code>1-&gt;2-&gt;3-&gt;null</code> 为例：</p>
 <h3 id="迭代版本"><a class="markdownIt-Anchor" href="#迭代版本"></a> 迭代版本</h3>
 <p>  1、<code>pre</code> 、<code>p</code> 和 <code>temp</code> 指针指向如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201104230923369.png" srcset="/img/loading.gif" alt="image-20201104230923369" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201104230923369.png" srcset="/img/loading.gif" alt="image-20201104230923369" style="zoom:80%;" />
 <p>  2、将<code>p.next</code> 指向 <code>pre</code>，<code>pre</code> 赋值为 <code>p</code> ，<code>p</code> 赋值为 <code>temp</code>，而 <code>temp == p.next</code> ：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201104231150007.png" srcset="/img/loading.gif" alt="image-20201104231150007" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201104231150007.png" srcset="/img/loading.gif" alt="image-20201104231150007" style="zoom:80%;" />
 <p>  3、接下来重复步骤 2，将 <code>p.next</code> 指向 <code>pre</code>，并不断更新 <code>pre</code> 和 <code>p</code> 的指向，直到 <code>p</code> 为 <code>null</code> ，最后 <code>pre</code> 即为头结点。</p>
 <p><strong>JS 代码如下：</strong></p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReverseList</span>(<span class="hljs-params">pHead</span>) </span>&#123;
@@ -280,7 +280,7 @@
 <h3 id="递归版本"><a class="markdownIt-Anchor" href="#递归版本"></a> 递归版本</h3>
 <p>  同样，以链表 <code>1-&gt;2-&gt;3-&gt;null</code> 为例：</p>
 <p>  要完成链表反转，我们需要将原先的尾节点作为新的头结点，因此递归边界是最后一个节点（<code>head.next === null</code>），对于遍历到的其他节点，我们需要将其下一个节点的指向反转：<code>head.next.next = head</code>，并将其断链，形成一条新的反向的链表：<code>head.next = null</code>。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201114204121288.png" srcset="/img/loading.gif" alt="image-20201114204121288" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201114204121288.png" srcset="/img/loading.gif" alt="image-20201114204121288" style="zoom:80%;" />
 <p>  接下来，函数返回，<code>head</code> 指向 <code>1</code>，重复以上操作，完成链表反转。</p>
 <p><strong>JS代码：</strong></p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReverseList</span>(<span class="hljs-params">pHead</span>) </span>&#123;
@@ -508,7 +508,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

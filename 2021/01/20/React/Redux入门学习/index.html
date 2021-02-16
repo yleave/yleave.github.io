@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/redux.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/redux.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -248,9 +248,9 @@
 <h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
 <p>  有几个图片可以帮助理解 <code>redux</code>:</p>
 <p>  这张图片说明了 <code>reudx</code> 的作用：组件间的信息传递不用再只能通过相邻的父子组件进行传递了，而是统一由一个仓库 <code>store</code> 来管理这些 <code>state</code>：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/%E4%B8%8B%E8%BD%BD.jpg" srcset="/img/loading.gif" alt="下载" style="zoom: 150%;" /> 
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP.jpg" srcset="/img/loading.gif" alt="OIP" style="zoom:150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/%E4%B8%8B%E8%BD%BD.jpg" srcset="/img/loading.gif" alt="下载" style="zoom: 150%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP.jpg" srcset="/img/loading.gif" alt="OIP" style="zoom:150%;" />
 <p>有两个：</p>
 <p><code>redux</code> ： js 的状态管理  如 <code>createStore</code></p>
 <p><code>react-redux</code> : 为了在 react 中更容易的使用 ，如 <code>connect</code> 、 <code>provider</code></p>
@@ -278,7 +278,7 @@
 </ul>
 <h1 id="使用-redux-最简单的示例计数器"><a class="markdownIt-Anchor" href="#使用-redux-最简单的示例计数器"></a> 使用 Redux 最简单的示例：计数器</h1>
 <p>  这个示例实现的效果就是：点击 <code>increasment</code> 和 <code>decreasment</code> 按钮，分别增加、减少界面上显示的数字</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213539985.png" srcset="/img/loading.gif" alt="image-20200722213539985" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722213539985.png" srcset="/img/loading.gif" alt="image-20200722213539985" style="zoom:80%;" />
 <p><strong>1.</strong> 首先，在 App.js 中先编写一个简单的界面（使用了 bootstrap）：</p>
 <pre><code class="hljs jsx">render() &#123;
     <span class="hljs-keyword">return</span> (
@@ -291,7 +291,7 @@
         &lt;/div&gt;
     );
 &#125;</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722213401691.png" srcset="/img/loading.gif" alt="image-20200722213401691" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722213401691.png" srcset="/img/loading.gif" alt="image-20200722213401691" style="zoom:80%;" />
 <p><strong>2.</strong> 在 <code>src/reducers</code> 路径下创建文件 <code>counter.js</code>：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> counter = <span class="hljs-function">(<span class="hljs-params"> state = <span class="hljs-number">0</span>, action </span>) =&gt;</span> &#123;
     <span class="hljs-keyword">switch</span>(action.type) &#123;
@@ -411,7 +411,7 @@ ReactDOM.render(
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(App);</code></pre>
 <p>  可以观察到页面上输出的 <code>this.props</code> 信息，因此可以将 <code>this.props.counter</code> 作为显示的数字：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722222339428.png" srcset="/img/loading.gif" alt="image-20200722222339428" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722222339428.png" srcset="/img/loading.gif" alt="image-20200722222339428" style="zoom:80%;" />
 <p><strong>3.</strong> 创建一个 js 文件来封装这个 <code>reducer</code> 对应的 <code>actions</code>。在 <code>src/actions/</code> 下创建文件 <code>counter.js</code>：调用这些方法返回对应的 <code>action</code></p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>&#123;
     <span class="hljs-keyword">return</span> &#123;
@@ -466,7 +466,7 @@ ReactDOM.render(
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToPorps)(App);</code></pre>
 <p>  这样，<code>react-redux</code> 就自动的帮我们完成 <code>state</code> 和 <code>dispatch</code> 到 <code>App</code> 组件的绑定，并能够正确的相应 <code>actions</code> ，更新 <code>state</code>。</p>
 <p>  从 打印的 <code>props</code> 可以观察到 <code>state</code> 的变化：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200722224349311.png" srcset="/img/loading.gif" alt="image-20200722224349311" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200722224349311.png" srcset="/img/loading.gif" alt="image-20200722224349311" style="zoom:80%;" />
 <p>  第 4 步的另外一种写法：（推荐用这种</p>
 <p>  使用 <code>reudx</code> 的 <code>bindActionCreators</code> 方法来将自定义的 <code>actions</code> 和 <code>dispatch</code> 绑定：</p>
 <pre><code class="hljs jsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> counterActions <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./actions/counter&#x27;</span>;
@@ -486,7 +486,7 @@ ReactDOM.render(
     &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.increment(); &#125;&#125;&gt;increment&lt;/button&gt; 
     &lt;button onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; counterActions.decrement(); &#125;&#125;&gt;decrement&lt;/button&gt;
 );</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723100226347.png" srcset="/img/loading.gif" alt="image-20200723100226347" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723100226347.png" srcset="/img/loading.gif" alt="image-20200723100226347" style="zoom:80%;" />
 <h2 id="梳理-2"><a class="markdownIt-Anchor" href="#梳理-2"></a> 梳理</h2>
 <p><strong><code>react-redux</code> 使用流程梳理：</strong></p>
 <ol>
@@ -640,7 +640,7 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 <h1 id="使用-combinereducers-合并-reducer"><a class="markdownIt-Anchor" href="#使用-combinereducers-合并-reducer"></a> 使用 combineReducers 合并 reducer</h1>
 <p>  在应用中，可能会有非常多的数据需要管理，这时就需要多个 <code>reducer</code> 来管理，使用 <code>combineReducers</code> 来合并这些 <code>reducers</code> 可以更加方便的使用这些 <code>reducers</code>。</p>
 <p>  在页面上再添加一个 <code>User</code> 组件，组件中有一个文本标签和一个按钮，目标是点击按钮能后够添加一个字符串并显示在文本中：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723120654431.png" srcset="/img/loading.gif" alt="image-20200723120654431" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723120654431.png" srcset="/img/loading.gif" alt="image-20200723120654431" style="zoom:80%;" />
 <p>  按照上个例子依葫芦画瓢的添加这个功能：</p>
 <ol>
 <li>
@@ -710,7 +710,7 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> user;</code></pre>
 <p>  <code>array</code> 的 <code>concat</code> 方法是浅复制，并会返回一个<strong>新</strong>数组，因此能够正常的渲染：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125100275.png" srcset="/img/loading.gif" alt="image-20200723125100275" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125100275.png" srcset="/img/loading.gif" alt="image-20200723125100275" style="zoom:80%;" />
 <p>  否则，若代码是这样的：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">case</span> actions.ADD_USER:
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;before state: &#x27;</span>, state);
@@ -719,16 +719,16 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
     <span class="hljs-comment">// return state.concat(action.user);</span>
     <span class="hljs-keyword">return</span> state;</code></pre>
 <p>  点击 <code>addUser</code> 按钮，虽然在输出中发现<code>state</code> 是变化的，但是这些变化的 <code>state</code> 并不会及时渲染到页面上</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125358933.png" srcset="/img/loading.gif" alt="image-20200723125358933" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125358933.png" srcset="/img/loading.gif" alt="image-20200723125358933" style="zoom:80%;" />
 <p>  然后要点击一次 <code>increment</code> 或 <code>decrement</code> 按钮才会触发渲染：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723125639079.png" srcset="/img/loading.gif" alt="image-20200723125639079" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723125639079.png" srcset="/img/loading.gif" alt="image-20200723125639079" style="zoom:80%;" />
 <p>  因此要特别注意需要返回一个 <strong>“新”</strong> 的 <code>state</code>：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">case</span> actions.ADD_USER:
     <span class="hljs-keyword">let</span> newState = state.concat(action.user);
     <span class="hljs-keyword">return</span> newState;</code></pre>
 <h1 id="中间件"><a class="markdownIt-Anchor" href="#中间件"></a> 中间件</h1>
 <p>  官方文档：<a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/advanced/Middleware.html">https://www.redux.org.cn/docs/advanced/Middleware.html</a></p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
 <p>  从图中可以看到 <code>redux</code> 的工作流，在触发 <code>actions</code> 后，到达 <code>store</code> 时，最开始会先经过一个 <code>minddleware</code>(中间件)，然后才通过 <code>reducer</code> 来更新状态。</p>
 <blockquote>
 <p><strong>它提供的是位于 action 被发起之后，到达 reducer 之前的扩展点。</strong> 你可以利用 Redux middleware 来进行日志记录、创建崩溃报告、调用异步接口或者路由等等。</p>
@@ -775,7 +775,7 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 
 <span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, applyMiddleware(logger));</code></pre>
 <p>  效果比自定义的好看多了：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723165643383.png" srcset="/img/loading.gif" alt="image-20200723165643383" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723165643383.png" srcset="/img/loading.gif" alt="image-20200723165643383" style="zoom:80%;" />
 <h2 id="异步中间件"><a class="markdownIt-Anchor" href="#异步中间件"></a> 异步中间件</h2>
 <p><code>cnpm i --save redux-thunk</code></p>
 <p>目标：在点击 <code>increment</code> 按钮时，延时一秒获取数据：</p>
@@ -794,9 +794,9 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 <span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-thunk&#x27;</span>;
 <span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, applyMiddleware(logger, thunk));</code></pre>
 <p>  若未传入 <code>thunk</code> 中间件，会报这样的错：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182830470.png" srcset="/img/loading.gif" alt="image-20200723182830470" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723182830470.png" srcset="/img/loading.gif" alt="image-20200723182830470" style="zoom:80%;" />
 <p>  传入中间件 <code>thunk</code>并点击 <code>increment</code> 后：过一秒页面上的数字会变成 10</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723182007956.png" srcset="/img/loading.gif" alt="image-20200723182007956" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723182007956.png" srcset="/img/loading.gif" alt="image-20200723182007956" style="zoom:80%;" />
 <p>  对于 <code>decrement</code>，也修改代码，不过代码中没有异步操作：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrement</span>(<span class="hljs-params">num</span>) </span>&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> &#123;
@@ -807,7 +807,7 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
     &#125;;
 &#125;</code></pre>
 <p>  点击按钮后，也会显示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723183655255.png" srcset="/img/loading.gif" alt="image-20200723183655255" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723183655255.png" srcset="/img/loading.gif" alt="image-20200723183655255" style="zoom:80%;" />
 <p>  不过，若没有传入 <code>redux-thunk</code>，上面的两个代码都会报错。</p>
 <p><strong>感觉下面的猜想有点问题，不过当看着玩帮助理解：</strong></p>
 <p>  结合下面的源码，<strong>自己的猜想</strong>：在触发 <code>action</code> 后，会先进入中间件，若有传入处理<code>action</code> 的中间件，则会先处理，最后再调用 <code>dispatch</code> 方法，再返回这个 <code>action</code> 的对象。</p>
@@ -871,9 +871,9 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 &#125;</code></pre>
 <h1 id="使用-redux-thunk-的示例"><a class="markdownIt-Anchor" href="#使用-redux-thunk-的示例"></a> 使用 redux-thunk 的示例</h1>
 <p><strong>目标</strong>：在原有基础上使用异步操作获取测试 API <code>http://iwenwiki.com/api/blueberrypai/getChengpinDetails.php</code> 中的某些内容：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200723204950304.png" srcset="/img/loading.gif" alt="image-20200723204950304" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200723204950304.png" srcset="/img/loading.gif" alt="image-20200723204950304" style="zoom:80%;" />
 <p>  根据下面的图，要实现这个功能，可以在触发 <code>action</code> 后，进入 <code>reducer</code> 更新状态之前获取数据，然后再<code>dispatch</code> 到 <code>reducer</code> 中进行更新，最后可以从 <code>store</code> 中获取 <code>state</code>。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/OIP%20(1).jpg" srcset="/img/loading.gif" alt="OIP (1)" style="zoom: 150%;" />
 <p><strong>1.</strong> 首先，为 <code>user</code> 再定义一个常量来表示 <code>action.type</code>：</p>
 <pre><code class="hljs js"><span class="hljs-comment">// user</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ADD_USER = <span class="hljs-string">&#x27;ADD_USER&#x27;</span>;
@@ -1003,7 +1003,7 @@ type: <span class="hljs-string">‘DECREMENT’</span><br />
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(User);</code></pre>
 <h2 id="redux-示例优化"><a class="markdownIt-Anchor" href="#redux-示例优化"></a> Redux 示例优化</h2>
 <p>  在上个示例中，有使用异步操作来获取数据，由于有网络请求，因此若网速不好的话获取数据可能会有延时，因此在未获取到数据时应该要显示加载提示，等获取到数据后再显示数据：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/2020-07-24-21-10-35.gif" srcset="/img/loading.gif" alt="2020-07-24-21-10-35" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/2020-07-24-21-10-35.gif" srcset="/img/loading.gif" alt="2020-07-24-21-10-35" style="zoom:80%;" />
 <p><strong>1.</strong> 在常量中添加几个 <code>action.type</code> ：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA_SUCCESS = <span class="hljs-string">&#x27;FETCH_USER_DATA_SUCCESS&#x27;</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> FETCH_USER_DATA_REQUEST = <span class="hljs-string">&#x27;FETCH_USER_DATA_REQUEST&#x27;</span>;
@@ -1122,15 +1122,15 @@ render() &#123;
         );
     &#125;</code></pre>
 <p>  还有一个就是，若想要有网速慢的效果，可以在 Chrome 开发者工具那选择 3G 网速：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212108502.png" srcset="/img/loading.gif" alt="image-20200724212108502" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724212108502.png" srcset="/img/loading.gif" alt="image-20200724212108502" style="zoom:80%;" />
 <h1 id="redux-调试工具"><a class="markdownIt-Anchor" href="#redux-调试工具"></a> Redux 调试工具</h1>
 <p>  安装 <code>Redux</code> 的调试工具需要几个步骤：</p>
 <ol>
 <li>chrome 中需要安装插件： Redux DevTools</li>
 </ol>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724212817540.png" srcset="/img/loading.gif" alt="image-20200724212817540" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724212817540.png" srcset="/img/loading.gif" alt="image-20200724212817540" style="zoom:80%;" /> 
 <p>刚开始是这样的：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213017200.png" srcset="/img/loading.gif" alt="image-20200724213017200" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213017200.png" srcset="/img/loading.gif" alt="image-20200724213017200" style="zoom:80%;" />
 <p>也能在拓展栏中显示：</p>
 <img src="Redux.assets/image-20200724214013320.png" srcset="/img/loading.gif" alt="image-20200724214013320" style="zoom:80%;" />
 <ol start="2">
@@ -1146,9 +1146,9 @@ render() &#123;
 <p><span class="hljs-comment">// 包裹在原先中间件的位置：</span><br />
 <span class="hljs-keyword">const</span> store = createStore(rootReducer, &#123;&#125;, composeWithDevTools(applyMiddleware(logger, thunk)));</code></pre>:hexoPostRenderEscape–&gt;</p>
 <p>  然后就可以在页面中查看效果了：原先插件的图标会变亮，右键中也会有插件的图标</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213644211.png" srcset="/img/loading.gif" alt="image-20200724213644211" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213644211.png" srcset="/img/loading.gif" alt="image-20200724213644211" style="zoom:80%;" />
 <p>  最底部的按钮能够一步步还原 <code>action</code> 的触发步骤，且效果也能在页面上实时显示：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200724213817938.png" srcset="/img/loading.gif" alt="image-20200724213817938" style="zoom: 67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200724213817938.png" srcset="/img/loading.gif" alt="image-20200724213817938" style="zoom: 67%;" />
 
             </div>
             <hr>
@@ -1182,6 +1182,12 @@ render() &#123;
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/01/23/React/react%E7%AE%80%E4%BE%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react简例</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -1302,7 +1308,7 @@ render() &#123;
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

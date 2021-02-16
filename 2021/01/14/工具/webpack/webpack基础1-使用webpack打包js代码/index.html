@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/webpack.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/webpack.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -246,7 +246,7 @@
 <p>  （简单来说就是在使用ES6的模块编程时，<code>webpack</code>会分析这些文件的关系，然后打包成一个 JS 文件，最后直接使用这个 JS 文件即可。</p>
 <h1 id="从一个示例开始"><a class="markdownIt-Anchor" href="#从一个示例开始"></a> 从一个示例开始</h1>
 <p>  一个简单的项目，目录如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615191631329.png" srcset="/img/loading.gif" alt="image-20200615191631329" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615191631329.png" srcset="/img/loading.gif" alt="image-20200615191631329" style="zoom:80%;" /> 
 <p><code>index.html</code> :</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./src/main.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p><code>hello.js</code>:</p>
@@ -258,7 +258,7 @@
 
 hello();</code></pre>
 <p>  就这样运行 HTML 页面，会出错：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615191853433.png" srcset="/img/loading.gif" alt="image-20200615191853433" style="zoom:80%;" /> 
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615191853433.png" srcset="/img/loading.gif" alt="image-20200615191853433" style="zoom:80%;" /> 
 <p>  如果使用 <code>webpack</code> 来解决，有两种方式：一种是使用配置文件，另一种不使用配置文件。</p>
 <h2 id="全局安装方式"><a class="markdownIt-Anchor" href="#全局安装方式"></a> 全局安装方式</h2>
 <p><code>webpack</code>安装：</p>
@@ -267,12 +267,12 @@ hello();</code></pre>
 <p>  命令行输入的格式如下：<code>webpack &lt;entry&gt; [&lt;entry&gt;] -o &lt;output&gt;</code></p>
 <p>  示例：<code>webpack src/main.js</code></p>
 <p>  然后，程序会在 <code>dist</code> 目录下生成打包好的入口文件：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615213634589.png" srcset="/img/loading.gif" alt="image-20200615213634589" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615213634589.png" srcset="/img/loading.gif" alt="image-20200615213634589" style="zoom:80%;" />
 <p>  接着，只要在 <code>index.html</code> 中替换 JS 入口文件即可：</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./dist/main.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-202006152139244.png" srcset="/img/loading.gif" alt="image-202006152139244" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-202006152139244.png" srcset="/img/loading.gif" alt="image-202006152139244" style="zoom:80%;" />
 <p>  <code>main.js</code> 中生成的打包文件如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-2020061521373750.png" srcset="/img/loading.gif" alt="image-2020061521373750" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-2020061521373750.png" srcset="/img/loading.gif" alt="image-2020061521373750" style="zoom:80%;" />
 <p>  <strong>再看看使用配置文件的方式：</strong></p>
 <p>  在项目中新建一个 <code>webpack.config.js</code> 文件，内容为：</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
@@ -286,10 +286,10 @@ hello();</code></pre>
   &#125;
 &#125;;</code></pre>
 <p>  然后在命令行中输入 <code>webpack</code> 即可：</p>
- <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615214345212.png" srcset="/img/loading.gif" alt="image-20200615214345212" style="zoom: 67%;" />
+ <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615214345212.png" srcset="/img/loading.gif" alt="image-20200615214345212" style="zoom: 67%;" />
 <p>  这时候命令行的输出没有黄色字体了，这是因为我们指定了项目文件为开发环境（development)。而之前的打包文件是因为没指定环境，默认为生产环境（production)。</p>
 <p>  这时， <code>bundle.js</code> 的内容为：与生产环境的<code>main.js</code>有很大区别。</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615214603773.png" srcset="/img/loading.gif" alt="image-20200615214603773" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615214603773.png" srcset="/img/loading.gif" alt="image-20200615214603773" style="zoom:67%;" />
 <h2 id="局部安装方式"><a class="markdownIt-Anchor" href="#局部安装方式"></a> 局部安装方式</h2>
 <p>  先卸载全局安装的 <code>webpack</code> 和 <code>webpack-cli</code> : <code>npm uninstall -g webpack webpack-cli</code></p>
 <p>  在项目下新建文件 <code>package.json</code> ：</p>
@@ -312,7 +312,7 @@ hello();</code></pre>
     &#125;
 &#125;</code></pre>
 <p>  这时候，运行 <code>npm run build</code> 命令也能执行 <code>webpack</code>：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20200615220311315.png" srcset="/img/loading.gif" alt="image-20200615220311315" style="zoom:67%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20200615220311315.png" srcset="/img/loading.gif" alt="image-20200615220311315" style="zoom:67%;" />
 
             </div>
             <hr>
@@ -470,7 +470,7 @@ hello();</code></pre>
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

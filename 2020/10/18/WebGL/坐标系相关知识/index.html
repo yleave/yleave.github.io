@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/24.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -249,11 +249,12 @@
 <li>裁剪空间（Clip Space）</li>
 <li>屏幕空间（Screen Space）</li>
 </ul>
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/coordinate_systems.png" srcset="/img/loading.gif" style="zoom:80%;" />
 <h1 id="坐标空间"><a class="markdownIt-Anchor" href="#坐标空间"></a> 坐标空间</h1>
 <p>  为了将坐标从一个坐标系变换到另一个坐标系，我们需要用到几个变换矩阵，最重要的几个分别是<strong>模型</strong>(Model) 矩阵、<strong>观察</strong> (View) 矩阵 和 <strong>投影</strong> (Projection) 矩阵。</p>
 <p>  我们的顶点坐标起始于局部空间(Local Space)，在这里它称为<strong>局部坐标</strong>(Local Coordinate)，并最后以<strong>屏幕坐标</strong>(Screen Coordinate)的形式结束。</p>
 <p>  下图展示了整个的变换流程：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/coordinate_systems.png" srcset="/img/loading.gif" alt="image-20201018185023147" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/coordinate_systems.png" srcset="/img/loading.gif" alt="image-20201018185023147" style="zoom:80%;" />
 <ol>
 <li><strong>局部坐标</strong>是对象相对于局部原点的坐标，也是物体起始的坐标。</li>
 <li>下一步是将局部坐标变换为<strong>世界空间坐标</strong>，世界空间坐标是处于一个更大的空间范围的。这些坐标相对于世界的全局原点，它们会和其它物体一起相对于世界的原点进行摆放。</li>
@@ -299,12 +300,12 @@
 <p>  将观察坐标变换为裁剪坐标的投影矩阵可以为两种不同的形式，每种形式都定义了不同的平截头体。主要有：<strong>正交投影矩阵</strong>(Orthographic Projection Matrix)和<strong>透视投影矩阵</strong>(Perspective Projection Matrix)。</p>
 <h2 id="正交投影"><a class="markdownIt-Anchor" href="#正交投影"></a> 正交投影</h2>
 <p>  正交投影矩阵定义了一个类似立方体的平截头箱，它定义了一个裁剪空间，在这空间之外的顶点都会被裁剪掉。创建一个正交投影矩阵需要指定可见平截头体的<strong>宽</strong>、<strong>高</strong>和<strong>长度</strong>。在使用正射投影矩阵变换至裁剪空间之后处于这个平截头体内的所有坐标将不会被裁剪掉。它的平截头体看起来像一个容器：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201018191759632.png" srcset="/img/loading.gif" alt="image-20201018191759632" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018191759632.png" srcset="/img/loading.gif" alt="image-20201018191759632" style="zoom:80%;" />
 <p>  上面的平截头体定义了可见的坐标，它由由<strong>宽</strong>、<strong>高</strong>、<strong>近(Near)平面</strong>和<strong>远(Far)平面</strong>所指定。<strong>任何出现在近平面之前或远平面之后的坐标都会被裁剪掉</strong>。正交平截头体直接将平截头体内部的所有坐标映射为标准化设备坐标，因为每个向量的<code>w</code>分量都没有进行改变；如果<code>w</code>分量等于<code>1.0</code>，透视除法则不会改变这个坐标。</p>
 <h2 id="透视投影"><a class="markdownIt-Anchor" href="#透视投影"></a> 透视投影</h2>
 <p>  相比于正交投影，透视投影显得更加真实，它所投影的物体看起来进大远小。</p>
 <p>  透视的效果在我们看一条无限长的高速公路或铁路时尤其明显，正如下面图片显示的那样：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201018192044212.png" srcset="/img/loading.gif" alt="image-20201018192044212" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018192044212.png" srcset="/img/loading.gif" alt="image-20201018192044212" style="zoom:80%;" />
 <p>  由于透视，这两条线在很远的地方看起来会相交。</p>
 <p>  这正是透视投影想要模仿的效果，它是使用<strong>透视投影矩阵</strong>来完成的。这个投影矩阵将给定的平截头体范围映射到裁剪空间，除此之外还修改了每个顶点坐标的<code>w</code>值，从而使得<strong>离观察者越远的顶点坐标<code>w</code>分量越大</strong>。被变换到裁剪空间的坐标都会在 <code>-w</code> 到 <code>w</code> 的范围之间（任何大于这个范围的坐标都会被裁剪掉）。OpenGL要求所有可见的坐标都落在 <code>-1.0</code> 到 <code>1.0</code> 范围内，作为顶点着色器最后的输出，因此，一旦坐标在裁剪空间内之后，透视除法就会被应用到裁剪空间坐标上：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>u</mi><mi>t</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mi mathvariant="normal">/</mi><mi>w</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>y</mi><mi mathvariant="normal">/</mi><mi>w</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>z</mi><mi mathvariant="normal">/</mi><mi>w</mi></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">out = \begin{pmatrix} x /w \\ y / w \\ z / w \end{pmatrix}
@@ -314,7 +315,7 @@
 <p>  如果你对正射投影矩阵和透视投影矩阵是如何计算的很感兴趣（且不会对数学感到恐惧的话）推荐这篇由Songho写的<a target="_blank" rel="noopener" href="http://www.songho.ca/opengl/gl_projectionmatrix.html">文章</a>。</p>
 </blockquote>
 <p>  一个透视平截头体可以被看作一个不均匀形状的箱子，在这个箱子内部的每个坐标都会被映射到裁剪空间上的一个点。下面是一张透视平截头体的图片：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018192418084.png" srcset="/img/loading.gif" alt="image-20201018192418084" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018192418084.png" srcset="/img/loading.gif" alt="image-20201018192418084" style="zoom:80%;" />
 <p>  <code>fov</code> 值表示了它的视野（field of view）大小，一般设置为 <code>45</code> 会显得比较真实。此外，若要创建一个这样的平截头体，还需要提供宽高比、近平面和远平面距离。通常设置近距离为<code>0.1</code>，而远距离设为<code>100.0</code>。所有在近平面和远平面内且处于平截头体内的顶点都会被渲染。</p>
 <blockquote>
 <p>  当你把透视矩阵的 <em>near</em> 值设置太大时（如<code>10.0</code>），OpenGL会将靠近摄像机的坐标（在<code>0.0</code>和<code>10.0</code>之间）都裁剪掉，这会导致一个你在游戏中很熟悉的视觉效果：在太过靠近一个物体的时候你的视线会直接穿过去。</p>
@@ -326,7 +327,7 @@
 <p>  注意<strong>矩阵运算的顺序是相反的</strong>（记住我们需要从右往左阅读矩阵的乘法）。</p>
 <h2 id="右手坐标系"><a class="markdownIt-Anchor" href="#右手坐标系"></a> 右手坐标系</h2>
 <p>  OpenGL是一个右手坐标系。简单来说，就是正 <code>x</code> 轴在你的右手边，正 <code>y</code> 轴朝上，而正 <code>z</code> 轴是朝向后方的。想象你的屏幕处于三个轴的中心，则正 <code>z</code> 轴穿过你的屏幕朝向你。坐标系画起来如下：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201018193442847.png" srcset="/img/loading.gif" alt="image-20201018193442847" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018193442847.png" srcset="/img/loading.gif" alt="image-20201018193442847" style="zoom:80%;" />
 <p>  为了理解为什么被称为右手坐标系，按如下的步骤做：</p>
 <ul>
 <li>沿着正<code>y</code>轴方向伸出你的右臂，手指着上方。</li>
@@ -338,25 +339,25 @@
 <p>  如果你用左臂来做这些动作，你会发现 <strong><code>z</code>轴的方向是相反的</strong>。这个叫做<strong>左手坐标系</strong>，它被DirectX广泛地使用。注意在标准化设备坐标系中OpenGL实际上使用的是左手坐标系（投影矩阵交换了左右手）。</p>
 <h2 id="欧拉角"><a class="markdownIt-Anchor" href="#欧拉角"></a> 欧拉角</h2>
 <p>  欧拉角(Euler Angle)是可以表示3D空间中任何旋转的3个值，由莱昂哈德·欧拉(Leonhard Euler)在18世纪提出。一共有3种欧拉角：<strong>俯仰角(Pitch)</strong>、<strong>偏航角(Yaw)<strong>和</strong>滚转角(Roll)</strong>，下面的图片展示了它们的含义：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018194424470.png" srcset="/img/loading.gif" alt="image-20201018194424470" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018194424470.png" srcset="/img/loading.gif" alt="image-20201018194424470" style="zoom:80%;" />
 <p>  对于我们的摄像机系统来说，我们只关心<strong>俯仰角</strong>和<strong>偏航角</strong></p>
 <p>  给定一个俯仰角和偏航角，我们可以把它们转换为一个代表新的方向向量的3D向量。</p>
 <p>  我们先从最基本的情况开始：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018194704239.png" srcset="/img/loading.gif" alt="image-20201018194704239" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018194704239.png" srcset="/img/loading.gif" alt="image-20201018194704239" style="zoom:80%;" />
 <p>  把斜边边长定义为<code>1</code>，我们就能知道<strong>邻边</strong>的长度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>cos</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="red"><mi>x</mi><mi mathvariant="normal">/</mi><mstyle mathcolor="purple"><mi>h</mi><mo>=</mo><mi>cos</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="red"><mi>x</mi><mi mathvariant="normal">/</mi><mstyle mathcolor="purple"><mn>1</mn><mo>=</mo><mi>cos</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="red"><mi>x</mi></mstyle></mstyle></mstyle></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\cos \ \color{red}x/\color{purple}h = \cos \ \color{red}x/\color{purple}1 = \cos\ \color{red}x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord mathdefault" style="color:red;">x</span><span class="mord" style="color:red;">/</span><span class="mord mathdefault" style="color:purple;">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:purple;">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop" style="color:purple;">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="color:purple;"><span style="color:purple;"> </span></span><span class="mord mathdefault" style="color:red;">x</span><span class="mord" style="color:red;">/</span><span class="mord" style="color:purple;">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:purple;">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mop" style="color:purple;">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="color:purple;"><span style="color:purple;"> </span></span><span class="mord mathdefault" style="color:red;">x</span></span></span></span>，它的<strong>对边</strong>是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="green"><mi>y</mi><mi mathvariant="normal">/</mi><mstyle mathcolor="purple"><mi>h</mi><mo>=</mo><mi>sin</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="green"><mi>y</mi><mi mathvariant="normal">/</mi><mstyle mathcolor="purple"><mn>1</mn><mo>=</mo><mi>sin</mi><mo>⁡</mo><mtext> </mtext><mstyle mathcolor="green"><mi>y</mi></mstyle></mstyle></mstyle></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\sin \ \color{green}y/\color{purple}h = \sin \ \color{green}y/\color{purple}1 = \sin\ \color{green}y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.03588em;color:green;">y</span><span class="mord" style="color:green;">/</span><span class="mord mathdefault" style="color:purple;">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:purple;">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop" style="color:purple;">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="color:purple;"><span style="color:purple;"> </span></span><span class="mord mathdefault" style="margin-right:0.03588em;color:green;">y</span><span class="mord" style="color:green;">/</span><span class="mord" style="color:purple;">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:purple;">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mop" style="color:purple;">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="color:purple;"><span style="color:purple;"> </span></span><span class="mord mathdefault" style="margin-right:0.03588em;color:green;">y</span></span></span></span>。这样我们获得了能够得到<code>x</code>和<code>y</code>方向长度的通用公式，它们取决于所给的角度。我们使用它来计算方向向量的分量：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20201018195303241.png" srcset="/img/loading.gif" alt="image-20201018195303241" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018195303241.png" srcset="/img/loading.gif" alt="image-20201018195303241" style="zoom:80%;" />
 <p>  如果我们想象自己在<code>xz</code>平面上，看向<code>y</code>轴，我们可以基于第一个三角形计算来计算它的<code>长度/y方向的强度</code>(Strength)（我们往上或往下看多少）。</p>
 <pre><code class="hljs js">direction.y = sin(glm::radians(pitch)); <span class="hljs-comment">// 注意我们先把角度转为弧度</span></code></pre>
 <p>  这里我们只更新了<code>y</code>值，仔细观察<code>x</code>和<code>z</code>分量也被影响了。从三角形中我们可以看到它们的值等于：</p>
 <pre><code class="hljs js">direction.x = cos(glm::radians(pitch));
 direction.z = cos(glm::radians(pitch));</code></pre>
 <p>  下面来看航偏角：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018195223028.png" srcset="/img/loading.gif" alt="image-20201018195223028" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018195223028.png" srcset="/img/loading.gif" alt="image-20201018195223028" style="zoom:80%;" />
 <p>  就像俯仰角的三角形一样，我们可以看到<code>x</code>分量取决于<code>cos(yaw)</code>的值，<code>z</code>值同样取决于偏航角的正弦值。把这个加到前面的值中，会得到基于俯仰角和偏航角的方向向量：</p>
 <pre><code class="hljs js">direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw)); <span class="hljs-comment">// direction代表摄像机的前轴(Front)，这个前轴是和下图的摄像机的方向向量是相反的</span>
 direction.y = sin(glm::radians(pitch));
 direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));</code></pre>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/image-20201018195835526.png" srcset="/img/loading.gif" alt="image-20201018195835526" style="zoom:80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201018195835526.png" srcset="/img/loading.gif" alt="image-20201018195835526" style="zoom:80%;" />
 <p>  这样我们就有了一个可以把俯仰角和偏航角转化为用来自由旋转视角的摄像机的3维方向向量了。</p>
 <h2 id="鼠标输入"><a class="markdownIt-Anchor" href="#鼠标输入"></a> 鼠标输入</h2>
 <p>  偏航角和俯仰角是通过鼠标（或手柄）移动获得的，<strong>水平的移动影响偏航角</strong>，<strong>竖直的移动影响俯仰角</strong>。它的原理就是，储存上一帧鼠标的位置，在当前帧中我们当前计算鼠标位置与上一帧的位置相差多少。如果水平/竖直差别越大那么俯仰角或偏航角就改变越大，也就是摄像机需要移动更多的距离。</p>
@@ -532,7 +533,7 @@ cameraFront = glm::normalize(front);</code></pre>
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

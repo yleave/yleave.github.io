@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -144,7 +144,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/img/首页.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/img/首页.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -183,7 +183,7 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/08/17/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/41.png" srcset="/img/loading.gif" alt="写在前面">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/img/41.png" srcset="/img/loading.gif" alt="写在前面">
         </a>
       </div>
     
@@ -222,8 +222,130 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/27/WebGL/ThreeJS/ThreeJS-%E6%B5%8B%E8%B7%9D%E5%8A%9F%E8%83%BD/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg" srcset="/img/loading.gif" alt="ThreeJS 测距功能">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2021/01/27/WebGL/ThreeJS/ThreeJS-%E6%B5%8B%E8%B7%9D%E5%8A%9F%E8%83%BD/">ThreeJS 测距功能</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/27/WebGL/ThreeJS/ThreeJS-%E6%B5%8B%E8%B7%9D%E5%8A%9F%E8%83%BD/">
+          
+          
+            
+          
+            测距功能，也就是选择两点，计算它们的距离，实现效果大致如下：
+
+  上图中主要涉及几个操作：
+
+点击鼠标左键选点，点击鼠标右键停止选点，若选择点数超过两点，则两点绘制一条线段，两点中心添加一个距离标签
+动态绘制点和线段
+动态绘制距离标签
+确定两点后添加 xyz 辅助线
+按下 ESC 键撤销上一步操作
+
+ 选点绘线
+  首先，我们需要通过鼠标在三维空间中选点，但是我们的屏幕是二维的，还有一维不知
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-27 23:32" pubdate>
+              2021-01-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/WebGL/">WebGL</a>
+            
+              <a href="/categories/WebGL/ThreeJS/">ThreeJS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B5%8B%E8%B7%9D/">测距</a>
+            
+              <a href="/tags/Three%E7%BB%98%E5%88%B6%E6%A0%87%E7%AD%BE/">Three绘制标签</a>
+            
+              <a href="/tags/Three%E5%8A%A8%E6%80%81%E7%BB%98%E5%88%B6%E7%BA%BF%E6%AE%B5/">Three动态绘制线段</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/23/React/react%E7%AE%80%E4%BE%8B/" target="_self">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/index_img/眼镜.jpg" srcset="/img/loading.gif" alt="react简例">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2021/01/23/React/react%E7%AE%80%E4%BE%8B/">react简例</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/23/React/react%E7%AE%80%E4%BE%8B/">
+          
+          
+            
+          
+           根据给定的 schema 实现一个简单的渲染引擎
+有 schema.js 如下，schema 中记录了组件的类型、属性和子组件：
+export default &#123;
+    componentName: &#x27;Form&#x27;,
+    props: &#123;
+        labelCol: &#123; span: 8 &#125;,
+        wrapperC
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-23 17:06" pubdate>
+              2021-01-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/React/">React</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/20/React/Redux%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/redux1.png" srcset="/img/loading.gif" alt="Redux入门学习">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/banner_img/redux1.png" srcset="/img/loading.gif" alt="Redux入门学习">
         </a>
       </div>
     
@@ -291,7 +413,7 @@ redux ： js 的状态管理  如 creat
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/19/%E5%B7%A5%E5%85%B7/webpack/webpack%E9%85%8D%E7%BD%AE%E5%AF%BC%E5%85%A5css/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack配置导入css">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack配置导入css">
         </a>
       </div>
     
@@ -359,7 +481,7 @@ module: &#123;
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/18/WebGL/ThreeJS/ThreeJS-%E6%9D%82%E8%AE%B0/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg" srcset="/img/loading.gif" alt="ThreeJS 杂记">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/img/three.jpg" srcset="/img/loading.gif" alt="ThreeJS 杂记">
         </a>
       </div>
     
@@ -417,7 +539,7 @@ ThreeJS 文档
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/14/%E5%B7%A5%E5%85%B7/webpack/webpack%E5%9F%BA%E7%A1%801-%E4%BD%BF%E7%94%A8webpack%E6%89%93%E5%8C%85js%E4%BB%A3%E7%A0%81/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack基础1:使用webpack打包js代码">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack基础1:使用webpack打包js代码">
         </a>
       </div>
     
@@ -474,7 +596,7 @@ ThreeJS 文档
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/13/WebGL/ThreeJS/threejs%E7%94%BB%E9%9D%A2%E6%8B%96%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%88%A4%E6%96%AD/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/three.jpg" srcset="/img/loading.gif" alt="threejs画面拖动事件判断">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/img/three.jpg" srcset="/img/loading.gif" alt="threejs画面拖动事件判断">
         </a>
       </div>
     
@@ -537,7 +659,7 @@ ThreeJS 文档
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/13/%E5%B7%A5%E5%85%B7/webpack/webpack-%E9%85%8D%E7%BD%AE-babel/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack 配置 babel">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png" srcset="/img/loading.gif" alt="webpack 配置 babel">
         </a>
       </div>
     
@@ -597,7 +719,7 @@ cnpm install --save-dev @babel.core
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/12/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="函数作用域和闭包">
+          <img src="https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg" srcset="/img/loading.gif" alt="函数作用域和闭包">
         </a>
       </div>
     
@@ -654,153 +776,6 @@ function getOuter() &#123;
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%97%AD%E5%8C%85/">闭包</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/01/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/LeetCode.jpg" srcset="/img/loading.gif" alt="股票问题">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2021/01/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/">股票问题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/09/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/">
-          
-          
-            
-          
-          总结一下力扣上的股票交易问题。有：
-
-
-121.买卖股票的最佳时机
-
-
-122. 买卖股票的最佳时机 II
-
-
-123. 买卖股票的最佳时机 III
-
-
-188. 买卖股票的最佳时机 IV
-
-
-309. 最佳买卖股票时机含冷冻期
-
-
-714. 买卖股票的最佳时机含手续费
-
-
-这些问题基本上都是差不多的套路，都可以使用动态规划或是贪心解决。
- 121.买卖股票的最佳时机
-https://leetco
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-09 13:36" pubdate>
-              2021-01-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/">解答</a>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/">LeetCode</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%B4%AA%E5%BF%83/">贪心</a>
-            
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-            
-              <a href="/tags/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/">股票问题</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/01/08/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/yleave/imagehost/index_img/js.jpg" srcset="/img/loading.gif" alt="词法作用域和动态作用域">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2021/01/08/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">词法作用域和动态作用域</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/08/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-          
-          
-            
-          
-           作用域
-  作用域是指程序源代码中定义变量的区域。
-  它规定了如何查找变量，也是就确定当前执行代码对变量的访问权限。
-  JS 采用了词法作用域（lexical scoping），也就是静态作用域。
- 静态作用域和动态作用域
-  JS 采用的词法作用域是静态作用域，因此函数的作用域在函数定义的时候就决定了。
-  与静态作用域相对的是动态作用域，函数的作用域是在函数调用的时候才决定的。
-例如：
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-08 16:42" pubdate>
-              2021-01-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JS/">JS</a>
-            
-              <a href="/categories/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/">作用域和闭包</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F/">词法作用域</a>
             
           </div>
         
@@ -880,7 +855,7 @@ https://leetco
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

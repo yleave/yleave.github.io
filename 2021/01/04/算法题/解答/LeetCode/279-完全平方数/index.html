@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
-  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yleave/imagehost/img/logo1.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/ylea/imagehost/raw/master/img/logo1.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/yleave/imagehost/banner_img/44.png') no-repeat center center;
+         style="background: url('https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -258,7 +258,7 @@
 <p>  然后来看 <code>n &gt;= 4</code> 的情况，能够组成这个数的<strong>最大完全平方数</strong>很容易想到，就是 <code>n</code> 的平方根取整后的值，即： <code>s = Math.floor(Math.sqrt(n))</code> ，假设这个值是 <code>n</code> 的组成数的其中一个，那剩下我们再对 <code>n - s</code> 做同样考虑即可。</p>
 <p>  穷举所有情况， <code>[2, s] (s 为 n 的平方根取整后的值)</code>，直到当前的 <code>n</code> 小于等于 <code>3</code> 时，返回 <code>n</code>。</p>
 <p>  使用图来表示就是：</p>
-<img src="https://cdn.jsdelivr.net/gh/yleave/imagehost@master/img/image-20210104185104232.png" srcset="/img/loading.gif" alt="image-20210104185104232" style="zoom: 80%;" />
+<img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20210104185104232.png" srcset="/img/loading.gif" alt="image-20210104185104232" style="zoom: 80%;" />
 <p>  不过对于一些比较大的数字，我们在计算过程其实是会有很多<strong>重复计算</strong>的（因为我们使用了穷举），也就是假设一个数字 <code>n</code>，它的根号取整值是 <code>s</code>，我们最开始枚举 <code>s * s</code> 是 <code>n</code> 的组合数之一，然后计算包含 <code>s^2</code> 的组合数个数时，我们遇到了数字 <code>x1,x2,x3</code> 之后计算得到了组合数个数，我们再回到开头，继续枚举 <code>(s-1) * (s-1)</code> 作为 <code>n</code> 的组合数之一，在这个计算过程中，我们遇到了数字 <code>y1,y2,x2,x3</code> 之后得到了结果。那么在这个过程中，我们的 <code>x2,x3</code> 就是重复计算的数。</p>
 <p>  因此我们完全可以使用一个<strong>记忆数组</strong> <code>memeo</code> 来根据当前的数字 <code>n</code> 记录 <code>n</code> 能够得到的最少的组合数，这样，当我们第二次遇到  <code>x2</code> 的时候，就能够凭借记忆数组直接返回 <code>memo[x2]</code>，减少了我们的计算。</p>
 <p>JS 代码：</p>
@@ -446,7 +446,7 @@
       order: 'list',
       theme: '#b7daff',
       preload: 'none',
-      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://cdn.jsdelivr.net/gh/yleave/imagehost/img/平凡之路.jpg"}]
+      audio: [{"name":"River Flows in You","artist":"Yiruma","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/Yiruma - River Flows in You.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/River Flows in You.png"},{"name":"もしもの日","artist":"タニザワトモフミ","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/タニザワトモフミ - もしもの日.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/もしもの日.png"},{"name":"アイロニ","artist":"4円","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/4円 - アイロニ.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/アイロニ.jpg"},{"name":"Adagio for Summer Wind","artist":"清水準一","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/清水準一 - Adagio for Summer Wind.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/Adagio for Summer Wind.jpg"},{"name":"平凡之路","artist":"朴树","url":"https://cdn.jsdelivr.net/gh/yleave/blogmusic/music/朴树 - 平凡之路.mp3","cover":"https://gitee.com/ylea/imagehost/raw/master/img/平凡之路.jpg"}]
     });
   }
 </script>

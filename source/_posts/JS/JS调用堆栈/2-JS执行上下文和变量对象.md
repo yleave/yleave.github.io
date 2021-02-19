@@ -120,7 +120,7 @@ function checkScope() {
         return scope;
     }
 
-    return f();
+    return f;
 }
 
 console.log(checkScope()());
@@ -160,7 +160,7 @@ ECStack.pop();
 
 ## 变量对象
 
-&emsp;&emsp;**变量对象(variable object，VO)**是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。
+&emsp;&emsp;**变量对象(variable object，VO)** 是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。
 
 
 
@@ -171,7 +171,7 @@ ECStack.pop();
 - 变量对象（**VO**）是规范上或是 JS 引擎上实现的，并不能在 JS 环境中直接访问
 - 当进入到一个执行上下文后，这个变量对象才会被激活，所以叫活动对象（**AO**），这时候活动对象上的各种属性才能被访问。
 
-&emsp;&emsp;在调用函数时，会为其创建一个 `Arguments` 对象，并自动初始化剧本变量 `arugments`，指代 `Arguments` 对象。这个对象中存储了所有传入函数的参数。
+&emsp;&emsp;在调用函数时，会为其创建一个 `Arguments` 对象，并自动初始化变量 `arugments`，指代 `Arguments` 对象。这个对象中存储了所有传入函数的参数。
 
 &emsp;&emsp;因此 **AO = VO + function parameters + arguments**
 
@@ -179,8 +179,8 @@ ECStack.pop();
 
 &emsp;&emsp;执行上下文中的代码会分为两个阶段进行处理：
 
-1. 进入执行上下文
-2. 代码执行
+ 1. 进入执行上下文
+ 2. 代码执行
 
 ## 进入执行上下文
 
@@ -202,7 +202,7 @@ ECStack.pop();
 
    - 由名称和对应值（`undefined`）组成一个变量对象的属性被创建
 
-   - 如果变量名称跟已经声明的形参或函数相同，则遍历声明不会干扰已存在的这类属性。
+   - 如果变量名称跟已经声明的形参或函数相同，则变量声明不会干扰已存在的这类属性。
 
 如下代码：
 

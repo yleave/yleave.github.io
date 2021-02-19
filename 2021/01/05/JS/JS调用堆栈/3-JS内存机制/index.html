@@ -350,7 +350,7 @@ p = <span class="hljs-literal">null</span>;   <span class="hljs-comment">//原pe
 cycle();</code></pre>
 <p>  上面的代码中，<code>cycle</code> 函数执行完后，对象 <code>o1</code> 和 <code>o2</code> 实际上已经不再需要了，但是根据引用计数规则，它们之间的相互引用仍然存在，因此这部分内存不会被回收。</p>
 <h2 id="标记清除"><a class="markdownIt-Anchor" href="#标记清除"></a> 标记清除</h2>
-<p>  **标记清除（Mark-and-sweep）**算法将 “不再使用的对象” 定义为 “<strong>无法到达的对象</strong>”。即从根部（JS中是全局对象）出发定时扫描内存中的对象，<strong>凡是能从根部到达的对象都保留</strong>，无法从根部到达的对象被标记为不再使用，稍后会进行回收。</p>
+<p>  <strong>标记清除（Mark-and-sweep）</strong> 算法将 “不再使用的对象” 定义为 “<strong>无法到达的对象</strong>”。即从根部（JS中是全局对象）出发定时扫描内存中的对象，<strong>凡是能从根部到达的对象都保留</strong>，无法从根部到达的对象被标记为不再使用，稍后会进行回收。</p>
 <p>  标记清除算法由以下几步组成：</p>
 <ol>
 <li>垃圾回收器创建一个 <code>roots</code> 列表。<code>roots</code> 通常是代码中全局变量的引用。JS 中， <code>window</code> 对象是一个 <code>root</code>，因为 <code>window</code> 对象总是存在，因此垃圾回收器可以检查它和它的所有子对象是否存在（即不是垃圾）；</li>

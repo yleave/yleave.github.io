@@ -9,8 +9,6 @@ tags:
     - JS 面试题
 ---
 
-<img src="JS考题.assets/image-20210208145304152.png" alt="image-20210208145304152" style="zoom:80%;" />
-
 # 1. ['1', '2', '3'].map(parseInt)
 
 &emsp;&emsp;这题涉及到两个函数，[Array.prototype.map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 和 [parseInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt)

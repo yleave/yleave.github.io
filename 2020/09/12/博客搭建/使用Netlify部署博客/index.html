@@ -201,14 +201,6 @@
 
   
   
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
 </div>
 
             
@@ -233,12 +225,6 @@
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
             <h1 style="display: none">使用Netlify部署博客</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：几秒前
-                
-              </p>
             
             <div class="markdown-body" id="post-body">
               <p>  原先博客是部署在 githubPages 上的，稍微设置一下就能实现自动化部署和启用 https，还是蛮方便的，但是使用国内网络访问 githubPages 上部署的网站速度太慢了，体验很差，因此，搜了下解决方案，发现了 <code>Netlify</code> 这个一站式自动化部署网站的平台，部署网站的过程很简单， githubPages 上的支持和不支持的功能 Netlify 上都有，最重要的是听说使用 Netlify 部署的网站，国内访问深度会比 githubPages 快多了。因此也捣鼓了一番，使用 Netlify 重新部署了网站。</p>
@@ -388,6 +374,12 @@
 
 <!-- Custom -->
 
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
 
     
   </main>
@@ -502,30 +494,6 @@
     </div>
 
     
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
     
 
@@ -556,8 +524,6 @@
   <script  src="/js/clipboard-use.js" ></script>
 
 
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
@@ -598,7 +564,7 @@
         "使用Netlify部署博客&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 100,
       loop: false,
     });
     typed.stop();

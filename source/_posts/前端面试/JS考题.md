@@ -3,6 +3,7 @@ title: JS内容
 index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/63.jpg'
 date: 2020-12-13 22:16:24
+hide: true
 categories:
     - 前端面试题
 tags:
@@ -97,7 +98,7 @@ https://github.com/mqyqingfeng/Blog/issues/26
 
 &emsp;&emsp;一个连续操作中的处理，只触发一次，从而实现防抖动。
 
-> 思路：每次触发事件后都取消之前的延迟调用的方法
+> 思路：使用一个定时器延迟调用处理函数，每次触发事件后都取消之前延迟调用的方法
 
 ```js
 function debounce(fn, wait) {
@@ -263,7 +264,7 @@ inp1.addEventListener('click', de.cancel);
 
 &emsp;&emsp;一个连续操作中的处理，按照阀值时间间隔进行触发，从而实现节流。
 
-&emsp;&emsp;在一定的时间间隔内，某个事件之会执行一次
+&emsp;&emsp;在一定的时间间隔内，某个事件只会执行一次
 
 > 思路：每次触发事件时都判断当前是否有在等待执行的回调函数
 
@@ -304,6 +305,26 @@ function throttle1(fn, wait) {
 
 
 
+其实使用定时器也可以达到立即执行的效果：
+
+```js
+function throttle(fn, wait) {
+    let timer = null;
+
+    return function() {
+        if (!timer) {
+            // 将执行函数放外面 就有立即执行的效果了
+            fn.apply(this, arguments);
+            timer = setTimeout(() => {
+                timer = null;
+            }, wait);
+        }
+    };
+}
+```
+
+
+
 ### 比较两个节流方法
 
 1. 使用时间戳的节流方法触发事件时会立即执行，而使用定时器的方法会在触发事件 `n` 秒后再执行；
@@ -330,7 +351,7 @@ function throttle2(fn, wait) {
         // 若没有剩余时间或因修改了系统时间导致剩余时间大于等待时间
         // 若非主动修改系统时间，此时会是第一次触发执行
         if (remain <= 0 || remain > wait) {
-            // 若是调整了系统时间导致的立即执行，若前面有设置一个 timer，需要将其清除
+            // 若前面有在等待时间内设置的 timer，需要将其清除，否则可能造成连续调用的情况
             if (timer) {
                 clearTimeout(timer);
                 timer = null;
@@ -347,6 +368,36 @@ function throttle2(fn, wait) {
     return throttled;
 }
 ```
+
+另一种综合写法：类似于防抖，每次触发时取消之前设置的定时器
+
+不过下面这种方法有一个小缺陷，就是如果事件总共只触发一次的话，那么实际上会被触发两次
+
+```js
+function throttle(fn, wait) {
+    let activeTime = 0;
+    let timer = null;
+
+    return function() {
+        let current = +new Date();
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        if (current - activeTime > wait) {
+            activeTime = current;
+
+            fn.apply(this, arguments);
+        }
+
+        timer = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, wait);
+    };
+}
+```
+
+
 
 ### 通过参数调整节流效果
 
@@ -626,6 +677,8 @@ new Promise((resolve, reject) => {
 
 
 # ES5/ES6 的继承除了写法上还有什么差异
+
+[JS 几种继承写法](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html)
 
 在 ES6 中，子类可以通过 `__proto__` 寻址到父类，而通过 ES5 的方式，`Sub.__proto__ === Function.prototype`。
 

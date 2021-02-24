@@ -230,7 +230,7 @@ console.log(mp);
 
 <img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201210151834885.png" alt="image-20201210151834885" style="zoom:80%;" />
 
-如何具有 `Iterator` 接口，且每个成员都是一个双元素的数组的数据结构都可以当作 `Map` 构造函数的参数，如：
+如果具有 `Iterator` 接口，且每个成员都是一个双元素的数组的数据结构都可以当作 `Map` 构造函数的参数，如：
 
 ```js
 let set = new Set([['foo', 1], ['bar', 2]]);

@@ -1,8 +1,9 @@
 ---
 title: 手撕内核源码
-index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/眼镜.jpg'
+index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/44.png'
 date: 2020-12-13 22:16:40
+hide: true
 categories:
     - 前端面试题
 tags:
@@ -33,7 +34,7 @@ if (!Array.prototype.map) {
         let O = Object(this);
 
         // 2. 将 len 赋值为数组 O 的长度.  
-        // 这边 <<< 运算符为 零填充右移运算符，如 0101 >>> 1 : 0010，猜测这么做是为了防止 len 为字符串
+        // 这边 >>> 运算符为 零填充右移运算符，如 0101 >>> 1 : 0010，猜测这么做是为了防止 len 为字符串
         let len = O.length >>> 0;
 
         // 3. 如果 callback 不是函数,则抛出 TypeError 异常.

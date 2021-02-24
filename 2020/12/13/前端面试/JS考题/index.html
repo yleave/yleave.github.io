@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      4.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      55
        分钟
     </span>
   
@@ -263,7 +263,7 @@
 <p>  触发高频事件后 <code>n</code> 秒内函数只会执行一次，如果 <code>n</code> 秒内高频事件再次被触发，则重新计算时间。</p>
 <p>  一个连续操作中的处理，只触发一次，从而实现防抖动。</p>
 <blockquote>
-<p>思路：每次触发事件后都取消之前的延迟调用的方法</p>
+<p>思路：使用一个定时器延迟调用处理函数，每次触发事件后都取消之前延迟调用的方法</p>
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;
     <span class="hljs-keyword">let</span> timeout = <span class="hljs-literal">null</span>;
@@ -388,7 +388,7 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
 <h2 id="节流"><a class="markdownIt-Anchor" href="#节流"></a> 节流</h2>
 <p>  高频事件触发，但在 <code>n</code> 秒内只会执行一次，所以节流会稀释函数的执行频率。</p>
 <p>  一个连续操作中的处理，按照阀值时间间隔进行触发，从而实现节流。</p>
-<p>  在一定的时间间隔内，某个事件之会执行一次</p>
+<p>  在一定的时间间隔内，某个事件只会执行一次</p>
 <blockquote>
 <p>思路：每次触发事件时都判断当前是否有在等待执行的回调函数</p>
 </blockquote>
@@ -417,6 +417,20 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
         &#125;
     &#125;
 &#125;</code></pre>
+<p>其实使用定时器也可以达到立即执行的效果：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">if</span> (!timer) &#123;
+            <span class="hljs-comment">// 将执行函数放外面 就有立即执行的效果了</span>
+            fn.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
+            timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+                timer = <span class="hljs-literal">null</span>;
+            &#125;, wait);
+        &#125;
+    &#125;;
+&#125;</code></pre>
 <h3 id="比较两个节流方法"><a class="markdownIt-Anchor" href="#比较两个节流方法"></a> 比较两个节流方法</h3>
 <ol>
 <li>使用时间戳的节流方法触发事件时会立即执行，而使用定时器的方法会在触发事件 <code>n</code> 秒后再执行；</li>
@@ -440,7 +454,7 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
         <span class="hljs-comment">// 若没有剩余时间或因修改了系统时间导致剩余时间大于等待时间</span>
         <span class="hljs-comment">// 若非主动修改系统时间，此时会是第一次触发执行</span>
         <span class="hljs-keyword">if</span> (remain &lt;= <span class="hljs-number">0</span> || remain &gt; wait) &#123;
-            <span class="hljs-comment">// 若是调整了系统时间导致的立即执行，若前面有设置一个 timer，需要将其清除</span>
+            <span class="hljs-comment">// 若前面有在等待时间内设置的 timer，需要将其清除，否则可能造成连续调用的情况</span>
             <span class="hljs-keyword">if</span> (timer) &#123;
                 <span class="hljs-built_in">clearTimeout</span>(timer);
                 timer = <span class="hljs-literal">null</span>;
@@ -455,6 +469,29 @@ inp1.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, de.can
     &#125;;
 
     <span class="hljs-keyword">return</span> throttled;
+&#125;</code></pre>
+<p>另一种综合写法：类似于防抖，每次触发时取消之前设置的定时器</p>
+<p>不过下面这种方法有一个小缺陷，就是如果事件总共只触发一次的话，那么实际上会被触发两次</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> activeTime = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">let</span> current = +<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+        <span class="hljs-keyword">if</span> (timer) &#123;
+            <span class="hljs-built_in">clearTimeout</span>(timer);
+        &#125;
+
+        <span class="hljs-keyword">if</span> (current - activeTime &gt; wait) &#123;
+            activeTime = current;
+
+            fn.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
+        &#125;
+
+        timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+            fn.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);
+        &#125;, wait);
+    &#125;;
 &#125;</code></pre>
 <h3 id="通过参数调整节流效果"><a class="markdownIt-Anchor" href="#通过参数调整节流效果"></a> 通过参数调整节流效果</h3>
 <p>有时候我们希望节流效果为 “有头无尾”， 有时候希望是 “有尾无头”。</p>
@@ -667,6 +704,7 @@ async1()
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>)
 &#125;)</code></pre>
 <h1 id="es5es6-的继承除了写法上还有什么差异"><a class="markdownIt-Anchor" href="#es5es6-的继承除了写法上还有什么差异"></a> ES5/ES6 的继承除了写法上还有什么差异</h1>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html">JS 几种继承写法</a></p>
 <p>在 ES6 中，子类可以通过 <code>__proto__</code> 寻址到父类，而通过 ES5 的方式，<code>Sub.__proto__ === Function.prototype</code>。</p>
 <p><strong>ES6：</strong></p>
 <pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Super</span> </span>&#123;&#125;
@@ -713,29 +751,6 @@ Sub.prototype.constructor = Sub;
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/12/13/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%89%8B%E6%92%95JS%E4%BB%A3%E7%A0%81/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">手撕内核源码</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/12/09/JS/Set%E3%80%81Map%E3%80%81%E5%92%8CWeakSet%E3%80%81WeakMap/">
-                        <span class="hidden-mobile">Set、Map、和WeakSet、WeakMap</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

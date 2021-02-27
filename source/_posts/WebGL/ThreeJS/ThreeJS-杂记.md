@@ -2,7 +2,7 @@
 title: ThreeJS 杂记
 index_img: https://gitee.com/ylea/imagehost/raw/master/img/three.jpg
 banner_img: https://gitee.com/ylea/imagehost/raw/master/banner_img/24.jpg
-date: 2021-01-18 16:20:27
+date: 2021-01-08 16:20:27
 categories:
     - WebGL
     - ThreeJS

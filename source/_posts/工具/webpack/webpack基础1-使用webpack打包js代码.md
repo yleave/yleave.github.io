@@ -2,7 +2,7 @@
 title: 'webpack基础1:使用webpack打包js代码'
 index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/webpack.png'
-date: 2021-01-14 13:34:05
+date: 2020-9-14 13:34:05
 categories:
     - 工具
     - webpack

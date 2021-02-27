@@ -2,7 +2,7 @@
 title: webpack 配置 babel
 index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/webpack.png'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/webpack.png'
-date: 2021-01-13 20:41:48
+date: 2020-09-19 20:41:48
 categories:
     - 工具
     - webpack

@@ -1,5 +1,5 @@
 ---
-title: Redux入门学习
+title: Redux学习
 index_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/redux1.png'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/redux.png'
 date: 2021-01-20 21:02:36

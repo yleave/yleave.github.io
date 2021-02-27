@@ -3,7 +3,7 @@ title: 手撕JS代码1
 index_img: 'https://gitee.com/ylea/imagehost/raw/master/index_img/js.jpg'
 banner_img: 'https://gitee.com/ylea/imagehost/raw/master/banner_img/54.jpg'
 hide: false
-date: 2021-02-24 17:25:02
+date: 2020-12-13 22:16:40
 categories:
     - 前端面试题
 tags:
@@ -708,12 +708,19 @@ Function.prototype.myCall = function(obj, ...args) {    // or myApply
     if (typeof this !== 'function') throw 'caller must be a function';
     let self = arguments[0] || window;  // 获取 this 指向的对象，也就是 参数 obj
     self._fn = this;
-    let _args = [...arguments].flat().slice(1); // 获取展开后的参数列表，且去除第一个参数 this 指向
-    let res = self._fn(...args);   // 因为是 self 调用的 fn, 因此 fn 中的 this 是指向 self 的
+    let _args = [...arguments].flat().slice(1); // 获取展开后的参数列表，且去除第一个参数 this 指向，使用 flat 展开的原因：若是 apply 函数，传入的参数会是一个数组，因此需要展开
+    let res = self._fn(..._args);   // 因为是 self 调用的 fn, 因此 fn 中的 this 是指向 self 的
     Reflect.deleteProperty(self, '_fn');  // 将 _fn 从 self 中删除
-    return res;
+    return
+    res;
 }
 ```
+
+
+
+
+
+
 
 
 
@@ -739,6 +746,44 @@ Function.prototype.myBind = function() {
     };
 };
 ```
+
+
+
+此外，`bind` 还有一个特点：
+
+> 一个绑定函数也能使用`new`操作符创建对象：这种行为就像把原函数当成构造器。提供的 `this `值被忽略，同时调用时的参数被提供给模拟函数。
+
+也就是说，当 `bind` 返回的函数作为构造器时，绑定的 `this` 值将失效，而传入的参数依然生效.
+
+
+
+```js
+Function.prototype.myBind = function() {
+    if (typeof this !== 'function') throw new TypeError('caller is not a function!');
+
+    let slice = Array.prototype.slice;
+    let self = this;
+    let context = arguments[0];
+    let args = slice.call(arguments, 1);
+
+    let fBound = function() {
+        let newArgs = args.concat(slice(arguments));
+
+        // 当 fBound 作为构造函数时，this 指向实例，因此 instanceof 返回 true，因此传入 this 让实例继承来自绑定函数的值
+        // 当 fBound 作为普通函数时，this 指向 wondow，因此会将 this 绑定到 context
+        return self.apply(this instanceof fBound ? this : context, newArgs);
+    };
+
+    // 修改返回函数的 prototype 为绑定函数的 prototype ，实例就可以继承绑定函数原型中的值
+    fBound.prototype = Object.create(self.prototype);
+
+    return fBound;
+};
+```
+
+
+
+
 
 
 

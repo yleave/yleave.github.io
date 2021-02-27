@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>webpack 配置 babel - Ylea</title>
+  <title>webpack配置导入css - Ylea</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-13 20:41" pubdate>
-        2021年1月13日 晚上
+      <time datetime="2020-09-19 16:38" pubdate>
+        2020年9月19日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      563 字
+      78 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      1
        分钟
     </span>
   
@@ -224,66 +224,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">webpack 配置 babel</h1>
+            <h1 style="display: none">webpack配置导入css</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>  根据 <code>webpack</code> 版本的不同，安装的 <code>babel</code> 依赖有些区别，下面的是 <strong>webpakc 4.2 及以上版本</strong>安装的依赖。 <code>4.2</code> 之前的是：<code>babel-core</code>、<code>babel-preset-env</code></p>
-<p>  要配置 <code>babel</code> 首先需要安装 <code>@babel/core</code>，这是 <code>babel</code> 的核心编译包：</p>
-<p><code>cnpm install --save-dev @babel.core</code></p>
-<p>  然后需要安装 <code>babel-loader</code> 来帮助我们加载使用 <code>babel</code>：</p>
-<p><code>cnpm i --save-dev babel-loader</code></p>
-<p>  这时候，在 <code>webpack.config.js</code> 中 <code>rules</code> 的代码是这样的：</p>
-<pre><code class="hljs js"><span class="hljs-built_in">module</span>:&#123;
-    rules: [
-        &#123;
-            test: <span class="hljs-regexp">/\.js$/</span>,
-            use: &#123;
-                loader: <span class="hljs-string">&#x27;babel-loader&#x27;</span>
-            &#125;,
-            exclude:path.resolve(__dirname,<span class="hljs-string">&#x27;/node_modules&#x27;</span>),
-            include: path.join(__dirname, <span class="hljs-string">&#x27;src_1&#x27;</span>)
-        &#125;
-    ]
-&#125;</code></pre>
-<p>  上面的代码中， <code>exclude</code> 表示不想被 <code>babel</code> 处理的文件目录，<code>include</code> 表示需要被处理的目录，不加 <code>include</code> 的话应该就是会处理除 <code>exclude</code> 以外的其他目录。</p>
-<p>  然后，我们可以选择 <code>babel</code> 的解析标准，比如我们需要按照 ES6 的标准来，那么就需要装一个 <code>babel-preset-es2015</code>，若要按照  ES7 的标准，就需要按照 <code>babel-preset-es2016</code>。不过我们可以直接安装一个 <code>@babel/preset-env</code> ，它等价于 <code>babel-preset-latest</code>，可以编译所有新规范的代码：</p>
-<p><code>cnpm install --save-dev @babel/preset-env</code></p>
-<p>  这下，我们的 webpack 中是这样的：</p>
-<pre><code class="hljs js"><span class="hljs-built_in">module</span>:&#123;
-    rules: [
-        &#123;
-            test: <span class="hljs-regexp">/\.js$/</span>,
-            use: &#123;
-                loader: <span class="hljs-string">&#x27;babel-loader&#x27;</span>,
-                options: &#123;
-                    presets: [<span class="hljs-string">&#x27;@babel/preset-env&#x27;</span>]
-                &#125;
-            &#125;,
-            exclude:path.resolve(__dirname,<span class="hljs-string">&#x27;/node_modules&#x27;</span>),
-            include: path.join(__dirname, <span class="hljs-string">&#x27;src_1&#x27;</span>)
-        &#125;
-    ]
-&#125;</code></pre>
-<p>  <code>presets</code> 中还有其他选项可以帮助我们兼容 js，可根据自己的需求来，具体可看：<a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-env">babel-preset-env</a></p>
-<p>  除了 webpack，我们还需要在工程目录下创建一个 <code>.babelrc</code> 文件，把关于 babel 的配置放进去：</p>
-<pre><code class="hljs json">&#123;
-    <span class="hljs-attr">&quot;presets&quot;</span>: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>],
-&#125;</code></pre>
-<p>  一般来说 babel 这样配置就差不多了，不过在 <code>build</code> 的时候项目里在类中的箭头函数处报了错，提示还需要一个插件 <code>@babel/plugin-proposal-class-properties</code></p>
-<p>  因此按照提示安装：</p>
-<p><code>cnpm i --save-dev @babel/plugin-proposal-class-properties</code></p>
-<p>  最后， <code>package.json</code> 就是这样的：</p>
-<pre><code class="hljs json">&quot;devDependencies&quot;: &#123;
-    &quot;@babel/core&quot;: &quot;^7.12.10&quot;,
-    &quot;@babel/plugin-proposal-class-properties&quot;: &quot;^7.12.1&quot;,
-    &quot;@babel/preset-env&quot;: &quot;^7.12.11&quot;,
-    &quot;babel-loader&quot;: &quot;^8.2.2&quot;
-&#125;</code></pre>
-<p>  然后还需要修改 <code>.babelrc</code> ：</p>
-<pre><code class="hljs json">&#123;
-    <span class="hljs-attr">&quot;presets&quot;</span>: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>],
-    <span class="hljs-attr">&quot;plugins&quot;</span>: [<span class="hljs-string">&quot;@babel/plugin-proposal-class-properties&quot;</span>]
-&#125;</code></pre>
+              <h1 id="最简单的-css-配置"><a class="markdownIt-Anchor" href="#最简单的-css-配置"></a> 最简单的 CSS 配置</h1>
+<ol>
+<li>
+<p>安装依赖：<code>cnpm i --save-dev css-loader style-loader</code></p>
+</li>
+<li>
+<p>在 <code>webpack.config.js</code> 中添加规则：</p>
+<pre><code class="hljs js"><span class="hljs-built_in">module</span>: &#123;
+ rules: [
+     &#123;
+         test: <span class="hljs-regexp">/\.css$/</span>,
+         use: [
+             &#123;
+                 loader: <span class="hljs-string">&#x27;style-loader&#x27;</span>  <span class="hljs-comment">// 可以把css放在页面上</span>
+             &#125;,
+             &#123;
+                 loader: <span class="hljs-string">&#x27;css-loader&#x27;</span>    <span class="hljs-comment">// 放在后面的先被解析</span>
+             &#125;
+         ]
+     &#125;
+<p>]<br />
+&#125;</code></pre>:hexoPostRenderEscape–&gt;</p>
+</li>
+</ol>
+<h1 id="ref"><a class="markdownIt-Anchor" href="#ref"></a> REF</h1>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a1a4ac781a41">https://www.jianshu.com/p/a1a4ac781a41</a></p>
+
             </div>
             <hr>
             <div>
@@ -304,8 +274,6 @@
                     
                       <a class="hover-with-bg" href="/tags/webpack/">webpack</a>
                     
-                      <a class="hover-with-bg" href="/tags/babel/">babel</a>
-                    
                   </div>
                 
               </div>
@@ -317,9 +285,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/13/WebGL/ThreeJS/threejs%E7%94%BB%E9%9D%A2%E6%8B%96%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%88%A4%E6%96%AD/">
+                      <a href="/2020/09/19/%E5%B7%A5%E5%85%B7/webpack/webpack-%E9%85%8D%E7%BD%AE-babel/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">threejs画面拖动事件判断</span>
+                        <span class="hidden-mobile">webpack 配置 babel</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -327,8 +295,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/12/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/">
-                        <span class="hidden-mobile">函数作用域和闭包</span>
+                      <a href="/2020/09/19/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/LeetCode/47-%E5%85%A8%E6%8E%92%E5%88%97-II/">
+                        <span class="hidden-mobile">LeetCode 47. 全排列 II</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -577,7 +545,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "webpack 配置 babel&nbsp;",
+        "webpack配置导入css&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,

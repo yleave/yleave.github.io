@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-24 17:25" pubdate>
-        2021年2月24日 下午
+      <time datetime="2020-12-13 22:16" pubdate>
+        2020年12月13日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.3k 字
+      10.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      141
+      145
        分钟
     </span>
   
@@ -751,10 +751,11 @@ obj.b = obj;	<span class="hljs-comment">// 循环引用自身</span></code></pre
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span> !== <span class="hljs-string">&#x27;function&#x27;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">&#x27;caller must be a function&#x27;</span>;
     <span class="hljs-keyword">let</span> self = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>] || <span class="hljs-built_in">window</span>;  <span class="hljs-comment">// 获取 this 指向的对象，也就是 参数 obj</span>
     self._fn = <span class="hljs-built_in">this</span>;
-    <span class="hljs-keyword">let</span> _args = [...arguments].flat().slice(<span class="hljs-number">1</span>); <span class="hljs-comment">// 获取展开后的参数列表，且去除第一个参数 this 指向</span>
-    <span class="hljs-keyword">let</span> res = self._fn(...args);   <span class="hljs-comment">// 因为是 self 调用的 fn, 因此 fn 中的 this 是指向 self 的</span>
+    <span class="hljs-keyword">let</span> _args = [...arguments].flat().slice(<span class="hljs-number">1</span>); <span class="hljs-comment">// 获取展开后的参数列表，且去除第一个参数 this 指向，使用 flat 展开的原因：若是 apply 函数，传入的参数会是一个数组，因此需要展开</span>
+    <span class="hljs-keyword">let</span> res = self._fn(..._args);   <span class="hljs-comment">// 因为是 self 调用的 fn, 因此 fn 中的 this 是指向 self 的</span>
     <span class="hljs-built_in">Reflect</span>.deleteProperty(self, <span class="hljs-string">&#x27;_fn&#x27;</span>);  <span class="hljs-comment">// 将 _fn 从 self 中删除</span>
-    <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">return</span>
+    res;
 &#125;</code></pre>
 <h2 id="35-bind"><a class="markdownIt-Anchor" href="#35-bind"></a> 3.5 bind</h2>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">MDN</a></p>
@@ -774,6 +775,32 @@ obj.b = obj;	<span class="hljs-comment">// 循环引用自身</span></code></pre
         <span class="hljs-comment">// 最后返回函数调用结果</span>
         <span class="hljs-keyword">return</span> self.apply(context, funcArgs);
     &#125;;
+&#125;;</code></pre>
+<p>此外，<code>bind</code> 还有一个特点：</p>
+<blockquote>
+<p>一个绑定函数也能使用<code>new</code>操作符创建对象：这种行为就像把原函数当成构造器。提供的 <code>this</code>值被忽略，同时调用时的参数被提供给模拟函数。</p>
+</blockquote>
+<p>也就是说，当 <code>bind</code> 返回的函数作为构造器时，绑定的 <code>this</code> 值将失效，而传入的参数依然生效.</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.myBind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span> !== <span class="hljs-string">&#x27;function&#x27;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#x27;caller is not a function!&#x27;</span>);
+
+    <span class="hljs-keyword">let</span> slice = <span class="hljs-built_in">Array</span>.prototype.slice;
+    <span class="hljs-keyword">let</span> self = <span class="hljs-built_in">this</span>;
+    <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">let</span> args = slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">let</span> fBound = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">let</span> newArgs = args.concat(slice(<span class="hljs-built_in">arguments</span>));
+
+        <span class="hljs-comment">// 当 fBound 作为构造函数时，this 指向实例，因此 instanceof 返回 true，因此传入 this 让实例继承来自绑定函数的值</span>
+        <span class="hljs-comment">// 当 fBound 作为普通函数时，this 指向 wondow，因此会将 this 绑定到 context</span>
+        <span class="hljs-keyword">return</span> self.apply(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> fBound ? <span class="hljs-built_in">this</span> : context, newArgs);
+    &#125;;
+
+    <span class="hljs-comment">// 修改返回函数的 prototype 为绑定函数的 prototype ，实例就可以继承绑定函数原型中的值</span>
+    fBound.prototype = <span class="hljs-built_in">Object</span>.create(self.prototype);
+
+    <span class="hljs-keyword">return</span> fBound;
 &#125;;</code></pre>
 <h2 id="36-arraymap"><a class="markdownIt-Anchor" href="#36-arraymap"></a> 3.6 Array.map</h2>
 <p><strong>map 概念：</strong></p>
@@ -1562,12 +1589,18 @@ jsonp(&#123;
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2020/12/19/%E7%AE%97%E6%B3%95%E9%A2%98/%E8%A7%A3%E7%AD%94/%E5%89%91%E6%8C%87Offer/%E5%89%91%E6%8C%87-Offer-51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">剑指 Offer 51. 数组中的逆序对</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/27/WebGL/ThreeJS/ThreeJS-%E6%B5%8B%E8%B7%9D%E5%8A%9F%E8%83%BD/">
-                        <span class="hidden-mobile">ThreeJS 测距功能</span>
+                      <a href="/2020/12/09/JS/Set%E3%80%81Map%E3%80%81%E5%92%8CWeakSet%E3%80%81WeakMap/">
+                        <span class="hidden-mobile">Set、Map、和WeakSet、WeakMap</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

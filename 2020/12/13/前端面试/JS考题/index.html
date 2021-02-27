@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k 字
+      4.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      55
+      59
        分钟
     </span>
   
@@ -640,17 +640,8 @@ obj.show(fn);</code></pre>
 <h1 id="微任务和宏任务"><a class="markdownIt-Anchor" href="#微任务和宏任务"></a> 微任务和宏任务</h1>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangziye/p/9566454.html">REF1</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bfc3e319a96b">REF2</a></p>
-<h2 id="event-loop"><a class="markdownIt-Anchor" href="#event-loop"></a> Event Loop</h2>
-<p>事件循环中，每一次循环称为 <code>tick</code>，每一次 <code>tick</code> 的任务如下：</p>
-<ul>
-<li>执行栈选择最先进入队列的宏任务（一般都是 <code>script</code>），执行其同步代码直至结束</li>
-<li>检查是否存在微任务，若存在，则执行微任务至微任务队列为空</li>
-<li>若为浏览器环境中，可能会渲染 UI</li>
-<li>开始下一轮 <code>tick</code>，执行宏任务中的异步代码（<code>setTimeout</code> 等回调）</li>
-</ul>
-<p>  通过上面的执行步骤可知，<strong>如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中</strong>。</p>
-<p><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221141223934.png" srcset="/img/loading.gif" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221142300760.png" srcset="/img/loading.gif" alt="image-20201221142300760" style="zoom:80%;" /></p>
 <h2 id="微任务和宏任务-2"><a class="markdownIt-Anchor" href="#微任务和宏任务-2"></a> 微任务和宏任务</h2>
+<p>异步任务被分为两类：宏任务和微任务。</p>
 <p>ES6 规范中，microtask(微任务) 称为 <code>jobs</code>，macrotask(宏任务) 称为 <code>task</code></p>
 <p><strong>宏任务</strong>是由宿主发起的，而<strong>微任务</strong>由JavaScript自身发起。</p>
 <table>
@@ -703,6 +694,19 @@ async1()
  <span class="hljs-comment">// 执行async1()函数await之后的语句</span>
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>)
 &#125;)</code></pre>
+<h2 id="event-loop"><a class="markdownIt-Anchor" href="#event-loop"></a> Event Loop</h2>
+<p>在 JS 中，当函数被调用时，会创建一个执行上下文并被压入执行上下文栈中，当该函数执行完后，会从执行上下文栈中弹出，当遇到异步事件后，会先将这个事件挂起，继续执行执行栈中的其他任务，当一个异步事件返回结果后，JS 会将这个事件加入<strong>事件队列</strong>中，被放入事件队列的事件不会立即执行其回调，而是会等待当前执行栈中所有任务都执行完毕，主线程处于空闲状态时，才会去查找事件队列中是否有任务，若有，主线程会取出队首的事件回调放入执行栈中，然后执行其同步代码，如此循环。</p>
+<p>异步事件被分为两类：微任务 和 宏任务，不同类型的异步事件会被放到不同的事件队列中，当执行栈为空时，主线程会先去<strong>微任务队列</strong>查看是否有事件存在，若有则依次取出执行，直到微任务队列为空时，采取宏任务队列中取出任务执行。</p>
+<p>因此，当当前执行栈执行完毕时会先处理所有微任务队列中的事件，然后再去执行宏任务队列中的事件。所以，<strong>在同一个事件循环中，微任务永远在宏任务之前执行</strong>。</p>
+<p>事件循环中，每一次循环称为 <code>tick</code>，每一次 <code>tick</code> 的任务如下：</p>
+<ul>
+<li>执行栈选择最先进入队列的宏任务（一般都是 <code>script</code>），执行其同步代码直至结束</li>
+<li>检查是否存在微任务，若存在，则执行微任务至微任务队列为空</li>
+<li>若为浏览器环境中，可能会渲染 UI</li>
+<li>开始下一轮 <code>tick</code>，执行宏任务中的异步代码（<code>setTimeout</code> 等回调）</li>
+</ul>
+<p>  通过上面的执行步骤可知，<strong>如果宏任务中的异步代码有大量的计算且需要操作 DOM 的话，为了更快的界面响应，可以把操作放入微任务中</strong>。</p>
+<p><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221141223934.png" srcset="/img/loading.gif" alt="image-20201221141223934" style="zoom: 67%;" /><img src="https://gitee.com/ylea/imagehost/raw/master/img/image-20201221142300760.png" srcset="/img/loading.gif" alt="image-20201221142300760" style="zoom:80%;" /></p>
 <h1 id="es5es6-的继承除了写法上还有什么差异"><a class="markdownIt-Anchor" href="#es5es6-的继承除了写法上还有什么差异"></a> ES5/ES6 的继承除了写法上还有什么差异</h1>
 <p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html">JS 几种继承写法</a></p>
 <p>在 ES6 中，子类可以通过 <code>__proto__</code> 寻址到父类，而通过 ES5 的方式，<code>Sub.__proto__ === Function.prototype</code>。</p>

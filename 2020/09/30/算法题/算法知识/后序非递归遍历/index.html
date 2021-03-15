@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      633 字
+      690 字
     </span>
   
 
@@ -243,34 +243,35 @@
 <li>每当从孩子节点返回父节点时，需要判断是从左孩子返回的还是从右孩子返回的，若是从左孩子返回的，我们需要继续访问右孩子，而若是从右孩子返回的，我们则访问当前节点，并返回到其父节点。</li>
 </ol>
 <p>  判断一次返回是否是从右孩子返回，我们可以使用一个变量 <code>t</code>，当一个节点返回时，我们使用 <code>t</code> 记录这个节点，在父节点处判断 <code>t</code> 是否与这个节点的右孩子相等，若相等，则说明是从右孩子返回的，否则就是从左孩子返回的。</p>
-<p><strong>C 代码：</strong></p>
-<pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span>* <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(struct TreeNode* root, <span class="hljs-keyword">int</span>* returnSize)</span></span>&#123;
-    <span class="hljs-keyword">int</span>* res = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * <span class="hljs-number">2001</span>);
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>** <span class="hljs-title">stack</span> = <span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">TreeNode</span>*) * 2001);</span>
-    <span class="hljs-keyword">int</span> size = <span class="hljs-number">0</span>;
-    *returnSize = <span class="hljs-number">0</span>;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">r</span>;</span> <span class="hljs-comment">// r 为辅助节点，用于判断当节点返回时，是从哪个方向返回到父节点的。</span>
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">p</span> = <span class="hljs-title">root</span>;</span>
-    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> || size &gt; <span class="hljs-number">0</span>) &#123;
-        <span class="hljs-comment">// 先从左走到底</span>
-        <span class="hljs-keyword">if</span> (p) &#123;
-            <span class="hljs-built_in">stack</span>[size++] = p;
-            p = p-&gt;left;
+<p><strong>JS 代码：</strong></p>
+<pre><code class="hljs js">int* postorderTraversal(root)&#123;
+    <span class="hljs-keyword">let</span> stack = [];
+    <span class="hljs-keyword">let</span> node = root, r = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">while</span> (node || stack.length) &#123;
+        <span class="hljs-comment">// 一路往左走</span>
+        <span class="hljs-keyword">while</span> (node) &#123;
+            stack.push(node);
+            node = node.left;
+        &#125;
+        node = stack.pop();
+
+        <span class="hljs-comment">// 左走到底时，若有右孩子且当前不是从右孩子返回，那么访问右孩子</span>
+        <span class="hljs-comment">// PS:当从右孩子返回时后序遍历就该访问当前节点了</span>
+        <span class="hljs-keyword">if</span> (node.right &amp;&amp; node.right !== r) &#123;
+            stack.push(node);   <span class="hljs-comment">// 注意：这里需要保存父节点，否则进入右孩子后父节点就消失了！！</span>
+            node = node.right;
         &#125; <span class="hljs-keyword">else</span> &#123;
-            p = <span class="hljs-built_in">stack</span>[size<span class="hljs-number">-1</span>];
-            <span class="hljs-comment">// 若右孩子还未遍历，遍历右孩子</span>
-            <span class="hljs-keyword">if</span> (p-&gt;right &amp;&amp; p-&gt;right != r) &#123;
-                p = p-&gt;right;
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                p = <span class="hljs-built_in">stack</span>[--size];
-                res[(*returnSize)++] = p-&gt;val;
-                r = p;
-                p = <span class="hljs-literal">NULL</span>;
-            &#125;
+            <span class="hljs-comment">// 在这边访问节点值！</span>
+
+            <span class="hljs-comment">// 每次返回到父节点时都使用 r 记录，后面可以用来判断是否是从右孩子返回的</span>
+            r = node;
+            <span class="hljs-comment">// 设为 null，也可以设为 stack.pop()，总之下一步是访问父节点</span>
+            node = <span class="hljs-literal">null</span>;
         &#125;
     &#125;
 
-    <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">return</span> root;
 &#125;</code></pre>
 <h2 id="morris-算法遍历节点值"><a class="markdownIt-Anchor" href="#morris-算法遍历节点值"></a> morris 算法遍历节点值</h2>
 <p>  若需要使用非递归算法后序遍历节点值，那么可使用 morris 算法实现 <code>O(1)</code> 复杂度的遍历。</p>
